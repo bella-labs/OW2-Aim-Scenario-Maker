@@ -1,0 +1,58 @@
+# Configure Scenario 
+- Bot Settings
+    - Slot 0 <> on / off
+    - Bot Hero Pool <>
+    - Bot Health <> %
+    - Bot Scale <> %
+    - Bot Speed <>
+    - Bot Gravity <>
+- Bot Spawn / Boundaries
+    # Position
+    - X pos <>
+    - Y pos <>
+    - Z pos <>
+    # Boundaries
+    - Distance / Boundaries / Both
+    - Lower X pos
+    - Lower Y pos
+    - Lower Z pos
+    - Upper X pos
+    - Upper Y pos
+    - Upper Z pos
+    - Bot Min Distance <>
+    - Bot Max Distance <>
+    # Facing
+    - Player / World toggle
+    - Set Facing
+    - X pos
+    - Y pos
+    - Z pos
+- Horizontal Movement
+    - AD Strafe (Off / On)
+    - AD Min Strafe Time
+    - AD Max Strafe Time
+    - WS Strafe (Off / On)
+    - WS Min Strafe Time
+    - WS Max Strafe Time
+- Vertical Movement
+    - Jump Frequency
+    - Crouch Frequency
+    - Crouch Min Uncrouch Time
+    - Crouch Max Uncrouch Time
+- Profile
+    - Save Profile <>
+    - Duplicate Profile <>
+    - Delete Profile <>
+    - Randomize Profiles (Off / On)
+- Scoring
+    - (Timer / Kill Count)
+    - Time / Kills <>
+    - Score per Kill
+    - Score per bodyshot
+    - Score per headshot
+- Player Settings
+    - Location
+    - Speed
+    - Gravity
+    - Strafe Score Punish
+    - Impulse
