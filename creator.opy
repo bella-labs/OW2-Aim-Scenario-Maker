@@ -74,6 +74,9 @@ globalvar bar_color
 globalvar menu_off_opt_color
 globalvar menu_on_opt_color
 globalvar default_menu_label_color
+globalvar default_menu_submenu_color
+globalvar default_menu_cycle_color
+globalvar default_menu_vector_color
 globalvar default_menu_off_index_color
 globalvar default_menu_on_index_color
 ## Score Tracker
@@ -82,10 +85,12 @@ globalvar score
 ## Change Character
 globalvar player_hero_list
 ## UI 
-globalvar console_ui
+globalvar ui_inputs
 ## Import 
 globalvar import_script
-globalvar data_loaded
+globalvar menu_enabled
+
+
 # Player
 playervar player_spawn
 playervar score_type
@@ -93,7 +98,7 @@ playervar score_type
 playervar profile_count
 playervar profile_data
 # Subroutine
-subroutine import_script_subroutine
+subroutine import_player_menu
 ## Hud Generation
 subroutine menu_hud
 ## Player Menu
@@ -118,7 +123,7 @@ subroutine increment_for_submenu_item
 ### Menu Actions
 #### Submenu 0
 subroutine menu_act_change_submenu
-subroutine menu_act_save_profile
+subroutine menu_act_save_profile2
 subroutine menu_act_cycle_player_x
 subroutine menu_act_cycle_player_y
 subroutine menu_act_cycle_player_z
@@ -174,27 +179,82 @@ subroutine menu_act_toggle_bot_impulse
 subroutine menu_act_cycle_profile_slot 
 subroutine menu_act_select_save_profile
 
+subroutine set_ui_data
+globalvar top_hud_text
+globalvar hud_text_id
+
+
 #Extensions
 #!extension spawnMoreDummyBots
 
 # Workshop Initialization Rules
-def import_script_subroutine():
+def import_player_menu():
     @Name "----->  Paste Player Variables Here  <-----"
 
     smallMessage(null, "paste here!")
 
+rule ">>>  Section: Initalization  <<<":
+
+    smallMessage(null, "")
+
+
 rule "Initialize: Workshop Settings":
 
     ## UI Settings
-
-    console_ui = createWorkshopSetting(bool, "0. UI Settings", "Console UI", false, 0)
+    ui_inputs[0] = createWorkshopSetting(bool, "0. UI Settings", "Controller UI", false, 0)
+    set_ui_data()
     import_script = createWorkshopSetting(bool, "1. Import Settings", "Import Existing Settings (Paste Player Variables in the 1st workshop rule)", false, 0)
+
+
+def set_ui_data():
+    @Name "SUB: set_ui_data"
+    # Open Menu
+    ui_inputs[1] = Button.INTERACT
+    # Controller UI
+    if ui_inputs[0] == true:
+        # Menu Up
+        ui_inputs[2] = Button.ULTIMATE
+        # Menu Down
+        ui_inputs[3] = Button.JUMP
+        # Step Left
+        ui_inputs[4] = Button.ABILITY_1
+        # Step Right
+        ui_inputs[5] = Button.ABILITY_2
+        # Jump Left
+        ui_inputs[6] = Button.SECONDARY_FIRE
+        # Jump Right
+        ui_inputs[7] = Button.PRIMARY_FIRE
+    # M&K UI
+    else:
+        # Menu Up
+        ui_inputs[2] = "Forward"
+        # Menu Down
+        ui_inputs[3] = "Backward"
+        # Step Left
+        ui_inputs[4] = "Left"
+        # Step Right / Select
+        ui_inputs[5] = "Right"
+        # Jump Left
+        ui_inputs[6] = Button.ULTIMATE
+        # Jump Right
+        ui_inputs[7] = Button.ABILITY_2
+    # Select Next Subitem
+    ui_inputs[8] = Button.RELOAD
+    ui_inputs[9] = Button.CROUCH
+    ## Script Settings
+
+rule "Player Joined":
+    @Event playerJoined
+    @Team 1
+
+    eventPlayer.disableGamemodeHud()
 
 
 rule "Player Spawned":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer.hasSpawned() == true
+
     
     # Turn off menu
     menu_visible = false
@@ -204,27 +264,93 @@ rule "Player Spawned":
     eventPlayer.setStatusEffect(eventPlayer, Status.UNKILLABLE, 9999)
 
     if import_script == true:
-        import_script_subroutine()
+        import_player_menu()
     else:
         default_player_menu()
 
-    data_loaded = true
+    hudHeader(eventPlayer, "Open The Menu to Begin Editing. For Export Instuctions See The Description of this code or Workshop.Codes/CODE", HudPosition.TOP, -2, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
+    hud_text_id = getLastCreatedText()
+    wait(16)
+    destroyHudText(hud_text_id)
 
-
+        
 # UI Elements
-rule "Menu Creation":
+rule ">>>  Section: Menu Setup  <<<":
+
+    smallMessage(null, "")
+
+
+rule "Menu Setup: Creation":
     @Event global
+
+    menu_enabled = false
 
     default_menu_label_color = Color.WHITE
     default_menu_off_index_color = Color.WHITE
+    default_menu_submenu_color = Color.BLUE
+    default_menu_cycle_color = Color.AQUA
+    default_menu_vector_color = Color.YELLOW
     default_menu_on_index_color = Color.TEAM_1
 
-    waitUntil(data_loaded == true, 9999)
+    
+    top_hud_text = "Menu Loading..."
+    # Top text to display messages
+    hudSubtext([i for i in localPlayer], 
+    "{0}".format(top_hud_text), 
+    HudPosition.TOP, 
+    -9999, 
+    Color.WHITE, 
+    HudReeval.VISIBILITY_AND_STRING, 
+    SpecVisibility.DEFAULT)
 
+    # Small server load on right
+    hudSubheader([i for i in localPlayer],
+    "Server Load (Curr/Avg/Peak): {0}/{1}/{2}\n".format(getServerLoad(), getAverageServerLoad(), getPeakServerLoad()), 
+    HudPosition.RIGHT, 
+    -9999, 
+    Color.WHITE, 
+    HudReeval.VISIBILITY_AND_STRING, 
+    SpecVisibility.DEFAULT)
+
+    # Large vector data for reference on right
+    hudSubtext([i for i in localPlayer],
+    "Position: {0}\nFacing: {1}".format(localPlayer.getPosition(), localPlayer.getFacingDirection()),
+    HudPosition.RIGHT, 
+    -1, 
+    Color.WHITE, 
+    HudReeval.VISIBILITY_AND_STRING, 
+    SpecVisibility.DEFAULT)
+
+    # Displays the left HUD menu help. Note: Can embed ui_input[0] check into single hudtext, but too much server load
+    if ui_inputs[0]:
+        hudSubheader([i for i in localPlayer], 
+        "{0}\n{1}".format("Hold {0} to {1} Menu".format(buttonString(ui_inputs[1]), "close" if menu_visible else "open"), 
+            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nSelect Next Value :  {6}\nSet Vector to Player :  {7}\n{8}\n*Use left/right Controls to Select*".format(buttonString(ui_inputs[2]), buttonString(ui_inputs[3]), buttonString(ui_inputs[4]), buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), buttonString(ui_inputs[9]), "——————————————————————") if menu_visible else ""), 
+            HudPosition.LEFT, 
+            -1, 
+            Color.WHITE, 
+            HudReeval.VISIBILITY_AND_STRING, 
+            SpecVisibility.DEFAULT)
+    else:
+        hudSubheader([i for i in localPlayer], 
+        "{0}\n{1}".format("{0} {1} to {2} Menu".format(
+            "Hold" if ui_inputs[0] else "Press", buttonString(ui_inputs[1]), "close" if menu_visible else "open"), 
+            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nSelect Next Subitem :  {6}\nSet Vector to Current :  {7}\n{8}\n*Use left/right Controls to Select*".format(ui_inputs[2], ui_inputs[3], ui_inputs[4], ui_inputs[5], buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), buttonString(ui_inputs[9]), "——————————————————————") if menu_visible else ""), 
+            HudPosition.LEFT, 
+            -1, 
+            Color.WHITE, 
+            HudReeval.VISIBILITY_AND_STRING, 
+            SpecVisibility.DEFAULT)
+    # Create HUD
     menu_hud()
 
-    hudSubtext(localPlayer, "Position {0}".format(localPlayer.getPosition()), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
-    hudSubtext(localPlayer, "Facing:  {0}  ".format(localPlayer.getFacingDirection()), HudPosition.RIGHT, 2, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
+    menu_enabled = true
+    top_hud_text = ""
+
+
+rule ">>>  Section: Menu Controls  <<<":
+
+    smallMessage(null, "")
 
 
 rule "Menu Controls: Toggle Menu with Interact":
@@ -232,8 +358,10 @@ rule "Menu Controls: Toggle Menu with Interact":
     @Team 1
     # Change this condition to whatever button(s) you want to trigger the main menu. 
     @Condition eventPlayer.isHoldingButton(Button.INTERACT) == true
-
-    if console_ui == true:
+    @Condition menu_enabled
+    
+    # Stalls toggle while menu is being created.
+    if ui_inputs[0] == true:
         wait(1)
         if eventPlayer.isHoldingButton(Button.INTERACT) == false:
             return
@@ -255,9 +383,11 @@ rule "Menu Controls: Toggle On Setup":
     eventPlayer.disallowButton(Button.ABILITY_1)
     eventPlayer.disallowButton(Button.ABILITY_2)
     eventPlayer.disallowButton(Button.ULTIMATE)
+    eventPlayer.disallowButton(Button.RELOAD)
+    eventPlayer.disallowButton(Button.CROUCH)
     eventPlayer.setMoveSpeed(0)
 
-
+    
 rule "Menu Controls: Toggle Off Setup Player":
     @Event eachPlayer
     @Team 1
@@ -266,21 +396,13 @@ rule "Menu Controls: Toggle Off Setup Player":
     enable_player_input()
 
 
-rule "Menu Controls: Toggle Off Setup Game":
-    @Event eachPlayer
-    @Team 1
-    @Condition menu_visible == false
-
-    smallMessage(null, "")
-
-
 rule "Menu Controls: Up Scroll":
     @Event eachPlayer
     @Team 1
     @Condition menu_visible == true
     # We use the player's movement keys to navigate the menu.
     # If you'd like to use a button input instead, change this condition.
-    @Condition (console_ui == false and eventPlayer.getThrottle() == Vector.FORWARD) or (console_ui == true and eventPlayer.isHoldingButton(Button.ULTIMATE))
+    @Condition (ui_inputs[0] == false and eventPlayer.getThrottle() == Vector.FORWARD) or (ui_inputs[0] == true and eventPlayer.isHoldingButton(Button.ULTIMATE))
     
     menu_up_check()
     while menu_item_hidden[menu_index] == true:
@@ -293,13 +415,13 @@ rule "Menu Controls: Down Scroll":
     @Condition menu_visible == true
     # We use the player's movement keys to navigate the menu.
     # If you'd like to use a button input instead, change this condition.
-    @Condition (console_ui == false and eventPlayer.getThrottle() == Vector.BACKWARD) or (console_ui == true and eventPlayer.isHoldingButton(Button.JUMP))
+    @Condition (ui_inputs[0] == false and eventPlayer.getThrottle() == Vector.BACKWARD) or (ui_inputs[0] == true and eventPlayer.isHoldingButton(Button.JUMP))
     
     menu_down_check()
     while menu_item_hidden[menu_index] == true:
         menu_down_check()
 
-        
+
 def menu_up_check():
     @Name "SUB: menu_up_check"
 
@@ -332,7 +454,10 @@ def enable_player_input():
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.allowButton(Button.ABILITY_2)
     eventPlayer.allowButton(Button.ULTIMATE)
+    eventPlayer.allowButton(Button.RELOAD)
+    eventPlayer.allowButton(Button.CROUCH)
     eventPlayer.setMoveSpeed(100)
+
 
 def increment_for_menu_label():
     @Name "SUB: increment_menu_label"
@@ -387,87 +512,35 @@ def new_menu_label_subtext():
 def new_menu_item_selection():
     @Name "SUB: new_menu_item_selection"
 
-    # Case: index off
     hudSubheader(
-    [i for i in localPlayer if menu_visible 
-        and menu_index != evalOnce(menu_opt_size) 
-        and submenu_index == evalOnce(sub_size)
-        and menu_item_hidden[evalOnce(menu_opt_size)] != true], 
-    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]),
-    HudPosition.TOP,
-    evalOnce(menu_max_pos),
-    menu_off_opt_color,
-    HudReeval.VISIBILITY_STRING_AND_COLOR,
-    SpecVisibility.DEFAULT)
-    # Case: index on
-    hudSubheader(
-    [i for i in localPlayer if menu_visible 
-        and menu_index == evalOnce(menu_opt_size) 
-        and submenu_index == evalOnce(sub_size)
-        and menu_item_hidden[evalOnce(menu_opt_size)] != true],
-    "■  {0}".format(menu_on_opt_title[evalOnce(menu_opt_size)]),
-    HudPosition.TOP,
-    evalOnce(menu_max_pos),
-    menu_on_opt_color[evalOnce(menu_opt_size)],
-    HudReeval.VISIBILITY_STRING_AND_COLOR,
+    localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■  {0}".format(menu_on_opt_title[evalOnce(menu_opt_size)]), 
+    HudPosition.TOP, 
+    evalOnce(menu_max_pos), menu_off_opt_color if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
+    HudReeval.VISIBILITY_STRING_AND_COLOR, 
     SpecVisibility.DEFAULT)
 
 
 def new_menu_item_toggle():
     @Name "SUB: new_menu_item_toggle"
 
-    # Case: index off
-    hudSubheader(
-    [i for i in localPlayer if menu_visible 
-        and menu_index != evalOnce(menu_opt_size) 
-        and submenu_index == evalOnce(sub_size)
-        and menu_item_hidden[evalOnce(menu_opt_size)] != true], 
-    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]),
-    HudPosition.TOP,
-    evalOnce(menu_max_pos),
-    menu_off_opt_color,
-    HudReeval.VISIBILITY_STRING_AND_COLOR,
-    SpecVisibility.DEFAULT)
-
-    # Case: index on, see menu_act_toggle to see how to update the menu_opt_var string.
-    hudSubheader([i for i in localPlayer if menu_visible 
-        and menu_index == evalOnce(menu_opt_size) 
-        and submenu_index == evalOnce(sub_size)
-        and menu_item_hidden[evalOnce(menu_opt_size)] != true],
-    "■  {0}{1}".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var[evalOnce(menu_opt_size)]), 
-    HudPosition.TOP,
-    evalOnce(menu_max_pos),
-    menu_on_opt_color[evalOnce(menu_opt_size)],
-    HudReeval.VISIBILITY_STRING_AND_COLOR,
+    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■  {0}{1}".format(menu_on_opt_title[evalOnce(menu_opt_size)], 
+    menu_opt_var[evalOnce(menu_opt_size)]), 
+    HudPosition.TOP, 
+    evalOnce(menu_max_pos), 
+    menu_off_opt_color if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
+    HudReeval.VISIBILITY_STRING_AND_COLOR, 
     SpecVisibility.DEFAULT)
 
 
 def new_menu_item_cycle():
     @Name "SUB: new_menu_item_cycle"
 
-    # Case: index off
-    hudSubheader(
-    [i for i in localPlayer if menu_visible
-        and menu_index != evalOnce(menu_opt_size) 
-        and submenu_index == evalOnce(sub_size)
-        and menu_item_hidden[evalOnce(menu_opt_size)] != true], 
-    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]),
-    HudPosition.TOP, 
-    evalOnce(menu_max_pos), 
-    menu_off_opt_color, 
-    HudReeval.VISIBILITY_STRING_AND_COLOR, 
-    SpecVisibility.DEFAULT)
-
-    # Case: index on, see menu_act_cycle to see how to update the menu_opt_var string.
-    hudSubheader(
-    [i for i in localPlayer if menu_visible 
-        and menu_index == evalOnce(menu_opt_size) 
-        and submenu_index == evalOnce(sub_size)
-        and menu_item_hidden[evalOnce(menu_opt_size)] != true], 
-    "■ {0} ←  {1}  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var[evalOnce(menu_opt_size)]),
-    HudPosition.TOP, 
-    evalOnce(menu_max_pos), 
-    menu_on_opt_color[evalOnce(menu_opt_size)], 
+    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■ {0} ←  {1}  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)],
+    menu_opt_var[evalOnce(menu_opt_size)]), HudPosition.TOP, evalOnce(menu_max_pos), 
+    menu_off_opt_color if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
     HudReeval.VISIBILITY_STRING_AND_COLOR, 
     SpecVisibility.DEFAULT)
 
@@ -475,57 +548,27 @@ def new_menu_item_cycle():
 def new_menu_item_cycle_bar():
     @Name "SUB: new_menu_item_cycle_bar"
 
-    # Case: index off
-    hudSubheader(
-    [i for i in localPlayer if menu_visible 
-        and menu_index != evalOnce(menu_opt_size) 
-        and submenu_index == evalOnce(sub_size)
-        and menu_item_hidden[evalOnce(menu_opt_size)] != true], 
-    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]), 
-    HudPosition.TOP, 
+    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [], 
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■  {0}  {1}".format(menu_on_opt_title[evalOnce(menu_opt_size)], 
+    menu_opt_var[evalOnce(menu_opt_size)]),
+    HudPosition.TOP,
     evalOnce(menu_max_pos), 
-    menu_off_opt_color, 
-    HudReeval.VISIBILITY_STRING_AND_COLOR, 
+    menu_off_opt_color if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)],
+    HudReeval.VISIBILITY_STRING_AND_COLOR,
     SpecVisibility.DEFAULT)
 
-    # Case: index on, see menu_act_cycle_bar to see how to update the menu_opt_var string.
-    hudSubheader(
-    [i for i in localPlayer if menu_visible 
-        and menu_index == evalOnce(menu_opt_size) 
-        and submenu_index == evalOnce(sub_size)
-        and menu_item_hidden[evalOnce(menu_opt_size)] != true], 
-    "■  {0}  {1}".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var[evalOnce(menu_opt_size)]), 
-    HudPosition.TOP, 
-    evalOnce(menu_max_pos), 
-    menu_on_opt_color[evalOnce(menu_opt_size)], 
-    HudReeval.VISIBILITY_STRING_AND_COLOR, 
-    SpecVisibility.DEFAULT)
-
-    # Increment Menu Position
     menu_max_pos += 1
 
-    # Submenu hudheader
-    hudHeader(
-    [i for i in localPlayer if menu_visible 
-    and menu_index == evalOnce(menu_opt_size) 
-    and submenu_index == evalOnce(sub_size)], 
-    "{0} ←  {1}  →".format(bar_title[menu_index], bar_var[menu_index]), 
+    hudHeader(localPlayer if menu_visible and menu_index == evalOnce(menu_opt_size) and submenu_index == evalOnce(sub_size) else [],
+    "{0} ←  {1}  →".format(bar_title[menu_index], bar_var[menu_index]),
     HudPosition.TOP, 
     evalOnce(menu_max_pos), 
-    bar_color[evalOnce(menu_opt_size)], 
-    HudReeval.VISIBILITY_STRING_AND_COLOR, 
+    bar_color[evalOnce(menu_opt_size)],
+    HudReeval.VISIBILITY_STRING_AND_COLOR,
     SpecVisibility.DEFAULT)
 
-def default_player_menu():
-    @Name "SUB: default_player_menu"
-
-    eventPlayer.player_spawn = vect(1,2,3)
-    menu_opt_var[2] = eventPlayer.player_spawn.x
-    menu_opt_var[3] = eventPlayer.player_spawn.y
-    menu_opt_var[4] = eventPlayer.player_spawn.z
-    
-    eventPlayer.score_type = "timer"
-    menu_opt_var[12] = eventPlayer.score_type
+rule "Section: Menu Data":
+    smallMessage(null, "")
 
 
 def menu_hud():
@@ -548,13 +591,13 @@ def menu_hud():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Settings"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
+    menu_on_opt_color[menu_opt_size] = default_menu_submenu_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Movement"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
+    menu_on_opt_color[menu_opt_size] = default_menu_cycle_color
     new_menu_item_selection()
 
     increment_for_menu_label()
@@ -565,7 +608,7 @@ def menu_hud():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Player X Spawn"
     menu_on_opt_title[menu_opt_size] = "X Coord: "
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
+    menu_on_opt_color[menu_opt_size] = default_menu_vector_color
     new_menu_item_cycle()
 
     increment_for_menu_item()
@@ -607,7 +650,7 @@ def menu_hud():
     menu_off_opt_title[menu_opt_size] = "Score Type"
     menu_on_opt_title[menu_opt_size] = "Type: "
     menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
-    new_menu_item_toggle()
+    new_menu_item_cycle()  
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Time / Kills"
@@ -941,15 +984,22 @@ def menu_hud():
     new_menu_item_selection()
 
 
+def default_player_menu():
+    @Name "SUB: default_player_menu"
 
-    # Player Menu
+    
+
+rule ">>>  Section: Menu Actions  <<<":
+    smallMessage(null, "")
+
+
 rule "Menu Actions: Input Read":
     @Event eachPlayer
     @Condition menu_visible == true
-    @Condition (console_ui == false and (eventPlayer.isHoldingButton(Button.ULTIMATE) == true or eventPlayer.isHoldingButton(Button.ABILITY_2) == true or eventPlayer.getThrottle() == Vector.LEFT or eventPlayer.getThrottle() == Vector.RIGHT or eventPlayer.isHoldingButton(Button.CROUCH)) == true) or (console_ui == true and (eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) or eventPlayer.isHoldingButton(Button.ABILITY_1) or eventPlayer.isHoldingButton(Button.ABILITY_2) or eventPlayer.isHoldingButton(Button.CROUCH)))
+    @Condition (ui_inputs[0] == false and (eventPlayer.isHoldingButton(Button.ULTIMATE) == true or eventPlayer.isHoldingButton(Button.ABILITY_2) == true or eventPlayer.getThrottle() == Vector.LEFT or eventPlayer.getThrottle() == Vector.RIGHT or eventPlayer.isHoldingButton(Button.CROUCH)) == true) or (ui_inputs[0] == true and (eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) or eventPlayer.isHoldingButton(Button.ABILITY_1) or eventPlayer.isHoldingButton(Button.ABILITY_2) or eventPlayer.isHoldingButton(Button.CROUCH)))
     
     # We use the player variable menu_input to tell the subroutines we call that the player inputed one of our selection keys.
-    if console_ui == false:
+    if ui_inputs[0] == false:
         if eventPlayer.isHoldingButton(Button.CROUCH):
             menu_input = 2
         elif eventPlayer.getThrottle() == Vector.RIGHT:
@@ -1145,12 +1195,6 @@ def menu_act_save_profile():
     menu_opt_var[4] = eventPlayer.profile_count
 
 
-
-
-
-
-
-
 rule "Change Hero":
     @Event eachPlayer
     @Condition eventPlayer.isHoldingButton(Button.RELOAD)
@@ -1158,7 +1202,15 @@ rule "Change Hero":
 
     eventPlayer.setAllowedHeroes(eventPlayer.getAllowedHeroes().exclude(eventPlayer.getCurrentHero()))
     eventPlayer.resetHeroAvailability()
-    
-    
-    
-    
+
+rule "anticrash":
+    @Condition getAverageServerLoad() >= 230
+
+    wait(2, Wait.ABORT_WHEN_FALSE)
+    smallMessage(hostPlayer, "    Server Avg Exceeded 230 for 2 seconds. Slow Motion Enabled.")
+    bigMessage(hostPlayer, "    If you see this message either:\na) the server sucks\nb) the dev sucks\nc) your config takes too many resources")
+    setSlowMotion(10)
+    waitUntil(getAverageServerLoad() < 200, 99999)
+    smallMessage(getAllPlayers(), "Server Avg Lowered. Slow Motion Disabled")
+    setSlowMotion(100)
+
