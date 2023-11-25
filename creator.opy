@@ -85,6 +85,7 @@ globalvar score
 ## Change Character
 globalvar player_hero_list
 ## UI 
+globalvar controller_mode
 globalvar ui_inputs
 ## Import 
 globalvar import_script
@@ -201,46 +202,50 @@ rule ">>>  Section: Initalization  <<<":
 rule "Initialize: Workshop Settings":
 
     ## UI Settings
-    ui_inputs[0] = createWorkshopSetting(bool, "0. UI Settings", "Controller UI", false, 0)
+    controller_mode = createWorkshopSetting(bool, "0. UI Settings", "Controller UI", false, 0)
     set_ui_data()
     import_script = createWorkshopSetting(bool, "1. Import Settings", "Import Existing Settings (Paste Player Variables in the 1st workshop rule)", false, 0)
 
 
+# Defines the Input for UI, making it easy to change menu inputs.
 def set_ui_data():
     @Name "SUB: set_ui_data"
     # Open Menu
-    ui_inputs[1] = Button.INTERACT
+    ui_inputs[0] = Button.INTERACT
     # Controller UI
-    if ui_inputs[0] == true:
+    if controller_mode == true:
         # Menu Up
-        ui_inputs[2] = Button.ULTIMATE
+        ui_inputs[1] = Button.ULTIMATE
         # Menu Down
-        ui_inputs[3] = Button.JUMP
+        ui_inputs[2] = Button.JUMP
         # Step Left
-        ui_inputs[4] = Button.ABILITY_1
+        ui_inputs[3] = Button.ABILITY_1
         # Step Right
-        ui_inputs[5] = Button.ABILITY_2
+        ui_inputs[4] = Button.ABILITY_2
         # Jump Left
-        ui_inputs[6] = Button.SECONDARY_FIRE
+        ui_inputs[5] = Button.SECONDARY_FIRE
         # Jump Right
-        ui_inputs[7] = Button.PRIMARY_FIRE
-    # M&K UI
+        ui_inputs[6] = Button.PRIMARY_FIRE
+    # M&K UI. To update Up/Down/Left/Right you'll also have to change the condition in the menu control rules.
     else:
         # Menu Up
-        ui_inputs[2] = "Forward"
+        ui_inputs[1] = Vector.FORWARD
         # Menu Down
-        ui_inputs[3] = "Backward"
+        ui_inputs[2] = Vector.DOWN
         # Step Left
-        ui_inputs[4] = "Left"
+        ui_inputs[3] = Vector.LEFT
         # Step Right / Select
-        ui_inputs[5] = "Right"
+        ui_inputs[4] = Vector.RIGHT
         # Jump Left
-        ui_inputs[6] = Button.ULTIMATE
+        ui_inputs[5] = Button.ULTIMATE
         # Jump Right
-        ui_inputs[7] = Button.ABILITY_2
-    # Select Next Subitem
-    ui_inputs[8] = Button.RELOAD
-    ui_inputs[9] = Button.CROUCH
+        ui_inputs[6] = Button.ABILITY_2
+    # Select Next Value
+    ui_inputs[7] = Button.RELOAD
+    # Set Value to Vector
+    ui_inputs[8] = Button.CROUCH
+    # Help
+    ui_inputs[9] = Button.MELEE
     ## Script Settings
 
 rule "Player Joined":
@@ -322,20 +327,21 @@ rule "Menu Setup: Creation":
     SpecVisibility.DEFAULT)
 
     # Displays the left HUD menu help. Note: Can embed ui_input[0] check into single hudtext, but too much server load
-    if ui_inputs[0]:
+    if controller_mode:
         hudSubheader([i for i in localPlayer], 
-        "{0}\n{1}".format("Hold {0} to {1} Menu".format(buttonString(ui_inputs[1]), "close" if menu_visible else "open"), 
-            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nSelect Next Value :  {6}\nSet Vector to Player :  {7}\n{8}\n*Use left/right Controls to Select*".format(buttonString(ui_inputs[2]), buttonString(ui_inputs[3]), buttonString(ui_inputs[4]), buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), buttonString(ui_inputs[9]), "——————————————————————") if menu_visible else ""), 
+        "{0}\n{1}".format("Hold {0} to {1} Menu".format(buttonString(ui_inputs[0]), "close" if menu_visible else "open"), 
+            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nCycle to Next Value :  {6}\nSet Item to Vector :  {7}\nHelp for Current Menu Item : {8}\n{9}\n*Use left/right Controls to Select*".format(buttonString(ui_inputs[1]), buttonString(ui_inputs[2]), buttonString(ui_inputs[3]), buttonString(ui_inputs[4]), buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), buttonString(ui_inputs[9]), "——————————————————————") if menu_visible else ""), 
             HudPosition.LEFT, 
             -1, 
             Color.WHITE, 
             HudReeval.VISIBILITY_AND_STRING, 
             SpecVisibility.DEFAULT)
     else:
+        # Not sure how to avoid hard coding up/down/left/right strings
         hudSubheader([i for i in localPlayer], 
         "{0}\n{1}".format("{0} {1} to {2} Menu".format(
-            "Hold" if ui_inputs[0] else "Press", buttonString(ui_inputs[1]), "close" if menu_visible else "open"), 
-            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nSelect Next Subitem :  {6}\nSet Vector to Current :  {7}\n{8}\n*Use left/right Controls to Select*".format(ui_inputs[2], ui_inputs[3], ui_inputs[4], ui_inputs[5], buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), buttonString(ui_inputs[9]), "——————————————————————") if menu_visible else ""), 
+            "Hold" if controller_mode else "Press", buttonString(ui_inputs[0]), "close" if menu_visible else "open"), 
+            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nCycle to Next Value :  {6}\nSet Item to Vector :  {7}\n{8}\n*Use left/right Controls to Select*".format("Forward", "Backwards", "Left", "Right", buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), buttonString(ui_inputs[9]), "——————————————————————") if menu_visible else ""), 
             HudPosition.LEFT, 
             -1, 
             Color.WHITE, 
@@ -361,7 +367,7 @@ rule "Menu Controls: Toggle Menu with Interact":
     @Condition menu_enabled
     
     # Stalls toggle while menu is being created.
-    if ui_inputs[0] == true:
+    if controller_mode == true:
         wait(1)
         if eventPlayer.isHoldingButton(Button.INTERACT) == false:
             return
@@ -385,6 +391,7 @@ rule "Menu Controls: Toggle On Setup":
     eventPlayer.disallowButton(Button.ULTIMATE)
     eventPlayer.disallowButton(Button.RELOAD)
     eventPlayer.disallowButton(Button.CROUCH)
+    eventPlayer.disallowButton(Button.MELEE)
     eventPlayer.setMoveSpeed(0)
 
     
@@ -400,9 +407,7 @@ rule "Menu Controls: Up Scroll":
     @Event eachPlayer
     @Team 1
     @Condition menu_visible == true
-    # We use the player's movement keys to navigate the menu.
-    # If you'd like to use a button input instead, change this condition.
-    @Condition (ui_inputs[0] == false and eventPlayer.getThrottle() == Vector.FORWARD) or (ui_inputs[0] == true and eventPlayer.isHoldingButton(Button.ULTIMATE))
+    @Condition (controller_mode == true and eventPlayer.isHoldingButton(ui_inputs[2])) or (controller_mode == false and eventPlayer.getThrottle() == ui_inputs[2])
     
     menu_up_check()
     while menu_item_hidden[menu_index] == true:
@@ -413,9 +418,7 @@ rule "Menu Controls: Down Scroll":
     @Event eachPlayer
     @Team 1
     @Condition menu_visible == true
-    # We use the player's movement keys to navigate the menu.
-    # If you'd like to use a button input instead, change this condition.
-    @Condition (ui_inputs[0] == false and eventPlayer.getThrottle() == Vector.BACKWARD) or (ui_inputs[0] == true and eventPlayer.isHoldingButton(Button.JUMP))
+    @Condition (controller_mode == true and eventPlayer.isHoldingButton(ui_inputs[3])) or (controller_mode == false and eventPlayer.getThrottle() == ui_inputs[3])
     
     menu_down_check()
     while menu_item_hidden[menu_index] == true:
@@ -456,6 +459,7 @@ def enable_player_input():
     eventPlayer.allowButton(Button.ULTIMATE)
     eventPlayer.allowButton(Button.RELOAD)
     eventPlayer.allowButton(Button.CROUCH)
+    eventPlayer.allowButton(Button.MELEE)
     eventPlayer.setMoveSpeed(100)
 
 
@@ -996,10 +1000,10 @@ rule ">>>  Section: Menu Actions  <<<":
 rule "Menu Actions: Input Read":
     @Event eachPlayer
     @Condition menu_visible == true
-    @Condition (ui_inputs[0] == false and (eventPlayer.isHoldingButton(Button.ULTIMATE) == true or eventPlayer.isHoldingButton(Button.ABILITY_2) == true or eventPlayer.getThrottle() == Vector.LEFT or eventPlayer.getThrottle() == Vector.RIGHT or eventPlayer.isHoldingButton(Button.CROUCH)) == true) or (ui_inputs[0] == true and (eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) or eventPlayer.isHoldingButton(Button.ABILITY_1) or eventPlayer.isHoldingButton(Button.ABILITY_2) or eventPlayer.isHoldingButton(Button.CROUCH)))
+    @Condition (controller_mode == false and (eventPlayer.isHoldingButton(Button.ULTIMATE) == true or eventPlayer.isHoldingButton(Button.ABILITY_2) == true or eventPlayer.getThrottle() == Vector.LEFT or eventPlayer.getThrottle() == Vector.RIGHT or eventPlayer.isHoldingButton(Button.CROUCH)) == true) or (controller_mode == true and (eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) or eventPlayer.isHoldingButton(Button.ABILITY_1) or eventPlayer.isHoldingButton(Button.ABILITY_2) or eventPlayer.isHoldingButton(Button.CROUCH)))
     
     # We use the player variable menu_input to tell the subroutines we call that the player inputed one of our selection keys.
-    if ui_inputs[0] == false:
+    if controller_mode == false:
         if eventPlayer.isHoldingButton(Button.CROUCH):
             menu_input = 2
         elif eventPlayer.getThrottle() == Vector.RIGHT:

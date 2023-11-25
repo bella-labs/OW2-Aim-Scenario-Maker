@@ -20,17 +20,43 @@
   * Bot Profile (label)
     * Profiles <Profile X: On/Off> (large: toggle/toggle all, small next/prev)
     * Randomize Profile Order <On/Off>
-* Configure Movement Profiles
-  * Profile Settings (label)
+* Configure Profiles
+  * Profile Settings (submenu)
     * Select Movement Profile <1-12>
     * Save Movement Profile
     * Clear Movement Profile
-    * Override Movement Profile from Slot <1-12>
-    * Advanced Movement (submenu):
-    * Bot Impulse Profile <off / on>
+    * Override Movement Settings from Slot <1-12>
+  * Movement Settings (Submenu)
+    * Horizontal Movement (label)
+      * AD Strafes <Off / On>
+      * AD Strafe Time <Min, Max>
+      * AD Strafe Speed <A Speed, B Speed>
+      * Randomly Swap AD Strafe Speeds <Off / On, Min, Max> *************** Check what aim train option of this does **************** 
+      * WS Strafes <Off / On>
+      * WS Strafe Time <Min, Max>
+      * WS Strafe Speed <A Speed, B Speed>
+      * Randomly Swap WS Strafe Speeds <Off / On, Min, Max> *************** Check what aim train option of this does **************** 
+    * Vertical Movement (label)
+      * Jump Frequency <0-10s>
+      * Gravity <0%-500%>
+      * Crouch Frequency <0-10s>
+      * Uncrouch Time <Min, Max>
+    * Advanced Movement (label)
+      * Bot Impulse Profile <off / on>
+      * (Unsure) Maximize Player Crosshair Movement (additional Wait time if strafe away from crosshair) <off / on, min, max> 
+  * Reaction Settings (Submenu)
+    *  Collisions (label)
+      * Bot Reactions to Collisions <Off / On>
+      * Threshold <%1-100%>
+      * Reaction Time <Min/Max>
+    * Damage (label)
+      * Swap AD Strafe Directions (On / Off)
+      * Swap AD Wait Timern *************** Check what aim train option of this does **************** 
+      * Swap WS Strafe Directions (On / Off)
+      * Swap WS Wait Timer *************** Check what aim train option of this does **************** 
 * Configure Scenario
   * Score Type <Timer / Kills>
-  * Time <1s to 600> (large: 10, small: 1, coord_set, vis: Score Type = Timer)
+  * Time <1s to 600s> (large: 10, small: 1, coord_set, vis: Score Type = Timer)
   * Kills <1 to 500> (large:10, small: 1, vis: Score Type = Kills)
   * Points per Kill <0 to 1000> (large:10, small: 1)
   * Points per Bodyshot <0 to 1000> (large:10, small: 1)
@@ -43,5 +69,5 @@
   * Player Gravity <1% to 500%> (large: 10%, small: 1%)
   * Player Impulse Profile <off / on>
 * Play
-  * Test Movement Profile <1-12>
+  * Test Bot in Slot <0-11>
   * Test Scenario
