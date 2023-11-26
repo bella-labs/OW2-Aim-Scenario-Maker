@@ -101,24 +101,6 @@ rule "Menu Setup: Creation":
 
     menu_enabled = false
 
-    default_menu_label_color = Color.WHITE
-    default_menu_off_index_color = Color.WHITE
-    default_menu_submenu_color = Color.BLUE
-    default_menu_cycle_color = Color.AQUA
-    default_menu_vector_color = Color.YELLOW
-    default_menu_on_index_color = Color.TEAM_1
-
-    
-    top_hud_text = "Menu Loading..."
-    # Top text to display messages
-    hudSubtext([i for i in localPlayer], 
-    "{0}".format(top_hud_text), 
-    HudPosition.TOP, 
-    -9999, 
-    Color.WHITE, 
-    HudReeval.VISIBILITY_AND_STRING, 
-    SpecVisibility.DEFAULT)
-
     # Small server load on right
     hudSubheader([i for i in localPlayer],
     "Server Load (Curr/Avg/Peak): {0}/{1}/{2}\n".format(getServerLoad(), getAverageServerLoad(), getPeakServerLoad()), 
@@ -162,7 +144,6 @@ rule "Menu Setup: Creation":
     create_menu()
 
     menu_enabled = true
-    top_hud_text = ""
 
 
 rule ">>>  Section: Menu Controls  <<<":
@@ -277,7 +258,8 @@ def increment_for_menu_label():
 
     menu_label_size += 1
     menu_max_pos += 1
-
+    menu_label_color[menu_label_size] = default_menu_label_color
+    
 
 def increment_for_menu_item():
     @Name "SUB: increment_for_menu_item"
@@ -285,7 +267,8 @@ def increment_for_menu_item():
     menu_opt_size += 1
     menu_max_pos += 1
     submenu_start_index[sub_size+1] = menu_opt_size+1
-
+    menu_off_opt_color[menu_opt_size] = default_menu_off_index_color
+    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
 
 def increment_for_submenu_item():
     @Name "SUB: increment_for_new_submenu"
@@ -329,7 +312,8 @@ def new_menu_item_selection():
     localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■  {0}".format(menu_on_opt_title[evalOnce(menu_opt_size)]), 
     HudPosition.TOP, 
-    evalOnce(menu_max_pos), menu_off_opt_color if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
+    evalOnce(menu_max_pos),
+     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
     HudReeval.VISIBILITY_STRING_AND_COLOR, 
     SpecVisibility.DEFAULT)
 
@@ -342,7 +326,7 @@ def new_menu_item_toggle():
     menu_opt_var[evalOnce(menu_opt_size)]), 
     HudPosition.TOP, 
     evalOnce(menu_max_pos), 
-    menu_off_opt_color if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
+    menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
     HudReeval.VISIBILITY_STRING_AND_COLOR, 
     SpecVisibility.DEFAULT)
 
@@ -353,7 +337,7 @@ def new_menu_item_cycle():
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■ {0} ←  {1}  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)],
     menu_opt_var[evalOnce(menu_opt_size)]), HudPosition.TOP, evalOnce(menu_max_pos), 
-    menu_off_opt_color if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
+    menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
     HudReeval.VISIBILITY_STRING_AND_COLOR, 
     SpecVisibility.DEFAULT)
 
@@ -366,7 +350,7 @@ def new_menu_item_cycle_bar():
     menu_opt_var[evalOnce(menu_opt_size)]),
     HudPosition.TOP,
     evalOnce(menu_max_pos), 
-    menu_off_opt_color if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)],
+    menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)],
     HudReeval.VISIBILITY_STRING_AND_COLOR,
     SpecVisibility.DEFAULT)
 
@@ -380,9 +364,6 @@ def new_menu_item_cycle_bar():
     HudReeval.VISIBILITY_STRING_AND_COLOR,
     SpecVisibility.DEFAULT)
 
-rule "Section: Menu Data":
-    smallMessage(null, "")
-
 
 def create_menu():
     @Name "SUB: create_menu"
@@ -394,11 +375,17 @@ def create_menu():
     menu_label_size = -1
     menu_opt_size = -1
     sub_size = 0
-    menu_off_opt_color = default_menu_off_index_color
+    # Menu Colors
+    default_menu_off_index_color = Color.WHITE
+    default_menu_on_index_color = Color.TEAM_1
+    default_menu_label_color = Color.WHITE
+    default_menu_submenu_color = Color.BLUE
+    default_menu_cycle_color = Color.AQUA
+    default_menu_vector_color = Color.YELLOW
+    
     
     increment_for_menu_label()
     menu_label[menu_label_size] = "Bot Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
@@ -415,7 +402,6 @@ def create_menu():
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Player Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
@@ -427,84 +413,70 @@ def create_menu():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Player Y Spawn"
     menu_on_opt_title[menu_opt_size] = "Y Coord: "
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_cycle()
-
+    
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Player Z Spawn"
     menu_on_opt_title[menu_opt_size] = "Z Coord: "
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_cycle()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Player Speed"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Player Gravity"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Use Impluse Profile"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Score Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Score Type"
     menu_on_opt_title[menu_opt_size] = "Type: "
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_cycle()  
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Time / Kills"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Score Per Kill"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Score Per Bodyshot"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Score Per Headshot"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Strafe Score"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Min Strafe Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Max Strafe Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
     
     increment_for_submenu_item()
@@ -512,182 +484,151 @@ def create_menu():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Return to Main Menu"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "General Bot Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Slot"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Hero Pool"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Health"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Scale"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Speed Type"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Speed Min"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Speed Max"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Gravity"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Bot Spawn Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "X Spawn Position"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
     
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Y Spawn Position"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Z Spawn Position"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Bot Boundary Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Boundary Type"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "X Lower Boundary"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
     
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Y Lower Boundary"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Z Lower Boundary"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "X Upper Boundary"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
     
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Y Upper Boundary"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Z Upper Boundary"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Min Distance"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
     
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Bot Max Distance"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Bot Facing Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Facing Type"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "X Facing"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
     
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Y Facing"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Z Facing"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Profile Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Movement Profile"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_submenu_item()
@@ -695,104 +636,86 @@ def create_menu():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Return to Main Menu"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Horizontal Movement"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "AD Strafes"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "AD Min Strafe Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "AD Max Strafe Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "WS Strafes"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "WS Min Strafe Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "WS Max Strafe Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Vertical Movement"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
     
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Jump Frequency"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Crouch Frequency"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Min Uncrouch Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Max Uncrouch Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Advanced Movement"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Use Impluse Profile"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Profile Settings"
-    menu_label_color[menu_label_size] = default_menu_label_color
     new_menu_label_header()
     
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Profile Slot"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Save Profile"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_on_opt_color[menu_opt_size] = default_menu_on_index_color
     new_menu_item_selection()
 
