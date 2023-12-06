@@ -21,23 +21,5 @@
             "heroLimit": "off",
             "tankPassiveHealthBonus": "alwaysEnabled"
         }
-    },
-    "heroes": {
-        "team2": {
-            "pharah": {
-                "secondaryFireMaximumTime%": 500,
-                "secondaryFireRechargeRate%": 500,
-                "ability1Cooldown%": 0,
-            }
-        },
-        "allTeams": {
-            "general": {
-                "abilityCooldown%": 10,
-                "enableSpawningWithUlt": true,
-                "ultGen%": 500,
-                "combatUltGen%": 500,
-                "passiveUltGen%": 500
-            }
-        }
     }
 }
