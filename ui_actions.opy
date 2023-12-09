@@ -30,31 +30,39 @@ rule "Menu Actions: Input Read":
     if submenu_index == 0:
         if menu_index == 0 + menu_substart_value:
             menu_submenu_target = 1
+            menu_index_target = 0
             menu_act_change_submenu()
         elif menu_index == 1 + menu_substart_value:
             menu_submenu_target = 2
+            menu_index_target = 0
             menu_act_change_submenu()
         elif menu_index == 2 + menu_substart_value:
             menu_submenu_target = 3
+            menu_index_target = 0
             menu_act_change_submenu()
         elif menu_index == 3 + menu_substart_value:
             menu_submenu_target = 4
+            menu_index_target = 0
             menu_act_change_submenu()
     elif submenu_index == 1:
         if menu_index == 0 + menu_substart_value:
             menu_submenu_target = 0
+            menu_index_target = 0
             menu_act_change_submenu()
     elif submenu_index == 2:
         if menu_index == 0 + menu_substart_value:
             menu_submenu_target = 0
+            menu_index_target = 1
             menu_act_change_submenu()
     elif submenu_index == 3:
         if menu_index == 0 + menu_substart_value:
             menu_submenu_target = 0
+            menu_index_target = 2
             menu_act_change_submenu()
     elif submenu_index == 4:
         if menu_index == 0 + menu_substart_value:
             menu_submenu_target = 0
+            menu_index_target = 3
             menu_act_change_submenu()
 
     wait(menu_wait)
@@ -65,9 +73,5 @@ rule "Menu Actions: Input Read":
 def menu_act_change_submenu():
     @Name "SUB: menu_act_change_submenu"
 
-    if submenu_index == 0:
         submenu_index = menu_submenu_target
-        menu_index = submenu_start_index[submenu_index]
-    else:
-        submenu_index = 0
-        menu_index = menu_submenu_target + submenu_start_index[submenu_index]
+        menu_index = submenu_start_index[submenu_index] + menu_index_target

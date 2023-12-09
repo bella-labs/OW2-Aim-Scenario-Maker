@@ -10,6 +10,7 @@ globalvar submenu_index
 globalvar submenu_start_index
 globalvar menu_substart_value
 globalvar menu_submenu_target
+globalvar menu_index_target
 globalvar menu_opt_size
 globalvar menu_max_pos
 globalvar menu_label_size
@@ -21,9 +22,10 @@ globalvar menu_item_hidden
 globalvar menu_label
 globalvar menu_off_opt_title
 globalvar menu_on_opt_title
-globalvar menu_opt_var
-globalvar bar_title
-globalvar bar_var
+globalvar menu_opt_var_1
+globalvar menu_opt_var_2
+globalvar menu_opt_var_3
+globalvar menu_subitem
 ## Menu Color
 globalvar menu_label_color
 globalvar bar_color
@@ -37,9 +39,11 @@ globalvar menu_color_default_off_index
 globalvar menu_color_default_on_index
 
 globalvar menu_color_submenu
-globalvar default_menu_return_color
-globalvar default_menu_cycle_color
-globalvar default_menu_vector_color
+globalvar menu_color_sel
+globalvar menu_color_toggle
+globalvar menu_color_cycle
+globalvar menu_color_2cycle
+globalvar menu_color_3cycle
 
 ## Menu HUD
 globalvar hud_text_id
@@ -70,6 +74,8 @@ subroutine increment_for_menu_item
 subroutine new_menu_item_selection
 subroutine new_menu_item_toggle
 subroutine new_menu_item_cycle
+subroutine new_menu_item_cycle_2var
+subroutine new_menu_item_cycle_3var
 subroutine new_menu_item_cycle_bar
 ## Menu Submenu
 subroutine increment_for_submenu_item

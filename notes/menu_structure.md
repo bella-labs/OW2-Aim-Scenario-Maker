@@ -8,15 +8,15 @@
     * Bot Speed <1% to 500%> (large: 10%, small: 1%)
     * Bot Gravity <1% to 500%> (large: 10%, small: 1%)
   * Bot Spawn and Boundaries (label)
+    * Spawn Type <Default / Randomized>
     * Position <X, Y, Z> (large: 1, small: 0.01, subitem, vector)
     * Facing Type <fixed / player>
-    * Facing <X, Y, Z> (large: 1, small: 0.01, subitem, vector, vis: Facing Type = Fixed, effect: blue line)
-    * Facing Offset <X, Y, Z> (1 large, 0.01 small, subitem, vector, vis: Facing Type = Player, effect: blue line)
+      * Facing <X, Y, Z> (large: 1, small: 0.01, subitem, vector, vis: Facing Type = Fixed, effect: blue line)
+      * Facing Offset <X, Y, Z> (1 large, 0.01 small, subitem, vector, vis: Facing Type = Player, effect: blue line)
     * Boundary Type <coordinates / distance / both>
       * Lower Bound <X, Y, Z> (large: 1, small: 0.01, subitem, vector, vis: Facing Type = Coordinates/Both, effect: boundary box)
       * Upper Bound <X, Y, Z> (large: 1, small: 0.01, subitem, vector, vis: Facing Type = Coordinates/Both, effect: boundary box))
       * Distance <Min, Max> (large: 1, small: 0.01, subitem, vector, vis: Facing Type = Distance/Both, effect: radius)
-    * Spawn Type <Default / Randomized>
   * Bot Profile (label)
     * Profiles <Profile X: On/Off> (large: toggle/toggle all, small next/prev)
     * Randomize Profile Order <On/Off>
@@ -30,12 +30,12 @@
     * Horizontal Movement (label)
       * AD Strafes <Off / On>
       * AD Strafe Time <Min, Max>
-      * AD Strafe Speed <A Speed, B Speed>
-      * Randomly Swap AD Strafe Speeds <Off / On, Min, Max> *************** Check what aim train option of this does **************** 
+      * AD Strafe Speed <A Speed Min, A Speed Max, D Speed Min, D Speed Max>
+      * Randomly Swap AD Strafe Speeds <Off / On, Min, Max>
       * WS Strafes <Off / On>
       * WS Strafe Time <Min, Max>
-      * WS Strafe Speed <A Speed, B Speed>
-      * Randomly Swap WS Strafe Speeds <Off / On, Min, Max> *************** Check what aim train option of this does **************** 
+      * WS Strafe Speed <A Speed Min, A Speed Max, D Speed Min, D Speed Max>
+      * Randomly Swap WS Strafe Speeds <Off / On, Min, Max>
     * Vertical Movement (label)
       * Jump Frequency <0-10s>
       * Gravity <0%-500%>
@@ -51,9 +51,9 @@
       * Reaction Time <Min/Max>
     * Damage (label)
       * Swap AD Strafe Directions (On / Off)
-      * Swap AD Wait Timern *************** Check what aim train option of this does **************** 
+      * Swap AD Wait Timer
       * Swap WS Strafe Directions (On / Off)
-      * Swap WS Wait Timer *************** Check what aim train option of this does **************** 
+      * Swap WS Wait Timer
 * Configure Scenario
   * Score Type <Timer / Kills>
   * Time <1s to 600s> (large: 10, small: 1, coord_set, vis: Score Type = Timer)

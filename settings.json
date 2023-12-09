@@ -1,7 +1,7 @@
 {
     "main": {
-        "description": "Aim Scenario Creator\n\nFeatures:\n◆ Create Aim Scenarios\nReport bugs on my discord:discord.gg/YPQ5ETNT45\n",
-        "modeName": "Bella's Aim Scenario Creator"
+        "description": "Aim Scenario Maker 1.0 by bella\n\nFeatures:\n◆ Create Aim Scenarios\nReport bugs on my discord: discord.gg/YPQ5ETNT45\n",
+        "modeName": "Aim Scenario Maker"
     },
     "lobby": {
         "allowPlayersInQueue": true,
