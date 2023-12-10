@@ -1,52 +1,54 @@
 # Configure Bots (submenu)
 
 ## **Slot (label)**
-### Bot Slot 
+### Bot Slot <slot>
   * Type: int
   * Range: 0 - 11
   * Small Step: -/+ 1
   * Large Step: -/+ 1
-### Override from Slot <0-11>
+### Override from Slot <slot>
   * Type: int
   * Range: 0 - 11
   * Small Step: -/+ 1
   * Large Step: -/+ 1
 ## **Bot Parameters (label)**
-### Bot Hero Pool
-  * Type: List 
-  * Options: Heroes ordered by hero release order for backwards compatibility
+### Bot Hero Pool <hero, toggle>
+  * Type: List, List
+  * Options: Heroes ordered by hero release order for backwards compatibility, toggle
   * Color: Green/Red based on status
   * Small Step: prev/prev hero
   * Large Step: toggle All/toggle selected
-### Bot Health
-  * Type: int
-  * Range: 0% - 500%
+### Bot Health <Health%, Self-Heal Timer, HPS>
+  * Type: int, real, int
+  * Range: 0% - 1000%, 0s - 600s, 0-1000 
+  * Small Step: -/+ 1%, -/+ 0.01, -/+ 1
+  * Large Step: -/+ 10%, -/+ 1, -/+ 10
+  * Subitems
+### Gravity <Gravity%>
+  * Type: int, real, int
+  * Range: 0% - 1000%
   * Small Step: -/+ 1%
   * Large Step: -/+ 10%
-### Bot Scale <1% to 500%> 
-  * Type: int
-  * Range: 0% - 500%
+  * Subitems
+### Bot Scale <Type, min, max, time> 
+  * Type: int, int, list, real
+  * Options: Static, Random, Health, Loop
+  * Range: 0% - 1000%
   * Small Step: -/+ 1%
   * Large Step: -/+ 10%
-
+  * Subitems
 ## **Bot Spawn and Boundaries (label)**
-### Spawn Type 
-* Type: List
-* Options: Default / Randomized in Boundaries
-* Small Step: prev/next
-* Large Step: prev/next
-### Position <X, Y, Z>
-* Type: real, real, real
+### Spawn Type<Type, X, Y, Z>
+* Type: list, real, real, real
+* Option: Position, Random within Boundaries
 * Range: -/+ 1000
 * Small Step: -/+ 0.01
 * Large Step: -/+ 1
 * Subitems
 * Populate Command
-### Facing Type
-* Type: List
+### Facing <Type, X, Y, Z>
+* Type: list, real, real, real
 * Options: Fixed / Player
-### Facing Vector <X, Y, Z>
-* Type: real, real, real
 * Small Step: -/+ 0.01
 * Large Step: -/+ 1
 * Subitems
@@ -76,15 +78,15 @@
 
 ## **Profiles (label)**
 ### Profiles <Number: Toggle> 
-* Type: int, list
-* Options: off/on
+* Type: int, toggle
 * Small Step: prev/next
 * Large Step: Toggle All/Toggle
-### Randomize Profile Order
-* Type: List
-* Options: off/on
-* Small Step: toggle
-* Large Step: toggle
+### Randomize Profile Order <Toggle, min, max>
+* Type: toggle, real, real
+* Range: 0s - 600s
+* Small Step: toggle, -/+ 0.01
+* Large Step: toggle, -/+ 1
+* Subitems
 
 # Configure Profile (submenu)
 ## **Movement Profile (label)**
@@ -98,64 +100,200 @@
   * Range: 0 - 11
   * Small Step: -/+ 1
   * Large Step: -/+ 1
-## **Horizontal Movement (label)**
-### Left Strafe Time <Min, Max>
-  * Type: real, real
-  * Range 0s - 100s
-  * Small Step: -/+ 0.01
-  * Large Step: -/+ 1
-  * Subitems
-### Right Strafe Time <Min, Max>
-  * Type: real, real
-  * Range 0s - 100s
-  * Small Step: -/+ 0.01
-  * Large Step: -/+ 1
-  * Subitems
-### Left Strafe Speed <Min, Max, Type> (Type: Linear Ramp, Randomized on Counterstrafe)
-### Right Strafe Speed <Min, Max, Type>
-### Swap Left/Right Strafe Time <Off / On, Min, Max>
-### Forward/Backward Strafes
+## **Horizontal Movement (submenu)**
+### **Left / Right Movement (label) **
+#### Initial Direction
   * Type: List
-  * Options: off/on
+  * Options: Left, Right, Random
+#### Left Strafe Time <min, max>
+  * Type: real, real
+  * Range 0s - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+#### Right Strafe Time <min, max>
+  * Type: real, real
+  * Range: 0s - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+#### Swap Left / Right Strafe Time <toggle, min, max>
+  * Type: toggle, real, real
+  * Range: 0 - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+#### Left Strafe Speed <Type, min, max>
+  * Type: list, int, int
+  * Options: static, linear ramp, randomized on strafe swap
+  * Range: 0 - 1000%
+  * Small Step: -/+ 1
+  * Large Step: prev/next, -/+ 10
+  * Subitems
+#### Right Strafe Speed <Type, min, max>
+  * Type: list, int, int
+  * Options: static, linear ramp, randomized on strafe swap
+  * Range: 0 - 1000%
+  * Small Step: -/+ 1
+  * Large Step: prev/next, -/+ 10
+  * Subitems
+#### Swap Left / Right Strafe Speed <toggle, min, max>
+  * Type: toggle, real, real
+  * Range: 0 - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+
+### **Forward / Backward Movement (label) **
+#### Initial Direction
+  * Type: List
+  * Options: forward, backward, Random
+#### Forward Strafe Time <min, max>
+  * Type: real, real
+  * Range 0s - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+#### Backward Strafe Time <min, max>
+  * Type: real, real
+  * Range: 0s - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+#### Swap Forward / Backward Strafe Time <toggle, min, max>
+  * Type: toggle, real, real
+  * Range: 0 - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+#### Forward Strafe Speed <Type, min, max>
+  * Type: list, int, int
+  * Options: static, linear ramp, randomized on strafe swap
+  * Range: 0 - 1000%
+  * Small Step: -/+ 1
+  * Large Step: prev/next, -/+ 10
+  * Subitems
+#### Backward Strafe Speed <Type, min, max>
+  * Type: list, int, int
+  * Options: static, linear ramp, randomized on strafe swap
+  * Range: 0 - 1000%
+  * Small Step: -/+ 1
+  * Large Step: prev/next, -/+ 10
+  * Subitems
+#### Swap Forward / Backward Strafe Speed <toggle, min, max>
+  * Type: toggle, real, real
+  * Range: 0 - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+
+### **Idle Movement(label)**
+#### Idle Type
+  * Type: List
+  * Options: All Movement, Separate LR and FB
   * Small Step: toggle
   * Large Step: toggle
-### Forward/ Backward Strafe Time <Min, Max>
-### Forward Strafe Speed <Min, Max, Type>
-### Backward Strafe Speed <Min, Max, Type>
-### Randomly Swap Forward/Backward Strafe Speeds <Off / On, Min, Max>
-### Vertical Movement (label)
-### Jump Frequency <0-10s>
-### Gravity <0%-500%>
-### Crouch Frequency <0-10s>
-### Uncrouch Time <Min, Max>
-### Advanced Movement (label)
-### Bot Impulse Profile <off / on>
-### (Unsure) Maximize Player Crosshair Movement (additional Wait time if strafe away from crosshair) <off / on, min, max> 
+#### Left / Right Idle Chance <interval, chance, min, max>
+  * Type: real, int, real, real
+  * Range: 0s - 600s, 0-100%, 0s - 600s, 0s - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+#### Forward / Backward Idle Chance <interval, chance, min, max>
+  * Type: real, int, real, real
+  * Range: 0s - 600s, 0-100%, 0s - 600s, 0s - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+
+## **Vertical Movement (submenu)**
+### Jump Frequency <type, min, max, impulse>
+  * Type: list, real, real, int
+  * Options: jump/impulse
+  * Range: 0s - 600s, 0s - 600s, 0 - 100
+  * Small Step: -/+ 0.01, -/+ 1
+  * Large Step: -/+ 1, -/+ 10
+  * Subitems
+### Crouch Frequency <type, min, max, impulse>
+  * Type: list, real, real, int
+  * Options: crouch/impulse
+  * Range: 0s - 600s, 0s - 600s, 0 - 100
+  * Small Step: -/+ 0.01, -/+ 1
+  * Large Step: -/+ 1, -/+ 10
+  * Subitems
+### Uncrouch Frequency <min, max>
+  * Type: real, real
+  * Range: 0s - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
 
 ## **Reaction Settings (label)**
-##  Collisions (label)
-## Bot Reactions to Collisions <Off / On>
-## Threshold <%1-100%>
-## Reaction Time <Min/Max>
-## Damage (label)
-## Swap AD Strafe Directions (On / Off)
-## Swap AD Wait Timer
-## Swap WS Strafe Directions (On / Off)
-## Swap WS Wait Timer
-# Configure Scenario
-## Score Type <Timer / Kills>
-## Time <1s to 600s> (large: 10, small: 1, coord_set, vis: Score Type = Timer)
-## Kills <1 to 500> (large:10, small: 1, vis: Score Type = Kills)
-## Points per Kill <0 to 1000> (large:10, small: 1)
-## Points per Bodyshot <0 to 1000> (large:10, small: 1)
-## Points per Headshot <0 to 1000> (large:10, small: 1)
-## Max Points Per Strafe <0 to 1000> (large: 10, small: 1)
-## Time Til Max Score <0-10> (large:1s, small 0.01s)
-# Configure Player
-## Starting Position <X, Y, Z> (large: 1, small: 0.01, subitem, vector, effect: red orb)
-## Player Speed <1% to 500%> (large: 10%, small: 1%)
-## Player Gravity <1% to 500%> (large: 10%, small: 1%)
-## Player Impulse Profile <off / on>
+### Bot Reactions to Collisions <toggle, threshold, min, max>
+  * Type: toggle, int, real, real
+  * Range: 0% - 100%, 0s - 1s, 0s - 1s
+  * Small Step: -/+ 1%, -/+ 0.01
+  * Large Step: -/+ 10%, -/+ 1
+  * Subitems
+### Swap Strafe Damage <swap left / right, swap forward / backward, chance, cooldown>
+  * Type: toggle, toggle, int, real
+  * Range, 0% - 100%, 0 - 10s
+  * Small Step: -/+ 1%, -/+ 0.01
+  * Large Step: -/+ 10%, -/+ 1
+  * Subitems
+### Swap Strafe Timer <min, max>
+  * Type: real, real
+  * Range: 0s - 600s
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+
+# **Configure Scenario (submenu)**
+## **Scoring (label)**
+### Score Type <toggle, time/kills>
+  * Type: toggle, real/int
+  * Range: 0s - 600s / 100 kills
+  * Small Step: -/+ 0.01s / 1 kill
+  * Large Step: -/+ 1 / 10 kills
+  * Subitems
+### Points <Kills, Bodyshot, Headshot>
+  * Type: int, int, int
+  * Range: 0 - 1000, 0 - 1000, 0 - 1000
+  * Small Step: -/+ 1
+  * Large Step: -/+ 10
+  * Subitems
+### Strafe Score <score per sec, min, max>
+  * Type: int, real, real
+  * Range: 0 - 1000, 0 - 10s, 0 - 10s
+  * Small Step: -/+ 1, -/+ 0.01
+  * Large Step: -/+ 10, -/+ 1
+  * Subitems
+
+## Configure Player (label)
+### Starting Position <X, Y, Z> (large: 1, small: 0.01, subitem, vector, effect: red orb)
+  * Type: real, real, real
+  * Range: 0 - 1000
+  * Small Step: -/+ 0.01
+  * Large Step: -/+ 1
+  * Subitems
+  * Effect: red orb w/ text
+### Player Speed <speed>
+  * Type: int
+  * Range: 0% - 1000%
+  * Small Step: -/+ 1
+  * Large Step: -/+ 10
+  * Subitems
+### Player Gravity <0% to 500%> (large: 10%, small: 1%)
+  * Type: int
+  * Range: 0% - 1000%
+  * Small Step: -/+ 1
+  * Large Step: -/+ 10
+  * Subitems
 # Play
 ## Test Bot in Slot <0-11>
+  * Type: int
+  * Range: 0 - 11
+  * Small Step: -/+ 1
+  * Large Step: -/+ 1
 ## Test Scenario
+  * Type Selection

@@ -129,12 +129,7 @@ def setup_menu():
     menu_color_default_off_index = Color.WHITE
     menu_color_default_on_index = Color.SKY_BLUE
     
-    menu_color_submenu = rgb(204,102,102)
-    menu_color_sel = menu_color_default_off_index#rgb(153,204,51)
-    menu_color_toggle = menu_color_default_off_index#rgb(153,102,204)
-    menu_color_cycle = menu_color_default_off_index#rgb(255,153,0)
-    menu_color_2cycle = menu_color_default_off_index#rgb(255,204,0)
-    menu_color_3cycle = menu_color_default_off_index#rgb(255,255,0) 	
+    menu_color_submenu = rgb(204,102,102) 	
 
 
 def enable_player_input():
@@ -220,8 +215,6 @@ def new_menu_item_selection():
 def new_menu_item_toggle():
     @Name "SUB: new_menu_item_toggle"
 
-    menu_off_opt_color[menu_opt_size] = menu_color_toggle
-
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■  {0}: {1}".format(menu_on_opt_title[evalOnce(menu_opt_size)], 
     menu_opt_var_1[evalOnce(menu_opt_size)]), 
@@ -234,8 +227,6 @@ def new_menu_item_toggle():
 
 def new_menu_item_cycle():
     @Name "SUB: new_menu_item_cycle"
-    
-    menu_off_opt_color[menu_opt_size] = menu_color_cycle
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■ {0} ←  {1}  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)],
@@ -245,10 +236,8 @@ def new_menu_item_cycle():
     SpecVisibility.DEFAULT)
 
 
-def new_menu_item_cycle_2var():
-    @Name "SUB: new_menu_item_cycle_2var"
-
-    menu_off_opt_color[menu_opt_size] = menu_color_2cycle
+def new_menu_item_2var():
+    @Name "SUB: new_menu_item_2var"
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
@@ -261,16 +250,30 @@ def new_menu_item_cycle_2var():
     SpecVisibility.DEFAULT)
 
 
-def new_menu_item_cycle_3var():
-    @Name "SUB: new_menu_item_cycle_3var"
-
-    menu_off_opt_color[menu_opt_size] = menu_color_3cycle
+def new_menu_item_3var():
+    @Name "SUB: new_menu_item_3var"
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
     else "■ {0} ←  {1}  →  {2}  {3}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
     else "■ {0} {1}  ←  {2}  →  {3}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 1
     else "■ {0} {1}  {2}  ←  {3}  →".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)]),
+    HudPosition.TOP, 
+    evalOnce(menu_max_pos), 
+    menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
+    HudReeval.VISIBILITY_STRING_AND_COLOR, 
+    SpecVisibility.DEFAULT)
+
+
+def new_menu_item_4var():
+    @Name "SUB: new_menu_item_3var"
+
+    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
+    else "■ {0} ←  {1}  →  {2}  {3}  {4}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
+    else "■ {0} {1}  ←  {2}  →  {3}  {4}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 1
+    else "■ {0} {1}  {2}  ←  {3}  →  {4}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 2
+    else "■ {0} {1}  {2}  {3}  ←  {4}  →".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_4[evalOnce(menu_opt_size)]),
     HudPosition.TOP, 
     evalOnce(menu_max_pos), 
     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 

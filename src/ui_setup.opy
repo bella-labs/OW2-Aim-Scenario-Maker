@@ -181,7 +181,7 @@ def create_submenu_1():
     menu_opt_var_1[menu_opt_size] = "X: 0"
     menu_opt_var_2[menu_opt_size] = "Y: 0"
     menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Facing Type"
@@ -195,7 +195,7 @@ def create_submenu_1():
     menu_opt_var_1[menu_opt_size] = "X: 0"
     menu_opt_var_2[menu_opt_size] = "Y: 0"
     menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Lower Bound"
@@ -203,7 +203,7 @@ def create_submenu_1():
     menu_opt_var_1[menu_opt_size] = "X: 0"
     menu_opt_var_2[menu_opt_size] = "Y: 0"
     menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Upper Bound"
@@ -211,14 +211,14 @@ def create_submenu_1():
     menu_opt_var_1[menu_opt_size] = "X: 0"
     menu_opt_var_2[menu_opt_size] = "Y: 0"
     menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Distance"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Min: 0"
     menu_opt_var_2[menu_opt_size] = "Max: 0"
-    new_menu_item_cycle_2var()
+    new_menu_item_2var()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Movement Profile"
@@ -343,7 +343,7 @@ def create_submenu_2_1():
     menu_off_opt_title[menu_opt_size] = "Swap Left/Right Strafe Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Left Strafe Speed"
@@ -359,7 +359,7 @@ def create_submenu_2_1():
     menu_off_opt_title[menu_opt_size] = "Swap Left/Right Strafe Speed"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
     increment_for_menu_label()
     menu_label[menu_label_size] = "Forward / Backward Movement"
@@ -380,7 +380,7 @@ def create_submenu_2_1():
     menu_off_opt_title[menu_opt_size] = "Swap Forward / Backward Strafe Time"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Forward Strafe Speed"
@@ -396,7 +396,7 @@ def create_submenu_2_1():
     menu_off_opt_title[menu_opt_size] = "Swap Forward / Backward Strafe Speed"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
 def create_submenu_2_2():
     @Name "SUB: create_submenu_2_2"
@@ -433,7 +433,7 @@ def create_submenu_2_2():
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Min: 0"
     menu_opt_var_2[menu_opt_size] = "Max: 0"
-    new_menu_item_cycle_2var()
+    new_menu_item_2var()
 
 
 def create_submenu_2_3():
@@ -525,7 +525,7 @@ def create_submenu_3():
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Timed"
     menu_opt_var_2[menu_opt_size] = "60s"
-    new_menu_item_cycle_2var()
+    new_menu_item_2var()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Points Per Elimination"
@@ -574,7 +574,7 @@ def create_submenu_4():
     menu_opt_var_1[menu_opt_size] = "X: 0"
     menu_opt_var_2[menu_opt_size] = "Y: 0"
     menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_cycle_3var()
+    new_menu_item_3var()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Spawn Facing"
