@@ -205,8 +205,7 @@
   * Small Step: -/+ 0.01
   * Large Step: -/+ 1
   * Subitems
-
-## **Vertical Movement (submenu)**
+## **Vertical Movement (label)**
 ### Jump Frequency <type, min, max, impulse>
   * Type: list, real, real, int
   * Options: jump/impulse
@@ -227,7 +226,6 @@
   * Small Step: -/+ 0.01
   * Large Step: -/+ 1
   * Subitems
-
 ## **Reaction Settings (label)**
 ### Bot Reactions to Collisions <toggle, threshold, min, max>
   * Type: toggle, int, real, real

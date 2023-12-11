@@ -27,78 +27,207 @@ rule "Menu Actions: Input Read":
     menu_substart_value = submenu_start_index[submenu_index]
     menu_wait = 0.1
 
+    switch submenu_index:
+        case 0:
+            menu_act_submenu_0()
+            break
+        case 1:
+            menu_act_submenu_1()
+            break
+        case 2:
+            menu_act_submenu_2()
+            break
+        case 3:
+            menu_act_submenu_3()
+            break
+        case 4:
+            menu_act_submenu_2_1()
+            break
+
     if submenu_index == 0:
-        if menu_index == 0 + menu_substart_value:
-            menu_submenu_target = 1
-            menu_index_target = 0
-            menu_act_change_submenu()
-        elif menu_index == 1 + menu_substart_value:
-            menu_submenu_target = 2
-            menu_index_target = 0
-            menu_act_change_submenu()
-        elif menu_index == 2 + menu_substart_value:
-            menu_submenu_target = 3
-            menu_index_target = 0
-            menu_act_change_submenu()
-        elif menu_index == 3 + menu_substart_value:
-            menu_submenu_target = 4
-            menu_index_target = 0
-            menu_act_change_submenu()
+        menu_act_submenu_0()
     elif submenu_index == 1:
-        if menu_index == 0 + menu_substart_value:
-            menu_submenu_target = 0
-            menu_index_target = 0
-            menu_act_change_submenu()
+        menu_act_submenu_1()
     elif submenu_index == 2:
-        if menu_index == 0 + menu_substart_value:
-            menu_submenu_target = 0
-            menu_index_target = 1
-            menu_act_change_submenu()
-        elif menu_index == 3 + menu_substart_value:
-            menu_submenu_target = 5
-            menu_index_target = 0
-            menu_act_change_submenu()
-        elif menu_index == 4 + menu_substart_value:
-            menu_submenu_target = 6
-            menu_index_target = 0
-            menu_act_change_submenu()
-        elif menu_index == 5 + menu_substart_value:
-            menu_submenu_target = 7
-            menu_index_target = 0
-            menu_act_change_submenu()
+        menu_act_submenu_2()
     elif submenu_index == 3:
-        if menu_index == 0 + menu_substart_value:
-            menu_submenu_target = 0
-            menu_index_target = 2
-            menu_act_change_submenu()
+        menu_act_submenu_3()
     elif submenu_index == 4:
-        if menu_index == 0 + menu_substart_value:
-            menu_submenu_target = 0
-            menu_index_target = 3
-            menu_act_change_submenu()
-    elif submenu_index == 5:
-        if menu_index == 0 + menu_substart_value:
-            menu_submenu_target = 2
-            menu_index_target = 3
-            menu_act_change_submenu()
-    elif submenu_index == 6:
-        if menu_index == 0 + menu_substart_value:
-            menu_submenu_target = 2
-            menu_index_target = 4
-            menu_act_change_submenu()
-    elif submenu_index == 7:
-        if menu_index == 0 + menu_substart_value:
-            menu_submenu_target = 2
-            menu_index_target = 5
-            menu_act_change_submenu()
+        menu_act_submenu_2_1()
 
     wait(menu_wait)
     if RULE_CONDITION:
         goto RULE_START
         
 
+def menu_act_submenu_0():
+    @Name "SUB: menu_act_submenu_0"
+
+    switch menu_index:
+        case menu_substart_value + 0:
+            menu_submenu_target = 1
+            menu_index_target = 0
+            menu_act_change_submenu()
+            break
+        case menu_substart_value + 1:
+            menu_submenu_target = 2
+            menu_index_target = 0
+            menu_act_change_submenu()
+            break
+        case menu_substart_value + 2:
+            menu_submenu_target = 3
+            menu_index_target = 0
+            menu_act_change_submenu()
+            break
+        case menu_substart_value + 3:
+            menu_submenu_target = 4
+            menu_index_target = 0
+            menu_act_change_submenu()
+            break
+
+
+def menu_act_submenu_1():
+    @Name "SUB: menu_act_submenu_1"
+
+    switch menu_index:
+        case menu_substart_value + 0:
+            menu_submenu_target = 0
+            menu_index_target = 0
+            menu_act_change_submenu()
+            break
+
+
+def menu_act_submenu_2():
+    @Name "SUB: menu_act_submenu_2"
+
+    switch menu_index:
+        case menu_substart_value + 0:
+            menu_submenu_target = 0
+            menu_index_target = 1
+            break
+        menu_act_change_submenu()
+        case menu_substart_value + 3:
+            menu_submenu_target = 4
+            menu_index_target = 0
+            menu_act_change_submenu()
+            break
+
+
+def menu_act_submenu_3():
+    @Name "SUB: menu_act_submenu_3"
+
+    switch menu_index:
+        case menu_substart_value + 0:
+            menu_submenu_target = 0
+            menu_index_target = 2
+            menu_act_change_submenu()
+            break
+
+
+def menu_act_submenu_2_1():
+    @Name "SUB: menu_act_submenu_2_1"
+
+    switch menu_index:
+        case menu_substart_value + 0:
+            menu_submenu_target = 2
+            menu_index_target = 3
+            menu_act_change_submenu()
+            break
+
+
 def menu_act_change_submenu():
     @Name "SUB: menu_act_change_submenu"
 
         submenu_index = menu_submenu_target
         menu_index = submenu_start_index[submenu_index] + menu_index_target
+    
+def menu_act_change_var_1():
+    @Name "SUB: menu_act_change_var_1"
+
+    switch menu_input:
+        case ui_inputs[3]:
+            menu_opt_var_1[menu_index] -= menu_opt_small_step[menu_index][0]
+            break
+        case ui_inputs[4]:
+            menu_opt_var_1[menu_index] += menu_opt_small_step[menu_index][0]
+            break
+        case ui_inputs[5]:
+            menu_opt_var_1[menu_index] -= menu_opt_large_step[menu_index][0]
+            break
+        case ui_inputs[6]:
+            menu_opt_var_1[menu_index] += menu_opt_large_step[menu_index][0]
+            break
+
+    if menu_opt_var_1[menu_index] < menu_opt_range_min[menu_index][0]:
+        menu_opt_var_1[menu_index] = menu_opt_range_max[menu_index][0]
+    elif menu_opt_var_1[menu_index] > menu_opt_range_max[menu_index][0]:
+        menu_opt_var_1[menu_index] = menu_opt_range_min[menu_index][0]
+
+
+def menu_act_change_var_2():
+    @Name "SUB: menu_act_change_var_2"
+
+    switch menu_input:
+        case ui_inputs[3]:
+            menu_opt_var_2[menu_index] -= menu_opt_small_step[menu_index][1]
+            break
+        case ui_inputs[4]:
+            menu_opt_var_2[menu_index] += menu_opt_small_step[menu_index][1]
+            break
+        case ui_inputs[5]:
+            menu_opt_var_2[menu_index] -= menu_opt_large_step[menu_index][1]
+            break
+        case ui_inputs[6]:
+            menu_opt_var_2[menu_index] += menu_opt_large_step[menu_index][1]
+            break
+
+    if menu_opt_var_2[menu_index] < menu_opt_range_min[menu_index][1]:
+        menu_opt_var_2[menu_index] = menu_opt_range_max[menu_index][1]
+    elif menu_opt_var_2[menu_index] > menu_opt_range_max[menu_index][1]:
+        menu_opt_var_2[menu_index] = menu_opt_range_min[menu_index][1]
+
+
+def menu_act_change_var_3():
+    @Name "SUB: menu_act_change_var_3"
+
+    switch menu_input:
+        case ui_inputs[3]:
+            menu_opt_var_3[menu_index] -= menu_opt_small_step[menu_index][2]
+            break
+        case ui_inputs[4]:
+            menu_opt_var_3[menu_index] += menu_opt_small_step[menu_index][2]
+            break
+        case ui_inputs[5]:
+            menu_opt_var_3[menu_index] -= menu_opt_large_step[menu_index][2]
+            break
+        case ui_inputs[6]:
+            menu_opt_var_3[menu_index] += menu_opt_large_step[menu_index][2]
+            break
+
+    if menu_opt_var_3[menu_index] < menu_opt_range_min[menu_index][2]:
+        menu_opt_var_3[menu_index] = menu_opt_range_max[menu_index][2]
+    elif menu_opt_var_3[menu_index] > menu_opt_range_max[menu_index][2]:
+        menu_opt_var_3[menu_index] = menu_opt_range_min[menu_index][2]
+
+
+def menu_act_change_var_4():
+    @Name "SUB: menu_act_change_var_4"
+
+    switch menu_input:
+        case ui_inputs[3]:
+            menu_opt_var_4[menu_index] -= menu_opt_small_step[menu_index][3]
+            break
+        case ui_inputs[4]:
+            menu_opt_var_4[menu_index] += menu_opt_small_step[menu_index][3]
+            break
+        case ui_inputs[5]:
+            menu_opt_var_4[menu_index] -= menu_opt_large_step[menu_index][3]
+            break
+        case ui_inputs[6]:
+            menu_opt_var_4[menu_index] += menu_opt_large_step[menu_index][3]
+            break
+
+    if menu_opt_var_3[menu_index] < menu_opt_range_min[menu_index][3]:
+        menu_opt_var_3[menu_index] = menu_opt_range_max[menu_index][3]
+    elif menu_opt_var_3[menu_index] > menu_opt_range_max[menu_index][3]:
+        menu_opt_var_3[menu_index] = menu_opt_range_min[menu_index][3]

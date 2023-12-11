@@ -26,7 +26,13 @@ globalvar menu_opt_var_1
 globalvar menu_opt_var_2
 globalvar menu_opt_var_3
 globalvar menu_opt_var_4
+globalvar menu_opt_range_min
+globalvar menu_opt_range_max
+globalvar menu_opt_small_step
+globalvar menu_opt_large_step
+
 globalvar menu_subitem
+globalvar menu_subitem_size
 ## Menu Color
 globalvar menu_label_color
 globalvar bar_color
@@ -108,10 +114,17 @@ subroutine create_submenu_2
 subroutine create_submenu_3
 subroutine create_submenu_4
 subroutine create_submenu_2_1
-subroutine create_submenu_2_2
-subroutine create_submenu_2_3
 ## Submenu All
+subroutine menu_act_submenu_0
+subroutine menu_act_submenu_1
+subroutine menu_act_submenu_2
+subroutine menu_act_submenu_3
+subroutine menu_act_submenu_2_1
 subroutine menu_act_change_submenu
+subroutine menu_act_change_var_1
+subroutine menu_act_change_var_2
+subroutine menu_act_change_var_3
+subroutine menu_act_change_var_4
 ## Submenu 0
 ## Submenu 1
 ## UIs
@@ -136,3 +149,5 @@ globalvar entity_pos
 ## Subroutines
 subroutine create_bot
 subroutine destroy_bot
+
+globalvar hero_array

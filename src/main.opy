@@ -5,6 +5,7 @@ settings "settings.json"
 
 # Includes
 #!include "header.opy"
+#!include "static_data.opy"
 #!include "init.opy"
 #!include "botgen.opy"
 #!include "databot.opy"

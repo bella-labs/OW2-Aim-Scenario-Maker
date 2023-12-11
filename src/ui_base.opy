@@ -88,6 +88,19 @@ rule "Menu Controls: Down Scroll":
         menu_down_check()
 
 
+rule "Menu Controls: Change Subitem":
+    @Event eachPlayer
+    @Team 1
+    @Condition menu_visible == true
+    @Condition eventPlayer.isHoldingButton(ui_inputs[7])
+
+
+    if menu_subitem[menu_index] < menu_subitem_size[menu_index]
+        menu_subitem[menu_index] += 1
+    else:
+        menu_subitem[menu_index] = 0
+    
+
 def menu_up_check():
     @Name "SUB: menu_up_check"
 
@@ -163,6 +176,7 @@ def increment_for_menu_item():
     menu_off_opt_color[menu_opt_size] = menu_color_default_off_index
     menu_on_opt_color[menu_opt_size] = menu_color_default_on_index
     menu_subitem[menu_opt_size] = 0
+    menu_subitem_size[menu_opt_size] = 0
 
 def increment_for_submenu_item():
     @Name "SUB: increment_for_new_submenu"
@@ -239,6 +253,8 @@ def new_menu_item_cycle():
 def new_menu_item_2var():
     @Name "SUB: new_menu_item_2var"
 
+    menu_subitem_size[menu_opt_size] = 1
+
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
     else "■ {0} ←  {1}  →  {2}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
@@ -252,6 +268,8 @@ def new_menu_item_2var():
 
 def new_menu_item_3var():
     @Name "SUB: new_menu_item_3var"
+
+    menu_subitem_size[menu_opt_size] = 2
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
@@ -267,6 +285,8 @@ def new_menu_item_3var():
 
 def new_menu_item_4var():
     @Name "SUB: new_menu_item_3var"
+
+    menu_subitem_size[menu_opt_size] = 3
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 

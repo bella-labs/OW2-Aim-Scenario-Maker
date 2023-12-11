@@ -15,8 +15,6 @@ rule "Menu Setup: Creation":
     create_submenu_4()
 
     create_submenu_2_1()
-    create_submenu_2_2()
-    create_submenu_2_3()
 
     menu_enabled = true
 
@@ -133,11 +131,19 @@ def create_submenu_1():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Current Bot Slot"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_opt_range_min[menu_opt_size] = [0]
+    menu_opt_range_max[menu_opt_size] = [11]
+    menu_opt_small_step[menu_opt_size] = [1]
+    menu_opt_large_step[menu_opt_size] = [1]
     new_menu_item_cycle()
 
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = "Copy From Bot Slot"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_opt_range_min[menu_opt_size] = [0]
+    menu_opt_range_max[menu_opt_size] = [11]
+    menu_opt_small_step[menu_opt_size] = [1]
+    menu_opt_large_step[menu_opt_size] = [1]
     new_menu_item_cycle()
 
     increment_for_menu_label()
@@ -279,31 +285,45 @@ def create_submenu_2():
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Vertical Movement    ▶"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
-    new_menu_item_selection()
+    increment_for_menu_label()
+    menu_label[menu_label_size] = "Reactions"
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
 
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Reactions             ▶"
+    menu_off_opt_title[menu_opt_size] = "◀ Movement Profiles"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Advanced Movement"
+    menu_label[menu_label_size] = "Collisions"
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Use Impulse Profile"
+    menu_off_opt_title[menu_opt_size] = "React to Collisions"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Off"
     new_menu_item_toggle()
 
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Maximize Crosshair Movement"
+    menu_off_opt_title[menu_opt_size] = "Threshold"
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_cycle()
+
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = "Reaction Time"
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_cycle()
+
+    increment_for_menu_label()
+    menu_label[menu_label_size] = "Damage"
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
+
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = "React to Damage"
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Off"
     new_menu_item_toggle()
@@ -398,11 +418,6 @@ def create_submenu_2_1():
     menu_opt_var_1[menu_opt_size] = "Off"
     new_menu_item_3var()
 
-def create_submenu_2_2():
-    @Name "SUB: create_submenu_2_2"
-
-    increment_for_submenu_item()
-
     increment_for_menu_label()
     menu_label[menu_label_size] = "Vertical Movement"
     new_menu_label_header()
@@ -435,75 +450,6 @@ def create_submenu_2_2():
     menu_opt_var_2[menu_opt_size] = "Max: 0"
     new_menu_item_2var()
 
-
-def create_submenu_2_3():
-    @Name "SUB: create_submenu_2_3"    
-
-    increment_for_submenu_item()
-
-    increment_for_menu_label()
-    menu_label[menu_label_size] = "Reactions"
-    new_menu_label_header()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "◀ Movement Profiles"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
-    new_menu_item_selection()
-
-    increment_for_menu_label()
-    menu_label[menu_label_size] = "Collisions"
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "React to Collisions"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_toggle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Threshold"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Reaction Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_label()
-    menu_label[menu_label_size] = "Damage"
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "React to Damage"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_toggle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Swap Left/Right Directions"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_toggle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Swap Left/Right Wait Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Swap Forward/Backward Directions"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_toggle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Swap Forward/Backward Wait Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
 
 def create_submenu_3():
     @Name "SUB: create_submenu_3"
