@@ -54,16 +54,13 @@ def set_ui_data():
     ui_inputs[7] = Button.RELOAD
     # Set Value to Vector
     ui_inputs[8] = Button.CROUCH
-    # Help
-    ui_inputs[9] = Button.MELEE
-    ## Script Settings
-
 
 
 rule "Change Hero":
     @Event eachPlayer
     @Condition eventPlayer.isHoldingButton(Button.RELOAD)
     @Condition eventPlayer.isHoldingButton(Button.MELEE)
+    @Condition menu_visible == false
 
     eventPlayer.setAllowedHeroes(eventPlayer.getAllowedHeroes().exclude(eventPlayer.getCurrentHero()))
     eventPlayer.resetHeroAvailability()

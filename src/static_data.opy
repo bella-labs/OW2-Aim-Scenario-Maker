@@ -48,6 +48,6 @@ rule "Load Static Data":
 rule "load_language_data":
     @Event global
 
-    strings_hero_status = [["Enabled", "Disabled"], ["kr", "kr"], ["cn", "cn"]]
+    strings_hero_status = [["Enabled", "Disabled"], ["한국인"], ["中國人"]]
     strings_labels = [["Configure", "Play", ]]
     strings_submenu_0 = [["Configure", "Bot       ▶", "Movement ▶", "Scenario  ▶", "Player    ▶", "Test Bot in Slot", "Test Scenario"]]

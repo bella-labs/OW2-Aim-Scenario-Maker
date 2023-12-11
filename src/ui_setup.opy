@@ -43,7 +43,7 @@ def create_hud():
     if controller_mode:
         hudSubheader([i for i in localPlayer], 
         "{0}\n{1}".format("Hold {0} to {1} Menu".format(buttonString(ui_inputs[0]), "close" if menu_visible else "open"), 
-            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nCycle to Next Value :  {6}\nSet Item to Vector :  {7}\nHelp for Current Menu Item : {8}\n{9}\n*Use left/right Controls to Select*".format(buttonString(ui_inputs[1]), buttonString(ui_inputs[2]), buttonString(ui_inputs[3]), buttonString(ui_inputs[4]), buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), buttonString(ui_inputs[9]), "——————————————————————") if menu_visible else ""), 
+            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nCycle to Next Value :  {6}\nSet Item to Vector :  {7}\n{8}\n*Use left/right Controls to Select*".format(buttonString(ui_inputs[1]), buttonString(ui_inputs[2]), buttonString(ui_inputs[3]), buttonString(ui_inputs[4]), buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), "——————————————————————") if menu_visible else ""), 
             HudPosition.LEFT, 
             -1, 
             Color.WHITE, 
@@ -54,7 +54,7 @@ def create_hud():
         hudSubheader([i for i in localPlayer], 
         "{0}\n{1}".format("{0} {1} to {2} Menu".format(
             "Hold" if controller_mode else "Press", buttonString(ui_inputs[0]), "close" if menu_visible else "open"), 
-            "{9}\nMenu Controls    \n{9}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nCycle to Next Value :  {6}\nSet Item to Vector :  {7}\nHelp for Current Menu Item : {8}\n{9}\n*Use left/right Controls to Select*".format("Forward", "Backward", "Left", "Right", buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), buttonString(ui_inputs[9]), "——————————————————————") if menu_visible else ""), 
+            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nCycle to Next Value :  {6}\nSet Item to Vector :  {7}\n{8}\n*Use left/right Controls to Select*".format("Forward", "Backward", "Left", "Right", buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), "——————————————————————") if menu_visible else ""), 
             HudPosition.LEFT, 
             -1, 
             Color.WHITE, 
@@ -153,10 +153,10 @@ def create_submenu_1():
 
     increment_for_menu_item()
     menu_opt_str_index[menu_opt_size] = 0
-    
+
     menu_off_opt_title[menu_opt_size] = "Bot Hero Pool"
     menu_on_opt_title[menu_opt_size] = hero_array[menu_opt_str_index[menu_opt_size]]
-    menu_opt_var_1[menu_opt_size] = hero_status_array[menu_opt_str_index[menu_opt_size]]
+    menu_opt_var_1[menu_opt_size] = ""#strings_hero_status[menu_opt_str_index[menu_opt_size]]
     menu_opt_var_2[menu_opt_size] = ""
     menu_opt_var_3[menu_opt_size] = heroIcon(Hero.ANA)
     bar_color[menu_opt_size] = Color.RED

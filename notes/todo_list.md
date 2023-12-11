@@ -1,10 +1,12 @@
 todo:
 
-Create fields for data
-Create dummy bot for data store
-Rework menu gen for script allocation
-Implement Bot Functions
-Test export/import of bot functions via dummy bot
-Rest of the owl
+1. Store all strings into arrays and change references
+2. Add code to detect language
+3. Finish populating menu structure based off of notes
+4. Create generalized action subroutine for cycling string options
+5. Create playervars for databot to store information
+6. Make create menu pull information from databot fields
+7. Start implementation of bot functions
+8. Make test bot in slot spawn a target bot
 
 ability input menu??? - adds a ton more complexity/overhead/time/size/etcs
