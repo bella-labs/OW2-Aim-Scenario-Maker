@@ -95,7 +95,7 @@ rule "Menu Controls: Change Subitem":
     @Condition eventPlayer.isHoldingButton(ui_inputs[7])
 
 
-    if menu_subitem[menu_index] < menu_subitem_size[menu_index]
+    if menu_subitem[menu_index] < menu_subitem_size[menu_index]:
         menu_subitem[menu_index] += 1
     else:
         menu_subitem[menu_index] = 0

@@ -102,8 +102,8 @@
   * Large Step: -/+ 1
 ## **Horizontal Movement (submenu)**
 ### **Left / Right Movement (label) **
-#### Initial Direction
-  * Type: List
+#### Mirror Left and Right Settings <toggle, inital direction>
+  * Type: toggle, List
   * Options: Left, Right, Random
 #### Left Strafe Time <min, max>
   * Type: real, real
@@ -117,15 +117,17 @@
   * Small Step: -/+ 0.01
   * Large Step: -/+ 1
   * Subitems
+  * Visibility: mirror left / right = off
 #### Swap Left / Right Strafe Time <toggle, min, max>
   * Type: toggle, real, real
   * Range: 0 - 600s
   * Small Step: -/+ 0.01
   * Large Step: -/+ 1
   * Subitems
+  * Visibility: mirror left / right = off
 #### Left Strafe Speed <Type, min, max>
   * Type: list, int, int
-  * Options: static, linear ramp, randomized on strafe swap
+  * Options: static, linear ramp, randomized on strafe swap, increase per kill, min becomes base speed%, max becomes increment %
   * Range: 0 - 1000%
   * Small Step: -/+ 1
   * Large Step: prev/next, -/+ 10
@@ -137,17 +139,19 @@
   * Small Step: -/+ 1
   * Large Step: prev/next, -/+ 10
   * Subitems
+  * Visibility: mirror left / right = off
 #### Swap Left / Right Strafe Speed <toggle, min, max>
   * Type: toggle, real, real
   * Range: 0 - 600s
   * Small Step: -/+ 0.01
   * Large Step: -/+ 1
   * Subitems
+  * Visibility: mirror left / right = off
 
 ### **Forward / Backward Movement (label) **
-#### Initial Direction
-  * Type: List
-  * Options: forward, backward, Random
+#### Mirror Forward and Backward Settings <toggle, inital direction>
+  * Type: toggle, List
+  * Options: Left, Right, Random
 #### Forward Strafe Time <min, max>
   * Type: real, real
   * Range 0s - 600s
@@ -160,12 +164,14 @@
   * Small Step: -/+ 0.01
   * Large Step: -/+ 1
   * Subitems
+  * Visibility: mirror forward / backward = off
 #### Swap Forward / Backward Strafe Time <toggle, min, max>
   * Type: toggle, real, real
   * Range: 0 - 600s
   * Small Step: -/+ 0.01
   * Large Step: -/+ 1
   * Subitems
+  * Visibility: mirror forward / backward = off
 #### Forward Strafe Speed <Type, min, max>
   * Type: list, int, int
   * Options: static, linear ramp, randomized on strafe swap
@@ -180,12 +186,14 @@
   * Small Step: -/+ 1
   * Large Step: prev/next, -/+ 10
   * Subitems
+  * Visibility: mirror forward / backward = off
 #### Swap Forward / Backward Strafe Speed <toggle, min, max>
   * Type: toggle, real, real
   * Range: 0 - 600s
   * Small Step: -/+ 0.01
   * Large Step: -/+ 1
   * Subitems
+  * Visibility: mirror forward / backward = off
 
 ### **Idle Movement(label)**
 #### Idle Type

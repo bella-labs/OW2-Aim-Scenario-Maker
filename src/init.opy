@@ -1,7 +1,7 @@
 def import_settings():
-    @Name "----->  Paste Player Variables Here  <-----"
+    @Name "----->  Paste Player Variables Here / 여기에 플레이어 변수를 붙여넣으세요 / 將您的玩家變數貼到此處  <-----"
 
-    smallMessage(null, "paste here!")
+    smallMessage(null, "paste here! / 여기에 붙여넣으세요! / 貼在這裡！")
 
 
 def default_player_menu():
@@ -12,9 +12,9 @@ def default_player_menu():
 rule "Initialize: Workshop Settings":
 
     ## UI Settings
-    controller_mode = createWorkshopSetting(bool, "0. UI Settings", "Controller UI", false, 0)
+    controller_mode = createWorkshopSetting(bool, "0. UI Settings", "Gamepad Mode / 게임패드 모드 / 游戏手柄模式", false, 0)
     set_ui_data()
-    use_import_data = createWorkshopSetting(bool, "1. Import Settings", "Import Existing Settings (Paste Player Variables in the 1st workshop rule)", false, 0)
+    use_import_data = createWorkshopSetting(bool, "1. Import Settings", "Import Settings (See Description for Instructions) / 가져오기 설정 (지침은 설명을 참조하세요) / 導入設定（請參閱說明以取得說明)", false, 0)
 
 
 # Defines the Input for UI, making it easy to change menu inputs.

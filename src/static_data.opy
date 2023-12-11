@@ -1,4 +1,4 @@
-rule "Load Hero Data":
+rule "Load Static Data":
     @Event global
 
     hero_array =   [Hero.TRACER,
@@ -43,3 +43,11 @@ rule "Load Hero Data":
                    #Hero.VENTURE
                    #Hero.SPACE_RANGER 
                     ]
+
+
+rule "load_language_data":
+    @Event global
+
+    strings_hero_status = [["Enabled", "Disabled"], ["kr", "kr"], ["cn", "cn"]]
+    strings_labels = [["Configure", "Play", ]]
+    strings_submenu_0 = [["Configure", "Bot       ▶", "Movement ▶", "Scenario  ▶", "Player    ▶", "Test Bot in Slot", "Test Scenario"]]

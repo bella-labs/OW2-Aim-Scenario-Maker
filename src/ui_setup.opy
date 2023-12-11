@@ -152,9 +152,11 @@ def create_submenu_1():
     new_menu_label_subtext()
 
     increment_for_menu_item()
+    menu_opt_str_index[menu_opt_size] = 0
+    
     menu_off_opt_title[menu_opt_size] = "Bot Hero Pool"
-    menu_on_opt_title[menu_opt_size] = "Ana"
-    menu_opt_var_1[menu_opt_size] = "Disabled"
+    menu_on_opt_title[menu_opt_size] = hero_array[menu_opt_str_index[menu_opt_size]]
+    menu_opt_var_1[menu_opt_size] = hero_status_array[menu_opt_str_index[menu_opt_size]]
     menu_opt_var_2[menu_opt_size] = ""
     menu_opt_var_3[menu_opt_size] = heroIcon(Hero.ANA)
     bar_color[menu_opt_size] = Color.RED

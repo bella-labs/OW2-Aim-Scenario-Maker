@@ -44,17 +44,6 @@ rule "Menu Actions: Input Read":
             menu_act_submenu_2_1()
             break
 
-    if submenu_index == 0:
-        menu_act_submenu_0()
-    elif submenu_index == 1:
-        menu_act_submenu_1()
-    elif submenu_index == 2:
-        menu_act_submenu_2()
-    elif submenu_index == 3:
-        menu_act_submenu_3()
-    elif submenu_index == 4:
-        menu_act_submenu_2_1()
-
     wait(menu_wait)
     if RULE_CONDITION:
         goto RULE_START
@@ -104,8 +93,8 @@ def menu_act_submenu_2():
         case menu_substart_value + 0:
             menu_submenu_target = 0
             menu_index_target = 1
+            menu_act_change_submenu()
             break
-        menu_act_change_submenu()
         case menu_substart_value + 3:
             menu_submenu_target = 4
             menu_index_target = 0
@@ -140,9 +129,34 @@ def menu_act_change_submenu():
 
         submenu_index = menu_submenu_target
         menu_index = submenu_start_index[submenu_index] + menu_index_target
+
+
+def menu_act_toggle_var_1():
+    @Name "SUB: menu_act_change_number_var_1"
+
+    switch menu_input:
+        case ui_inputs[3]:
+        case ui_inputs[4]:
+        case ui_inputs[5]:
+        case ui_inputs[6]:
+            menu_opt_var_1[menu_index] = not menu_opt_var_1[menu_index]
+            break
+
+def menu_act_cycle_var_1():
+    @Name "SUB: menu_act_change_number_var_1"
+
+    switch menu_input:
+        case ui_inputs[3]:
+        case ui_inputs[4]:
+        case ui_inputs[5]:
+        case ui_inputs[6]:
+            menu_opt_var_1[menu_index] = not menu_opt_var_1[menu_index]
+            break
+
+
     
-def menu_act_change_var_1():
-    @Name "SUB: menu_act_change_var_1"
+def menu_act_change_number_var_1():
+    @Name "SUB: menu_act_change_number_var_1"
 
     switch menu_input:
         case ui_inputs[3]:
@@ -164,8 +178,8 @@ def menu_act_change_var_1():
         menu_opt_var_1[menu_index] = menu_opt_range_min[menu_index][0]
 
 
-def menu_act_change_var_2():
-    @Name "SUB: menu_act_change_var_2"
+def menu_act_change_number_var_2():
+    @Name "SUB: menu_act_change_number_var_2"
 
     switch menu_input:
         case ui_inputs[3]:
@@ -187,8 +201,8 @@ def menu_act_change_var_2():
         menu_opt_var_2[menu_index] = menu_opt_range_min[menu_index][1]
 
 
-def menu_act_change_var_3():
-    @Name "SUB: menu_act_change_var_3"
+def menu_act_change_number_var_3():
+    @Name "SUB: menu_act_change_number_var_3"
 
     switch menu_input:
         case ui_inputs[3]:
@@ -210,8 +224,8 @@ def menu_act_change_var_3():
         menu_opt_var_3[menu_index] = menu_opt_range_min[menu_index][2]
 
 
-def menu_act_change_var_4():
-    @Name "SUB: menu_act_change_var_4"
+def menu_act_change_number_var_4():
+    @Name "SUB: menu_act_change_number_var_4"
 
     switch menu_input:
         case ui_inputs[3]:

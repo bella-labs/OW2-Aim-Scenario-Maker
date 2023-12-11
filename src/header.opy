@@ -26,6 +26,7 @@ globalvar menu_opt_var_1
 globalvar menu_opt_var_2
 globalvar menu_opt_var_3
 globalvar menu_opt_var_4
+globalvar menu_opt_str_index
 globalvar menu_opt_range_min
 globalvar menu_opt_range_max
 globalvar menu_opt_small_step
@@ -121,10 +122,10 @@ subroutine menu_act_submenu_2
 subroutine menu_act_submenu_3
 subroutine menu_act_submenu_2_1
 subroutine menu_act_change_submenu
-subroutine menu_act_change_var_1
-subroutine menu_act_change_var_2
-subroutine menu_act_change_var_3
-subroutine menu_act_change_var_4
+subroutine menu_act_change_number_var_1
+subroutine menu_act_change_number_var_2
+subroutine menu_act_change_number_var_3
+subroutine menu_act_change_number_var_4
 ## Submenu 0
 ## Submenu 1
 ## UIs
@@ -151,3 +152,13 @@ subroutine create_bot
 subroutine destroy_bot
 
 globalvar hero_array
+
+globalvar strings_controls
+globalvar strings_hero_status
+globalvar strings_labels
+globalvar strings_submenu_0
+globalvar strings_submenu_1
+globalvar strings_submenu_2
+globalvar strings_submenu_3
+globalvar strings_submenu_2_1
+globalvar strings_options
