@@ -135,6 +135,7 @@ def setup_menu():
     menu_label_size = -1
     menu_opt_size = -1
     sub_size = 0
+
     # Menu Colors
     menu_color_label_header = Color.WHITE
     menu_color_label_subtext = Color.ORANGE
@@ -162,16 +163,17 @@ def enable_player_input():
 def increment_for_menu_label():
     @Name "SUB: increment_menu_label"
 
-    menu_label_size += 1
     menu_max_pos += 1
+    menu_label_size += 1
     menu_label_color[menu_label_size] = menu_color_label_header
+
     
 
 def increment_for_menu_item():
     @Name "SUB: increment_for_menu_item"
 
-    menu_opt_size += 1
     menu_max_pos += 1
+    menu_opt_size += 1
     submenu_start_index[sub_size+1] = menu_opt_size+1
     menu_off_opt_color[menu_opt_size] = menu_color_default_off_index
     menu_on_opt_color[menu_opt_size] = menu_color_default_on_index
@@ -181,8 +183,8 @@ def increment_for_menu_item():
 def increment_for_submenu_item():
     @Name "SUB: increment_for_new_submenu"
 
-    sub_size += 1
     menu_max_pos = -1
+    sub_size += 1
 
 
 def new_menu_label_header():
@@ -243,8 +245,59 @@ def new_menu_item_cycle():
     @Name "SUB: new_menu_item_cycle"
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
-    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■ {0} ←  {1}  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)],
-    menu_opt_var_1[evalOnce(menu_opt_size)]), HudPosition.TOP, evalOnce(menu_max_pos), 
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
+    else "■ {0} ←  {1}  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_1[evalOnce(menu_opt_size)]), 
+    HudPosition.TOP, 
+    evalOnce(menu_max_pos), 
+    menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
+    HudReeval.VISIBILITY_STRING_AND_COLOR, 
+    SpecVisibility.DEFAULT)
+
+
+def new_menu_item_cycle_bar():
+    @Name "SUB: new_menu_item_cycle_bar"
+
+    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [], 
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■  {0}  {1}".format(menu_on_opt_title[evalOnce(menu_opt_size)], 
+    menu_opt_var_1[evalOnce(menu_opt_size)]),
+    HudPosition.TOP,
+    evalOnce(menu_max_pos), 
+    menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)],
+    HudReeval.VISIBILITY_STRING_AND_COLOR,
+    SpecVisibility.DEFAULT)
+
+    menu_max_pos += 1
+
+    hudHeader(localPlayer if menu_visible and menu_index == evalOnce(menu_opt_size) and submenu_index == evalOnce(sub_size) else [],
+    "{0} ←  {1}  →".format(menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)]),
+    HudPosition.TOP, 
+    evalOnce(menu_max_pos), 
+    bar_color[evalOnce(menu_opt_size)],
+    HudReeval.VISIBILITY_STRING_AND_COLOR,
+    SpecVisibility.DEFAULT)
+
+
+def new_menu_item_percentage():
+    @Name "SUB: new_menu_item_percentage"
+
+    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
+    else "■ {0} ←  {1}%  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_1[evalOnce(menu_opt_size)]), 
+    HudPosition.TOP, 
+    evalOnce(menu_max_pos), 
+    menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
+    HudReeval.VISIBILITY_STRING_AND_COLOR, 
+    SpecVisibility.DEFAULT)
+
+
+def new_menu_item_1var():
+    @Name "SUB: new_menu_item_1var"
+
+    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
+    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
+    else "■ {0} ←  {1}: {2}  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)]), 
+    HudPosition.TOP, 
+    evalOnce(menu_max_pos), 
     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
     HudReeval.VISIBILITY_STRING_AND_COLOR, 
     SpecVisibility.DEFAULT)
@@ -298,27 +351,4 @@ def new_menu_item_4var():
     evalOnce(menu_max_pos), 
     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
     HudReeval.VISIBILITY_STRING_AND_COLOR, 
-    SpecVisibility.DEFAULT)
-
-
-def new_menu_item_cycle_bar():
-    @Name "SUB: new_menu_item_cycle_bar"
-
-    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [], 
-    "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■  {0}  {1}".format(menu_on_opt_title[evalOnce(menu_opt_size)], 
-    menu_opt_var_1[evalOnce(menu_opt_size)]),
-    HudPosition.TOP,
-    evalOnce(menu_max_pos), 
-    menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)],
-    HudReeval.VISIBILITY_STRING_AND_COLOR,
-    SpecVisibility.DEFAULT)
-
-    menu_max_pos += 1
-
-    hudHeader(localPlayer if menu_visible and menu_index == evalOnce(menu_opt_size) and submenu_index == evalOnce(sub_size) else [],
-    "{0} ←  {1}  →".format(menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)]),
-    HudPosition.TOP, 
-    evalOnce(menu_max_pos), 
-    bar_color[evalOnce(menu_opt_size)],
-    HudReeval.VISIBILITY_STRING_AND_COLOR,
     SpecVisibility.DEFAULT)

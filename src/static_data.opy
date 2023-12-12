@@ -1,6 +1,12 @@
 rule "Load Static Data":
     @Event global
 
+    static_data_loaded = false
+
+    ranges = [[0,11], [0,100], [0, 200], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
+    small_steps = [0.01, 1]
+    large_steps = [1, 10]
+
     hero_array =   [Hero.TRACER,
                     Hero.REAPER,
                     Hero.WIDOWMAKER,
@@ -48,6 +54,13 @@ rule "Load Static Data":
 rule "load_language_data":
     @Event global
 
-    strings_hero_status = [["Enabled", "Disabled"], ["한국인"], ["中國人"]]
-    strings_labels = [["Configure", "Play", ]]
-    strings_submenu_0 = [["Configure", "Bot       ▶", "Movement ▶", "Scenario  ▶", "Player    ▶", "Test Bot in Slot", "Test Scenario"]]
+    strings_misc = [["Data Storage"], ["데이터 저장소"], ["数据存储"]]
+    strings_submenu_0 = [["Configure", "Bot       ▶", "Profile   ▶", "Scenario  ▶", "Play", "Test Bot in Slot", "Test Scenario"]]
+    strings_submenu_1 = [["Bot Settings", "◀ Main Menu", "Bot Slot", "Select Bot Slot", "Copy From Bot Slot", "Bot Parameters", "Hero Pool", "", "Health", "Scale", "Gravity", "Spawn and Boundaries", "Spawn Type", "Facing", "Lower Bound", "Upper Bound", "Distance", "Profiles", "Profiles Status", "Randomize Profile Order", "Use Custom Scripts"]]
+    strings_submenu_2 = [["Profile Settings", "◀ Main Menu", "Profiles", "Select Profile Slot", "Override Profile from Slot", "Movement", "Movement Settings ▶", "Reactions", "Detect Collisions", "Swap Strafe Direction When Damage", "Swap Strafe Wait Timer"]]
+    strings_submenu_2_1 = [["Movement Settings", "◀ Profile Settings", "Left / Right Movement", "Sync Left and Right Settings", "Left Strafe Time", "Right Strafe Time", "Swap Left / Right Strafe Time", "Left Strafe Speed", "Right Strafe Speed", "Swap Left / Right Strafe Speed", "Forward / Backward Movement", "Sync Forward / Backward settings", "Forward Strafe Time", "Backward Strafe Time", "Swap Forward / Backward Strafe Time", "Forward Strafe Speed", "Backward Strafe Speed", "Swap Forward / Backward Strafe Speed", "Idle Movement", "Idle Type", "Left / Right Idle", "Forward / Backward Idle", "Vertical Movement", "Jump Frequency", "Crouch Frequency", "Uncrouch Frequency"]]
+    strings_submenu_3 = [["Scenario Settings", "◀ Main Menu", "Scoring", "Score Type", "Points", "Strafe Score", "Player", "Spawn Position", "Spawn Facing", "Speed", "Gravity", "Custom Script"]]
+    strings_on_titles = [["Profile"]]
+    strings_options = [[["Disabled", "Enabled"], ["Timed", "Score Limit"]], [["사용 안 함", "사용"]], [["禁用", "已启用"]]]
+    
+    static_data_loaded = true

@@ -1,7 +1,9 @@
 rule "Menu Setup: Creation":
     @Event global
 
+
     menu_enabled = false
+    waitUntil(static_data_loaded == true, 9999)
 
     setup_databot()
 
@@ -12,7 +14,6 @@ rule "Menu Setup: Creation":
     create_submenu_1()
     create_submenu_2()
     create_submenu_3()
-    create_submenu_4()
 
     create_submenu_2_1()
 
@@ -65,45 +66,46 @@ def create_hud():
 def create_submenu_0():
     @Name "SUB: create_submenu_0"
 
+    # (Header) Configure
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Configure"
+    menu_label[menu_label_size] = strings_submenu_0[lang_type][menu_max_pos]
     new_menu_label_header()
 
+    # (Selection) Main Menu
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Bot       ▶"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
+    # (Selection) Select Bot Slot
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Movement ▶"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
+    # (Selection) Override from Slot
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Scenario  ▶"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Player    ▶"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
-    new_menu_item_selection()
-
+    # (Header) Play
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Play"
+    menu_label[menu_label_size] = strings_submenu_0[lang_type][menu_max_pos]
     new_menu_label_header()
 
+    # (Selection) Test Bot in Slot
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Test Bot in Slot"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     new_menu_item_cycle()
-    
+
+    # (Selection) Test Scenario
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Test Scenario"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     new_menu_item_selection()
 
@@ -113,134 +115,163 @@ def create_submenu_1():
 
     increment_for_submenu_item()
 
+    # (Header) Slot
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Bot Settings"
+    menu_label[menu_label_size] = strings_submenu_1[lang_type][menu_max_pos] 
     new_menu_label_header()
 
+    # (Selection) Main Menu
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "◀ Main Menu"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos] 
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
+    # (Subtext) Slot
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Slot"
+    menu_label[menu_label_size] = strings_submenu_1[lang_type][menu_max_pos] 
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
+    # (Cycle) Select Bot Slot
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Current Bot Slot"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos] 
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_range_min[menu_opt_size] = [0]
-    menu_opt_range_max[menu_opt_size] = [11]
-    menu_opt_small_step[menu_opt_size] = [1]
-    menu_opt_large_step[menu_opt_size] = [1]
+    menu_opt_range[menu_opt_size] = [RANGE_INDEXES.RANGE_SLOT]
+    menu_opt_small_step[menu_opt_size] = [SMALL_INDEXES.SMALL_INT]
+    menu_opt_large_step[menu_opt_size] = [LARGE_INDEXES.LARGE_INT]
+    menu_opt_var_1[menu_opt_size] = 0
     new_menu_item_cycle()
 
+    # (Cycle) Override from Slot
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Copy From Bot Slot"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_range_min[menu_opt_size] = [0]
-    menu_opt_range_max[menu_opt_size] = [11]
-    menu_opt_small_step[menu_opt_size] = [1]
-    menu_opt_large_step[menu_opt_size] = [1]
+    menu_opt_range[menu_opt_size] = [RANGE_INDEXES.RANGE_SLOT]
+    menu_opt_small_step[menu_opt_size] = [SMALL_INDEXES.SMALL_INT]
+    menu_opt_large_step[menu_opt_size] = [LARGE_INDEXES.LARGE_INT]
+    menu_opt_var_1[menu_opt_size] = 0
     new_menu_item_cycle()
 
+    # (Subtext) Bot Parameters
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Parameters"
+    menu_label[menu_label_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
+    # (Cycle Bar) Hero Pool
     increment_for_menu_item()
     menu_opt_str_index[menu_opt_size] = 0
-
-    menu_off_opt_title[menu_opt_size] = "Bot Hero Pool"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = hero_array[menu_opt_str_index[menu_opt_size]]
-    menu_opt_var_1[menu_opt_size] = ""#strings_hero_status[menu_opt_str_index[menu_opt_size]]
+    menu_opt_var_tags[menu_opt_size] = ["Health", "HPS", "Duration Until Heal"]
+    menu_opt_var_1[menu_opt_size] = 0
     menu_opt_var_2[menu_opt_size] = ""
-    menu_opt_var_3[menu_opt_size] = heroIcon(Hero.ANA)
+    menu_opt_var_3[menu_opt_size] = ""
     bar_color[menu_opt_size] = Color.RED
     new_menu_item_cycle_bar()
 
+    # (3 Var) Health
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Bot health"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_opt_var_1[menu_opt_size] = ""
+    menu_opt_var_2[menu_opt_size] = ""
+    menu_opt_var_3[menu_opt_size] = ""
+    new_menu_item_3var()
+
+    # (4 Var) Scale
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_opt_var_1[menu_opt_size] = ""
+    menu_opt_var_2[menu_opt_size] = ""
+    menu_opt_var_3[menu_opt_size] = ""
+    menu_opt_var_4[menu_opt_size] = ""    
+    new_menu_item_4var()
+
+    # (Percentage) Gravity
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     new_menu_item_cycle()
 
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Bot Scale"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
+    # (Subtext) Bot Spawn and Boundaries
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Spawn and Boundaries"
+    menu_label[menu_label_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
+    # (4 Var) Spawn Settings
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Spawn Type"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Default"
-    new_menu_item_toggle()
+    menu_opt_var_1[menu_opt_size] = ""
+    menu_opt_var_2[menu_opt_size] = ""
+    menu_opt_var_3[menu_opt_size] = ""
+    menu_opt_var_4[menu_opt_size] = ""   
+    new_menu_item_4var()
 
+    # (4 Var) Facing Settings
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Position"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_opt_var_1[menu_opt_size] = ""
+    menu_opt_var_2[menu_opt_size] = ""
+    menu_opt_var_3[menu_opt_size] = ""
+    menu_opt_var_4[menu_opt_size] = ""   
+    new_menu_item_3var()
+
+    # (3 Var) Lower Bound
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "X: 0"
     menu_opt_var_2[menu_opt_size] = "Y: 0"
     menu_opt_var_3[menu_opt_size] = "Z: 0"
     new_menu_item_3var()
 
+    # (3 Var) Upper Bound
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Facing Type"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Player"
-    new_menu_item_toggle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Facing Offset"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "X: 0"
     menu_opt_var_2[menu_opt_size] = "Y: 0"
     menu_opt_var_3[menu_opt_size] = "Z: 0"
     new_menu_item_3var()
 
+    # (2 Var) Distance
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Lower Bound"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "X: 0"
-    menu_opt_var_2[menu_opt_size] = "Y: 0"
-    menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_3var()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Upper Bound"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "X: 0"
-    menu_opt_var_2[menu_opt_size] = "Y: 0"
-    menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_3var()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Distance"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Min: 0"
     menu_opt_var_2[menu_opt_size] = "Max: 0"
     new_menu_item_2var()
 
+    # (Subtext) Profiles
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Movement Profile"
+    menu_label[menu_label_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
+    # (1 Var) Profile Status
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Toggle Profiles"
-    menu_on_opt_title[menu_opt_size] = "Profile"
-    menu_opt_var_1[menu_opt_size] = "0: Off"
-    new_menu_item_cycle()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = strings_on_titles[lang_type][0]
+    menu_opt_var_tags[menu_opt_size] = [0]
+    menu_opt_var_1[menu_opt_size] = strings_options[lang_type][menu_max_pos][0]
+    new_menu_item_1var()
 
+    # (3 Var) Randomize Profiles
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Randomize Profile Order"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_opt_var_1[menu_opt_size] = "Off"
+    new_menu_item_3var()
+
+    # (Toggle) Use Custom Scripts (Requires Workshop Scripting)
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_var_1[menu_opt_size] = "Off"
     new_menu_item_toggle()
@@ -251,206 +282,234 @@ def create_submenu_2():
 
     increment_for_submenu_item()
 
+    # (Header) Profile Settings
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Movement Profiles"
+    menu_label[menu_label_size] = strings_submenu_2[lang_type][menu_max_pos]
     new_menu_label_header()
 
+    # (Selection) Main Menu
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "◀ Main Menu"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
+    # (Subtext) Profiles
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Profile Data"
+    menu_label[menu_label_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
+    # (Cycle) Select Profile Slot
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Current Profile"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     new_menu_item_cycle()
 
+    # (Cycle) Override Profile From Slot
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Override Profile"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     new_menu_item_cycle()
 
+    # (Subtext) Movement
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Movement"
+    menu_label[menu_label_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
+    # (Selection) Movement Settings
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Horizontal Movement ▶"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
+    # (Subtext) Reactions
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Reactions"
+    menu_label[menu_label_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
+    # (4 Var) React to Collisions
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "◀ Movement Profiles"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
-    increment_for_menu_label()
-    menu_label[menu_label_size] = "Collisions"
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
+    # (4 Var) Swap Strafe Direction When Damage
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "React to Collisions"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_toggle()
+    new_menu_item_selection()
 
+    # (2 Var) "Swap Strafe Wait Timer"
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Threshold"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
+    new_menu_item_selection()
 
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Reaction Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_label()
-    menu_label[menu_label_size] = "Damage"
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "React to Damage"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_toggle()
-    
 
 def create_submenu_2_1():
     @Name "SUB: create_submenu_2_1"
 
     increment_for_submenu_item()
 
+    # (Header) Movement Settings
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Horizontal Movement"
+    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     new_menu_label_header()
 
+    # (Selection) Profile Settings
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "◀ Movement Profiles"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
+    # (Subtext) Left / Right Movement
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Left / Right Movement"
+    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
+    # (2 Var) Sync Left / Right Settings
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Left Strafe Time"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Right Strafe Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Swap Left/Right Strafe Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_3var()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Left Strafe Speed"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Right Strafe Speed"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Swap Left/Right Strafe Speed"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_3var()
-
-    increment_for_menu_label()
-    menu_label[menu_label_size] = "Forward / Backward Movement"
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Forward Strafe Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Backward Strafe Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Swap Forward / Backward Strafe Time"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_3var()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Forward Strafe Speed"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Backward Strafe Speed"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Swap Forward / Backward Strafe Speed"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Off"
-    new_menu_item_3var()
-
-    increment_for_menu_label()
-    menu_label[menu_label_size] = "Vertical Movement"
-    new_menu_label_header()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "◀ Movement Profiles"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
+    # (2 Var) Left Strafe Time
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Gravity"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
+    new_menu_item_selection()
 
+    # (2 Var) Right Strafe Time
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Jump Frequency"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
+    new_menu_item_selection()
 
+    # (3 Var) Swap Left / Right Strafe Time
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Crouch Frequency"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
+    new_menu_item_selection()
 
+    # (3 Var) Left Strafe Speed
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Uncrouch Time"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Min: 0"
-    menu_opt_var_2[menu_opt_size] = "Max: 0"
-    new_menu_item_2var()
+    new_menu_item_selection()
+
+    # (3 Var) Right Strafe Speed
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (3 Var) Swap Left / Right Strafe Speed
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (Subtext) Forward / Backward Movement
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
+
+    # (2 Var) Sync Forward / Backward Settings
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (2 Var) Forward Strafe Time
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (2 Var) Backward Strafe Time
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (3 Var) Swap Forward / Backward Strafe Time
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (3 Var) Forward Strafe Speed
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (3 Var) Backward Strafe Speed
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (3 Var) Swap Forward / Backward Strafe Speed
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (Subtext) Idle Movement
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
+
+    # (Cycle) Idle Type
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (4 Var) Left / Right Idle
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (4 Var) Forward / Backward Idle
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (Subtext) Vertical Movement
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
+
+    # (4 Var) Jump Frequency
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (4 Var) Crouch Frequency
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
+    # (2 Var) Uncrouch Frequency
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
 
 
 def create_submenu_3():
@@ -458,109 +517,71 @@ def create_submenu_3():
 
     increment_for_submenu_item()
 
+    # (Header) Scenario Settings
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Scenario Settings"
+    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
     new_menu_label_header()
 
+    # (Selection) Main Menu
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "◀ Main Menu"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Score Type"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Timed"
-    menu_opt_var_2[menu_opt_size] = "60s"
-    new_menu_item_2var()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Points Per Elimination"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Points Per Normal Hit"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Points Per Critical Hit"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Points Per Second for Strafes"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-    
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Max Time Per Strafe"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
-
-
-def create_submenu_4():
-    @Name "SUB: create_submenu_4"
-
-    increment_for_submenu_item()
-
+    # (Subtext) Scoring
     increment_for_menu_label()
-    menu_label[menu_label_size] = "Player Settings"
-    new_menu_label_header()
+    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
 
+    # (2 Var) Scenario Type
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "◀ Main Menu"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
     new_menu_item_selection()
 
+    # (3 Var) Points
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Spawn Position"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "X: 0"
-    menu_opt_var_2[menu_opt_size] = "Y: 0"
-    menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_3var()
+    new_menu_item_selection()
 
+    # (3 Var) Strafe Scoring
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Spawn Facing"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "X: 0"
-    menu_opt_var_2[menu_opt_size] = "Y: 0"
-    menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_cycle()
+    new_menu_item_selection()
 
-    increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Lower Bound"
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "X: 0"
-    menu_opt_var_2[menu_opt_size] = "Y: 0"
-    menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_cycle()
+    # (Subtext) Player
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
 
+    # (3 Var) Player Spawn
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Upper Bound"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "X: 0"
-    menu_opt_var_2[menu_opt_size] = "Y: 0"
-    menu_opt_var_3[menu_opt_size] = "Z: 0"
-    new_menu_item_cycle()
+    new_menu_item_selection()
 
+    # (3 Var) Player Facing
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Player Speed"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
+    new_menu_item_selection()
 
+    # (Percentage) Player Speed
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Player Gravity"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    new_menu_item_cycle()
+    new_menu_item_selection()
 
+    # (Percentage) Player Gravity
     increment_for_menu_item()
-    menu_off_opt_title[menu_opt_size] = "Player Impulse Profile"
+    menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = ": off"
-    new_menu_item_toggle()
+    new_menu_item_selection()
+
+
 
