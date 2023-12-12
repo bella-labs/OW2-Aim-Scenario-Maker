@@ -11,11 +11,11 @@ def default_player_menu():
 
 rule "Initialize: Workshop Settings":
 
-    ## UI Settings
-    controller_mode = createWorkshopSetting(bool, "0. UI Settings", "Gamepad Mode / 게임패드 모드 / 游戏手柄模式", false, 0)
     set_ui_data()
-    use_import_data = createWorkshopSetting(bool, "1. Import Settings", "Import Settings (See Description for Instructions) / 가져오기 설정 (지침은 설명을 참조하세요) / 導入設定（請參閱說明以取得說明)", false, 0)
+    use_import_data = createWorkshopSetting(bool, "0. Import Settings", "Import Settings (See Description for Instructions) / 가져오기 설정 (지침은 설명을 참조하세요) / 導入設定（請參閱說明以取得說明)", false, 0)
 
+    controller_mode = createWorkshopSetting(bool, "1. UI Settings", "Gamepad Mode / 게임패드 모드 / 游戏手柄模式", false, 0)
+    lang_type = createWorkshopSetting(enum["English", "한국인", "中国人"], "1. UI Settings", "Gamepad Mode / 게임패드 모드 / 游戏手柄模式", 0, 0)
 
 # Defines the Input for UI, making it easy to change menu inputs.
 def set_ui_data():

@@ -1,0 +1,60 @@
+site_name: Overwatch 2 Aim Scenario Maker
+site_url: https://a-bella-ciao.github.io/OW2-Aim-Scenario-Maker
+repo_url: https://github.com/a-bella-ciao/OW2-Aim-Scenario-Maker
+
+docs_dir: 'docs/'
+site_dir: 'generated/'
+
+theme:
+  name: material
+  custom_dir: 'overrides/'
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.ico    
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+  palette:
+    scheme: slate
+    primary: deep purple
+    accent: deep orange
+
+plugins:
+  - search                  
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: ko
+          name: 한국인
+          build: true
+          nav_translations:
+              Home: homeinkorean
+              #Getting Started: 
+              Menu Reference: menureferenceinkorean
+        - locale: zh
+          name: 中国人
+          build: true
+          nav_translations:
+              Home: homeinzh
+              #Getting Started: 
+              Menu Reference: homeinzh
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/a-bella-ciao/OW2-Aim-Scenario-Maker
+      name: OW2-Aim-Scenario-Maker on Github
+
+markdown_extensions:
+  - tables
+
+nav:
+- Home: index.md
+#- Getting Started: getting_started.md
+- Menu Reference: menu_reference.md
+
+#use_directory_urls: false
