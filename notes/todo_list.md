@@ -8,5 +8,7 @@ todo:
 6. Make create menu pull information from databot fields
 7. Start implementation of bot functions
 8. Make test bot in slot spawn a target bot
+9. Make Menu Help dynamically tell you what each input does.
+
 
 ability input menu??? - adds a ton more complexity/overhead/time/size/etcs

@@ -1,4 +1,4 @@
-# Menu Reference
+# Profile Settings
 ## Main Menu
 ### Bots
 **Description**: Opens the Bots Settings submenu.

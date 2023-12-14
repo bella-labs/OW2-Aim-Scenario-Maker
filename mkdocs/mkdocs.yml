@@ -11,8 +11,6 @@ theme:
   logo: assets/images/logo.png
   favicon: assets/images/favicon.ico    
   features:
-    - navigation.tabs
-    - navigation.sections
     - toc.integrate
   palette:
     scheme: slate
@@ -29,14 +27,14 @@ plugins:
           name: English
           build: true
         - locale: ko
-          name: 한국인
+          name: 한국어
           build: true
           nav_translations:
-              Home: homeinkorean
+              Home: homeinko
               #Getting Started: 
-              Menu Reference: menureferenceinkorean
+              Menu Reference: menureferenceinko 
         - locale: zh
-          name: 中国人
+          name: 中文
           build: true
           nav_translations:
               Home: homeinzh
@@ -46,15 +44,29 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/a-bella-ciao/OW2-Aim-Scenario-Maker
+      link: https://github.com/a-bella-ciao
       name: OW2-Aim-Scenario-Maker on Github
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/a_bella_ciao
 
 markdown_extensions:
   - tables
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
 - Home: index.md
-#- Getting Started: getting_started.md
-- Menu Reference: menu_reference.md
+- Getting Started: getting_started/get_started_index.md
+- Menu Reference:
+  - Main Menu: menu_ref/menu_ref_sub_0.md
+  - Bot: menu_ref/menu_ref_sub_1.md
+  - Profile:
+    - menu_ref/menu_ref_sub_2.md
+    - Movement:
+      - menu_ref/menu_ref_sub_2_1.md
+  - Scenario: menu_ref/menu_ref_sub_3.md
+
 
 #use_directory_urls: false

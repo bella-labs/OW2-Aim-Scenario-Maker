@@ -24,15 +24,15 @@
   * Small Step: -/+ 1%, -/+ 0.01, -/+ 1
   * Large Step: -/+ 10%, -/+ 1, -/+ 10
   * Subitems
-### Gravity <Gravity%>
-  * Type: int, real, int
+### Bot Scale <Type, min, max, time> 
+  * Type: int, int, list, real
+  * Options: Static, Random, Health, Loop
   * Range: 0% - 1000%
   * Small Step: -/+ 1%
   * Large Step: -/+ 10%
   * Subitems
-### Bot Scale <Type, min, max, time> 
-  * Type: int, int, list, real
-  * Options: Static, Random, Health, Loop
+### Gravity <Gravity%>
+  * Type: int, real, int
   * Range: 0% - 1000%
   * Small Step: -/+ 1%
   * Large Step: -/+ 10%
@@ -75,7 +75,7 @@
 * Large Step: -/+ 1
 * Subitems
 * Effect: Radius Ring from player set position
-
+### Use Custom Script <Toggle>
 ## **Profiles (label)**
 ### Profiles <Number: Toggle> 
 * Type: int, toggle
@@ -295,6 +295,7 @@
   * Small Step: -/+ 1
   * Large Step: -/+ 10
   * Subitems
+### Use Custom Script <Toggle>
 # Play
 ## Test Bot in Slot <0-11>
   * Type: int

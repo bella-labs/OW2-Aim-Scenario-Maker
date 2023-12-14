@@ -76,6 +76,10 @@ rule "Menu Controls: Up Scroll":
     while menu_item_hidden[menu_index] == true:
         menu_up_check()
 
+    wait(0.1, Wait.ABORT_WHEN_FALSE)
+    if RULE_CONDITION:
+        goto RULE_START
+
 
 rule "Menu Controls: Down Scroll":
     @Event eachPlayer
@@ -87,6 +91,9 @@ rule "Menu Controls: Down Scroll":
     while menu_item_hidden[menu_index] == true:
         menu_down_check()
 
+    wait(0.1, Wait.ABORT_WHEN_FALSE)
+    if RULE_CONDITION:
+        goto RULE_START
 
 rule "Menu Controls: Change Subitem":
     @Event eachPlayer

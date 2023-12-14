@@ -27,8 +27,8 @@ globalvar menu_opt_var_2
 globalvar menu_opt_var_3
 globalvar menu_opt_var_4
 globalvar menu_opt_str_index
-globalvar menu_opt_range_min
-globalvar menu_opt_range_max
+globalvar menu_opt_var_tags
+globalvar menu_opt_range
 globalvar menu_opt_small_step
 globalvar menu_opt_large_step
 
@@ -153,8 +153,9 @@ subroutine destroy_bot
 
 globalvar hero_array
 
+globalvar strings_misc
 globalvar strings_controls
-globalvar strings_hero_status
+globalvar strings_on_titles
 globalvar strings_labels
 globalvar strings_submenu_0
 globalvar strings_submenu_1
@@ -162,3 +163,37 @@ globalvar strings_submenu_2
 globalvar strings_submenu_3
 globalvar strings_submenu_2_1
 globalvar strings_options
+globalvar lang_type
+
+
+globalvar data_loaded
+
+globalvar ranges
+globalvar small_steps
+globalvar large_steps
+
+enum MENU_INPUTS:
+    MENU_SMALL_LEFT = 0,
+    MENU_SMALL_RIGHT,
+    MENU_LARGE_LEFT,
+    MENU_LARGE_RIGHT,
+    MENU_NEXT_SUBITEM,
+    MENU_SET_VECTOR
+
+enum RANGE_INDEXES:
+    RANGE_SLOT = 0,
+    RANGE_PERCENTAGE,
+    RANGE_DISTANCE,
+    RANGE_TIME,
+    RANGE_SCALAR,
+    RANGE_VECTOR,
+    RANGE_SCORE
+
+enum SMALL_INDEXES:
+    SMALL_REAL = 0,
+    SMALL_INT
+
+enum LARGE_INDEXES:
+    LARGE_REAL = 0,
+    LARGE_INT_SAME_AS_SMALL,
+    LARGE_INT

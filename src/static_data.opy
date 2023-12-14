@@ -1,11 +1,11 @@
 rule "Load Static Data":
     @Event global
 
-    static_data_loaded = false
+    data_loaded[0] = true
 
-    ranges = [[0,11], [0,100], [0, 200], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
+    ranges = [[0,11], [0,100], [0, ], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
     small_steps = [0.01, 1]
-    large_steps = [1, 10]
+    large_steps = [1, 1, 10]
 
     hero_array =   [Hero.TRACER,
                     Hero.REAPER,
@@ -63,4 +63,4 @@ rule "load_language_data":
     strings_on_titles = [["Profile"]]
     strings_options = [[["Disabled", "Enabled"], ["Timed", "Score Limit"]], [["사용 안 함", "사용"]], [["禁用", "已启用"]]]
     
-    static_data_loaded = true
+    data_loaded[0] = true

@@ -21,12 +21,13 @@ def setup_databot():
     bot_gen_hero = Hero.ECHO
     bot_gen_team = Team.1
     bot_gen_slot = 1
-    bot_gen_position = vect(0,0,0)
+    bot_gen_position = vect(1000,1000,1000)
     bot_gen_facing = vect(0,0,0)
     create_bot()
 
     databot = getPlayersInSlot(bot_gen_slot,bot_gen_team)
-    databot.startForcingName("Athena")
+    databot.setGravity(0)
+    databot.startForcingName(strings_misc[lang_type][0])
     databot.setStatusEffect(null, Status.PHASED_OUT, 9999)
     #eventPlayer.setInvisibility(Invis.ALL)
     #eventPlayer.startFacing(directionTowards( eventPlayer.getEyePosition(), (getPlayersInSlot(eventPlayer.getSlot() - 6, Team.1)).getEyePosition()), default_turn_rate, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)

@@ -3,7 +3,7 @@ rule "Menu Setup: Creation":
 
 
     menu_enabled = false
-    waitUntil(static_data_loaded == true, 9999)
+    waitUntil(data_loaded[0] == true, 9999)
 
     setup_databot()
 
@@ -139,7 +139,7 @@ def create_submenu_1():
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_range[menu_opt_size] = [RANGE_INDEXES.RANGE_SLOT]
     menu_opt_small_step[menu_opt_size] = [SMALL_INDEXES.SMALL_INT]
-    menu_opt_large_step[menu_opt_size] = [LARGE_INDEXES.LARGE_INT]
+    menu_opt_large_step[menu_opt_size] = [LARGE_INDEXES.LARGE_INT_SAME_AS_SMALL]
     menu_opt_var_1[menu_opt_size] = 0
     new_menu_item_cycle()
 
@@ -149,7 +149,7 @@ def create_submenu_1():
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_opt_range[menu_opt_size] = [RANGE_INDEXES.RANGE_SLOT]
     menu_opt_small_step[menu_opt_size] = [SMALL_INDEXES.SMALL_INT]
-    menu_opt_large_step[menu_opt_size] = [LARGE_INDEXES.LARGE_INT]
+    menu_opt_large_step[menu_opt_size] = [LARGE_INDEXES.LARGE_INT_SAME_AS_SMALL]
     menu_opt_var_1[menu_opt_size] = 0
     new_menu_item_cycle()
 
