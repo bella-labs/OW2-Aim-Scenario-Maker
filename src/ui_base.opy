@@ -23,6 +23,7 @@ rule "Menu Input Listener: Menu Up":
     while menu_item_hidden[menu_index] == true:
         menu_up_check()
 
+    
     wait(0.1, Wait.ABORT_WHEN_FALSE)
     if RULE_CONDITION:
         goto RULE_START
@@ -225,6 +226,12 @@ def increment_for_menu_item():
     menu_subitem[menu_opt_size] = 0
     menu_subitem_size[menu_opt_size] = 0
 
+    menu_opt_var_tags[menu_opt_size] = ["", "", "", ""]
+    menu_opt_var_1[menu_opt_size] = ""
+    menu_opt_var_2[menu_opt_size] = ""
+    menu_opt_var_3[menu_opt_size] = ""
+    menu_opt_var_4[menu_opt_size] = ""
+
 
 def increment_for_submenu_item():
     @Name "SUB: increment_for_new_submenu"
@@ -336,12 +343,12 @@ def new_menu_item_percentage():
     SpecVisibility.DEFAULT)
 
 
-def new_menu_item_1var():
-    @Name "SUB: new_menu_item_1var"
+def new_menu_item_toggle_list():
+    @Name "SUB: new_menu_item_toggle_list"
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
-    else "■ {0} ←  {1}: {2}  → ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)]), 
+    else "■ {0}    ←  {1}  →    {2}    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)]), 
     HudPosition.TOP, 
     evalOnce(menu_max_pos), 
     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
@@ -356,8 +363,8 @@ def new_menu_item_2var():
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
-    else "■ {0} ←  {1}  →  {2}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
-    else "■ {0} {1}  ←  {2}  →".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)]),
+    else "■ {0}    ←  {1}{2}  →    {3}{4}    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
+    else "■ {0}    {1}{2}  ←    {3}{4}  →    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)]),
     HudPosition.TOP, 
     evalOnce(menu_max_pos), 
     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
@@ -372,9 +379,9 @@ def new_menu_item_3var():
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
-    else "■ {0} ←  {1}  →  {2}  {3}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
-    else "■ {0} {1}  ←  {2}  →  {3}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 1
-    else "■ {0} {1}  {2}  ←  {3}  →".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)]),
+    else "■ {0}    ←  {1}{2}  →    {3}{4}    {5}{6}    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][2], menu_opt_var_3[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
+    else "■ {0}    {1}{2}    ←  {3}{4}  →    {5}{6}    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][2], menu_opt_var_3[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 1
+    else "■ {0}    {1}{2}    {3}{4}    ←  {5}{6}  →    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][2], menu_opt_var_3[evalOnce(menu_opt_size)]),
     HudPosition.TOP, 
     evalOnce(menu_max_pos), 
     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 
@@ -389,10 +396,10 @@ def new_menu_item_4var():
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) 
-    else "■ {0} ←  {1}  →  {2}  {3}  {4}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
-    else "■ {0} {1}  ←  {2}  →  {3}  {4}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 1
-    else "■ {0} {1}  {2}  ←  {3}  →  {4}".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 2
-    else "■ {0} {1}  {2}  {3}  ←  {4}  →".format(menu_on_opt_title[evalOnce(menu_opt_size)],menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_4[evalOnce(menu_opt_size)]),
+    else "■ {0}     ←  {1}{2}  →    {3}{4}    {5}{6}    {7}{8}    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][2], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][3], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 0
+    else "■ {0}     {1}{2}    ←  {3}{4}  →    {5}{6}    {7}{8}    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][2], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][3], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 1
+    else "■ {0}     {1}{2}    {3}{4}    ←  {5}{6}  →    {7}{8}    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][2], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][3], menu_opt_var_4[evalOnce(menu_opt_size)])  if menu_subitem[evalOnce(menu_opt_size)] == 2
+    else "■ {0}     {1}{2}    {3}{4}    {5}{6}    ←  {7}{8}  →    ".format(menu_on_opt_title[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][0], menu_opt_var_1[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][1], menu_opt_var_2[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][2], menu_opt_var_3[evalOnce(menu_opt_size)], menu_opt_var_tags[evalOnce(menu_opt_size)][3], menu_opt_var_4[evalOnce(menu_opt_size)]),
     HudPosition.TOP, 
     evalOnce(menu_max_pos), 
     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 

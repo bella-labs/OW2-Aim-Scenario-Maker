@@ -63,6 +63,7 @@ globalvar use_import_data
 # Player Variables
 ## Data Storage
 ### Bot Settings
+playervar data_bot_slots
 playervar data_bot_hero_pool
 playervar data_bot_health
 playervar data_bot_scale
@@ -129,7 +130,7 @@ subroutine menu_act_submenu_2
 subroutine menu_act_submenu_3
 subroutine menu_act_submenu_2_1
 subroutine menu_act_change_submenu
-subroutine menu_act_change_number_var_1
+subroutine menu_helper_change_num_var_1
 subroutine menu_act_change_number_var_2
 subroutine menu_act_change_number_var_3
 subroutine menu_act_change_number_var_4
@@ -159,7 +160,7 @@ subroutine destroy_bot
 
 globalvar hero_array
 
-globalvar strings_menu_prompt
+globalvar strings_prompt
 globalvar strings_vector
 globalvar strings_misc
 globalvar strings_controls
@@ -172,9 +173,15 @@ globalvar strings_submenu_3
 globalvar strings_submenu_2_1
 globalvar strings_options
 globalvar strings_input
+globalvar strings_export
+globalvar strings_tags
 globalvar lang_type
 
 subroutine perform_action
+subroutine menu_act_bot_copy_confirm
+subroutine menu_act_toggle_bot_slot
+
+subroutine copy_to_bot_slot
 
 globalvar data_loaded
 
@@ -184,6 +191,12 @@ globalvar large_steps
 
 globalvar loop_index
 globalvar help_index
+globalvar confirm_timer
+globalvar menu_prompt_index
+subroutine menu_act_sel_bot_slot
+subroutine menu_act_copy_bot_slot
+subroutine menu_subact_copy_to_bot_slot
+
 
 enum UI_INPUTS:
     VECT_FORWARD = 0,

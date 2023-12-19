@@ -25,7 +25,7 @@ rule "Player Spawned: Display notice banner":
 rule "Menu Setup: Creation":
     @Event global
 
-
+    
     data_loaded[DATA_INDEXES.DATA_MENU] = false
     waitUntil(data_loaded[DATA_INDEXES.DATA_STATIC] == true, 9999)
 
@@ -42,10 +42,8 @@ rule "Menu Setup: Creation":
 
     create_submenu_2_1()
 
-    data_loaded[2] = true
-    menu_visible = true
-
     data_loaded[DATA_INDEXES.DATA_MENU] = true
+    menu_visible = false
 
 
 def create_hud():
@@ -70,17 +68,18 @@ def create_hud():
 
     # Displays the left HUD menu help. Note: Can embed ui_input[0] check into single hudtext, but too much server load
     
+    menu_prompt_index = 0
     hudSubheader([i for i in localPlayer], 
-    "{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}".format("{0} {1} {2} {3} {4}".format(strings_menu_prompt[lang_type][0] if ui_delay > 0 else strings_menu_prompt[lang_type][1], strings_vector[lang_type][user_controls[0]] if user_controls[0] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[0]), strings_menu_prompt[lang_type][2], strings_menu_prompt[lang_type][3] if menu_visible else strings_menu_prompt[lang_type][4], strings_menu_prompt[lang_type][5]), 
+    "{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}".format("{0} {1} {2} {3} {4}".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_vector[lang_type][user_controls[0]] if user_controls[0] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
         "——————————————————————" if menu_visible else "", 
-        "{0} | {1}".format(strings_input[lang_type][0], strings_vector[lang_type][user_controls[1]] if user_controls[1] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[1])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][1], strings_vector[lang_type][user_controls[2]] if user_controls[2] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[2])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][2], strings_vector[lang_type][user_controls[3]] if user_controls[3] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[3])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][3], strings_vector[lang_type][user_controls[4]] if user_controls[4] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[4])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][4], strings_vector[lang_type][user_controls[5]] if user_controls[5] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[5])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][5], strings_vector[lang_type][user_controls[6]] if user_controls[6] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[6])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][6], strings_vector[lang_type][user_controls[7]] if user_controls[7] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[7])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][7], strings_vector[lang_type][user_controls[8]] if user_controls[8] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[8])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][0], strings_vector[lang_type][user_controls[1]] if user_controls[1] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[1])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][1], strings_vector[lang_type][user_controls[2]] if user_controls[2] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[2])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][2], strings_vector[lang_type][user_controls[3]] if user_controls[3] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[3])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][3], strings_vector[lang_type][user_controls[4]] if user_controls[4] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[4])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][4], strings_vector[lang_type][user_controls[5]] if user_controls[5] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[5])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][5], strings_vector[lang_type][user_controls[6]] if user_controls[6] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[6])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][6], strings_vector[lang_type][user_controls[7]] if user_controls[7] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[7])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][7], strings_vector[lang_type][user_controls[8]] if user_controls[8] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[8])) if menu_visible else "",
         "——————————————————————" if menu_visible else ""),
         HudPosition.LEFT,
         -1,
@@ -162,12 +161,13 @@ def create_submenu_1():
     # (Cycle) Select Bot Slot
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos] 
-    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_on_opt_title[menu_opt_size] = strings_on_titles[lang_type][0]
     menu_opt_range[menu_opt_size] = [RANGE_INDEXES.RANGE_SLOT]
     menu_opt_small_step[menu_opt_size] = [SMALL_INDEXES.SMALL_INT]
     menu_opt_large_step[menu_opt_size] = [LARGE_INDEXES.LARGE_INT_SAME_AS_SMALL]
     menu_opt_var_1[menu_opt_size] = 0
-    new_menu_item_cycle()
+    menu_opt_var_2[menu_opt_size] = strings_options[lang_type][0][1] if databot.data_bot_slots[0] == true else strings_options[lang_type][0][0]
+    new_menu_item_toggle_list()
 
     # (Cycle) Override from Slot
     increment_for_menu_item()
@@ -270,8 +270,9 @@ def create_submenu_1():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_opt_var_1[menu_opt_size] = "Min: 0"
-    menu_opt_var_2[menu_opt_size] = "Max: 0"
+    menu_opt_var_tags[menu_opt_size] = strings_tags[lang_type][0]
+    menu_opt_var_1[menu_opt_size] = 0
+    menu_opt_var_2[menu_opt_size] = 0
     new_menu_item_2var()
 
     # (Subtext) Profiles
@@ -286,7 +287,7 @@ def create_submenu_1():
     menu_on_opt_title[menu_opt_size] = strings_on_titles[lang_type][0]
     menu_opt_var_tags[menu_opt_size] = [0]
     menu_opt_var_1[menu_opt_size] = strings_options[lang_type][menu_max_pos][0]
-    new_menu_item_1var()
+    new_menu_item_toggle_list()
 
     # (3 Var) Randomize Profiles
     increment_for_menu_item()

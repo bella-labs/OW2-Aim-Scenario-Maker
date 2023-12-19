@@ -37,27 +37,29 @@ def setup_databot():
 def default_settings():
     @Name "SUB: default_settings"
     
-    eventPlayer.data_bot_hero_pool = [[Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER]]
-    eventPlayer.data_bot_health = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
-    eventPlayer.data_bot_scale = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
-    eventPlayer.data_bot_spawn_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    eventPlayer.data_bot_position = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    eventPlayer.data_bot_facing_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    eventPlayer.data_bot_facing_vector = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    eventPlayer.data_bot_lower_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    eventPlayer.data_bot_upper_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    eventPlayer.data_bot_distance = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
-    eventPlayer.data_bot_movement_profile = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    eventPlayer.data_bot_randomize_profile = [false, false, false, false, false, false, false, false, false, false, false, false]
+    eventPlayer.data_bot_slots = [true, false, false, false, false, false, false, false, false, false, false, false]
     
-    eventPlayer.data_mvmt_lr = [false, false, false, false, false, false, false, false, false, false, false, false]
-    eventPlayer.data_mvmt_lr_time = null
-    eventPlayer.data_mvmt_lr_speed = null
-    eventPlayer.data_mvmt_lr_random = null
-    eventPlayer.data_mvmt_fb = [false, false, false, false, false, false, false, false, false, false, false, false]
-    eventPlayer.data_mvmt_fb_time = null
-    eventPlayer.data_mvmt_fb_speed = null
-    eventPlayer.data_mvmt_fb_random = null
+    #eventPlayer.data_bot_hero_pool = [[Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER]]
+    #eventPlayer.data_bot_health = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    #eventPlayer.data_bot_scale = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    #eventPlayer.data_bot_spawn_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    #eventPlayer.data_bot_position = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
+    #eventPlayer.data_bot_facing_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    #eventPlayer.data_bot_facing_vector = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
+    #eventPlayer.data_bot_lower_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
+    #eventPlayer.data_bot_upper_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
+    #eventPlayer.data_bot_distance = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    #eventPlayer.data_bot_movement_profile = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    #eventPlayer.data_bot_randomize_profile = [false, false, false, false, false, false, false, false, false, false, false, false]
+    
+    #eventPlayer.data_mvmt_lr = [false, false, false, false, false, false, false, false, false, false, false, false]
+    #eventPlayer.data_mvmt_lr_time = null
+    #eventPlayer.data_mvmt_lr_speed = null
+    #eventPlayer.data_mvmt_lr_random = null
+    #eventPlayer.data_mvmt_fb = [false, false, false, false, false, false, false, false, false, false, false, false]
+    #eventPlayer.data_mvmt_fb_time = null
+    #eventPlayer.data_mvmt_fb_speed = null
+    #eventPlayer.data_mvmt_fb_random = null
 
 
     

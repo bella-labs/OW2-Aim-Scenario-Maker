@@ -61,9 +61,10 @@ rule "load_language_data":
     strings_submenu_2 = [["Profile Settings", "◀ Main Menu", "Profiles", "Select Profile Slot", "Override Profile from Slot", "Movement", "Movement Settings ▶", "Reactions", "Detect Collisions", "Swap Strafe Direction When Damage", "Swap Strafe Wait Timer"]]
     strings_submenu_2_1 = [["Movement Settings", "◀ Profile Settings", "Left / Right Movement", "Sync Left and Right Settings", "Left Strafe Time", "Right Strafe Time", "Swap Left / Right Strafe Time", "Left Strafe Speed", "Right Strafe Speed", "Swap Left / Right Strafe Speed", "Forward / Backward Movement", "Sync Forward / Backward settings", "Forward Strafe Time", "Backward Strafe Time", "Swap Forward / Backward Strafe Time", "Forward Strafe Speed", "Backward Strafe Speed", "Swap Forward / Backward Strafe Speed", "Idle Movement", "Idle Type", "Left / Right Idle", "Forward / Backward Idle", "Vertical Movement", "Jump Frequency", "Crouch Frequency", "Uncrouch Frequency"]]
     strings_submenu_3 = [["Scenario Settings", "◀ Main Menu", "Scoring", "Score Type", "Points", "Strafe Score", "Player", "Spawn Position", "Spawn Facing", "Speed", "Gravity", "Custom Script"]]
-    strings_on_titles = [["Profile"]]
+    strings_on_titles = [["Slot", "Profile"]]
     strings_options = [[["Disabled", "Enabled"], ["Timed", "Score Limit"]], [["사용 안 함", "사용"]], [["禁用", "已启用"]]]
-    strings_menu_prompt = [["Hold", "Press", "to", "close", "open", "menu"],[],[]]
-    strings_input = [["Up", "Down", "Step Left", "Step Right", "Jump Left", "Jump Right", "Next Subitem", "Set Vector"],[""],[""]]
-    
+    strings_prompt = [["Hold", "Press", "to", "close", "open", "menu", "to confirm override"],[],[]]
+    strings_input = [[["Up", "Down", "Step Left", "Step Right", "Jump Left", "Jump Right", "Next Subitem", ""]],[[""]],[[""]]]
+    strings_export = [["How to export:", "1. Open the Overwatch menu", "2. Select Workshop Inspector", "3 select iris from the view tab (it should default to auto)", "4. click the copy variables button (hover over the buttons to see the description)"],[""],[""]]
+    strings_tags = [[["min: ", "max: "]], [[]], [[]]]
     data_loaded[DATA_INDEXES.DATA_STATIC] = true

@@ -57,12 +57,10 @@ def menu_act_submenu_1():
             menu_act_change_submenu()
             break
         case menu_substart_value + 1:
-            if menu_action != MENU_ACTIONS.MENU_NEXT_SUBITEM and menu_action != MENU_ACTIONS.MENU_SET_VECTOR:
-                menu_act_change_number_var_1()
+            menu_act_sel_bot_slot()
             break
         case menu_substart_value + 2:
-            if menu_action != MENU_ACTIONS.MENU_NEXT_SUBITEM and menu_action != MENU_ACTIONS.MENU_SET_VECTOR:
-                menu_act_change_number_var_1()
+            menu_act_copy_bot_slot()
             break
 
 
@@ -109,26 +107,4 @@ def menu_act_change_submenu():
 
         submenu_index = menu_submenu_target
         menu_index = submenu_start_index[submenu_index] + menu_index_target
-
-
-def menu_act_change_number_var_1():
-    @Name "SUB: menu_act_change_number_var_1"
-
-    switch menu_action:
-        case MENU_ACTIONS.MENU_STEP_LEFT:
-            menu_opt_var_1[menu_index] -= small_steps[menu_opt_small_step[menu_index][0]]
-            break
-        case MENU_ACTIONS.MENU_STEP_RIGHT:
-            menu_opt_var_1[menu_index] += small_steps[menu_opt_small_step[menu_index][0]]
-            break
-        case MENU_ACTIONS.MENU_JUMP_LEFT:
-            menu_opt_var_1[menu_index] -= large_steps[menu_opt_large_step[menu_index][0]]
-            break
-        case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            menu_opt_var_1[menu_index] += large_steps[menu_opt_large_step[menu_index][0]]
-            break
-
-    if menu_opt_var_1[menu_index] < ranges[menu_opt_range[menu_index][0]][0]:
-        menu_opt_var_1[menu_index] = ranges[menu_opt_range[menu_index][0]][1]
-    elif menu_opt_var_1[menu_index] > ranges[menu_opt_range[menu_index][0]][1]:
-        menu_opt_var_1[menu_index] = ranges[menu_opt_range[menu_index][0]][0]
+        
