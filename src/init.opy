@@ -28,11 +28,6 @@ rule "Initialize: Workshop Settings":
     user_controls[7] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Next Subitem", 11, 8)
     user_controls[8] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Set Vector", 10, 9)
 
-    set_ui_data()
-
-# Defines the Input for UI, making it easy to change menu inputs.
-def set_ui_data():
-    @Name "SUB: set_ui_data"
     for loop_index in range(0,len(user_controls)):
         switch user_controls[loop_index]:
             case 0:
@@ -78,6 +73,7 @@ def set_ui_data():
                 ui_controls[loop_index] = Button.ULTIMATE
                 break
 
+# Defines the Input for UI, making it easy to change menu inputs.
 
 
 rule "Change Hero":
@@ -88,6 +84,7 @@ rule "Change Hero":
 
     eventPlayer.setAllowedHeroes(eventPlayer.getAllowedHeroes().exclude(eventPlayer.getCurrentHero()))
     eventPlayer.resetHeroAvailability()
+
 
 rule "anticrash":
     @Condition getServerLoad() >= 225
