@@ -1,26 +1,5 @@
-rule "Menu Actions: Input Read":
-    
-    @Event eachPlayer
-    @Condition menu_visible == true
-    @Condition (controller_mode == true and (eventPlayer.isHoldingButton(ui_inputs[3]) or eventPlayer.isHoldingButton(ui_inputs[4]))
-            or (controller_mode == false and (eventPlayer.getThrottle() == ui_inputs[3] or eventPlayer.getThrottle() == ui_inputs[4]))
-            or eventPlayer.isHoldingButton(ui_inputs[5])
-            or eventPlayer.isHoldingButton(ui_inputs[6])
-            or eventPlayer.isHoldingButton(ui_inputs[7])
-            or eventPlayer.isHoldingButton(ui_inputs[8]))
-    
-    if (controller_mode == true and (eventPlayer.isHoldingButton(ui_inputs[3]))) or (controller_mode == false and (eventPlayer.getThrottle() == ui_inputs[3])):
-        menu_input = MENU_INPUTS.MENU_SMALL_LEFT
-    elif (controller_mode == true and (eventPlayer.isHoldingButton(ui_inputs[4]))) or (controller_mode == false and (eventPlayer.getThrottle() == ui_inputs[4])):
-        menu_input = MENU_INPUTS.MENU_SMALL_RIGHT
-    elif eventPlayer.isHoldingButton(ui_inputs[5]):
-        menu_input = MENU_INPUTS.MENU_LARGE_LEFT
-    elif eventPlayer.isHoldingButton(ui_inputs[6]):
-        menu_input = MENU_INPUTS.MENU_LARGE_RIGHT
-    elif eventPlayer.isHoldingButton(ui_inputs[7]):
-        menu_input = MENU_INPUTS.MENU_NEXT_SUBITEM
-    elif eventPlayer.isHoldingButton(ui_inputs[8]):
-        menu_input = MENU_INPUTS.MENU_SET_VECTOR
+def perform_action():
+    @Name "SUB: perform_action"
 
     menu_substart_value = submenu_start_index[submenu_index]
     menu_wait = 0.1
@@ -78,11 +57,11 @@ def menu_act_submenu_1():
             menu_act_change_submenu()
             break
         case menu_substart_value + 1:
-            if menu_input != MENU_INPUTS.MENU_NEXT_SUBITEM and menu_input != MENU_INPUTS.MENU_SET_VECTOR:
+            if menu_action != MENU_ACTIONS.MENU_NEXT_SUBITEM and menu_action != MENU_ACTIONS.MENU_SET_VECTOR:
                 menu_act_change_number_var_1()
             break
         case menu_substart_value + 2:
-            if menu_input != MENU_INPUTS.MENU_NEXT_SUBITEM and menu_input != MENU_INPUTS.MENU_SET_VECTOR:
+            if menu_action != MENU_ACTIONS.MENU_NEXT_SUBITEM and menu_action != MENU_ACTIONS.MENU_SET_VECTOR:
                 menu_act_change_number_var_1()
             break
 
@@ -135,17 +114,17 @@ def menu_act_change_submenu():
 def menu_act_change_number_var_1():
     @Name "SUB: menu_act_change_number_var_1"
 
-    switch menu_input:
-        case MENU_INPUTS.MENU_SMALL_LEFT:
+    switch menu_action:
+        case MENU_ACTIONS.MENU_STEP_LEFT:
             menu_opt_var_1[menu_index] -= small_steps[menu_opt_small_step[menu_index][0]]
             break
-        case MENU_INPUTS.MENU_SMALL_RIGHT:
+        case MENU_ACTIONS.MENU_STEP_RIGHT:
             menu_opt_var_1[menu_index] += small_steps[menu_opt_small_step[menu_index][0]]
             break
-        case MENU_INPUTS.MENU_LARGE_LEFT:
+        case MENU_ACTIONS.MENU_JUMP_LEFT:
             menu_opt_var_1[menu_index] -= large_steps[menu_opt_large_step[menu_index][0]]
             break
-        case MENU_INPUTS.MENU_LARGE_RIGHT:
+        case MENU_ACTIONS.MENU_JUMP_RIGHT:
             menu_opt_var_1[menu_index] += large_steps[menu_opt_large_step[menu_index][0]]
             break
 

@@ -1,8 +1,7 @@
 # Global Variables
 ## Menu Characteristics
-globalvar menu_enabled
 globalvar menu_visible
-globalvar menu_input
+globalvar menu_action
 globalvar menu_wait
 ## Menu Index and Size
 globalvar menu_index
@@ -51,7 +50,12 @@ globalvar menu_color_submenu
 ## Menu HUD
 globalvar hud_text_id
 ## UI
-globalvar controller_mode
+globalvar user_controls
+globalvar ui_delay
+globalvar ui_controls
+globalvar ui_vectors
+globalvar ui_buttons
+
 globalvar ui_inputs
 ## Import 
 globalvar use_import_data
@@ -89,6 +93,9 @@ playervar data_mvmt_gravity
 # Subroutines
 ## Menu Navigation
 subroutine enable_player_input
+subroutine disable_player_input
+subroutine menu_control_up
+subroutine menu_control_down
 subroutine menu_up_check
 subroutine menu_down_check
 ## Menu Labels
@@ -145,7 +152,6 @@ globalvar bot_gen_slot
 globalvar bot_gen_position
 globalvar bot_gen_facing
 globalvar databot
-globalvar databot_loaded
 globalvar entity_pos
 ## Subroutines
 subroutine create_bot
@@ -153,6 +159,8 @@ subroutine destroy_bot
 
 globalvar hero_array
 
+globalvar strings_menu_prompt
+globalvar strings_vector
 globalvar strings_misc
 globalvar strings_controls
 globalvar strings_on_titles
@@ -163,8 +171,10 @@ globalvar strings_submenu_2
 globalvar strings_submenu_3
 globalvar strings_submenu_2_1
 globalvar strings_options
+globalvar strings_input
 globalvar lang_type
 
+subroutine perform_action
 
 globalvar data_loaded
 
@@ -172,11 +182,33 @@ globalvar ranges
 globalvar small_steps
 globalvar large_steps
 
-enum MENU_INPUTS:
-    MENU_SMALL_LEFT = 0,
-    MENU_SMALL_RIGHT,
-    MENU_LARGE_LEFT,
-    MENU_LARGE_RIGHT,
+globalvar loop_index
+globalvar help_index
+
+enum UI_INPUTS:
+    VECT_FORWARD = 0,
+    VECT_BACKWARD,
+    VECT_LEFT,
+    VECT_RIGHT,
+    BUTTON_INTERACT,
+    BUTTON_JUMP,
+    BUTTON_CROUCH,
+    BUTTON_MELEE,
+    BUTTON_PRIMARY,
+    BUTTON_SECONDARY,
+    BUTTON_RELOAD,
+    BUTTON_ABILITY_1,
+    BUTTON_ABILITY_2,
+    BUTTON_ULTIMATE
+
+enum MENU_ACTIONS:
+    MENU_TOGGLE = 0,
+    MENU_UP,
+    MENU_DOWN,
+    MENU_STEP_LEFT,
+    MENU_STEP_RIGHT,
+    MENU_JUMP_LEFT,
+    MENU_JUMP_RIGHT,
     MENU_NEXT_SUBITEM,
     MENU_SET_VECTOR
 
@@ -197,3 +229,8 @@ enum LARGE_INDEXES:
     LARGE_REAL = 0,
     LARGE_INT_SAME_AS_SMALL,
     LARGE_INT
+
+enum DATA_INDEXES:
+    DATA_STATIC = 0,
+    DATA_BOT,
+    DATA_MENU

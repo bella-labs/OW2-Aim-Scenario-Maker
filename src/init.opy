@@ -11,49 +11,73 @@ def default_player_menu():
 
 rule "Initialize: Workshop Settings":
 
-    set_ui_data()
+    
     use_import_data = createWorkshopSetting(bool, "0. Import Settings", "Import Settings (See Description for Instructions) / 가져오기 설정 (지침은 설명을 참조하세요) / 導入設定（請參閱說明以取得說明)", false, 0)
 
-    controller_mode = createWorkshopSetting(bool, "1. UI Settings", "Gamepad Mode / 게임패드 모드 / 游戏手柄模式", false, 0)
-    lang_type = createWorkshopSetting(enum["English", "한국어", "中文"], "1. UI Settings", "Gamepad Mode / 게임패드 모드 / 游戏手柄模式", 0, 0)
+    lang_type = createWorkshopSetting(enum["English", "한국어", "中文"], "1. Language", "English / 한국어 / 中文", 0, 0)
+    
+    ui_delay = createWorkshopSetting(float, "2. UI Settings", "Menu toggle hold delay", 0, 0)
+
+    user_controls[0] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Toggle Menu", 4, 1)
+    user_controls[1] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Menu Up", 0, 2)
+    user_controls[2] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Menu Down", 1, 3)
+    user_controls[3] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Step Left", 2, 4)
+    user_controls[4] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Step Right", 3, 5)
+    user_controls[5] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Jump Left", 13, 6)
+    user_controls[6] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Jump Right", 12, 7)
+    user_controls[7] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Next Subitem", 11, 8)
+    user_controls[8] = createWorkshopSetting(enum["Walk Forward", "Walk Backward", "Walk Left", "Walk Right", "Interact", "Jump", "Crouch", "Melee", "Primary Fire", "Secondary Fire", "Reload", "Ability 1", "Ability 2", "Ultimate"], "2. UI Settings", "Set Vector", 10, 9)
+
+    set_ui_data()
 
 # Defines the Input for UI, making it easy to change menu inputs.
 def set_ui_data():
     @Name "SUB: set_ui_data"
-    # Open Menu
-    ui_inputs[0] = Button.INTERACT
-    # Controller UI
-    if controller_mode == true:
-        # Menu Up
-        ui_inputs[1] = Button.ULTIMATE
-        # Menu Down
-        ui_inputs[2] = Button.JUMP
-        # Step Left
-        ui_inputs[3] = Button.ABILITY_1
-        # Step Right
-        ui_inputs[4] = Button.ABILITY_2
-        # Jump Left
-        ui_inputs[5] = Button.SECONDARY_FIRE
-        # Jump Right
-        ui_inputs[6] = Button.PRIMARY_FIRE
-    # M&K UI. To update Up/Down/Left/Right you'll also have to change the condition in the menu control rules.
-    else:
-        # Menu Up
-        ui_inputs[1] = Vector.FORWARD
-        # Menu Down
-        ui_inputs[2] = Vector.BACKWARD
-        # Step Left
-        ui_inputs[3] = Vector.LEFT
-        # Step Right / Select
-        ui_inputs[4] = Vector.RIGHT
-        # Jump Left
-        ui_inputs[5] = Button.ULTIMATE
-        # Jump Right
-        ui_inputs[6] = Button.ABILITY_2
-    # Select Next Value
-    ui_inputs[7] = Button.RELOAD
-    # Set Value to Vector
-    ui_inputs[8] = Button.CROUCH
+    for loop_index in range(0,len(user_controls)):
+        switch user_controls[loop_index]:
+            case 0:
+                ui_controls[loop_index] = Vector.FORWARD
+                break
+            case 1:
+                ui_controls[loop_index] = Vector.BACKWARD
+                break
+            case 2:
+                ui_controls[loop_index] = Vector.LEFT
+                break
+            case 3:
+                ui_controls[loop_index] = Vector.RIGHT
+                break
+            case 4:
+                ui_controls[loop_index] = Button.INTERACT
+                break
+            case 5:
+                ui_controls[loop_index] = Button.JUMP
+                break
+            case 6:
+                ui_controls[loop_index] = Button.CROUCH
+                break
+            case 7:
+                ui_controls[loop_index] = Button.MELEE
+                break
+            case 8:
+                ui_controls[loop_index] = Button.PRIMARY_FIRE
+                break
+            case 9:
+                ui_controls[loop_index] = Button.SECONDARY_FIRE
+                break
+            case 10:
+                ui_controls[loop_index] = Button.RELOAD
+                break
+            case 11:
+                ui_controls[loop_index] = Button.ABILITY_1
+                break
+            case 12:
+                ui_controls[loop_index] = Button.ABILITY_2
+                break
+            case 13:
+                ui_controls[loop_index] = Button.ULTIMATE
+                break
+
 
 
 rule "Change Hero":

@@ -1,11 +1,36 @@
+rule "Player Joined: Disable GameHUD":
+    @Event playerJoined
+    @Team 1
+
+    eventPlayer.disableGamemodeHud()
+
+
+rule "Player Spawned: Display notice banner":
+    @Event eachPlayer
+    @Team 1
+    @Condition eventPlayer == hostPlayer
+    @Condition eventPlayer.hasSpawned() == true
+
+    # Allow player to use inputs
+    enable_player_input()
+    # Make player unkillable by default.
+    eventPlayer.setStatusEffect(eventPlayer, Status.UNKILLABLE, 9999)
+
+    hudHeader(eventPlayer, strings_misc[0][1], HudPosition.TOP, -9999, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
+    hud_text_id = getLastCreatedText()
+    wait(5)
+    destroyHudText(hud_text_id)
+    
+
 rule "Menu Setup: Creation":
     @Event global
 
 
-    menu_enabled = false
-    waitUntil(data_loaded[0] == true, 9999)
+    data_loaded[DATA_INDEXES.DATA_MENU] = false
+    waitUntil(data_loaded[DATA_INDEXES.DATA_STATIC] == true, 9999)
 
     setup_databot()
+    waitUntil(data_loaded[DATA_INDEXES.DATA_BOT] == true, 9999)
 
     create_hud()
     setup_menu()
@@ -17,7 +42,10 @@ rule "Menu Setup: Creation":
 
     create_submenu_2_1()
 
-    menu_enabled = true
+    data_loaded[2] = true
+    menu_visible = true
+
+    data_loaded[DATA_INDEXES.DATA_MENU] = true
 
 
 def create_hud():
@@ -41,26 +69,24 @@ def create_hud():
     SpecVisibility.DEFAULT)
 
     # Displays the left HUD menu help. Note: Can embed ui_input[0] check into single hudtext, but too much server load
-    if controller_mode:
-        hudSubheader([i for i in localPlayer], 
-        "{0}\n{1}".format("Hold {0} to {1} Menu".format(buttonString(ui_inputs[0]), "close" if menu_visible else "open"), 
-            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nCycle to Next Value :  {6}\nSet Item to Vector :  {7}\n{8}\n*Use left/right Controls to Select*".format(buttonString(ui_inputs[1]), buttonString(ui_inputs[2]), buttonString(ui_inputs[3]), buttonString(ui_inputs[4]), buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), "——————————————————————") if menu_visible else ""), 
-            HudPosition.LEFT, 
-            -1, 
-            Color.WHITE, 
-            HudReeval.VISIBILITY_AND_STRING, 
-            SpecVisibility.DEFAULT)
-    else:
-        # Not sure how to avoid hard coding up/down/left/right strings
-        hudSubheader([i for i in localPlayer], 
-        "{0}\n{1}".format("{0} {1} to {2} Menu".format(
-            "Hold" if controller_mode else "Press", buttonString(ui_inputs[0]), "close" if menu_visible else "open"), 
-            "{8}\nMenu Controls    \n{8}\nUp :  {0}\nDown :  {1}\nStep Left :  {2}\nStep Right / Select :  {3}\nJump Left :  {4}\nJump Right :  {5}\nCycle to Next Value :  {6}\nSet Item to Vector :  {7}\n{8}\n*Use left/right Controls to Select*".format("Forward", "Backward", "Left", "Right", buttonString(ui_inputs[5]), buttonString(ui_inputs[6]), buttonString(ui_inputs[7]), buttonString(ui_inputs[8]), "——————————————————————") if menu_visible else ""), 
-            HudPosition.LEFT, 
-            -1, 
-            Color.WHITE, 
-            HudReeval.VISIBILITY_AND_STRING, 
-            SpecVisibility.DEFAULT)
+    
+    hudSubheader([i for i in localPlayer], 
+    "{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}".format("{0} {1} {2} {3} {4}".format(strings_menu_prompt[lang_type][0] if ui_delay > 0 else strings_menu_prompt[lang_type][1], strings_vector[lang_type][user_controls[0]] if user_controls[0] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[0]), strings_menu_prompt[lang_type][2], strings_menu_prompt[lang_type][3] if menu_visible else strings_menu_prompt[lang_type][4], strings_menu_prompt[lang_type][5]), 
+        "——————————————————————" if menu_visible else "", 
+        "{0} | {1}".format(strings_input[lang_type][0], strings_vector[lang_type][user_controls[1]] if user_controls[1] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[1])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][1], strings_vector[lang_type][user_controls[2]] if user_controls[2] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[2])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][2], strings_vector[lang_type][user_controls[3]] if user_controls[3] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[3])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][3], strings_vector[lang_type][user_controls[4]] if user_controls[4] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[4])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][4], strings_vector[lang_type][user_controls[5]] if user_controls[5] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[5])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][5], strings_vector[lang_type][user_controls[6]] if user_controls[6] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[6])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][6], strings_vector[lang_type][user_controls[7]] if user_controls[7] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[7])) if menu_visible else "",
+        "{0} | {1}".format(strings_input[lang_type][7], strings_vector[lang_type][user_controls[8]] if user_controls[8] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[8])) if menu_visible else "",
+        "——————————————————————" if menu_visible else ""),
+        HudPosition.LEFT,
+        -1,
+        Color.WHITE,
+        HudReeval.VISIBILITY_AND_STRING,
+        SpecVisibility.DEFAULT)
 
 
 def create_submenu_0():

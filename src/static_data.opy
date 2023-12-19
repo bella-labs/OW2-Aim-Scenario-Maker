@@ -1,9 +1,9 @@
 rule "Load Static Data":
     @Event global
 
-    data_loaded[0] = true
+    data_loaded[DATA_INDEXES.DATA_STATIC] = false
 
-    ranges = [[0,11], [0,100], [0, ], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
+    ranges = [[0,11], [0,100], [0,250], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
     small_steps = [0.01, 1]
     large_steps = [1, 1, 10]
 
@@ -54,7 +54,8 @@ rule "Load Static Data":
 rule "load_language_data":
     @Event global
 
-    strings_misc = [["Data Storage"], ["데이터 저장소"], ["数据存储"]]
+    strings_vector = [["Walk Forward", "Walk Backward", "Walk Left", "Walk Right"]]
+    strings_misc = [["Iris", "Open The Menu to Begin Editing. See <website> for documentation."], ["데이터 저장소"], ["数据存储"]]
     strings_submenu_0 = [["Configure", "Bot       ▶", "Profile   ▶", "Scenario  ▶", "Play", "Test Bot in Slot", "Test Scenario"]]
     strings_submenu_1 = [["Bot Settings", "◀ Main Menu", "Bot Slot", "Select Bot Slot", "Copy From Bot Slot", "Bot Parameters", "Hero Pool", "", "Health", "Scale", "Gravity", "Spawn and Boundaries", "Spawn Type", "Facing", "Lower Bound", "Upper Bound", "Distance", "Profiles", "Profiles Status", "Randomize Profile Order", "Use Custom Scripts"]]
     strings_submenu_2 = [["Profile Settings", "◀ Main Menu", "Profiles", "Select Profile Slot", "Override Profile from Slot", "Movement", "Movement Settings ▶", "Reactions", "Detect Collisions", "Swap Strafe Direction When Damage", "Swap Strafe Wait Timer"]]
@@ -62,5 +63,7 @@ rule "load_language_data":
     strings_submenu_3 = [["Scenario Settings", "◀ Main Menu", "Scoring", "Score Type", "Points", "Strafe Score", "Player", "Spawn Position", "Spawn Facing", "Speed", "Gravity", "Custom Script"]]
     strings_on_titles = [["Profile"]]
     strings_options = [[["Disabled", "Enabled"], ["Timed", "Score Limit"]], [["사용 안 함", "사용"]], [["禁用", "已启用"]]]
+    strings_menu_prompt = [["Hold", "Press", "to", "close", "open", "menu"],[],[]]
+    strings_input = [["Up", "Down", "Step Left", "Step Right", "Jump Left", "Jump Right", "Next Subitem", "Set Vector"],[""],[""]]
     
-    data_loaded[0] = true
+    data_loaded[DATA_INDEXES.DATA_STATIC] = true

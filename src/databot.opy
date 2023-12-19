@@ -5,18 +5,18 @@ rule "Databot Populate Settings":
     @Condition eventPlayer.isDummy() == true
     @Condition eventPlayer.hasSpawned() == true
 
+    data_loaded[DATA_INDEXES.DATA_BOT] = false
+    
     if use_import_data == true:
         import_settings()
     else:
         default_settings()
 
-    databot_loaded = true
+    data_loaded[DATA_INDEXES.DATA_BOT] = true
         
 
 def setup_databot():
     @Name "SUB: setup_databot"
-
-    databot_loaded = false
 
     bot_gen_hero = Hero.ECHO
     bot_gen_team = Team.1
