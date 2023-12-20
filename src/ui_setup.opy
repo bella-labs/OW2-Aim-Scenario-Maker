@@ -134,6 +134,17 @@ def create_submenu_0():
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     new_menu_item_selection()
 
+    # (Header) Export
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_0[lang_type][menu_max_pos]
+    new_menu_label_header()
+
+    # (Selection) Export Instruction
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    new_menu_item_selection()
+
 
 def create_submenu_1():
     @Name "SUB: create_submenu_1"
