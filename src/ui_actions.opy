@@ -45,6 +45,13 @@ def menu_act_submenu_0():
             menu_index_target = 0
             menu_act_change_submenu()
             break
+        case menu_substart_value + 3:
+            break
+        case menu_substart_value + 4:
+            break
+        case menu_substart_value + 5:
+            menu_act_toggle_export()
+        
 
 
 def menu_act_submenu_1():

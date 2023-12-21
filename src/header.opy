@@ -45,8 +45,6 @@ globalvar menu_color_label_header
 globalvar menu_color_default_off_index
 globalvar menu_color_default_on_index
 
-globalvar menu_color_submenu
-
 ## Menu HUD
 globalvar hud_text_id
 ## UI
@@ -247,3 +245,9 @@ enum DATA_INDEXES:
     DATA_STATIC = 0,
     DATA_BOT,
     DATA_MENU
+
+globalvar menu_custom_colors
+subroutine setup_menu_custom
+subroutine menu_act_toggle_export
+globalvar strings_symbols
+globalvar strings_dynamic_titles

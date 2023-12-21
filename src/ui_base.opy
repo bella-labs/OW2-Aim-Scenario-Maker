@@ -171,8 +171,6 @@ def setup_menu():
 
     menu_color_default_off_index = Color.WHITE
     menu_color_default_on_index = Color.SKY_BLUE
-    
-    menu_color_submenu = rgb(204,102,102) 	
 
 
 def enable_player_input():

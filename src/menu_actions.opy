@@ -38,4 +38,15 @@ def menu_act_copy_bot_slot():
             wait(0.25)
         
     menu_on_opt_color[menu_index] = menu_color_default_on_index
-            break
+
+
+def menu_act_toggle_export():
+    @Name "SUB: menu_act_toggle_export" 
+
+    menu_opt_var_1[menu_index] = not menu_opt_var_1[menu_index] 
+    if menu_opt_var_1[menu_index] == true:
+        menu_off_opt_title[menu_index] = strings_dynamic_titles[lang_type][0][1]
+        menu_on_opt_title[menu_index] = menu_off_opt_title[menu_index]
+    else:
+        menu_off_opt_title[menu_index] = strings_dynamic_titles[lang_type][0][0]
+        menu_on_opt_title[menu_index] = menu_off_opt_title[menu_index]

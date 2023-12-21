@@ -34,6 +34,7 @@ rule "Menu Setup: Creation":
 
     create_hud()
     setup_menu()
+    setup_menu_custom()
     
     create_submenu_0()
     create_submenu_1()
@@ -44,6 +45,18 @@ rule "Menu Setup: Creation":
 
     data_loaded[DATA_INDEXES.DATA_MENU] = true
     menu_visible = false
+
+
+def setup_menu_custom():
+    @Name "SUB: setup_menu_custom"
+
+    menu_color_default_on_index = rgb(128,154,213) 
+    menu_color_label_subtext = rgb(255,148,82)
+
+    menu_custom_colors[0] = rgb(218,80,121)
+    menu_custom_colors[1] = rgb(236,202,107)
+    menu_custom_colors[2] = rgb(28,204,125)
+    menu_custom_colors[3] = rgb(24,208,195)
 
 
 def create_hud():
@@ -70,23 +83,23 @@ def create_hud():
     
     menu_prompt_index = 0
     hudSubheader([i for i in localPlayer], 
-    "{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}".format("{0} {1} {2} {3} {4}".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_vector[lang_type][user_controls[0]] if user_controls[0] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
-        "——————————————————————" if menu_visible else "", 
-        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][0], strings_vector[lang_type][user_controls[1]] if user_controls[1] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[1])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][1], strings_vector[lang_type][user_controls[2]] if user_controls[2] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[2])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][2], strings_vector[lang_type][user_controls[3]] if user_controls[3] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[3])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][3], strings_vector[lang_type][user_controls[4]] if user_controls[4] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[4])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][4], strings_vector[lang_type][user_controls[5]] if user_controls[5] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[5])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][5], strings_vector[lang_type][user_controls[6]] if user_controls[6] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[6])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][6], strings_vector[lang_type][user_controls[7]] if user_controls[7] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[7])) if menu_visible else "",
-        "{0} | {1}".format(strings_input[lang_type][menu_prompt_index][7], strings_vector[lang_type][user_controls[8]] if user_controls[8] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[8])) if menu_visible else "",
-        "——————————————————————" if menu_visible else ""),
+    "{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n{11}".format("{0} {1} {2} {3} {4}".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_vector[lang_type][user_controls[0]] if user_controls[0] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
+        strings_symbols[0] if menu_visible else "", 
+        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][0], strings_vector[lang_type][user_controls[1]] if user_controls[1] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[1])) if menu_visible else "",
+        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][1], strings_vector[lang_type][user_controls[2]] if user_controls[2] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[2])) if menu_visible else "",
+        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][2], strings_vector[lang_type][user_controls[3]] if user_controls[3] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[3])) if menu_visible else "",
+        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][3], strings_vector[lang_type][user_controls[4]] if user_controls[4] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[4])) if menu_visible else "",
+        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][4], strings_vector[lang_type][user_controls[5]] if user_controls[5] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[5])) if menu_visible else "",
+        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][5], strings_vector[lang_type][user_controls[6]] if user_controls[6] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[6])) if menu_visible else "",
+        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][6], strings_vector[lang_type][user_controls[7]] if user_controls[7] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[7])) if menu_visible else "",
+        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][7], strings_vector[lang_type][user_controls[8]] if user_controls[8] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[8])) if menu_visible else "",
+        strings_symbols[0] if menu_visible else "",
+        strings_export[lang_type] if menu_opt_var_1[5] == true else ""),
         HudPosition.LEFT,
         -1,
         Color.WHITE,
         HudReeval.VISIBILITY_AND_STRING,
         SpecVisibility.DEFAULT)
-
 
 def create_submenu_0():
     @Name "SUB: create_submenu_0"
@@ -100,21 +113,21 @@ def create_submenu_0():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[0]
     new_menu_item_selection()
 
     # (Selection) Select Bot Slot
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[0]
     new_menu_item_selection()
 
     # (Selection) Override from Slot
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[0]
     new_menu_item_selection()
 
     # (Header) Play
@@ -126,12 +139,14 @@ def create_submenu_0():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[1]
     new_menu_item_cycle()
 
     # (Selection) Test Scenario
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[1]
     new_menu_item_selection()
 
     # (Header) Export
@@ -143,6 +158,8 @@ def create_submenu_0():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[2]
+    menu_opt_var_1[menu_opt_size] = false
     new_menu_item_selection()
 
 
@@ -160,7 +177,7 @@ def create_submenu_1():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_1[lang_type][menu_max_pos] 
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[0]
     new_menu_item_selection()
 
     # (Subtext) Slot
@@ -329,7 +346,7 @@ def create_submenu_2():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[0]
     new_menu_item_selection()
 
     # (Subtext) Profiles
@@ -360,7 +377,7 @@ def create_submenu_2():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[3]
     new_menu_item_selection()
 
     # (Subtext) Reactions
@@ -398,11 +415,11 @@ def create_submenu_2_1():
     menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     new_menu_label_header()
 
-    # (Selection) Profile Settings
+    # (Selection) Return to Profile Settings
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[3]
     new_menu_item_selection()
 
     # (Subtext) Left / Right Movement
@@ -564,7 +581,7 @@ def create_submenu_3():
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
-    menu_off_opt_color[menu_opt_size] = menu_color_submenu
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[0]
     new_menu_item_selection()
 
     # (Subtext) Scoring
