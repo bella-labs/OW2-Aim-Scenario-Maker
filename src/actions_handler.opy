@@ -50,7 +50,9 @@ def menu_act_submenu_0():
         case menu_substart_value + 4:
             break
         case menu_substart_value + 5:
-            menu_act_toggle_export()
+        case menu_substart_value + 6:
+            act_gen_toggle_var_1_bool()
+            break
         
 
 
@@ -107,11 +109,3 @@ def menu_act_submenu_2_1():
             menu_index_target = 3
             menu_act_change_submenu()
             break
-
-
-def menu_act_change_submenu():
-    @Name "SUB: menu_act_change_submenu"
-
-        submenu_index = menu_submenu_target
-        menu_index = submenu_start_index[submenu_index] + menu_index_target
-        

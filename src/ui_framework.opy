@@ -284,7 +284,7 @@ def new_menu_item_toggle():
 
     hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(sub_size) and menu_item_hidden[evalOnce(menu_opt_size)] != true else [],
     "{0}".format(menu_off_opt_title[evalOnce(menu_opt_size)]) if menu_index != evalOnce(menu_opt_size) else "■  {0}: {1}".format(menu_on_opt_title[evalOnce(menu_opt_size)], 
-    menu_opt_var_1[evalOnce(menu_opt_size)]), 
+    menu_opt_var_2[evalOnce(menu_opt_size)][0] if menu_opt_var_1[evalOnce(menu_opt_size)] == true else menu_opt_var_2[evalOnce(menu_opt_size)][1]), 
     HudPosition.TOP, 
     evalOnce(menu_max_pos), 
     menu_off_opt_color[evalOnce(menu_opt_size)] if menu_index != evalOnce(menu_opt_size) else menu_on_opt_color[evalOnce(menu_opt_size)], 

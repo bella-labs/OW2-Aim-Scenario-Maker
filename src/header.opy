@@ -129,7 +129,7 @@ subroutine menu_act_submenu_2
 subroutine menu_act_submenu_3
 subroutine menu_act_submenu_2_1
 subroutine menu_act_change_submenu
-subroutine menu_helper_change_num_var_1
+subroutine act_gen_chg_var_1_num
 subroutine menu_act_change_number_var_2
 subroutine menu_act_change_number_var_3
 subroutine menu_act_change_number_var_4
@@ -172,7 +172,7 @@ globalvar strings_submenu_3
 globalvar strings_submenu_2_1
 globalvar strings_options
 globalvar strings_input
-globalvar strings_export
+globalvar strings_instructions
 globalvar strings_tags
 globalvar lang_type
 
@@ -252,3 +252,4 @@ subroutine setup_menu_custom
 subroutine menu_act_toggle_export
 globalvar strings_symbols
 globalvar strings_dynamic_titles
+subroutine act_gen_toggle_var_1_bool

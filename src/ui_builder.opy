@@ -83,18 +83,19 @@ def create_hud():
     
     menu_prompt_index = 0
     hudSubheader([i for i in localPlayer], 
-    "{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n{11}".format("{0} {1} {2} {3} {4}".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_vector[lang_type][user_controls[0]] if user_controls[0] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
-        strings_symbols[0] if menu_visible else "", 
-        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][0], strings_vector[lang_type][user_controls[1]] if user_controls[1] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[1])) if menu_visible else "",
-        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][1], strings_vector[lang_type][user_controls[2]] if user_controls[2] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[2])) if menu_visible else "",
-        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][2], strings_vector[lang_type][user_controls[3]] if user_controls[3] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[3])) if menu_visible else "",
-        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][3], strings_vector[lang_type][user_controls[4]] if user_controls[4] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[4])) if menu_visible else "",
-        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][4], strings_vector[lang_type][user_controls[5]] if user_controls[5] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[5])) if menu_visible else "",
-        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][5], strings_vector[lang_type][user_controls[6]] if user_controls[6] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[6])) if menu_visible else "",
-        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][6], strings_vector[lang_type][user_controls[7]] if user_controls[7] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[7])) if menu_visible else "",
-        "{1} - {0}".format(strings_input[lang_type][menu_prompt_index][7], strings_vector[lang_type][user_controls[8]] if user_controls[8] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[8])) if menu_visible else "",
+    "{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}".format("{0} {1} {2} {3} {4}\n".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_vector[lang_type][user_controls[0]] if user_controls[0] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
+        strings_symbols[0], 
+        "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][0], strings_vector[lang_type][user_controls[1]] if user_controls[1] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[1])) if menu_visible else "",
+        "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][1], strings_vector[lang_type][user_controls[2]] if user_controls[2] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[2])) if menu_visible else "",
+        "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][2], strings_vector[lang_type][user_controls[3]] if user_controls[3] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[3])) if menu_visible else "",
+        "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][3], strings_vector[lang_type][user_controls[4]] if user_controls[4] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[4])) if menu_visible else "",
+        "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][4], strings_vector[lang_type][user_controls[5]] if user_controls[5] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[5])) if menu_visible else "",
+        "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][5], strings_vector[lang_type][user_controls[6]] if user_controls[6] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[6])) if menu_visible else "",
+        "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][6], strings_vector[lang_type][user_controls[7]] if user_controls[7] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[7])) if menu_visible else "",
+        "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][7], strings_vector[lang_type][user_controls[8]] if user_controls[8] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[8])) if menu_visible else "",
         strings_symbols[0] if menu_visible else "",
-        strings_export[lang_type] if menu_opt_var_1[5] == true else ""),
+        "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if menu_opt_var_1[5] == true else "",
+        "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if menu_opt_var_1[6] == true else ""),
         HudPosition.LEFT,
         -1,
         Color.WHITE,
@@ -154,13 +155,23 @@ def create_submenu_0():
     menu_label[menu_label_size] = strings_submenu_0[lang_type][menu_max_pos]
     new_menu_label_header()
 
-    # (Selection) Export Instruction
+    # (Toggle) Export Instruction
     increment_for_menu_item()
     menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
     menu_off_opt_color[menu_opt_size] = menu_custom_colors[2]
     menu_opt_var_1[menu_opt_size] = false
-    new_menu_item_selection()
+    menu_opt_var_2[menu_opt_size] = strings_options[lang_type][1]
+    new_menu_item_toggle()
+
+    # (Toggle) Import Instruction
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[2]
+    menu_opt_var_1[menu_opt_size] = false
+    menu_opt_var_2[menu_opt_size] = strings_options[lang_type][1]
+    new_menu_item_toggle()
 
 
 def create_submenu_1():
