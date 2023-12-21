@@ -61,6 +61,7 @@ globalvar use_import_data
 # Player Variables
 ## Data Storage
 ### Bot Settings
+playervar import_mode
 playervar data_bot_slots
 playervar data_bot_hero_pool
 playervar data_bot_health

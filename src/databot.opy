@@ -37,6 +37,7 @@ def setup_databot():
 def default_settings():
     @Name "SUB: default_settings"
     
+    eventPlayer.import_mode = true
     eventPlayer.data_bot_slots = [true, false, false, false, false, false, false, false, false, false, false, false]
     
     #eventPlayer.data_bot_hero_pool = [[Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER]]
