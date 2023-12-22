@@ -1,7 +1,7 @@
 def perform_action():
     @Name "SUB: perform_action"
 
-    menu_substart_value = submenu_start_index[submenu_index]
+    submenu_curr_start = submenu_start_indexes[submenu_index]
     menu_wait = 0.1
 
     switch submenu_index:
@@ -30,30 +30,30 @@ def menu_act_submenu_0():
     @Name "SUB: menu_act_submenu_0"
 
     switch menu_index:
-        case menu_substart_value + 0:
-            menu_submenu_target = 1
-            menu_index_target = 0
+        case submenu_curr_start + 0:
+            chg_submenu_target = 1
+            chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
-        case menu_substart_value + 1:
-            menu_submenu_target = 2
-            menu_index_target = 0
+        case submenu_curr_start + 1:
+            chg_submenu_target = 2
+            chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
-        case menu_substart_value + 2:
-            menu_submenu_target = 3
-            menu_index_target = 0
+        case submenu_curr_start + 2:
+            chg_submenu_target = 3
+            chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
-        case menu_substart_value + 3:
+        case submenu_curr_start + 3:
             act_cust_open_hero_sel()
             break
-        case menu_substart_value + 4:
+        case submenu_curr_start + 4:
             break
-        case menu_substart_value + 5:
+        case submenu_curr_start + 5:
             break
-        case menu_substart_value + 6:
-        case menu_substart_value + 7:
+        case submenu_curr_start + 6:
+        case submenu_curr_start + 7:
             act_gen_toggle_var_1_bool()
             break
         
@@ -63,15 +63,15 @@ def menu_act_submenu_1():
     @Name "SUB: menu_act_submenu_1"
 
     switch menu_index:
-        case menu_substart_value + 0:
-            menu_submenu_target = 0
-            menu_index_target = 0
+        case submenu_curr_start + 0:
+            chg_submenu_target = 0
+            chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
-        case menu_substart_value + 1:
+        case submenu_curr_start + 1:
             act_cust_sel_bot_slot()
             break
-        case menu_substart_value + 2:
+        case submenu_curr_start + 2:
             act_cust_copy_bot_slot()
             break
 
@@ -80,14 +80,14 @@ def menu_act_submenu_2():
     @Name "SUB: menu_act_submenu_2"
 
     switch menu_index:
-        case menu_substart_value + 0:
-            menu_submenu_target = 0
-            menu_index_target = 1
+        case submenu_curr_start + 0:
+            chg_submenu_target = 0
+            chg_submenu_item_target = 1
             menu_act_change_submenu()
             break
-        case menu_substart_value + 3:
-            menu_submenu_target = 4
-            menu_index_target = 0
+        case submenu_curr_start + 3:
+            chg_submenu_target = 4
+            chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
 
@@ -96,9 +96,9 @@ def menu_act_submenu_3():
     @Name "SUB: menu_act_submenu_3"
 
     switch menu_index:
-        case menu_substart_value + 0:
-            menu_submenu_target = 0
-            menu_index_target = 2
+        case submenu_curr_start + 0:
+            chg_submenu_target = 0
+            chg_submenu_item_target = 2
             menu_act_change_submenu()
             break
 
@@ -107,8 +107,8 @@ def menu_act_submenu_2_1():
     @Name "SUB: menu_act_submenu_2_1"
 
     switch menu_index:
-        case menu_substart_value + 0:
-            menu_submenu_target = 2
-            menu_index_target = 3
+        case submenu_curr_start + 0:
+            chg_submenu_target = 2
+            chg_submenu_item_target = 3
             menu_act_change_submenu()
             break

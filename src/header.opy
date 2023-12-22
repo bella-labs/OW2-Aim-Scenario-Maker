@@ -1,52 +1,92 @@
 # Global Variables
+## Control Flow
+globalvar loop_index
+globalvar data_loaded
 ## Menu Characteristics
 globalvar menu_visible
 globalvar menu_action
 globalvar menu_wait
-## Menu Index and Size
+## Menu Indexes
 globalvar menu_index
 globalvar submenu_index
-globalvar submenu_start_index
-globalvar menu_substart_value
-globalvar menu_submenu_target
-globalvar menu_index_target
-globalvar menu_opt_size
+globalvar submenu_start_indexes
+globalvar subitem_index
+## Menu Size
 globalvar menu_max_pos
+globalvar menu_item_size
 globalvar menu_label_size
-globalvar sub_size 
+globalvar subitem_size
+globalvar submenu_size 
 ## Menu Visiblity
 globalvar menu_label_hidden
 globalvar menu_item_hidden
 ## Menu Text
 globalvar menu_label
-globalvar menu_off_opt_title
-globalvar menu_on_opt_title
-globalvar menu_opt_var_1
-globalvar menu_opt_var_2
-globalvar menu_opt_var_3
-globalvar menu_opt_var_4
-globalvar menu_opt_str_index
-globalvar menu_opt_var_tags
-globalvar menu_opt_range
-globalvar menu_opt_small_step
-globalvar menu_opt_large_step
-globalvar menu_subitem
-globalvar menu_subitem_size
-## Menu Color
+globalvar menu_item_title_off
+globalvar menu_item_title_on
+globalvar menu_item_var_1
+globalvar menu_item_var_2
+globalvar menu_item_var_3
+globalvar menu_item_var_4
+globalvar menu_item_var_tags
+globalvar menu_item_range
+globalvar menu_item_small_step
+globalvar menu_item_large_step
+## Menu Color Arrays
 globalvar menu_label_color
-globalvar bar_color
-globalvar menu_off_opt_color
-globalvar menu_on_opt_color
+globalvar menu_item_color_off
+globalvar menu_item_color_on
+globalvar menu_item_header_color
+## Static Menu Colors
 globalvar menu_color_label_subtext
 globalvar menu_color_label_header
-globalvar menu_color_default_off_index
-globalvar menu_color_default_on_index
+globalvar menu_color_off_index
+globalvar menu_color_on_index
+globalvar menu_colors_custom
 ## Menu HUD
 globalvar hud_text_id
+globalvar menu_prompt_index
+## Menu Actions
+globalvar submenu_curr_start
+globalvar chg_submenu_target
+globalvar chg_submenu_item_target
 ## UI
 globalvar user_controls
 globalvar ui_delay
-globalvar ui_controls
+globalvar ui_inputs
+## Bot Generation
+globalvar bot_gen_hero
+globalvar bot_gen_team
+globalvar bot_gen_slot
+globalvar bot_gen_position
+globalvar bot_gen_facing
+## Strings
+globalvar strings_prompt
+globalvar strings_inputs
+globalvar strings_misc
+globalvar strings_on_titles
+globalvar strings_labels
+globalvar strings_submenu_0
+globalvar strings_submenu_1
+globalvar strings_submenu_2
+globalvar strings_submenu_3
+globalvar strings_submenu_2_1
+globalvar strings_options
+globalvar strings_controls
+globalvar strings_instructions
+globalvar strings_tags
+globalvar strings_symbols
+## Menu Limits and Steps
+globalvar ranges
+globalvar small_steps
+globalvar large_steps
+## Databot
+globalvar databot
+## Lanaguage
+globalvar lang_type
+## Action
+globalvar confirm_timer
+globalvar hero_array
 
 # Player Variables
 ## Data Storage
@@ -77,22 +117,19 @@ playervar data_mvmt_fb_random
 playervar data_mvmt_gravity
 ### Scenario Settings
 
-
-
-
 # Subroutines
-## Menu Navigation
+## UI Framework
+### Menu Navigation
 subroutine enable_player_input
 subroutine disable_player_input
-subroutine menu_control_up
-subroutine menu_control_down
 subroutine menu_up_check
 subroutine menu_down_check
-## Menu Labels
+### Menu Labels
 subroutine increment_for_menu_label
 subroutine new_menu_label_header
+subroutine new_menu_label_subheader
 subroutine new_menu_label_subtext
-## Menu Items
+### Menu Items
 subroutine increment_for_menu_item
 subroutine new_menu_item_selection
 subroutine new_menu_item_toggle
@@ -100,75 +137,46 @@ subroutine new_menu_item_cycle
 subroutine new_menu_item_2var
 subroutine new_menu_item_3var
 subroutine new_menu_item_4var
-subroutine new_menu_item_cycle_bar
-## Menu Submenu
+subroutine ext_menu_item_cycle_header
+### Menu Submenu
 subroutine increment_for_submenu_item
-## Menu Creation
-subroutine create_hud
+### Menu Setup
 subroutine setup_menu
+## UI Builder
+subroutine create_hud
+subroutine setup_menu_custom
 subroutine create_submenu_0
 subroutine create_submenu_1
 subroutine create_submenu_2
 subroutine create_submenu_3
-subroutine create_submenu_4
 subroutine create_submenu_2_1
-## Submenu All
+## Menu Actions
+### Control Flow
+subroutine perform_action
 subroutine menu_act_submenu_0
 subroutine menu_act_submenu_1
 subroutine menu_act_submenu_2
 subroutine menu_act_submenu_3
 subroutine menu_act_submenu_2_1
+### Generalized Actions
 subroutine menu_act_change_submenu
 subroutine act_gen_chg_var_1_num
-subroutine menu_act_change_number_var_2
-subroutine menu_act_change_number_var_3
-subroutine menu_act_change_number_var_4
-## Submenu 0
-## Submenu 1
-## UIs
-subroutine set_ui_data
-## Data Population
+subroutine act_gen_toggle_var_1_bool
+### Custom Actions
+subroutine act_cust_sel_bot_slot
+subroutine act_cust_copy_bot_slot
+subroutine act_cust_open_hero_sel
+subroutine subact_copy_to_bot_slot
+## Bot Generation
+subroutine create_bot
+subroutine destroy_bot
 ## Data Bot
 subroutine setup_databot
 subroutine import_settings
 subroutine default_settings
 
-
-# Bot Generation
-## Global Variables
-globalvar databot
-globalvar entity_pos
-## Subroutines
-subroutine create_bot
-subroutine destroy_bot
-
-globalvar hero_array
-
-
-globalvar lang_type
-
-subroutine perform_action
-subroutine menu_act_bot_copy_confirm
-subroutine menu_act_toggle_bot_slot
-
-subroutine copy_to_bot_slot
-
-globalvar data_loaded
-
-globalvar ranges
-globalvar small_steps
-globalvar large_steps
-
-globalvar loop_index
-globalvar help_index
-globalvar confirm_timer
-globalvar menu_prompt_index
-subroutine act_cust_sel_bot_slot
-subroutine act_cust_copy_bot_slot
-subroutine menu_subact_copy_to_bot_slot
-
-
-enum UI_INPUTS:
+# ENUMS
+enum INPUT_OPTIONS:
     VECT_FORWARD = 0,
     VECT_BACKWARD,
     VECT_LEFT,
@@ -218,39 +226,4 @@ enum DATA_INDEXES:
     DATA_BOT,
     DATA_MENU,
     DATA_CONTROLS
-
-globalvar menu_custom_colors
-subroutine setup_menu_custom
-subroutine menu_act_toggle_export
-
-# Global Variables
-## Bot Generation
-globalvar bot_gen_hero
-globalvar bot_gen_team
-globalvar bot_gen_slot
-globalvar bot_gen_position
-globalvar bot_gen_facing
-## Strings
-globalvar strings_prompt
-globalvar strings_vector
-globalvar strings_misc
-globalvar strings_controls
-globalvar strings_on_titles
-globalvar strings_labels
-globalvar strings_submenu_0
-globalvar strings_submenu_1
-globalvar strings_submenu_2
-globalvar strings_submenu_3
-globalvar strings_submenu_2_1
-globalvar strings_options
-globalvar strings_input
-globalvar strings_instructions
-globalvar strings_tags
-globalvar strings_symbols
-# Subroutines
-## Actions
-### Actions - Handler
-### Actions - General
-subroutine act_gen_toggle_var_1_bool
-### Actions - Specific
-subroutine act_cust_open_hero_sel
+    

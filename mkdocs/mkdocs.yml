@@ -1,6 +1,6 @@
-site_name: Overwatch 2 Aim Scenario Maker
-site_url: https://a-bella-ciao.github.io/OW2-Aim-Scenario-Maker
-repo_url: https://github.com/a-bella-ciao/OW2-Aim-Scenario-Maker
+site_name: Aim Scenario Maker
+site_url: https://bella-labs/OW2-Aim-Scenario-Maker
+repo_url: https://github.com/bella-labs/OW2-Aim-Scenario-Maker
 
 docs_dir: 'docs/'
 site_dir: 'generated/'

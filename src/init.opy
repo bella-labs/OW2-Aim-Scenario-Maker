@@ -29,46 +29,46 @@ rule "Initialize: Workshop Settings":
     for loop_index in range(0,len(user_controls),1):
         switch user_controls[loop_index]:
             case 0:
-                ui_controls[loop_index] = Vector.FORWARD
+                ui_inputs[loop_index] = Vector.FORWARD
                 break
             case 1:
-                ui_controls[loop_index] = Vector.BACKWARD
+                ui_inputs[loop_index] = Vector.BACKWARD
                 break
             case 2:
-                ui_controls[loop_index] = Vector.LEFT
+                ui_inputs[loop_index] = Vector.LEFT
                 break
             case 3:
-                ui_controls[loop_index] = Vector.RIGHT
+                ui_inputs[loop_index] = Vector.RIGHT
                 break
             case 4:
-                ui_controls[loop_index] = Button.INTERACT
+                ui_inputs[loop_index] = Button.INTERACT
                 break
             case 5:
-                ui_controls[loop_index] = Button.JUMP
+                ui_inputs[loop_index] = Button.JUMP
                 break
             case 6:
-                ui_controls[loop_index] = Button.CROUCH
+                ui_inputs[loop_index] = Button.CROUCH
                 break
             case 7:
-                ui_controls[loop_index] = Button.MELEE
+                ui_inputs[loop_index] = Button.MELEE
                 break
             case 8:
-                ui_controls[loop_index] = Button.PRIMARY_FIRE
+                ui_inputs[loop_index] = Button.PRIMARY_FIRE
                 break
             case 9:
-                ui_controls[loop_index] = Button.SECONDARY_FIRE
+                ui_inputs[loop_index] = Button.SECONDARY_FIRE
                 break
             case 10:
-                ui_controls[loop_index] = Button.RELOAD
+                ui_inputs[loop_index] = Button.RELOAD
                 break
             case 11:
-                ui_controls[loop_index] = Button.ABILITY_1
+                ui_inputs[loop_index] = Button.ABILITY_1
                 break
             case 12:
-                ui_controls[loop_index] = Button.ABILITY_2
+                ui_inputs[loop_index] = Button.ABILITY_2
                 break
             case 13:
-                ui_controls[loop_index] = Button.ULTIMATE
+                ui_inputs[loop_index] = Button.ULTIMATE
                 break
 
     data_loaded[DATA_INDEXES.DATA_CONTROLS] = true
