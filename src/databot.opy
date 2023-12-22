@@ -6,10 +6,11 @@ rule "Databot Populate Settings":
     @Condition eventPlayer.hasSpawned() == true
 
     data_loaded[DATA_INDEXES.DATA_BOT] = false
+    waitUntil(data_loaded[DATA_INDEXES.DATA_CONTROLS] == true, 9999)
     
-    if use_import_data == true:
-        import_settings()
-    else:
+    eventPlayer.import_mode = false
+    import_settings()
+    if eventPlayer.import_mode == false:
         default_settings()
 
     data_loaded[DATA_INDEXES.DATA_BOT] = true
@@ -38,8 +39,11 @@ def default_settings():
     @Name "SUB: default_settings"
     
     eventPlayer.import_mode = true
-    eventPlayer.data_bot_slots = [true, false, false, false, false, false, false, false, false, false, false, false]
-    
+
+    for loop_index in range(0, 11, 1):
+        eventPlayer.data_bot_slots[loop_index] = false
+
+    #eventPlayer.data_bot_slots = [true, false, false, false, false, false, false, false, false, false, false, false]
     #eventPlayer.data_bot_hero_pool = [[Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER]]
     #eventPlayer.data_bot_health = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
     #eventPlayer.data_bot_scale = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]

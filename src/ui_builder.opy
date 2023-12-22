@@ -94,8 +94,8 @@ def create_hud():
         "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][6], strings_vector[lang_type][user_controls[7]] if user_controls[7] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[7])) if menu_visible else "",
         "{1} - {0}\n".format(strings_input[lang_type][menu_prompt_index][7], strings_vector[lang_type][user_controls[8]] if user_controls[8] <= UI_INPUTS.VECT_RIGHT else buttonString(ui_controls[8])) if menu_visible else "",
         strings_symbols[0] if menu_visible else "",
-        "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if menu_opt_var_1[5] == true else "",
-        "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if menu_opt_var_1[6] == true else ""),
+        "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if menu_opt_var_1[6] == true else "",
+        "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if menu_opt_var_1[7] == true else ""),
         HudPosition.LEFT,
         -1,
         Color.WHITE,
@@ -131,10 +131,17 @@ def create_submenu_0():
     menu_off_opt_color[menu_opt_size] = menu_custom_colors[0]
     new_menu_item_selection()
 
-    # (Header) Play
+    # (Header) Test
     increment_for_menu_label()
     menu_label[menu_label_size] = strings_submenu_0[lang_type][menu_max_pos]
     new_menu_label_header()
+
+    # (Selection) Change Hero
+    increment_for_menu_item()
+    menu_off_opt_title[menu_opt_size] = strings_submenu_0[lang_type][menu_max_pos]
+    menu_on_opt_title[menu_opt_size] = menu_off_opt_title[menu_opt_size]
+    menu_off_opt_color[menu_opt_size] = menu_custom_colors[1]
+    new_menu_item_cycle()
 
     # (Selection) Test Bot in Slot
     increment_for_menu_item()
@@ -173,6 +180,10 @@ def create_submenu_0():
     menu_opt_var_2[menu_opt_size] = strings_options[lang_type][1]
     new_menu_item_toggle()
 
+    # (Subtext) Documentation prompt
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_0[lang_type][menu_max_pos]
+    new_menu_label_header()
 
 def create_submenu_1():
     @Name "SUB: create_submenu_1"

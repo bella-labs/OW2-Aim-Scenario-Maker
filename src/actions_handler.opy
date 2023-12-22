@@ -46,11 +46,14 @@ def menu_act_submenu_0():
             menu_act_change_submenu()
             break
         case menu_substart_value + 3:
+            act_cust_open_hero_sel()
             break
         case menu_substart_value + 4:
             break
         case menu_substart_value + 5:
+            break
         case menu_substart_value + 6:
+        case menu_substart_value + 7:
             act_gen_toggle_var_1_bool()
             break
         
@@ -66,10 +69,10 @@ def menu_act_submenu_1():
             menu_act_change_submenu()
             break
         case menu_substart_value + 1:
-            menu_act_sel_bot_slot()
+            act_cust_sel_bot_slot()
             break
         case menu_substart_value + 2:
-            menu_act_copy_bot_slot()
+            act_cust_copy_bot_slot()
             break
 
 

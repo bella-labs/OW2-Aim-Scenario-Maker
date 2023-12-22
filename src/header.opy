@@ -30,7 +30,6 @@ globalvar menu_opt_var_tags
 globalvar menu_opt_range
 globalvar menu_opt_small_step
 globalvar menu_opt_large_step
-
 globalvar menu_subitem
 globalvar menu_subitem_size
 ## Menu Color
@@ -38,25 +37,16 @@ globalvar menu_label_color
 globalvar bar_color
 globalvar menu_off_opt_color
 globalvar menu_on_opt_color
-
 globalvar menu_color_label_subtext
 globalvar menu_color_label_header
-
 globalvar menu_color_default_off_index
 globalvar menu_color_default_on_index
-
 ## Menu HUD
 globalvar hud_text_id
 ## UI
 globalvar user_controls
 globalvar ui_delay
 globalvar ui_controls
-globalvar ui_vectors
-globalvar ui_buttons
-
-globalvar ui_inputs
-## Import 
-globalvar use_import_data
 
 # Player Variables
 ## Data Storage
@@ -146,11 +136,6 @@ subroutine default_settings
 
 # Bot Generation
 ## Global Variables
-globalvar bot_gen_hero
-globalvar bot_gen_team
-globalvar bot_gen_slot
-globalvar bot_gen_position
-globalvar bot_gen_facing
 globalvar databot
 globalvar entity_pos
 ## Subroutines
@@ -159,21 +144,7 @@ subroutine destroy_bot
 
 globalvar hero_array
 
-globalvar strings_prompt
-globalvar strings_vector
-globalvar strings_misc
-globalvar strings_controls
-globalvar strings_on_titles
-globalvar strings_labels
-globalvar strings_submenu_0
-globalvar strings_submenu_1
-globalvar strings_submenu_2
-globalvar strings_submenu_3
-globalvar strings_submenu_2_1
-globalvar strings_options
-globalvar strings_input
-globalvar strings_instructions
-globalvar strings_tags
+
 globalvar lang_type
 
 subroutine perform_action
@@ -192,8 +163,8 @@ globalvar loop_index
 globalvar help_index
 globalvar confirm_timer
 globalvar menu_prompt_index
-subroutine menu_act_sel_bot_slot
-subroutine menu_act_copy_bot_slot
+subroutine act_cust_sel_bot_slot
+subroutine act_cust_copy_bot_slot
 subroutine menu_subact_copy_to_bot_slot
 
 
@@ -245,11 +216,41 @@ enum LARGE_INDEXES:
 enum DATA_INDEXES:
     DATA_STATIC = 0,
     DATA_BOT,
-    DATA_MENU
+    DATA_MENU,
+    DATA_CONTROLS
 
 globalvar menu_custom_colors
 subroutine setup_menu_custom
 subroutine menu_act_toggle_export
+
+# Global Variables
+## Bot Generation
+globalvar bot_gen_hero
+globalvar bot_gen_team
+globalvar bot_gen_slot
+globalvar bot_gen_position
+globalvar bot_gen_facing
+## Strings
+globalvar strings_prompt
+globalvar strings_vector
+globalvar strings_misc
+globalvar strings_controls
+globalvar strings_on_titles
+globalvar strings_labels
+globalvar strings_submenu_0
+globalvar strings_submenu_1
+globalvar strings_submenu_2
+globalvar strings_submenu_3
+globalvar strings_submenu_2_1
+globalvar strings_options
+globalvar strings_input
+globalvar strings_instructions
+globalvar strings_tags
 globalvar strings_symbols
-globalvar strings_dynamic_titles
+# Subroutines
+## Actions
+### Actions - Handler
+### Actions - General
 subroutine act_gen_toggle_var_1_bool
+### Actions - Specific
+subroutine act_cust_open_hero_sel
