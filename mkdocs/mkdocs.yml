@@ -13,9 +13,7 @@ theme:
   features:
     - toc.integrate
   palette:
-    scheme: slate
-    primary: deep purple
-    accent: deep orange
+    scheme: ACM
 
 plugins:
   - search                  
@@ -68,5 +66,7 @@ nav:
       - menu_ref/menu_ref_sub_2_1.md
   - Scenario: menu_ref/menu_ref_sub_3.md
 
+extra_css:
+  - stylesheets/custom_colors.css
 
 #use_directory_urls: false
