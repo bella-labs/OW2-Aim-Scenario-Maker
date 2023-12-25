@@ -49,12 +49,12 @@ rule "Load Static Data":
     ranges = [[0,11], [0,len(hero_array)-1], [0,100], [0,250], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
     small_steps = [0.01, 1]
     large_steps = [1, 10]
-    help_configs = [[0,0,0,0,0,0,0,0], [0,0,1,1,1,1,0,0], [0,0,1,1,2,2,0,0]]
+    help_configs = [[0,0,0,0,0,0,0,0], [0,0,1,1,1,1,0,0], [0,0,1,1,2,2,0,0], [0,0,1,1,3,3,0,0]]
 
 rule "load_language_data":
     @Event global
 
-    strings_help = [[["Previous Item"], ["Next Item"], ["Select Item", "-"], ["Select Item", "+"], ["Select Item", "-", "Toggle All"], ["Select Item", "+", "Toggle Selected"], ["N/A"], ["Select Item", "Set Vector to Current"]]]
+    strings_help = [[["Previous Item"], ["Next Item"], ["Select Item", "-"], ["Select Item", "+"], ["Select Item", "-", "Toggle All", "Override All"], ["Select Item", "+", "Toggle Selected", "Override Selected"], ["N/A"], ["Select Item", "Set Vector to Current"]]]
     strings_controls = [[["Up", "Down", "Step Left", "Step Right", "Jump Left", "Jump Right", "Next Subitem", "Action Item"]],[[""]],[[""]]]
     strings_inputs = [["Forward", "Backward", "Left", "Right"], ["", "", "", ""], ["", "", "", ""]]
     strings_misc = [["Iris", "Open The Menu to Begin Editing. See <website> for documentation."], ["데이터 저장소"], ["数据存储"]]
@@ -72,7 +72,7 @@ rule "load_language_data":
                        "To list your share code on bellalabs.dev/ow2-scenario-codes\nfill out the form avaliable at: bellalabs.dev/ow2-share-form\n","",""],
                        ["", ""],
                        ["", ""]]
-    strings_tags = [[["Health", "HPS", "Duration Until Heal"], ["min: ", "max: "]], [[]], [[]]]
+    strings_tags = [[["Health % : ", "HPS : ", "Wait Until Heal : "], ["min: ", "max: "]], [[]], [[]]]
     strings_symbols = ["—————————————————————————\n", [iconString(Icon.CHECKMARK), iconString(Icon.CROSS)]]
 
     data_loaded[DATA_INDEXES.DATA_STATIC] = true

@@ -10,16 +10,16 @@ def act_general_chg_var_1_num():
 
     switch menu_action:
         case MENU_ACTIONS.MENU_STEP_LEFT:
-            menu_item_var_1[menu_index] -= small_steps[menu_item_small_step[menu_index]]
+            menu_item_var_1[menu_index] -= small_steps[menu_item_small_step[menu_index][0]]
             break
         case MENU_ACTIONS.MENU_STEP_RIGHT:
-            menu_item_var_1[menu_index] += small_steps[menu_item_small_step[menu_index]]
+            menu_item_var_1[menu_index] += small_steps[menu_item_small_step[menu_index][0]]
             break
         case MENU_ACTIONS.MENU_JUMP_LEFT:
-            menu_item_var_1[menu_index] -= large_steps[menu_item_large_step[menu_index]]
+            menu_item_var_1[menu_index] -= large_steps[menu_item_large_step[menu_index][0]]
             break
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            menu_item_var_1[menu_index] += large_steps[menu_item_large_step[menu_index]]
+            menu_item_var_1[menu_index] += large_steps[menu_item_large_step[menu_index][0]]
             break
 
     if menu_item_var_1[menu_index] < ranges[menu_item_range[menu_index][0]][0]:
@@ -28,27 +28,50 @@ def act_general_chg_var_1_num():
         menu_item_var_1[menu_index] = ranges[menu_item_range[menu_index][0]][0]
 	
 
+def act_general_chg_var_2_num():
+    @Name "SUB: act_general_chg_var_2_num"
+
+    switch menu_action:
+        case MENU_ACTIONS.MENU_STEP_LEFT:
+            menu_item_var_2[menu_index] -= small_steps[menu_item_small_step[menu_index][1]]
+            break
+        case MENU_ACTIONS.MENU_STEP_RIGHT:
+            menu_item_var_2[menu_index] += small_steps[menu_item_small_step[menu_index][1]]
+            break
+        case MENU_ACTIONS.MENU_JUMP_LEFT:
+            menu_item_var_2[menu_index] -= large_steps[menu_item_large_step[menu_index][1]]
+            break
+        case MENU_ACTIONS.MENU_JUMP_RIGHT:
+            menu_item_var_2[menu_index] += large_steps[menu_item_large_step[menu_index][1]]
+            break
+
+    if menu_item_var_2[menu_index] < ranges[menu_item_range[menu_index][1]][0]:
+        menu_item_var_2[menu_index] = ranges[menu_item_range[menu_index][1]][1]
+    elif menu_item_var_2[menu_index] > ranges[menu_item_range[menu_index][1]][1]:
+        menu_item_var_2[menu_index] = ranges[menu_item_range[menu_index][1]][0]
+
+
 def act_general_chg_var_3_num():
     @Name "SUB: act_general_chg_var_3_num"
 
     switch menu_action:
         case MENU_ACTIONS.MENU_STEP_LEFT:
-            menu_item_var_3[menu_index] -= small_steps[menu_item_small_step[menu_index]]
+            menu_item_var_3[menu_index] -= small_steps[menu_item_small_step[menu_index][2]]
             break
         case MENU_ACTIONS.MENU_STEP_RIGHT:
-            menu_item_var_3[menu_index] += small_steps[menu_item_small_step[menu_index]]
+            menu_item_var_3[menu_index] += small_steps[menu_item_small_step[menu_index][2]]
             break
         case MENU_ACTIONS.MENU_JUMP_LEFT:
-            menu_item_var_3[menu_index] -= large_steps[menu_item_large_step[menu_index]]
+            menu_item_var_3[menu_index] -= large_steps[menu_item_large_step[menu_index][2]]
             break
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            menu_item_var_3[menu_index] += large_steps[menu_item_large_step[menu_index]]
+            menu_item_var_3[menu_index] += large_steps[menu_item_large_step[menu_index][2]]
             break
 
-    if menu_item_var_3[menu_index] < ranges[menu_item_range[menu_index][0]][0]:
-        menu_item_var_3[menu_index] = ranges[menu_item_range[menu_index][0]][1]
-    elif menu_item_var_3[menu_index] > ranges[menu_item_range[menu_index][0]][1]:
-        menu_item_var_3[menu_index] = ranges[menu_item_range[menu_index][0]][0]
+    if menu_item_var_3[menu_index] < ranges[menu_item_range[menu_index][2]][0]:
+        menu_item_var_3[menu_index] = ranges[menu_item_range[menu_index][2]][1]
+    elif menu_item_var_3[menu_index] > ranges[menu_item_range[menu_index][2]][1]:
+        menu_item_var_3[menu_index] = ranges[menu_item_range[menu_index][2]][0]
 
         
 def act_general_toggle_var_1_bool():

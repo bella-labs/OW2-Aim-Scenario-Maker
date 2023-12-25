@@ -2,6 +2,7 @@ settings "settings.json"
 
 #Extensions
 #!extension spawnMoreDummyBots
+##!optimizeForSize
 
 # Includes
 #!include "header.opy"

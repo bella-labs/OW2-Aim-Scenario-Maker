@@ -41,20 +41,23 @@ def default_settings():
     eventPlayer.import_mode = true
     
     for loop_index in range(0, 11, 1):
-        eventPlayer.data_bot_slots[loop_index] = false
-        eventPlayer.data_bot_hero_pool[loop_index] = [Hero.TRACER]
+        eventPlayer.bot_slots[loop_index] = false
+        eventPlayer.bot_hero_pool[loop_index] = [Hero.TRACER]
+        eventPlayer.bot_health = 100
+        eventPlayer.bot_hps = 0
+        eventPlayer.bot_hps_wait = 0
 
-    #eventPlayer.data_bot_health = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
-    #eventPlayer.data_bot_scale = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
-    #eventPlayer.data_bot_spawn_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    #eventPlayer.data_bot_position = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    #eventPlayer.data_bot_facing_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    #eventPlayer.data_bot_facing_vector = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    #eventPlayer.data_bot_lower_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    #eventPlayer.data_bot_upper_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    #eventPlayer.data_bot_distance = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
-    #eventPlayer.data_bot_movement_profile = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    #eventPlayer.data_bot_randomize_profile = [false, false, false, false, false, false, false, false, false, false, false, false]
+    #eventPlayer.bot_health = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    #eventPlayer.bot_scale = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    #eventPlayer.bot_spawn_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    #eventPlayer.bot_position = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
+    #eventPlayer.bot_facing_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    #eventPlayer.bot_facing_vector = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
+    #eventPlayer.bot_lower_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
+    #eventPlayer.bot_upper_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
+    #eventPlayer.bot_distance = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    #eventPlayer.bot_movement_profile = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    #eventPlayer.bot_randomize_profile = [false, false, false, false, false, false, false, false, false, false, false, false]
     
     #eventPlayer.data_mvmt_lr = [false, false, false, false, false, false, false, false, false, false, false, false]
     #eventPlayer.data_mvmt_lr_time = null

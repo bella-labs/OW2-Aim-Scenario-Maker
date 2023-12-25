@@ -95,19 +95,21 @@ globalvar hero_array
 ## Data Storage
 ### Bot Settings
 playervar import_mode
-playervar data_bot_slots
-playervar data_bot_hero_pool
-playervar data_bot_health
-playervar data_bot_scale
-playervar data_bot_spawn_type
-playervar data_bot_position
-playervar data_bot_facing_type
-playervar data_bot_facing_vector
-playervar data_bot_lower_bound
-playervar data_bot_upper_bound
-playervar data_bot_distance
-playervar data_bot_movement_profile
-playervar data_bot_randomize_profile
+playervar bot_slots
+playervar bot_hero_pool
+playervar bot_health
+playervar bot_hps
+playervar bot_hps_wait
+playervar bot_scale
+playervar bot_spawn_type
+playervar bot_position
+playervar bot_facing_type
+playervar bot_facing_vector
+playervar bot_lower_bound
+playervar bot_upper_bound
+playervar bot_distance
+playervar bot_movement_profile
+playervar bot_randomize_profile
 ### Movement Settings
 playervar data_mvmt_lr
 playervar data_mvmt_lr_time
@@ -164,13 +166,17 @@ subroutine menu_act_submenu_movement
 ### Generalized Actions
 subroutine menu_act_change_submenu
 subroutine act_general_chg_var_1_num
+subroutine act_general_chg_var_2_num
 subroutine act_general_chg_var_3_num
 subroutine act_general_toggle_var_1_bool
 ### Custom Actions
+#### Main Menu
+subroutine act_sub0_open_hero_sel
+#### Bot Submenu
 subroutine act_bot_select_slot
 subroutine act_bot_override_slot
-subroutine act_sub1_hero_pool
-subroutine act_sub0_open_hero_sel
+subroutine act_bot_hero_pool
+subroutine act_bot_health
 subroutine subact_bot_override_slot
 ## Bot Generation
 subroutine create_bot
@@ -244,7 +250,8 @@ enum DATA_INDEXES:
 enum HELP_CONFIGS:
     DEFAULT = 0,
     CYCLE,
-    CYCLE_LIST
+    CYCLE_LIST,
+    OVERRIDE_LIST
     
 
 globalvar action_var
