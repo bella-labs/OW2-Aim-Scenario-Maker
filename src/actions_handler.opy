@@ -5,20 +5,20 @@ def perform_action():
     menu_wait = 0.1
 
     switch submenu_index:
-        case 0:
-            menu_act_submenu_0()
+        case SUBMENUS.SUBMENU_MAIN:
+            menu_act_submenu_main()
             break
-        case 1:
-            menu_act_submenu_1()
+        case SUBMENUS.SUBMENU_SCENARIO:
+            menu_act_submenu_scenario()
             break
-        case 2:
-            menu_act_submenu_2()
+        case SUBMENUS.SUBMENU_BOT:
+            menu_act_submenu_bot()
             break
-        case 3:
-            menu_act_submenu_3()
+        case SUBMENUS.SUBMENU_PROFILE:
+            menu_act_submenu_profile()
             break
-        case 4:
-            menu_act_submenu_2_1()
+        case SUBMENUS.SUBMENU_MOVEMENT:
+            menu_act_submenu_movement()
             break
 
     wait(menu_wait)
@@ -26,22 +26,22 @@ def perform_action():
         goto RULE_START
         
 
-def menu_act_submenu_0():
-    @Name "SUB: menu_act_submenu_0"
+def menu_act_submenu_main():
+    @Name "SUB: menu_act_submenu_main"
 
     switch menu_index:
         case submenu_curr_start + 0:
-            chg_submenu_target = 1
+            chg_submenu_target = SUBMENUS.SUBMENU_SCENARIO
             chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
         case submenu_curr_start + 1:
-            chg_submenu_target = 2
+            chg_submenu_target = SUBMENUS.SUBMENU_BOT
             chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
         case submenu_curr_start + 2:
-            chg_submenu_target = 3
+            chg_submenu_target = SUBMENUS.SUBMENU_PROFILE
             chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
@@ -58,14 +58,24 @@ def menu_act_submenu_0():
             break
         
 
-
-def menu_act_submenu_1():
-    @Name "SUB: menu_act_submenu_1"
+def menu_act_submenu_scenario():
+    @Name "SUB: menu_act_submenu_scenario"
 
     switch menu_index:
         case submenu_curr_start + 0:
-            chg_submenu_target = 0
+            chg_submenu_target = SUBMENUS.SUBMENU_MAIN
             chg_submenu_item_target = 0
+            menu_act_change_submenu()
+            break
+
+
+def menu_act_submenu_bot():
+    @Name "SUB: menu_act_submenu_bot"
+
+    switch menu_index:
+        case submenu_curr_start + 0:
+            chg_submenu_target = SUBMENUS.SUBMENU_MAIN
+            chg_submenu_item_target = 1
             menu_act_change_submenu()
             break
         case submenu_curr_start + 1:
@@ -79,39 +89,28 @@ def menu_act_submenu_1():
             break
 
 
-def menu_act_submenu_2():
-    @Name "SUB: menu_act_submenu_2"
+def menu_act_submenu_profile():
+    @Name "SUB: menu_act_submenu_profile"
 
     switch menu_index:
         case submenu_curr_start + 0:
-            chg_submenu_target = 0
-            chg_submenu_item_target = 1
+            chg_submenu_target = SUBMENUS.SUBMENU_MAIN
+            chg_submenu_item_target = 2
             menu_act_change_submenu()
             break
         case submenu_curr_start + 3:
-            chg_submenu_target = 4
+            chg_submenu_target = SUBMENUS.SUBMENU_MOVEMENT
             chg_submenu_item_target = 0
             menu_act_change_submenu()
             break
 
 
-def menu_act_submenu_3():
-    @Name "SUB: menu_act_submenu_3"
+def menu_act_submenu_movement():
+    @Name "SUB: menu_act_submenu_movement"
 
     switch menu_index:
         case submenu_curr_start + 0:
-            chg_submenu_target = 0
-            chg_submenu_item_target = 2
-            menu_act_change_submenu()
-            break
-
-
-def menu_act_submenu_2_1():
-    @Name "SUB: menu_act_submenu_2_1"
-
-    switch menu_index:
-        case submenu_curr_start + 0:
-            chg_submenu_target = 2
+            chg_submenu_target = SUBMENUS.SUBMENU_PROFILE
             chg_submenu_item_target = 3
             menu_act_change_submenu()
             break

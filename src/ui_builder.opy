@@ -36,12 +36,11 @@ rule "Menu Setup: Creation":
     setup_menu()
     setup_menu_custom()
     
-    create_submenu_0()
-    create_submenu_1()
-    create_submenu_2()
-    create_submenu_3()
-
-    create_submenu_2_1()
+    create_submenu_main()
+    create_submenu_scenario()
+    create_submenu_bot()
+    create_submenu_profile()
+    create_submenu_movement()
 
     data_loaded[DATA_INDEXES.DATA_MENU] = true
     menu_visible = false
@@ -104,8 +103,9 @@ def create_hud():
         HudReeval.VISIBILITY_AND_STRING,
         SpecVisibility.DEFAULT)
 
-def create_submenu_0():
-    @Name "SUB: create_submenu_0"
+
+def create_submenu_main():
+    @Name "SUB: create_submenu_main"
 
     # (Subtext) Documentation prompt
     increment_for_menu_label()
@@ -117,21 +117,21 @@ def create_submenu_0():
     menu_label[menu_label_size] = strings_submenu_0[lang_type][menu_max_pos]
     new_menu_label_header()
 
-    # (Selection) Main Menu
+    # (Selection) Scenario
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     menu_item_color_off[menu_item_size] = menu_colors_custom[0]
     new_menu_item_selection()
 
-    # (Selection) Select Bot Slot
+    # (Selection) Bot
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     menu_item_color_off[menu_item_size] = menu_colors_custom[0]
     new_menu_item_selection()
 
-    # (Selection) Override from Slot
+    # (Selection) Profiles
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_0[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
@@ -188,8 +188,83 @@ def create_submenu_0():
     new_menu_item_toggle()
 
 
-def create_submenu_1():
-    @Name "SUB: create_submenu_1"
+def create_submenu_scenario():
+    @Name "SUB: create_submenu_scenario"
+
+    increment_for_submenu_item()
+
+    # (Header) Scenario Settings
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
+    new_menu_label_header()
+
+    # (Selection) Main Menu
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[0]
+    new_menu_item_selection()
+
+    # (Subtext) Scoring
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
+
+    # (2 Var) Scenario Type
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (3 Var) Points
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (3 Var) Strafe Scoring
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (Subtext) Player
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
+
+    # (3 Var) Player Spawn
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (3 Var) Player Facing
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (Percentage) Player Speed
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (Percentage) Player Gravity
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+
+
+
+
+def create_submenu_bot():
+    @Name "SUB: create_submenu_bot"
 
     increment_for_submenu_item()
 
@@ -366,8 +441,8 @@ def create_submenu_1():
     new_menu_item_toggle()
 
 
-def create_submenu_2():
-    @Name "SUB: create_submenu_2"
+def create_submenu_profile():
+    @Name "SUB: create_submenu_profile"
 
     increment_for_submenu_item()
 
@@ -439,8 +514,8 @@ def create_submenu_2():
     new_menu_item_selection()
 
 
-def create_submenu_2_1():
-    @Name "SUB: create_submenu_2_1"
+def create_submenu_movement():
+    @Name "SUB: create_submenu_movement"
 
     increment_for_submenu_item()
 
@@ -597,78 +672,6 @@ def create_submenu_2_1():
     # (2 Var) Uncrouch Frequency
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-
-def create_submenu_3():
-    @Name "SUB: create_submenu_3"
-
-    increment_for_submenu_item()
-
-    # (Header) Scenario Settings
-    increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
-    new_menu_label_header()
-
-    # (Selection) Main Menu
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[0]
-    new_menu_item_selection()
-
-    # (Subtext) Scoring
-    increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
-    # (2 Var) Scenario Type
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Points
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Strafe Scoring
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (Subtext) Player
-    increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
-    # (3 Var) Player Spawn
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Player Facing
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (Percentage) Player Speed
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (Percentage) Player Gravity
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     new_menu_item_selection()
 

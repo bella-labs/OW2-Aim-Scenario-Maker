@@ -148,19 +148,19 @@ subroutine setup_menu
 ## UI Builder
 subroutine create_hud
 subroutine setup_menu_custom
-subroutine create_submenu_0
-subroutine create_submenu_1
-subroutine create_submenu_2
-subroutine create_submenu_3
-subroutine create_submenu_2_1
+subroutine create_submenu_main
+subroutine create_submenu_bot
+subroutine create_submenu_profile
+subroutine create_submenu_scenario
+subroutine create_submenu_movement
 ## Menu Actions
 ### Control Flow
 subroutine perform_action
-subroutine menu_act_submenu_0
-subroutine menu_act_submenu_1
-subroutine menu_act_submenu_2
-subroutine menu_act_submenu_3
-subroutine menu_act_submenu_2_1
+subroutine menu_act_submenu_main
+subroutine menu_act_submenu_scenario
+subroutine menu_act_submenu_bot
+subroutine menu_act_submenu_profile
+subroutine menu_act_submenu_movement
 ### Generalized Actions
 subroutine menu_act_change_submenu
 subroutine act_general_chg_var_1_num
@@ -181,6 +181,14 @@ subroutine import_settings
 subroutine default_settings
 
 # ENUMS
+
+enum SUBMENUS:
+    SUBMENU_MAIN = 0,
+    SUBMENU_SCENARIO,
+    SUBMENU_BOT,
+    SUBMENU_PROFILE,
+    SUBMENU_MOVEMENT
+
 enum INPUT_OPTIONS:
     VECT_FORWARD = 0,
     VECT_BACKWARD,
