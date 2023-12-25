@@ -1,5 +1,5 @@
-def act_sub1_sel_bot_slot():
-    @Name "SUB: act_sub1_sel_bot_slot"
+def act_bot_select_slot():
+    @Name "SUB: act_bot_select_slot"
 
     switch menu_action:
         # Change bot slot.
@@ -24,8 +24,8 @@ def act_sub1_sel_bot_slot():
     menu_item_var_2[menu_index] = strings_options[lang_type][0][1] if databot.data_bot_slots[bot_slot] == true else strings_options[lang_type][0][0]
 
     
-def act_sub1_override_bot_slot():
-    @Name "SUB: act_sub1_override_bot_slot"
+def act_bot_ovverride_slot():
+    @Name "SUB: act_bot_ovverride_slot"
 
     switch menu_action:
         case MENU_ACTIONS.MENU_STEP_LEFT:

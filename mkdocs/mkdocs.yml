@@ -42,7 +42,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/a-bella-ciao
+      link: https://github.com/bella-labs
       name: OW2-Aim-Scenario-Maker on Github
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/a_bella_ciao
@@ -58,13 +58,14 @@ nav:
 - Home: index.md
 - Getting Started: getting_started/get_started_index.md
 - Menu Reference:
-  - Main Menu: menu_ref/menu_ref_sub_0.md
-  - Bot: menu_ref/menu_ref_sub_1.md
+  - Main Menu: menu_ref/menu_ref_main.md
+  - Scenario: menu_ref/menu_ref_scenario.md
+  - Bot: menu_ref/menu_ref_bot.md
   - Profile:
-    - menu_ref/menu_ref_sub_2.md
+    - menu_ref/menu_ref_profile.md
     - Movement:
-      - menu_ref/menu_ref_sub_2_1.md
-  - Scenario: menu_ref/menu_ref_sub_3.md
+      - menu_ref/menu_ref_movement.md
+
 
 extra_css:
   - stylesheets/custom_colors.css

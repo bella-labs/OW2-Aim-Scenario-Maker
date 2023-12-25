@@ -167,8 +167,8 @@ subroutine act_general_chg_var_1_num
 subroutine act_general_chg_var_3_num
 subroutine act_general_toggle_var_1_bool
 ### Custom Actions
-subroutine act_sub1_sel_bot_slot
-subroutine act_sub1_override_bot_slot
+subroutine act_bot_select_slot
+subroutine act_bot_ovverride_slot
 subroutine act_sub1_hero_pool
 subroutine act_sub0_open_hero_sel
 subroutine subact_copy_to_bot_slot

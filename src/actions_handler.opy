@@ -79,10 +79,10 @@ def menu_act_submenu_bot():
             menu_act_change_submenu()
             break
         case submenu_curr_start + 1:
-            act_sub1_sel_bot_slot()
+            act_bot_select_slot()
             break
         case submenu_curr_start + 2:
-            act_sub1_override_bot_slot()
+            act_bot_ovverride_slot()
             break
         case submenu_curr_start + 3:
             act_sub1_hero_pool()
