@@ -100,6 +100,12 @@ playervar bot_hero_pool
 playervar bot_health
 playervar bot_hps
 playervar bot_hps_wait
+playervar bot_scale_type
+playervar bot_scale_min
+playervar bot_scale_max
+
+
+
 playervar bot_scale
 playervar bot_spawn_type
 playervar bot_position
@@ -175,9 +181,11 @@ subroutine act_sub0_open_hero_sel
 #### Bot Submenu
 subroutine act_bot_select_slot
 subroutine act_bot_override_slot
+subroutine subact_bot_override_slot
 subroutine act_bot_hero_pool
 subroutine act_bot_health
-subroutine subact_bot_override_slot
+subroutine act_bot_scale
+
 ## Bot Generation
 subroutine create_bot
 subroutine destroy_bot
@@ -223,7 +231,8 @@ enum MENU_ACTIONS:
     MENU_SET_VECTOR
 
 enum RANGE_INDEXES:
-    RANGE_SLOT = 0,
+    RANGE_NONE = 0,
+    RANGE_SLOT,
     RANGE_HERO,
     RANGE_PERCENTAGE,
     RANGE_DISTANCE,
@@ -233,11 +242,13 @@ enum RANGE_INDEXES:
     RANGE_SCORE
 
 enum SMALL_INDEXES:
-    SMALL_0_01 = 0,
+    SMALL_NONE = 0,
+    SMALL_0_01,
     SMALL_1
 
 enum LARGE_INDEXES:
-    LARGE_1 = 0,
+    LARGE_NONE = 0,
+    LARGE_1,
     LARGE_10,
 
 
@@ -250,6 +261,7 @@ enum DATA_INDEXES:
 enum HELP_CONFIGS:
     DEFAULT = 0,
     CYCLE,
+    CYCLE_TOGGLE,
     CYCLE_LIST,
     OVERRIDE_LIST
     

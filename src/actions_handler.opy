@@ -90,6 +90,9 @@ def menu_act_submenu_bot():
         case submenu_curr_start + 4:
             act_bot_health()
             break
+        case submenu_curr_start + 5:
+            act_bot_scale()
+            break
 
 
 def menu_act_submenu_profile():

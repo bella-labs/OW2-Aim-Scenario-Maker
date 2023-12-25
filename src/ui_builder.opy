@@ -350,12 +350,15 @@ def create_submenu_bot():
     # (4 Var) Scale
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_var_1[menu_item_size] = ""
-    menu_item_var_2[menu_item_size] = ""
-    menu_item_var_3[menu_item_size] = ""
-    menu_item_var_4[menu_item_size] = ""    
-    new_menu_item_4var()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][2]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][3][databot.bot_scale_type[0]]
+    menu_item_var_2[menu_item_size] = databot.bot_scale_min[0]
+    menu_item_var_3[menu_item_size] = databot.bot_scale_max[0]
+    menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_NONE, RANGE_INDEXES.RANGE_SCALAR, RANGE_INDEXES.RANGE_SCALAR]
+    menu_item_small_step[menu_item_size] = [RANGE_INDEXES.RANGE_NONE, SMALL_INDEXES.SMALL_1, SMALL_INDEXES.SMALL_1]
+    menu_item_large_step[menu_item_size] = [RANGE_INDEXES.RANGE_NONE, LARGE_INDEXES.LARGE_10, LARGE_INDEXES.LARGE_10] 
+    new_menu_item_3var()
 
     # (Percentage) Gravity
     increment_for_menu_item()
@@ -491,30 +494,6 @@ def create_submenu_profile():
     menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     menu_item_color_off[menu_item_size] = menu_colors_custom[3]
-    new_menu_item_selection()
-
-    # (Subtext) Reactions
-    increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_2[lang_type][menu_max_pos]
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
-    # (4 Var) React to Collisions
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (4 Var) Swap Strafe Direction When Damage
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (2 Var) "Swap Strafe Wait Timer"
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     new_menu_item_selection()
 
 

@@ -160,9 +160,9 @@ def update_help_data():
 
     menu_help_index = menu_item_help[menu_index]
     for loop_index in range(0, 8, 1):
-        if (loop_index == 2 or loop_index == 3) and menu_help_index[loop_index] == 1:
+        if (loop_index == 2 or loop_index == 3) and (menu_help_index[loop_index] == 1 or menu_help_index[loop_index] == 2):
             menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], small_steps[menu_item_small_step[menu_index][subitem_index]])
-        elif (loop_index == 4 or loop_index == 5) and menu_help_index[loop_index] == 1:
+        elif (loop_index == 4 or loop_index == 5) and (menu_help_index[loop_index] == 1 or menu_help_index[loop_index] == 2):
             menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], large_steps[menu_item_small_step[menu_index][subitem_index]])
         else:
             menu_help_display[loop_index] = strings_help[lang_type][loop_index][menu_help_index[loop_index]]

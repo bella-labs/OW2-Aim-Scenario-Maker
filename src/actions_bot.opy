@@ -49,10 +49,16 @@ def subact_bot_override_slot():
     @Name "SUB: subact_bot_override_slot"
 
     databot.bot_slots[menu_item_var_1[menu_index]] = databot.bot_slots[bot_slot]
+
     databot.bot_hero_pool[menu_item_var_1[menu_index]] = databot.bot_hero_pool[bot_slot]
+
     databot.bot_health[menu_item_var_1[menu_index]] = databot.bot_health[bot_slot]
     databot.bot_hps[menu_item_var_1[menu_index]] = databot.bot_hps[bot_slot]
     databot.bot_hps_wait[menu_item_var_1[menu_index]] = databot.bot_hps_wait[bot_slot]
+
+    databot.bot_scale_type[menu_item_var_1[menu_index]] = databot.bot_scale_type[bot_slot]
+    databot.bot_scale_min[menu_item_var_1[menu_index]] = databot.bot_scale_min[bot_slot]
+    databot.bot_scale_max[menu_item_var_1[menu_index]] = databot.bot_scale_max[bot_slot]
 
 
 def act_bot_hero_pool():
@@ -117,4 +123,27 @@ def act_bot_health():
                     break
 
                     
-    
+def act_bot_scale():
+    @Name "SUB: act_bot_scale"
+
+    switch menu_action:
+        case MENU_ACTIONS.MENU_STEP_LEFT:
+        case MENU_ACTIONS.MENU_STEP_RIGHT:
+        case MENU_ACTIONS.MENU_JUMP_LEFT:
+        case MENU_ACTIONS.MENU_JUMP_RIGHT:
+            switch subitem_index[menu_index]:
+                case 0:
+                    databot.bot_scale_type[bot_slot] += 1
+                    if databot.bot_scale_type[bot_slot] >= len(strings_options[lang_type][3]):
+                        databot.bot_scale_type[bot_slot] = 0
+                    menu_item_var_1[menu_index] = strings_options[lang_type][3][databot.bot_scale_type[bot_slot]]
+                    break
+                case 1:
+                    act_general_chg_var_2_num()
+                    databot.bot_scale_min[bot_slot] = menu_item_var_2[menu_index]
+                    break
+
+                case 2:
+                    act_general_chg_var_3_num()
+                    databot.bot_scale_max[bot_slot] = menu_item_var_3[menu_index]
+                    break
