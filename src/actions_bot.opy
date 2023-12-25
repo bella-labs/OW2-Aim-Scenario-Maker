@@ -24,8 +24,8 @@ def act_bot_select_slot():
     menu_item_var_2[menu_index] = strings_options[lang_type][0][1] if databot.data_bot_slots[bot_slot] == true else strings_options[lang_type][0][0]
 
     
-def act_bot_ovverride_slot():
-    @Name "SUB: act_bot_ovverride_slot"
+def act_bot_override_slot():
+    @Name "SUB: act_bot_override_slot"
 
     switch menu_action:
         case MENU_ACTIONS.MENU_STEP_LEFT:
@@ -34,19 +34,26 @@ def act_bot_ovverride_slot():
             break
         case MENU_ACTIONS.MENU_JUMP_LEFT:
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][6]))
+            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[7]] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[7]), strings_prompt[lang_type][6]))
             menu_item_color_on[menu_index] = Color.RED
-            waitUntil(eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8]), 2)
-            if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
-                subact_copy_to_bot_slot()
+            waitUntil(eventPlayer.getThrottle() == ui_inputs[7] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[7]), 2)
+            if (eventPlayer.getThrottle() == ui_inputs[7] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[7])):
+                subact_bot_override_slot()
                 menu_item_color_on[menu_index] = Color.GREEN
                 wait(0.25)
         
             menu_item_color_on[menu_index] = menu_color_on_index
 
 
+def subact_bot_override_slot():
+    @Name "SUB: subact_bot_override_slot"
+
+    databot.data_bot_slots[menu_item_var_1[menu_index]] = databot.data_bot_slots[bot_slot]
+    databot.data_bot_hero_pool[menu_item_var_1[menu_index]] = databot.data_bot_hero_pool[bot_slot]
+
+
 def act_sub1_hero_pool():
-	@Name "SUB: subact_copy_to_bot_slot"
+	@Name "SUB: act_sub1_hero_pool"
 
     switch menu_action:
         case MENU_ACTIONS.MENU_STEP_LEFT:

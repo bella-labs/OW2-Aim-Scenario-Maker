@@ -168,10 +168,10 @@ subroutine act_general_chg_var_3_num
 subroutine act_general_toggle_var_1_bool
 ### Custom Actions
 subroutine act_bot_select_slot
-subroutine act_bot_ovverride_slot
+subroutine act_bot_override_slot
 subroutine act_sub1_hero_pool
 subroutine act_sub0_open_hero_sel
-subroutine subact_copy_to_bot_slot
+subroutine subact_bot_override_slot
 ## Bot Generation
 subroutine create_bot
 subroutine destroy_bot

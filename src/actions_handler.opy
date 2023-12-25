@@ -82,7 +82,7 @@ def menu_act_submenu_bot():
             act_bot_select_slot()
             break
         case submenu_curr_start + 2:
-            act_bot_ovverride_slot()
+            act_bot_override_slot()
             break
         case submenu_curr_start + 3:
             act_sub1_hero_pool()
