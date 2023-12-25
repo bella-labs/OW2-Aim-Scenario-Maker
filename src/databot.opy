@@ -39,12 +39,11 @@ def default_settings():
     @Name "SUB: default_settings"
     
     eventPlayer.import_mode = true
-
+    
     for loop_index in range(0, 11, 1):
         eventPlayer.data_bot_slots[loop_index] = false
+        eventPlayer.data_bot_hero_pool[loop_index] = [Hero.TRACER]
 
-    #eventPlayer.data_bot_slots = [true, false, false, false, false, false, false, false, false, false, false, false]
-    #eventPlayer.data_bot_hero_pool = [[Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER], [Hero.TRACER]]
     #eventPlayer.data_bot_health = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
     #eventPlayer.data_bot_scale = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
     #eventPlayer.data_bot_spawn_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

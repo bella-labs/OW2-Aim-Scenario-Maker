@@ -28,6 +28,7 @@ globalvar menu_item_var_1
 globalvar menu_item_var_2
 globalvar menu_item_var_3
 globalvar menu_item_var_4
+globalvar menu_item_help
 globalvar menu_item_var_tags
 globalvar menu_item_range
 globalvar menu_item_small_step
@@ -36,7 +37,6 @@ globalvar menu_item_large_step
 globalvar menu_label_color
 globalvar menu_item_color_off
 globalvar menu_item_color_on
-globalvar menu_item_header_color
 ## Static Menu Colors
 globalvar menu_color_label_subtext
 globalvar menu_color_label_header
@@ -45,7 +45,9 @@ globalvar menu_color_on_index
 globalvar menu_colors_custom
 ## Menu HUD
 globalvar hud_text_id
-globalvar menu_prompt_index
+globalvar menu_help_index
+globalvar menu_help_display
+globalvar help_configs
 ## Menu Actions
 globalvar submenu_curr_start
 globalvar chg_submenu_target
@@ -61,6 +63,7 @@ globalvar bot_gen_slot
 globalvar bot_gen_position
 globalvar bot_gen_facing
 ## Strings
+globalvar strings_help
 globalvar strings_prompt
 globalvar strings_inputs
 globalvar strings_misc
@@ -124,6 +127,7 @@ subroutine enable_player_input
 subroutine disable_player_input
 subroutine menu_up_check
 subroutine menu_down_check
+subroutine update_help_data
 ### Menu Labels
 subroutine increment_for_menu_label
 subroutine new_menu_label_header
@@ -137,7 +141,6 @@ subroutine new_menu_item_cycle
 subroutine new_menu_item_2var
 subroutine new_menu_item_3var
 subroutine new_menu_item_4var
-subroutine ext_menu_item_cycle_header
 ### Menu Submenu
 subroutine increment_for_submenu_item
 ### Menu Setup
@@ -160,12 +163,14 @@ subroutine menu_act_submenu_3
 subroutine menu_act_submenu_2_1
 ### Generalized Actions
 subroutine menu_act_change_submenu
-subroutine act_gen_chg_var_1_num
-subroutine act_gen_toggle_var_1_bool
+subroutine act_general_chg_var_1_num
+subroutine act_general_chg_var_3_num
+subroutine act_general_toggle_var_1_bool
 ### Custom Actions
-subroutine act_cust_sel_bot_slot
-subroutine act_cust_copy_bot_slot
-subroutine act_cust_open_hero_sel
+subroutine act_sub1_sel_bot_slot
+subroutine act_sub1_override_bot_slot
+subroutine act_sub1_hero_pool
+subroutine act_sub0_open_hero_sel
 subroutine subact_copy_to_bot_slot
 ## Bot Generation
 subroutine create_bot
@@ -205,6 +210,7 @@ enum MENU_ACTIONS:
 
 enum RANGE_INDEXES:
     RANGE_SLOT = 0,
+    RANGE_HERO,
     RANGE_PERCENTAGE,
     RANGE_DISTANCE,
     RANGE_TIME,
@@ -213,17 +219,26 @@ enum RANGE_INDEXES:
     RANGE_SCORE
 
 enum SMALL_INDEXES:
-    SMALL_REAL = 0,
-    SMALL_INT
+    SMALL_0_01 = 0,
+    SMALL_1
 
 enum LARGE_INDEXES:
-    LARGE_REAL = 0,
-    LARGE_INT_SAME_AS_SMALL,
-    LARGE_INT
+    LARGE_1 = 0,
+    LARGE_10,
+
 
 enum DATA_INDEXES:
     DATA_STATIC = 0,
     DATA_BOT,
     DATA_MENU,
     DATA_CONTROLS
+
+enum HELP_CONFIGS:
+    DEFAULT = 0,
+    CYCLE,
+    CYCLE_LIST
     
+
+globalvar action_var
+globalvar bot_slot
+globalvar new_hero_array

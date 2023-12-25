@@ -23,7 +23,7 @@ rule "Menu Input Listener: Menu Up":
     while menu_item_hidden[menu_index] == true:
         menu_up_check()
 
-    
+    update_help_data()
     wait(0.1, Wait.ABORT_WHEN_FALSE)
     if RULE_CONDITION:
         goto RULE_START
@@ -40,6 +40,7 @@ rule "Menu Input Listener: Menu Down":
     while menu_item_hidden[menu_index] == true:
         menu_down_check()
 
+    update_help_data()
     wait(0.1, Wait.ABORT_WHEN_FALSE)
     if RULE_CONDITION:
         goto RULE_START
@@ -154,6 +155,19 @@ def menu_down_check():
         menu_index += 1
 
 
+def update_help_data():
+    @Name "SUB: update_help_data"
+
+    menu_help_index = menu_item_help[menu_index]
+    for loop_index in range(0, 8, 1):
+        if (loop_index == 2 or loop_index == 3) and menu_help_index[loop_index] == 1:
+            menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], small_steps[menu_item_small_step[menu_index]])
+        elif (loop_index == 4 or loop_index == 5) and menu_help_index[loop_index] == 1:
+            menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], large_steps[menu_item_small_step[menu_index]])
+        else:
+            menu_help_display[loop_index] = strings_help[lang_type][loop_index][menu_help_index[loop_index]]
+
+
 def setup_menu():
     @Name "SUB: setup_menu"
 
@@ -229,6 +243,7 @@ def increment_for_menu_item():
     menu_item_var_2[menu_item_size] = ""
     menu_item_var_3[menu_item_size] = ""
     menu_item_var_4[menu_item_size] = ""
+    menu_item_help[menu_item_size] = [0,0,0,0,0,0,0,0]
 
 
 def increment_for_submenu_item():
@@ -317,18 +332,7 @@ def new_menu_item_cycle():
     menu_item_color_off[evalOnce(menu_item_size)] if menu_index != evalOnce(menu_item_size) else menu_item_color_on[evalOnce(menu_item_size)], 
     HudReeval.VISIBILITY_STRING_AND_COLOR, 
     SpecVisibility.DEFAULT)
-
-
-def ext_menu_item_cycle_header():
-    @Name "SUB: ext_menu_item_cycle_header"
-
-    hudHeader(localPlayer if menu_visible and menu_index == evalOnce(menu_item_size) and submenu_index == evalOnce(submenu_size) else [],
-    "{0} ←  {1}  →".format(menu_item_var_2[evalOnce(menu_item_size)], menu_item_var_3[evalOnce(menu_item_size)]),
-    HudPosition.TOP, 
-    evalOnce(menu_max_pos+1),
-    menu_item_header_color[evalOnce(menu_item_size)],
-    HudReeval.VISIBILITY_STRING_AND_COLOR,
-    SpecVisibility.DEFAULT)
+    
 
 def new_menu_item_percentage():
     @Name "SUB: new_menu_item_percentage"

@@ -58,6 +58,8 @@ def setup_menu_custom():
     menu_colors_custom[2] = rgb(28,204,125)
     menu_colors_custom[3] = rgb(24,208,195)
 
+    bot_slot = 0
+
 
 def create_hud():
 
@@ -79,20 +81,20 @@ def create_hud():
     HudReeval.VISIBILITY_AND_STRING, 
     SpecVisibility.DEFAULT)
 
-    # Displays the left HUD menu help. Note: Can embed ui_input[0] check into single hudtext, but too much server load
-    
-    menu_prompt_index = 0
+    # Displays the left HUD menu help.
+    menu_help_index = help_configs[HELP_CONFIGS.DEFAULT]
+    menu_help_display = [strings_help[lang_type][0][menu_help_index[0]], strings_help[lang_type][1][menu_help_index[1]], strings_help[lang_type][2][menu_help_index[2]], strings_help[lang_type][3][menu_help_index[3]], strings_help[lang_type][4][menu_help_index[4]], strings_help[lang_type][5][menu_help_index[5]], strings_help[lang_type][6][menu_help_index[6]], strings_help[lang_type][7][menu_help_index[7]]]
     hudSubheader([i for i in localPlayer], 
     "{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}".format("{0} {1} {2} {3} {4}\n".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[0]] if user_controls[0] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
         strings_symbols[0], 
-        "{1} - {0}\n".format(strings_controls[lang_type][menu_prompt_index][0], strings_inputs[lang_type][user_controls[1]] if user_controls[1] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[1])) if menu_visible else "",
-        "{1} - {0}\n".format(strings_controls[lang_type][menu_prompt_index][1], strings_inputs[lang_type][user_controls[2]] if user_controls[2] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[2])) if menu_visible else "",
-        "{1} - {0}\n".format(strings_controls[lang_type][menu_prompt_index][2], strings_inputs[lang_type][user_controls[3]] if user_controls[3] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[3])) if menu_visible else "",
-        "{1} - {0}\n".format(strings_controls[lang_type][menu_prompt_index][3], strings_inputs[lang_type][user_controls[4]] if user_controls[4] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[4])) if menu_visible else "",
-        "{1} - {0}\n".format(strings_controls[lang_type][menu_prompt_index][4], strings_inputs[lang_type][user_controls[5]] if user_controls[5] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[5])) if menu_visible else "",
-        "{1} - {0}\n".format(strings_controls[lang_type][menu_prompt_index][5], strings_inputs[lang_type][user_controls[6]] if user_controls[6] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[6])) if menu_visible else "",
-        "{1} - {0}\n".format(strings_controls[lang_type][menu_prompt_index][6], strings_inputs[lang_type][user_controls[7]] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[7])) if menu_visible else "",
-        "{1} - {0}\n".format(strings_controls[lang_type][menu_prompt_index][7], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8])) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[1]] if user_controls[1] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[1]), menu_help_display[0]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[2]] if user_controls[2] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[2]), menu_help_display[1]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[3]] if user_controls[3] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[3]), menu_help_display[2]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[4]] if user_controls[4] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[4]), menu_help_display[3]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[5]] if user_controls[5] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[5]), menu_help_display[4]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[6]] if user_controls[6] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[6]), menu_help_display[5]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[7]] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[7]), menu_help_display[6]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), menu_help_display[7]) if menu_visible else "",
         strings_symbols[0] if menu_visible else "",
         "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if menu_item_var_1[6] == true else "",
         "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if menu_item_var_1[7] == true else ""),
@@ -209,25 +211,27 @@ def create_submenu_1():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (Cycle) Select Bot Slot
+    # (Toggle List) Select Bot Slot
+
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos] 
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_SLOT]
-    menu_item_small_step[menu_item_size] = [SMALL_INDEXES.SMALL_INT]
-    menu_item_large_step[menu_item_size] = [LARGE_INDEXES.LARGE_INT_SAME_AS_SMALL]
+    menu_item_range[menu_item_size] = RANGE_INDEXES.RANGE_SLOT
+    menu_item_small_step[menu_item_size] = SMALL_INDEXES.SMALL_1
     menu_item_var_1[menu_item_size] = 0
     menu_item_var_2[menu_item_size] = strings_options[lang_type][0][1] if databot.data_bot_slots[0] == true else strings_options[lang_type][0][0]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_LIST]
     new_menu_item_toggle_list()
 
     # (Cycle) Override from Slot
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_SLOT]
-    menu_item_small_step[menu_item_size] = [SMALL_INDEXES.SMALL_INT]
-    menu_item_large_step[menu_item_size] = [LARGE_INDEXES.LARGE_INT_SAME_AS_SMALL]
+    menu_item_range[menu_item_size] = RANGE_INDEXES.RANGE_SLOT
+    menu_item_small_step[menu_item_size] = SMALL_INDEXES.SMALL_1
+    menu_item_large_step[menu_item_size] = LARGE_INDEXES.LARGE_1
     menu_item_var_1[menu_item_size] = 0
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE]
     new_menu_item_cycle()
 
     # (Subtext) Bot Parameters
@@ -236,17 +240,24 @@ def create_submenu_1():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (Cycle Bar) Hero Pool
+    # (Toggle List) Hero Pool
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][0]
-    menu_item_var_1[menu_item_size] = 0
-    menu_item_var_2[menu_item_size] = ""
-    menu_item_var_3[menu_item_size] = ""
-    menu_item_header_color[menu_item_size] = Color.RED
-    new_menu_item_cycle()
-    ext_menu_item_cycle_header()
+    menu_item_title_on[menu_item_size] = heroIcon(Hero.TRACER)
+    menu_item_var_1[menu_item_size] = Hero.TRACER
+
+    if Hero.TRACER in databot.data_bot_hero_pool[bot_slot] == true:
+        menu_item_var_2[menu_item_size] = strings_options[lang_type][0][0]
+        menu_item_color_on[menu_item_size] = Color.GREEN
+    else:
+        menu_item_var_2[menu_item_size] = strings_options[lang_type][0][1]
+        menu_item_color_on[menu_item_size] = Color.RED
+
+    menu_item_var_3[menu_item_size] = 0
+    menu_item_range[menu_item_size] = RANGE_INDEXES.RANGE_HERO
+    menu_item_small_step[menu_item_size] = SMALL_INDEXES.SMALL_1
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_LIST]
+    new_menu_item_toggle_list()
 
     # (3 Var) Health
     increment_for_menu_item()

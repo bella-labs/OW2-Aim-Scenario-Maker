@@ -46,7 +46,7 @@ def menu_act_submenu_0():
             menu_act_change_submenu()
             break
         case submenu_curr_start + 3:
-            act_cust_open_hero_sel()
+            act_sub0_open_hero_sel()
             break
         case submenu_curr_start + 4:
             break
@@ -54,7 +54,7 @@ def menu_act_submenu_0():
             break
         case submenu_curr_start + 6:
         case submenu_curr_start + 7:
-            act_gen_toggle_var_1_bool()
+            act_general_toggle_var_1_bool()
             break
         
 
@@ -69,10 +69,13 @@ def menu_act_submenu_1():
             menu_act_change_submenu()
             break
         case submenu_curr_start + 1:
-            act_cust_sel_bot_slot()
+            act_sub1_sel_bot_slot()
             break
         case submenu_curr_start + 2:
-            act_cust_copy_bot_slot()
+            act_sub1_override_bot_slot()
+            break
+        case submenu_curr_start + 3:
+            act_sub1_hero_pool()
             break
 
 
