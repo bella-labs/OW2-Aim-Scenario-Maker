@@ -103,6 +103,7 @@ playervar bot_hps_wait
 playervar bot_scale_type
 playervar bot_scale_min
 playervar bot_scale_max
+playervar bot_gravity
 
 
 
@@ -185,6 +186,7 @@ subroutine subact_bot_override_slot
 subroutine act_bot_hero_pool
 subroutine act_bot_health
 subroutine act_bot_scale
+subroutine act_bot_gravity
 
 ## Bot Generation
 subroutine create_bot
@@ -262,8 +264,9 @@ enum HELP_CONFIGS:
     DEFAULT = 0,
     CYCLE,
     CYCLE_TOGGLE,
-    CYCLE_LIST,
-    OVERRIDE_LIST
+    CYCLE_OVERRIDE,
+    SUBITEM_CYCLE,
+    SUBITEM_TOGGLE
     
 
 globalvar action_var

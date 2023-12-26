@@ -293,9 +293,9 @@ def create_submenu_bot():
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_1[menu_item_size] = 0
     menu_item_var_2[menu_item_size] = strings_options[lang_type][0][1] if databot.bot_slots[0] == true else strings_options[lang_type][0][0]
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_LIST]
     menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_SLOT]
     menu_item_small_step[menu_item_size] = [SMALL_INDEXES.SMALL_1]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_TOGGLE]
     new_menu_item_toggle_list()
 
     # (Cycle) Override from Slot
@@ -306,7 +306,7 @@ def create_submenu_bot():
     menu_item_small_step[menu_item_size] = [SMALL_INDEXES.SMALL_1]
     menu_item_large_step[menu_item_size] = [LARGE_INDEXES.LARGE_1]
     menu_item_var_1[menu_item_size] = 0
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.OVERRIDE_LIST]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_OVERRIDE]
     new_menu_item_cycle()
 
     # (Subtext) Bot Parameters
@@ -329,9 +329,9 @@ def create_submenu_bot():
         menu_item_color_on[menu_item_size] = Color.RED
 
     menu_item_var_3[menu_item_size] = 0
-    menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_HERO]
-    menu_item_small_step[menu_item_size] = [SMALL_INDEXES.SMALL_1]
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_LIST]
+    menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_NONE, RANGE_INDEXES.RANGE_NONE, RANGE_INDEXES.RANGE_HERO]
+    menu_item_small_step[menu_item_size] = [SMALL_INDEXES.SMALL_NONE, SMALL_INDEXES.SMALL_NONE, SMALL_INDEXES.SMALL_1]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_TOGGLE]
     new_menu_item_toggle_list()
 
     # (3 Var) Health
@@ -345,6 +345,7 @@ def create_submenu_bot():
     menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_SCALAR, RANGE_INDEXES.RANGE_SCALAR, RANGE_INDEXES.RANGE_TIME]
     menu_item_small_step[menu_item_size] = [SMALL_INDEXES.SMALL_1, SMALL_INDEXES.SMALL_1, SMALL_INDEXES.SMALL_0_01]
     menu_item_large_step[menu_item_size] = [LARGE_INDEXES.LARGE_10, LARGE_INDEXES.LARGE_10, LARGE_INDEXES.LARGE_1]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
     new_menu_item_3var()
 
     # (4 Var) Scale
@@ -358,12 +359,18 @@ def create_submenu_bot():
     menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_NONE, RANGE_INDEXES.RANGE_SCALAR, RANGE_INDEXES.RANGE_SCALAR]
     menu_item_small_step[menu_item_size] = [RANGE_INDEXES.RANGE_NONE, SMALL_INDEXES.SMALL_1, SMALL_INDEXES.SMALL_1]
     menu_item_large_step[menu_item_size] = [RANGE_INDEXES.RANGE_NONE, LARGE_INDEXES.LARGE_10, LARGE_INDEXES.LARGE_10] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_3var()
 
     # (Percentage) Gravity
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    menu_item_title_on[menu_item_size] = "{0} %".format(menu_item_title_off[menu_item_size])
+    menu_item_var_1[menu_item_size] = databot.bot_gravity[0]
+    menu_item_range[menu_item_size] = [RANGE_INDEXES.RANGE_SCALAR]
+    menu_item_small_step[menu_item_size] = [SMALL_INDEXES.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_INDEXES.LARGE_10] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE]
     new_menu_item_cycle()
 
     # (Subtext) Bot Spawn and Boundaries

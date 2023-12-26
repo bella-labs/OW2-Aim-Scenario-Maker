@@ -54,6 +54,7 @@ def act_general_chg_var_2_num():
 def act_general_chg_var_3_num():
     @Name "SUB: act_general_chg_var_3_num"
 
+    
     switch menu_action:
         case MENU_ACTIONS.MENU_STEP_LEFT:
             menu_item_var_3[menu_index] -= small_steps[menu_item_small_step[menu_index][2]]

@@ -47,18 +47,21 @@ def act_bot_override_slot():
 
 def subact_bot_override_slot():
     @Name "SUB: subact_bot_override_slot"
+    action_var = menu_item_var_1[menu_index]
 
-    databot.bot_slots[menu_item_var_1[menu_index]] = databot.bot_slots[bot_slot]
+    databot.bot_slots[action_var] = databot.bot_slots[bot_slot]
 
-    databot.bot_hero_pool[menu_item_var_1[menu_index]] = databot.bot_hero_pool[bot_slot]
+    databot.bot_hero_pool[action_var] = databot.bot_hero_pool[bot_slot]
 
-    databot.bot_health[menu_item_var_1[menu_index]] = databot.bot_health[bot_slot]
-    databot.bot_hps[menu_item_var_1[menu_index]] = databot.bot_hps[bot_slot]
-    databot.bot_hps_wait[menu_item_var_1[menu_index]] = databot.bot_hps_wait[bot_slot]
+    databot.bot_health[action_var] = databot.bot_health[bot_slot]
+    databot.bot_hps[action_var] = databot.bot_hps[bot_slot]
+    databot.bot_hps_wait[action_var] = databot.bot_hps_wait[bot_slot]
 
-    databot.bot_scale_type[menu_item_var_1[menu_index]] = databot.bot_scale_type[bot_slot]
-    databot.bot_scale_min[menu_item_var_1[menu_index]] = databot.bot_scale_min[bot_slot]
-    databot.bot_scale_max[menu_item_var_1[menu_index]] = databot.bot_scale_max[bot_slot]
+    databot.bot_scale_type[action_var] = databot.bot_scale_type[bot_slot]
+    databot.bot_scale_min[action_var] = databot.bot_scale_min[bot_slot]
+    databot.bot_scale_max[action_var] = databot.bot_scale_max[bot_slot]
+
+    databot.bot_gravity[action_var] = databot.bot_gravity[bot_slot]
 
 
 def act_bot_hero_pool():
@@ -147,3 +150,10 @@ def act_bot_scale():
                     act_general_chg_var_3_num()
                     databot.bot_scale_max[bot_slot] = menu_item_var_3[menu_index]
                     break
+
+
+def act_bot_gravity():
+    @Name "SUB: act_bot_gravity"
+
+    act_general_chg_var_1_num()
+    databot.bot_gravity[bot_slot] = menu_item_var_1[menu_index]

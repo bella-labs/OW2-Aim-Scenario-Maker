@@ -89,6 +89,7 @@ rule "Menu Input Listener: Jump Right":
     menu_action = MENU_ACTIONS.MENU_JUMP_RIGHT
     perform_action()
 
+
 rule "Menu Input Listener: Next Subitem": 
     @Event eachPlayer
     @Team 1
@@ -100,6 +101,8 @@ rule "Menu Input Listener: Next Subitem":
         subitem_index[menu_index] += 1
     else:
         subitem_index[menu_index] = 0
+
+    update_help_data()
 
 
 rule "Menu Input Listener: Set Vector": 
@@ -161,9 +164,9 @@ def update_help_data():
     menu_help_index = menu_item_help[menu_index]
     for loop_index in range(0, 8, 1):
         if (loop_index == 2 or loop_index == 3) and (menu_help_index[loop_index] == 1 or menu_help_index[loop_index] == 2):
-            menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], small_steps[menu_item_small_step[menu_index][subitem_index]])
+            menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], small_steps[menu_item_small_step[menu_index][subitem_index[menu_index]]])
         elif (loop_index == 4 or loop_index == 5) and (menu_help_index[loop_index] == 1 or menu_help_index[loop_index] == 2):
-            menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], large_steps[menu_item_small_step[menu_index][subitem_index]])
+            menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], large_steps[menu_item_large_step[menu_index][subitem_index[menu_index]]])
         else:
             menu_help_display[loop_index] = strings_help[lang_type][loop_index][menu_help_index[loop_index]]
 

@@ -49,12 +49,17 @@ rule "Load Static Data":
     ranges = [["N/A", "N/A"], [0,11], [0,len(hero_array)-1], [0,100], [0,250], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
     small_steps = ["N/A", 0.01, 1]
     large_steps = ["N/A", 1, 10]
-    help_configs = [[0,0,0,0,0,0,0,0], [0,0,1,1,1,1,0,0], [0,0,1,1,3,3,0,0], [0,0,1,1,4,4,0,0], [0,0,2,2,2,2,0,0]]
+    help_configs = [[0,0,0,0,0,0,0,0], # Default
+                    [0,0,1,1,1,1,0,0], # Cycle List
+                    [0,0,1,1,3,3,0,0], # Cycle Toggle
+                    [0,0,1,1,4,4,0,0], # Cycle Override
+                    [0,0,1,1,1,1,1,0], # Subitem Cycle List
+                    [0,0,2,2,2,2,1,0]] # Subitem Cycle List + Toggle
 
 rule "load_language_data":
     @Event global
 
-    strings_help = [[["Previous Item"], ["Next Item"], ["Select Item", "-", "Previous Option / -"], ["Select Item", "+", "Next Option / +"], ["Select Item", "-", "Previous Option / -", "Toggle All", "Override All", ], ["Select Item", "+", "Next Option / +" "Toggle Selected", "Override Selected"], ["N/A"], ["Select Item", "Set Vector to Current"]]]
+    strings_help = [[["Previous Item"], ["Next Item"], ["Select Item", "-", "Previous Option / -"], ["Select Item", "+", "Next Option / +"], ["Select Item", "-", "Previous Option / -", "Toggle All", "Override All", ], ["Select Item", "+", "Next Option / +", "Toggle Selected", "Override Selected"], ["N/A", "Next Subitem"], ["Select Item", "Set Vector to Current"]]]
     strings_controls = [[["Up", "Down", "Step Left", "Step Right", "Jump Left", "Jump Right", "Next Subitem", "Action Item"]],[[""]],[[""]]]
     strings_inputs = [["Forward", "Backward", "Left", "Right"], ["", "", "", ""], ["", "", "", ""]]
     strings_misc = [["Iris", "Open The Menu to Begin Editing. See <website> for documentation."], ["데이터 저장소"], ["数据存储"]]
