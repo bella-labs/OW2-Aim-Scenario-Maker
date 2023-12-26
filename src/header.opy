@@ -104,29 +104,9 @@ playervar bot_scale_type
 playervar bot_scale_min
 playervar bot_scale_max
 playervar bot_gravity
-
-
-
-playervar bot_scale
 playervar bot_spawn_type
-playervar bot_position
-playervar bot_facing_type
-playervar bot_facing_vector
-playervar bot_lower_bound
-playervar bot_upper_bound
-playervar bot_distance
-playervar bot_movement_profile
-playervar bot_randomize_profile
-### Movement Settings
-playervar data_mvmt_lr
-playervar data_mvmt_lr_time
-playervar data_mvmt_lr_speed
-playervar data_mvmt_lr_random
-playervar data_mvmt_fb
-playervar data_mvmt_fb_time
-playervar data_mvmt_fb_speed
-playervar data_mvmt_fb_random
-playervar data_mvmt_gravity
+playervar bot_spawn_vect
+
 ### Scenario Settings
 
 # Subroutines
@@ -172,21 +152,26 @@ subroutine menu_act_submenu_profile
 subroutine menu_act_submenu_movement
 ### Generalized Actions
 subroutine menu_act_change_submenu
+subroutine act_general_chg_num
 subroutine act_general_chg_var_1_num
 subroutine act_general_chg_var_2_num
 subroutine act_general_chg_var_3_num
 subroutine act_general_toggle_var_1_bool
+subroutine act_general_change_vect
+subroutine act_general_change_list
 ### Custom Actions
 #### Main Menu
 subroutine act_sub0_open_hero_sel
 #### Bot Submenu
 subroutine act_bot_select_slot
+subroutine subact_select_slot_refresh
 subroutine act_bot_override_slot
 subroutine subact_bot_override_slot
 subroutine act_bot_hero_pool
 subroutine act_bot_health
 subroutine act_bot_scale
 subroutine act_bot_gravity
+subroutine act_bot_spawn
 
 ## Bot Generation
 subroutine create_bot
@@ -266,9 +251,26 @@ enum HELP_CONFIGS:
     CYCLE_TOGGLE,
     CYCLE_OVERRIDE,
     SUBITEM_CYCLE,
-    SUBITEM_TOGGLE
+    SUBITEM_TOGGLE,
+    SUBITEM_VECT,
+    SUBITEM_VECT_TOGGLE
     
-
+enum VECTOR_TARGET:
+    VECT_X = 0,
+    VECT_Y,
+    VECT_Z
 globalvar action_var
 globalvar bot_slot
 globalvar new_hero_array
+
+globalvar general_num
+globalvar general_small
+globalvar general_large
+globalvar general_range_min
+globalvar general_range_max
+
+globalvar general_option_size
+
+globalvar general_vect
+globalvar general_vect_target
+globalvar refresh_index

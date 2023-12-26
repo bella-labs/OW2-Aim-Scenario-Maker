@@ -50,27 +50,5 @@ def default_settings():
         eventPlayer.bot_scale_min = 100
         eventPlayer.bot_scale_max = 100
         eventPlayer.bot_gravity = 100
-
-    #eventPlayer.bot_health = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
-    #eventPlayer.bot_scale = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
-    #eventPlayer.bot_spawn_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    #eventPlayer.bot_position = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    #eventPlayer.bot_facing_type = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    #eventPlayer.bot_facing_vector = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    #eventPlayer.bot_lower_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    #eventPlayer.bot_upper_bound = [vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0), vect(0, 0, 0)]
-    #eventPlayer.bot_distance = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
-    #eventPlayer.bot_movement_profile = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-    #eventPlayer.bot_randomize_profile = [false, false, false, false, false, false, false, false, false, false, false, false]
-    
-    #eventPlayer.data_mvmt_lr = [false, false, false, false, false, false, false, false, false, false, false, false]
-    #eventPlayer.data_mvmt_lr_time = null
-    #eventPlayer.data_mvmt_lr_speed = null
-    #eventPlayer.data_mvmt_lr_random = null
-    #eventPlayer.data_mvmt_fb = [false, false, false, false, false, false, false, false, false, false, false, false]
-    #eventPlayer.data_mvmt_fb_time = null
-    #eventPlayer.data_mvmt_fb_speed = null
-    #eventPlayer.data_mvmt_fb_random = null
-
-
-    
+        eventPlayer.bot_spawn_type = 0
+        eventPlayer.bot_spawn_vect = vect(0,0,0)
