@@ -420,7 +420,7 @@ def create_submenu_bot():
     # (3 Var) Boundary Position
     increment_for_menu_item()
 
-    menu_index_store[0] = menu_item_size
+    menu_effect_index[STORED_ITEMS.BOUNDS_1] = menu_item_size
 
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
@@ -436,6 +436,9 @@ def create_submenu_bot():
 
     # (4 Var) Boundary Dimensions
     increment_for_menu_item()
+
+    menu_effect_index[STORED_ITEMS.BOUNDS_2] = menu_item_size
+
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.ANGLE_DIM]
@@ -451,11 +454,18 @@ def create_submenu_bot():
 
     # (2 Var) Distance
     increment_for_menu_item()
+
+    menu_effect_index[STORED_ITEMS.DISTANCE] = menu_item_size
+
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][0]
-    menu_item_var_1[menu_item_size] = 0
-    menu_item_var_2[menu_item_size] = 0
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MIN_MAX]
+    menu_item_var_1[menu_item_size] = databot.bot_dist_min[0]
+    menu_item_var_2[menu_item_size] = databot.bot_dist_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_DISTANCE, RANGE_TYPE.RANGE_DISTANCE]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
     new_menu_item_2var()
 
     # (Subtext) Profiles

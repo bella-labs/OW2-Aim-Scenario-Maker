@@ -108,6 +108,9 @@ def menu_act_submenu_bot():
         case submenu_curr_start + 10:
             act_bot_bound_dim()
             break
+        case submenu_curr_start + 11:
+            act_bot_distance()
+            break
 
 
 def menu_act_submenu_profile():

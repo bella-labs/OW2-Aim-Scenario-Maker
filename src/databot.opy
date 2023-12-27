@@ -57,3 +57,7 @@ def default_settings():
         eventPlayer.bot_bound_pos = vect(0,0,0)
         eventPlayer.bot_bound_angle = 0
         eventPlayer.bot_bound_dim = vect(0,0,0)
+        eventPlayer.bot_dist_min = 0
+        eventPlayer.bot_dist_max = 0
+
+        eventPlayer.scen_player_spawn = vect(0,0,0)

@@ -111,7 +111,11 @@ playervar bot_facing_vect
 playervar bot_bound_pos
 playervar bot_bound_angle
 playervar bot_bound_dim
+playervar bot_dist_min
+playervar bot_dist_max
 
+
+playervar scen_player_spawn
 ### Scenario Settings
 
 # Subroutines
@@ -164,6 +168,7 @@ subroutine act_general_chg_var_3_num
 subroutine act_general_toggle_var_1_bool
 subroutine act_general_change_vect
 subroutine act_general_change_list
+subroutine act_general_change_min_max
 ### Custom Actions
 #### Main Menu
 subroutine act_sub0_open_hero_sel
@@ -180,7 +185,7 @@ subroutine act_bot_spawn
 subroutine act_bot_facing
 subroutine act_bot_bound_pos
 subroutine act_bot_bound_dim
-
+subroutine act_bot_distance
 ## Bot Generation
 subroutine create_bot
 subroutine destroy_bot
@@ -264,10 +269,12 @@ enum HELP_CONFIGS:
     SUBITEM_VECT,
     SUBITEM_VECT_TOGGLE
     
-enum VECTOR_TARGET:
+enum GENERAL_TARGET:
     VECT_X = 0,
     VECT_Y,
-    VECT_Z
+    VECT_Z,
+    MIN,
+    MAX
 
 enum TAG_TYPE:
     HEALTH = 0,
@@ -276,30 +283,39 @@ enum TAG_TYPE:
     VECT,
     TYPE_VECT,
     ANGLE_DIM
+
+enum STORED_ITEMS:
+    BOUNDS_1 = 0,
+    BOUNDS_2,
+    DISTANCE,
     
 globalvar action_var
 globalvar bot_slot
 globalvar new_hero_array
 
-globalvar general_num
+globalvar general_val
+globalvar general_val_2
+globalvar general_val_3
 globalvar general_small
 globalvar general_large
 globalvar general_range_min
 globalvar general_range_max
 
 globalvar general_option_size
-
-globalvar general_vect
-globalvar general_vect_target
+globalvar general_target
 globalvar refresh_index
 
-globalvar menu_index_store
+globalvar menu_effect_index
 globalvar unit_cube
-globalvar beam_array
+globalvar effect_array
 globalvar start_pos
 globalvar scalar_length
 globalvar scalar_height
 globalvar scalar_width
 globalvar start_angle
+globalvar ring_data
+subroutine destroy_effects
 subroutine update_bound_effect
 subroutine create_bound_effect
+subroutine update_distance_effect
+subroutine create_distance_effect
