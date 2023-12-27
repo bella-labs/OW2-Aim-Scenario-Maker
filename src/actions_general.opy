@@ -26,6 +26,8 @@ def act_general_chg_num():
     elif general_num > general_range_max:
         general_num = general_range_min
 
+    menu_wait = 0.05
+
         
 def act_general_chg_var_1_num():
     @Name "SUB: act_general_chg_var_1_num"
@@ -72,24 +74,27 @@ def act_general_toggle_var_1_bool():
 def act_general_change_vect():
     @Name "SUB: act_general_change_vect"
     
-    general_small = small_steps[SMALL_INDEXES.SMALL_0_01]
-    general_large = large_steps[LARGE_INDEXES.LARGE_1]
-    general_range_min = ranges[RANGE_INDEXES.RANGE_VECTOR][0]
-    general_range_max = ranges[RANGE_INDEXES.RANGE_VECTOR][1]
+    general_small = small_steps[SMALL_TYPE.SMALL_0_01]
+    general_large = large_steps[LARGE_TYPE.LARGE_1]
+    general_range_min = ranges[RANGE_TYPE.RANGE_VECTOR][0]
+    general_range_max = ranges[RANGE_TYPE.RANGE_VECTOR][1]
 
     switch general_vect_target:
         case VECTOR_TARGET.VECT_X:
             general_num = general_vect.x
             act_general_chg_num()
             general_vect = vect(general_num, general_vect.y, general_vect.z)
+            break
         case VECTOR_TARGET.VECT_Y:
             general_num = general_vect.y
             act_general_chg_num()
             general_vect = vect(general_vect.x, general_num, general_vect.z)
+            break
         case VECTOR_TARGET.VECT_Z:
             general_num = general_vect.z
             act_general_chg_num()
             general_vect = vect(general_vect.x, general_vect.y, general_num)
+            break
     
 
 def act_general_change_list():
@@ -106,6 +111,6 @@ def act_general_change_list():
             break
 
     if general_num < 0:
-        general_num = general_option_size
+        general_num = general_option_size-1
     elif general_num >= general_option_size:
         general_num = 0

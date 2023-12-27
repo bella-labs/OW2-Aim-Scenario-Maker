@@ -99,6 +99,15 @@ def menu_act_submenu_bot():
         case submenu_curr_start + 7:
             act_bot_spawn()
             break
+        case submenu_curr_start + 8:
+            act_bot_facing()
+            break
+        case submenu_curr_start + 9:
+            act_bot_bound_pos()
+            break
+        case submenu_curr_start + 10:
+            act_bot_bound_dim()
+            break
 
 
 def menu_act_submenu_profile():

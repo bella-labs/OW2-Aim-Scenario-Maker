@@ -21,9 +21,13 @@ def act_bot_select_slot():
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             databot.bot_slots[bot_slot] = not databot.bot_slots[bot_slot]
             break
-    # Update the enabled / disabled text.
-    menu_item_var_2[menu_index] = strings_options[lang_type][0][1] if databot.bot_slots[bot_slot] == true else strings_options[lang_type][0][0]
-
+    # Update the status text and color
+    if databot.bot_slots[bot_slot] == true:
+        menu_item_var_2[menu_index] = strings_options[lang_type][0][0]
+        menu_item_color_on[menu_index] = Color.GREEN
+    else:
+        menu_item_var_2[menu_index] = strings_options[lang_type][0][1]
+        menu_item_color_on[menu_index] = Color.RED
 
 def subact_select_slot_refresh():
     @Name "SUB: subact_select_slot_refresh"
@@ -58,7 +62,23 @@ def subact_select_slot_refresh():
     menu_item_var_2[refresh_index] = databot.bot_spawn_vect[bot_slot].x
     menu_item_var_3[refresh_index] = databot.bot_spawn_vect[bot_slot].y
     menu_item_var_4[refresh_index] = databot.bot_spawn_vect[bot_slot].z
-
+    # Facing
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][5][databot.bot_facing_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_facing_vect[bot_slot].x
+    menu_item_var_3[refresh_index] = databot.bot_facing_vect[bot_slot].y
+    menu_item_var_4[refresh_index] = databot.bot_facing_vect[bot_slot].z
+    # Boundary Position
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_bound_pos[bot_slot].x
+    menu_item_var_2[refresh_index] = databot.bot_bound_pos[bot_slot].y
+    menu_item_var_3[refresh_index] = databot.bot_bound_pos[bot_slot].z
+    # Boundary Dimension
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_bound_angle[bot_slot]
+    menu_item_var_2[refresh_index] = databot.bot_bound_dim[bot_slot].x
+    menu_item_var_3[refresh_index] = databot.bot_bound_dim[bot_slot].y
+    menu_item_var_4[refresh_index] = databot.bot_bound_dim[bot_slot].z
 
         
     
@@ -106,6 +126,14 @@ def subact_bot_override_slot():
 
     databot.bot_spawn_type[action_var] = databot.bot_spawn_type[bot_slot]
     databot.bot_spawn_vect[action_var] = databot.bot_spawn_vect[bot_slot]
+    
+    databot.bot_facing_type[action_var] = databot.bot_facing_type[bot_slot]
+    databot.bot_facing_vect[action_var] = databot.bot_facing_vect[bot_slot]
+
+    databot.bot_bound_pos[action_var] = databot.bot_bound_pos[bot_slot]
+
+    databot.bot_bound_angle[action_var] = databot.bot_bound_angle[bot_slot]
+    databot.bot_bound_dim[action_var] = databot.bot_bound_dim[bot_slot]
 
 
 def act_bot_hero_pool():
@@ -240,3 +268,105 @@ def act_bot_spawn():
                 databot.bot_spawn_vect[bot_slot] = general_vect
                 menu_item_var_4[menu_index] = general_vect.z
                 break
+
+
+def act_bot_facing():
+    @Name "SUB: act_bot_facing"
+
+    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
+        general_vect = eventPlayer.getFacingDirection()
+        databot.bot_facing_vect[bot_slot] = general_vect
+        menu_item_var_2[menu_index] = general_vect.x
+        menu_item_var_3[menu_index] = general_vect.y
+        menu_item_var_4[menu_index] = general_vect.z
+    else:
+        general_vect = databot.bot_facing_vect[bot_slot]
+        switch subitem_index[menu_index]:
+            case 0:
+                general_num = databot.bot_facing_type[bot_slot]
+                general_option_size = len(strings_options[lang_type][5])
+                act_general_change_list()
+                databot.bot_facing_type[bot_slot] = general_num
+                menu_item_var_1[menu_index] = strings_options[lang_type][5][databot.bot_facing_type[bot_slot]]
+                break
+            case 1:
+                general_vect_target = VECTOR_TARGET.VECT_X
+                act_general_change_vect()
+                databot.bot_facing_vect[bot_slot] = general_vect
+                menu_item_var_2[menu_index] = general_vect.x
+                break
+            case 2:
+                general_vect_target = VECTOR_TARGET.VECT_Y
+                act_general_change_vect()
+                databot.bot_facing_vect[bot_slot] = general_vect
+                menu_item_var_3[menu_index] = general_vect.y
+                break
+            case 3:
+                general_vect_target = VECTOR_TARGET.VECT_Z
+                act_general_change_vect()
+                databot.bot_facing_vect[bot_slot] = general_vect
+                menu_item_var_4[menu_index] = general_vect.z
+                break
+
+
+def act_bot_bound_pos():
+    @Name "SUB: act_bot_bound_pos"
+
+    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
+        general_vect = eventPlayer.getPosition()
+        databot.bot_bound_pos[bot_slot] = general_vect
+        menu_item_var_1[menu_index] = general_vect.x
+        menu_item_var_2[menu_index] = general_vect.y
+        menu_item_var_3[menu_index] = general_vect.z
+    else:
+        general_vect = databot.bot_bound_pos[bot_slot]
+        switch subitem_index[menu_index]:
+            case 0:
+                general_vect_target = VECTOR_TARGET.VECT_X
+                act_general_change_vect()
+                databot.bot_bound_pos[bot_slot] = general_vect
+                menu_item_var_1[menu_index] = general_vect.x
+                break
+            case 1:
+                general_vect_target = VECTOR_TARGET.VECT_Y
+                act_general_change_vect()
+                databot.bot_bound_pos[bot_slot] = general_vect
+                menu_item_var_2[menu_index] = general_vect.y
+                break
+            case 2:
+                general_vect_target = VECTOR_TARGET.VECT_Z
+                act_general_change_vect()
+                databot.bot_bound_pos[bot_slot] = general_vect
+                menu_item_var_3[menu_index] = general_vect.z
+                break
+    update_bound_effect()
+
+    
+def act_bot_bound_dim():
+    @Name "SUB: act_bot_bound_dim"
+
+    general_vect = databot.bot_bound_dim[bot_slot]
+    switch subitem_index[menu_index]:
+        case 0:
+            act_general_chg_var_1_num()
+            databot.bot_bound_angle[bot_slot] = menu_item_var_1[menu_index]
+            break
+        case 1:
+            general_vect_target = VECTOR_TARGET.VECT_X
+            act_general_change_vect()
+            databot.bot_bound_dim[bot_slot] = general_vect
+            menu_item_var_2[menu_index] = general_vect.x
+            break
+        case 2:
+            general_vect_target = VECTOR_TARGET.VECT_Y
+            act_general_change_vect()
+            databot.bot_bound_dim[bot_slot] = general_vect
+            menu_item_var_3[menu_index] = general_vect.y
+            break
+        case 3:
+            general_vect_target = VECTOR_TARGET.VECT_Z
+            act_general_change_vect()
+            databot.bot_bound_dim[bot_slot] = general_vect
+            menu_item_var_4[menu_index] = general_vect.z
+            break
+    update_bound_effect()

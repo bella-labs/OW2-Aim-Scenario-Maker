@@ -11,7 +11,7 @@ def default_player_menu():
 
 rule "Initialize: Workshop Settings":
 
-    data_loaded[DATA_INDEXES.DATA_CONTROLS] = false
+    data_loaded[DATA_TYPE.DATA_CONTROLS] = false
 
     lang_type = createWorkshopSetting(enum["English", "한국어", "中文"], "1. Language   |   언어   |   语言", "Language   |   언어   |   语言", 0, 0)
     
@@ -71,7 +71,7 @@ rule "Initialize: Workshop Settings":
                 ui_inputs[loop_index] = Button.ULTIMATE
                 break
 
-    data_loaded[DATA_INDEXES.DATA_CONTROLS] = true
+    data_loaded[DATA_TYPE.DATA_CONTROLS] = true
 
 
 rule "anticrash":

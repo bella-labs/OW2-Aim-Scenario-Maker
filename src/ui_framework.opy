@@ -246,7 +246,7 @@ def increment_for_menu_item():
     menu_item_var_2[menu_item_size] = ""
     menu_item_var_3[menu_item_size] = ""
     menu_item_var_4[menu_item_size] = ""
-    menu_item_help[menu_item_size] = [0,0,0,0,0,0,0,0]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.DEFAULT]
 
 
 def increment_for_submenu_item():

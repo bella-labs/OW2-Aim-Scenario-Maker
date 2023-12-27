@@ -106,6 +106,11 @@ playervar bot_scale_max
 playervar bot_gravity
 playervar bot_spawn_type
 playervar bot_spawn_vect
+playervar bot_facing_type
+playervar bot_facing_vect
+playervar bot_bound_pos
+playervar bot_bound_angle
+playervar bot_bound_dim
 
 ### Scenario Settings
 
@@ -172,6 +177,9 @@ subroutine act_bot_health
 subroutine act_bot_scale
 subroutine act_bot_gravity
 subroutine act_bot_spawn
+subroutine act_bot_facing
+subroutine act_bot_bound_pos
+subroutine act_bot_bound_dim
 
 ## Bot Generation
 subroutine create_bot
@@ -217,29 +225,30 @@ enum MENU_ACTIONS:
     MENU_NEXT_SUBITEM,
     MENU_SET_VECTOR
 
-enum RANGE_INDEXES:
+enum RANGE_TYPE:
     RANGE_NONE = 0,
     RANGE_SLOT,
     RANGE_HERO,
     RANGE_PERCENTAGE,
+    RANGE_ANGLE,
     RANGE_DISTANCE,
     RANGE_TIME,
     RANGE_SCALAR,
     RANGE_VECTOR,
     RANGE_SCORE
 
-enum SMALL_INDEXES:
+enum SMALL_TYPE:
     SMALL_NONE = 0,
     SMALL_0_01,
     SMALL_1
 
-enum LARGE_INDEXES:
+enum LARGE_TYPE:
     LARGE_NONE = 0,
     LARGE_1,
     LARGE_10,
 
 
-enum DATA_INDEXES:
+enum DATA_TYPE:
     DATA_STATIC = 0,
     DATA_BOT,
     DATA_MENU,
@@ -259,6 +268,15 @@ enum VECTOR_TARGET:
     VECT_X = 0,
     VECT_Y,
     VECT_Z
+
+enum TAG_TYPE:
+    HEALTH = 0,
+    MIN_MAX,
+    TYPE_MIN_MAX,
+    VECT,
+    TYPE_VECT,
+    ANGLE_DIM
+    
 globalvar action_var
 globalvar bot_slot
 globalvar new_hero_array
@@ -274,3 +292,14 @@ globalvar general_option_size
 globalvar general_vect
 globalvar general_vect_target
 globalvar refresh_index
+
+globalvar menu_index_store
+globalvar unit_cube
+globalvar beam_array
+globalvar start_pos
+globalvar scalar_length
+globalvar scalar_height
+globalvar scalar_width
+globalvar start_angle
+subroutine update_bound_effect
+subroutine create_bound_effect

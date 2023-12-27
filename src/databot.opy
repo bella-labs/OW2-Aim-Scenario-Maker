@@ -5,15 +5,15 @@ rule "Databot Populate Settings":
     @Condition eventPlayer.isDummy() == true
     @Condition eventPlayer.hasSpawned() == true
 
-    data_loaded[DATA_INDEXES.DATA_BOT] = false
-    waitUntil(data_loaded[DATA_INDEXES.DATA_CONTROLS] == true, 9999)
+    data_loaded[DATA_TYPE.DATA_BOT] = false
+    waitUntil(data_loaded[DATA_TYPE.DATA_CONTROLS] == true, 9999)
     
     eventPlayer.import_mode = false
     import_settings()
     if eventPlayer.import_mode == false:
         default_settings()
 
-    data_loaded[DATA_INDEXES.DATA_BOT] = true
+    data_loaded[DATA_TYPE.DATA_BOT] = true
         
 
 def setup_databot():
@@ -52,3 +52,8 @@ def default_settings():
         eventPlayer.bot_gravity = 100
         eventPlayer.bot_spawn_type = 0
         eventPlayer.bot_spawn_vect = vect(0,0,0)
+        eventPlayer.bot_facing_type = 0
+        eventPlayer.bot_facing_vect = vect(0,0,0)
+        eventPlayer.bot_bound_pos = vect(0,0,0)
+        eventPlayer.bot_bound_angle = 0
+        eventPlayer.bot_bound_dim = vect(0,0,0)
