@@ -111,6 +111,15 @@ def menu_act_submenu_bot():
         case submenu_curr_start + 11:
             act_bot_distance()
             break
+        case submenu_curr_start + 12:
+            act_bot_select_profile()
+            break
+        case submenu_curr_start + 13:
+            act_bot_rand_profile()
+            break
+        case submenu_curr_start + 14:
+            act_bot_custom_script()
+            break
 
 
 def menu_act_submenu_profile():

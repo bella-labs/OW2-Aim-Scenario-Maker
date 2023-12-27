@@ -12,17 +12,17 @@ def act_bot_select_slot():
         # Toggle all slots.
         case MENU_ACTIONS.MENU_JUMP_LEFT:
             # Set the action var to the opposite of the current selection boolean.
-            action_var = not databot.bot_slots[bot_slot]
+            action_var = not databot.bot_slot_status[bot_slot]
             # Loop through all slots and set the flag to the new value.
             for loop_index in range(0, 12, 1):
-                databot.bot_slots[loop_index] = action_var
+                databot.bot_slot_status[loop_index] = action_var
             break
         # Toggle current slot.
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            databot.bot_slots[bot_slot] = not databot.bot_slots[bot_slot]
+            databot.bot_slot_status[bot_slot] = not databot.bot_slot_status[bot_slot]
             break
     # Update the status text and color
-    if databot.bot_slots[bot_slot] == true:
+    if databot.bot_slot_status[bot_slot] == true:
         menu_item_var_2[menu_index] = strings_options[lang_type][0][0]
         menu_item_color_on[menu_index] = Color.GREEN
     else:
@@ -83,7 +83,27 @@ def subact_select_slot_refresh():
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.bot_dist_min[bot_slot]
     menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
-        
+    # Profile Status
+    refresh_index += 1
+    if databot.bot_profile_status[bot_slot][menu_item_var_1[menu_index]] == true:
+        menu_item_var_2[refresh_index] = strings_options[lang_type][0][0]
+        menu_item_color_on[refresh_index] = Color.GREEN
+    else:
+        menu_item_var_2[refresh_index] = strings_options[lang_type][0][1]
+        menu_item_color_on[refresh_index] = Color.RED
+    # Random Profile
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][6][databot.bot_profile_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_profile_min[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_profile_max[bot_slot]
+    # Custom Scripts
+    refresh_index += 1
+    if databot.bot_custom_script[bot_slot] == true:
+        menu_item_var_1[refresh_index] = strings_options[lang_type][0][0]
+        menu_item_color_on[refresh_index] = Color.GREEN
+    else:
+        menu_item_var_1[refresh_index] = strings_options[lang_type][0][1]
+        menu_item_color_on[refresh_index] = Color.RED
     
 def act_bot_override_slot():
     @Name "SUB: act_bot_override_slot"
@@ -113,7 +133,7 @@ def subact_bot_override_slot():
     @Name "SUB: subact_bot_override_slot"
     action_var = menu_item_var_1[menu_index]
 
-    databot.bot_slots[action_var] = databot.bot_slots[bot_slot]
+    databot.bot_slot_status[action_var] = databot.bot_slot_status[bot_slot]
 
     databot.bot_hero_pool[action_var] = databot.bot_hero_pool[bot_slot]
 
@@ -140,6 +160,14 @@ def subact_bot_override_slot():
 
     databot.bot_dist_min[action_var] = databot.bot_dist_min[bot_slot]
     databot.bot_dist_max[action_var] = databot.bot_dist_max[bot_slot]
+
+    databot.bot_profile_status[action_var] = databot.bot_profile_status[bot_slot]
+
+    databot.bot_profile_type[action_var] = databot.bot_profile_type[bot_slot]
+    databot.bot_profile_min[action_var] = databot.bot_profile_min[bot_slot]
+    databot.bot_profile_max[action_var] = databot.bot_profile_max[bot_slot]
+
+    databot.bot_custom_script[action_var] = databot.bot_custom_script[bot_slot]
 
 
 def act_bot_hero_pool():
@@ -401,3 +429,15 @@ def act_bot_distance():
     databot.bot_dist_max[bot_slot] = general_val_2
 
     update_distance_effect()
+
+
+def act_bot_select_profile():
+    @Name "SUB: act_bot_select_profile"
+
+
+def act_bot_rand_profile():
+    @Name "SUB: act_bot_rand_profile"
+
+
+def act_bot_custom_script():
+    @Name "SUB: act_bot_custom_script"

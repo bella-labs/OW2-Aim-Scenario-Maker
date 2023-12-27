@@ -41,23 +41,28 @@ def default_settings():
     eventPlayer.import_mode = true
     
     for loop_index in range(0, 11, 1):
-        eventPlayer.bot_slots[loop_index] = false
+        eventPlayer.bot_slot_status[loop_index] = false
         eventPlayer.bot_hero_pool[loop_index] = [Hero.TRACER]
-        eventPlayer.bot_health = 100
-        eventPlayer.bot_hps = 0
-        eventPlayer.bot_hps_wait = 0
-        eventPlayer.bot_scale_type = 0
-        eventPlayer.bot_scale_min = 100
-        eventPlayer.bot_scale_max = 100
-        eventPlayer.bot_gravity = 100
-        eventPlayer.bot_spawn_type = 0
-        eventPlayer.bot_spawn_vect = vect(0,0,0)
-        eventPlayer.bot_facing_type = 0
-        eventPlayer.bot_facing_vect = vect(0,0,0)
-        eventPlayer.bot_bound_pos = vect(0,0,0)
-        eventPlayer.bot_bound_angle = 0
-        eventPlayer.bot_bound_dim = vect(0,0,0)
-        eventPlayer.bot_dist_min = 0
-        eventPlayer.bot_dist_max = 0
+        eventPlayer.bot_health[loop_index] = 100
+        eventPlayer.bot_hps[loop_index] = 0
+        eventPlayer.bot_hps_wait[loop_index] = 0
+        eventPlayer.bot_scale_type[loop_index] = 0
+        eventPlayer.bot_scale_min[loop_index] = 100
+        eventPlayer.bot_scale_max[loop_index] = 100
+        eventPlayer.bot_gravity[loop_index] = 100
+        eventPlayer.bot_spawn_type[loop_index] = 0
+        eventPlayer.bot_spawn_vect[loop_index] = vect(0,0,0)
+        eventPlayer.bot_facing_type[loop_index] = 0
+        eventPlayer.bot_facing_vect[loop_index] = vect(0,0,0)
+        eventPlayer.bot_bound_pos[loop_index] = vect(0,0,0)
+        eventPlayer.bot_bound_angle[loop_index] = 0
+        eventPlayer.bot_bound_dim[loop_index] = vect(0,0,0)
+        eventPlayer.bot_dist_min[loop_index] = 0
+        eventPlayer.bot_dist_max[loop_index] = 0
+        eventPlayer.bot_profile_status[loop_index] = [false, false, false, false, false, false, false, false, false, false, false, false]
+        eventPlayer.bot_profile_type[loop_index] = 0
+        eventPlayer.bot_profile_min[loop_index] = 0
+        eventPlayer.bot_profile_max[loop_index] = 0
+        eventPlayer.bot_custom_script[loop_index] = false
 
-        eventPlayer.scen_player_spawn = vect(0,0,0)
+    eventPlayer.scen_player_spawn = vect(0,0,0)

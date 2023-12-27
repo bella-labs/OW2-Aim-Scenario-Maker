@@ -95,7 +95,7 @@ globalvar hero_array
 ## Data Storage
 ### Bot Settings
 playervar import_mode
-playervar bot_slots
+playervar bot_slot_status
 playervar bot_hero_pool
 playervar bot_health
 playervar bot_hps
@@ -113,7 +113,11 @@ playervar bot_bound_angle
 playervar bot_bound_dim
 playervar bot_dist_min
 playervar bot_dist_max
-
+playervar bot_profile_status
+playervar bot_profile_type
+playervar bot_profile_min
+playervar bot_profile_max
+playervar bot_custom_script
 
 playervar scen_player_spawn
 ### Scenario Settings
@@ -186,6 +190,9 @@ subroutine act_bot_facing
 subroutine act_bot_bound_pos
 subroutine act_bot_bound_dim
 subroutine act_bot_distance
+subroutine act_bot_select_profile
+subroutine act_bot_rand_profile
+subroutine act_bot_custom_script
 ## Bot Generation
 subroutine create_bot
 subroutine destroy_bot

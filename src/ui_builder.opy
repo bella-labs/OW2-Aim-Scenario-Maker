@@ -287,12 +287,11 @@ def create_submenu_bot():
     new_menu_label_subtext()
 
     # (Toggle List) Select Bot Slot
-
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos] 
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_1[menu_item_size] = 0
-    if databot.bot_slots[0] == true:
+    if databot.bot_slot_status[0] == true:
         menu_item_var_2[menu_item_size] = strings_options[lang_type][0][0]
         menu_item_color_on[menu_item_size] = Color.GREEN
     else:
@@ -301,9 +300,6 @@ def create_submenu_bot():
     menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_SLOT]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1]
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_TOGGLE]
-
-        
-    
     new_menu_item_toggle_list()
 
     # (Cycle) Override from Slot
@@ -474,26 +470,46 @@ def create_submenu_bot():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (1 Var) Profile Status
+    # (Toggle List) Select Profiles for Bot
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos] 
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = [0]
-    menu_item_var_1[menu_item_size] = strings_options[lang_type][menu_max_pos][0]
+    menu_item_var_1[menu_item_size] = 0
+    if databot.bot_profile_status[0][0] == true:
+        menu_item_var_2[menu_item_size] = strings_options[lang_type][0][0]
+        menu_item_color_on[menu_item_size] = Color.GREEN
+    else:
+        menu_item_var_2[menu_item_size] = strings_options[lang_type][0][1]
+        menu_item_color_on[menu_item_size] = Color.RED
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_SLOT]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_TOGGLE]
     new_menu_item_toggle_list()
 
     # (3 Var) Randomize Profiles
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_var_1[menu_item_size] = "Off"
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX]
+    menu_item_var_1[menu_item_size] = [lang_type][6][databot.bot_profile_type[0]]
+    menu_item_var_2[menu_item_size] = databot.bot_profile_min[0]
+    menu_item_var_3[menu_item_size] = databot.bot_profile_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [RANGE_TYPE.RANGE_NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [RANGE_TYPE.RANGE_NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_TOGGLE]
     new_menu_item_3var()
 
     # (Toggle) Use Custom Scripts (Requires Workshop Scripting)
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_var_1[menu_item_size] = "Off"
+    if databot.bot_custom_script[0] == true:
+        menu_item_var_1[menu_item_size] = strings_options[lang_type][0][0]
+        menu_item_color_on[menu_item_size] = Color.GREEN
+    else:
+        menu_item_var_1[menu_item_size] = strings_options[lang_type][0][1]
+        menu_item_color_on[menu_item_size] = Color.RED
     new_menu_item_toggle()
 
 
