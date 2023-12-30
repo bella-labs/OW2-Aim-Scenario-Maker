@@ -14,7 +14,7 @@ def act_bot_select_slot():
             # Set the action var to the opposite of the current selection boolean.
             action_var = not databot.bot_slot_status[bot_slot]
             # Loop through all slots and set the flag to the new value.
-            for loop_index in range(0, 12, 1):
+            for loop_index in range(0, len(databot.bot_slot_status), 1):
                 databot.bot_slot_status[loop_index] = action_var
             break
         # Toggle current slot.
@@ -99,10 +99,10 @@ def subact_select_slot_refresh():
     # Custom Scripts
     refresh_index += 1
     if databot.bot_custom_script[bot_slot] == true:
-        menu_item_var_1[refresh_index] = strings_options[lang_type][0][0]
+        menu_item_var_2[refresh_index] = strings_options[lang_type][0][0]
         menu_item_color_on[refresh_index] = Color.GREEN
     else:
-        menu_item_var_1[refresh_index] = strings_options[lang_type][0][1]
+        menu_item_var_2[refresh_index] = strings_options[lang_type][0][1]
         menu_item_color_on[refresh_index] = Color.RED
     
 def act_bot_override_slot():
@@ -241,10 +241,10 @@ def act_bot_scale():
 
     switch subitem_index[menu_index]:
         case 0:
-            general_val = databot.bot_scale_type[bot_slot]
+            action_var = databot.bot_scale_type[bot_slot]
             general_option_size = len(strings_options[lang_type][3])
             act_general_change_list()
-            databot.bot_scale_type[bot_slot] = general_val
+            databot.bot_scale_type[bot_slot] = action_var
             menu_item_var_1[menu_index] = strings_options[lang_type][3][databot.bot_scale_type[bot_slot]]
             break
         case 1:
@@ -269,38 +269,38 @@ def act_bot_spawn():
     @Name "SUB: act_bot_spawn"
 
     if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
-        general_val_2 = eventPlayer.getPosition()
-        databot.bot_spawn_vect[bot_slot] = general_val_2
-        menu_item_var_2[menu_index] = general_val_2.x
-        menu_item_var_3[menu_index] = general_val_2.y
-        menu_item_var_4[menu_index] = general_val_2.z
+        action_var_2 = eventPlayer.getPosition()
+        databot.bot_spawn_vect[bot_slot] = action_var_2
+        menu_item_var_2[menu_index] = action_var_2.x
+        menu_item_var_3[menu_index] = action_var_2.y
+        menu_item_var_4[menu_index] = action_var_2.z
     else:
-        general_val_2 = databot.bot_spawn_vect[bot_slot]
+        action_var_2 = databot.bot_spawn_vect[bot_slot]
         switch subitem_index[menu_index]:
             case 0:
-                general_val = databot.bot_spawn_type[bot_slot]
+                action_var = databot.bot_spawn_type[bot_slot]
                 general_option_size = len(strings_options[lang_type][4])
                 act_general_change_list()
-                databot.bot_spawn_type[bot_slot] = general_val
+                databot.bot_spawn_type[bot_slot] = action_var
                 menu_item_var_1[menu_index] = strings_options[lang_type][4][databot.bot_spawn_type[bot_slot]]
                 break
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = general_val_2
-                menu_item_var_2[menu_index] = general_val_2.x
+                databot.bot_spawn_vect[bot_slot] = action_var_2
+                menu_item_var_2[menu_index] = action_var_2.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = general_val_2
-                menu_item_var_3[menu_index] = general_val_2.y
+                databot.bot_spawn_vect[bot_slot] = action_var_2
+                menu_item_var_3[menu_index] = action_var_2.y
                 break
             case 3:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = general_val_2
-                menu_item_var_4[menu_index] = general_val_2.z
+                databot.bot_spawn_vect[bot_slot] = action_var_2
+                menu_item_var_4[menu_index] = action_var_2.z
                 break
 
 
@@ -308,38 +308,38 @@ def act_bot_facing():
     @Name "SUB: act_bot_facing"
 
     if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
-        general_val_2 = eventPlayer.getFacingDirection()
-        databot.bot_facing_vect[bot_slot] = general_val_2
-        menu_item_var_2[menu_index] = general_val_2.x
-        menu_item_var_3[menu_index] = general_val_2.y
-        menu_item_var_4[menu_index] = general_val_2.z
+        action_var_2 = eventPlayer.getFacingDirection()
+        databot.bot_facing_vect[bot_slot] = action_var_2
+        menu_item_var_2[menu_index] = action_var_2.x
+        menu_item_var_3[menu_index] = action_var_2.y
+        menu_item_var_4[menu_index] = action_var_2.z
     else:
-        general_val_2 = databot.bot_facing_vect[bot_slot]
+        action_var_2 = databot.bot_facing_vect[bot_slot]
         switch subitem_index[menu_index]:
             case 0:
-                general_val = databot.bot_facing_type[bot_slot]
+                action_var = databot.bot_facing_type[bot_slot]
                 general_option_size = len(strings_options[lang_type][5])
                 act_general_change_list()
-                databot.bot_facing_type[bot_slot] = general_val
+                databot.bot_facing_type[bot_slot] = action_var
                 menu_item_var_1[menu_index] = strings_options[lang_type][5][databot.bot_facing_type[bot_slot]]
                 break
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = general_val_2
-                menu_item_var_2[menu_index] = general_val_2.x
+                databot.bot_facing_vect[bot_slot] = action_var_2
+                menu_item_var_2[menu_index] = action_var_2.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = general_val_2
-                menu_item_var_3[menu_index] = general_val_2.y
+                databot.bot_facing_vect[bot_slot] = action_var_2
+                menu_item_var_3[menu_index] = action_var_2.y
                 break
             case 3:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = general_val_2
-                menu_item_var_4[menu_index] = general_val_2.z
+                databot.bot_facing_vect[bot_slot] = action_var_2
+                menu_item_var_4[menu_index] = action_var_2.z
                 break
 
 
@@ -347,31 +347,31 @@ def act_bot_bound_pos():
     @Name "SUB: act_bot_bound_pos"
 
     if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
-        general_val_2 = eventPlayer.getPosition()
-        databot.bot_bound_pos[bot_slot] = general_val_2
-        menu_item_var_1[menu_index] = general_val_2.x
-        menu_item_var_2[menu_index] = general_val_2.y
-        menu_item_var_3[menu_index] = general_val_2.z
+        action_var_2 = eventPlayer.getPosition()
+        databot.bot_bound_pos[bot_slot] = action_var_2
+        menu_item_var_1[menu_index] = action_var_2.x
+        menu_item_var_2[menu_index] = action_var_2.y
+        menu_item_var_3[menu_index] = action_var_2.z
     else:
-        general_val_2 = databot.bot_bound_pos[bot_slot]
+        action_var_2 = databot.bot_bound_pos[bot_slot]
         switch subitem_index[menu_index]:
             case 0:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = general_val_2
-                menu_item_var_1[menu_index] = general_val_2.x
+                databot.bot_bound_pos[bot_slot] = action_var_2
+                menu_item_var_1[menu_index] = action_var_2.x
                 break
             case 1:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = general_val_2
-                menu_item_var_2[menu_index] = general_val_2.y
+                databot.bot_bound_pos[bot_slot] = action_var_2
+                menu_item_var_2[menu_index] = action_var_2.y
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = general_val_2
-                menu_item_var_3[menu_index] = general_val_2.z
+                databot.bot_bound_pos[bot_slot] = action_var_2
+                menu_item_var_3[menu_index] = action_var_2.z
                 break
     update_bound_effect()
 
@@ -379,7 +379,7 @@ def act_bot_bound_pos():
 def act_bot_bound_dim():
     @Name "SUB: act_bot_bound_dim"
 
-    general_val_2 = databot.bot_bound_dim[bot_slot]
+    action_var_2 = databot.bot_bound_dim[bot_slot]
     switch subitem_index[menu_index]:
         case 0:
             act_general_chg_var_1_num()
@@ -388,20 +388,20 @@ def act_bot_bound_dim():
         case 1:
             general_target = GENERAL_TARGET.VECT_X
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = general_val_2
-            menu_item_var_2[menu_index] = general_val_2.x
+            databot.bot_bound_dim[bot_slot] = action_var_2
+            menu_item_var_2[menu_index] = action_var_2.x
             break
         case 2:
             general_target = GENERAL_TARGET.VECT_Y
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = general_val_2
-            menu_item_var_3[menu_index] = general_val_2.y
+            databot.bot_bound_dim[bot_slot] = action_var_2
+            menu_item_var_3[menu_index] = action_var_2.y
             break
         case 3:
             general_target = GENERAL_TARGET.VECT_Z
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = general_val_2
-            menu_item_var_4[menu_index] = general_val_2.z
+            databot.bot_bound_dim[bot_slot] = action_var_2
+            menu_item_var_4[menu_index] = action_var_2.z
             break
     update_bound_effect()
 
@@ -409,8 +409,8 @@ def act_bot_bound_dim():
 def act_bot_distance():
     @Name "SUB: act_bot_distance"
 
-    general_val = menu_item_var_1[menu_index]
-    general_val_2 = menu_item_var_2[menu_index]
+    action_var = menu_item_var_1[menu_index]
+    action_var_2 = menu_item_var_2[menu_index]
 
     switch subitem_index[menu_index]:
         case 0:
@@ -422,11 +422,11 @@ def act_bot_distance():
 
     act_general_change_min_max()
 
-    menu_item_var_1[menu_index] = general_val
-    menu_item_var_2[menu_index] = general_val_2
+    menu_item_var_1[menu_index] = action_var
+    menu_item_var_2[menu_index] = action_var_2
 
-    databot.bot_dist_min[bot_slot] = general_val
-    databot.bot_dist_max[bot_slot] = general_val_2
+    databot.bot_dist_min[bot_slot] = action_var
+    databot.bot_dist_max[bot_slot] = action_var_2
 
     update_distance_effect()
 
@@ -434,10 +434,71 @@ def act_bot_distance():
 def act_bot_select_profile():
     @Name "SUB: act_bot_select_profile"
 
+    switch menu_action:
+        # Change bot slot.
+        case MENU_ACTIONS.MENU_STEP_LEFT:
+        case MENU_ACTIONS.MENU_STEP_RIGHT:
+            act_general_chg_var_1_num()
+            profile_slot = menu_item_var_1[menu_index]
+            break
+        # Toggle all slots.
+        case MENU_ACTIONS.MENU_JUMP_LEFT:
+            # Set the action var to the opposite of the current selection boolean.
+            action_var = databot.bot_profile_status[bot_slot]
+            action_var_2 = not action_var[profile_slot]
+            # Loop through all slots and set the flag to the new value.
+            for loop_index in range(0, len(action_var), 1):
+                action_var[loop_index] = action_var_2
+            databot.bot_profile_status[bot_slot] = action_var
+            break
+        # Toggle current slot.
+        case MENU_ACTIONS.MENU_JUMP_RIGHT:
+            action_var = databot.bot_profile_status[bot_slot]
+            action_var[profile_slot] = not action_var[profile_slot]
+            databot.bot_profile_status[bot_slot] = action_var
+            break
+    # Update the status text and color
+    if databot.bot_profile_status[bot_slot][profile_slot] == true:
+        menu_item_var_2[menu_index] = strings_options[lang_type][0][0]
+        menu_item_color_on[menu_index] = Color.GREEN
+    else:
+        menu_item_var_2[menu_index] = strings_options[lang_type][0][1]
+        menu_item_color_on[menu_index] = Color.RED
+
 
 def act_bot_rand_profile():
     @Name "SUB: act_bot_rand_profile"
+    
+    if subitem_index[menu_index] == 0:
+        databot.bot_profile_type[bot_slot] = not databot.bot_profile_type[bot_slot]
+        if databot.bot_profile_type[bot_slot] == true:
+            menu_item_var_1[menu_index] = strings_options[lang_type][0][0]
+            menu_item_color_on[menu_index] = Color.GREEN
+        else:
+            menu_item_var_1[menu_index] = strings_options[lang_type][0][1]
+            menu_item_color_on[menu_index] = Color.RED
+    else:
+        action_var = menu_item_var_2[menu_index]
+        action_var_2 = menu_item_var_3[menu_index]
+        if subitem_index[menu_index] == 1:
+            general_target = GENERAL_TARGET.MIN
+        else:
+            general_target = GENERAL_TARGET.MAX
+        act_general_change_min_max()
+        menu_item_var_2[menu_index] = action_var
+        menu_item_var_3[menu_index] = action_var_2
+        databot.bot_dist_min[bot_slot] = action_var
+        databot.bot_dist_max[bot_slot] = action_var_2
 
 
 def act_bot_custom_script():
     @Name "SUB: act_bot_custom_script"
+
+    databot.bot_custom_script[bot_slot] = not databot.bot_custom_script[bot_slot]
+
+    if databot.bot_custom_script[bot_slot] == true:
+        menu_item_var_2[menu_index] = strings_options[lang_type][0][0]
+        menu_item_color_on[menu_index] = Color.GREEN
+    else:
+        menu_item_var_2[menu_index] = strings_options[lang_type][0][1]
+        menu_item_color_on[menu_index] = Color.RED

@@ -505,10 +505,10 @@ def create_submenu_bot():
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     if databot.bot_custom_script[0] == true:
-        menu_item_var_1[menu_item_size] = strings_options[lang_type][0][0]
+        menu_item_var_2[menu_item_size] = strings_options[lang_type][0][0]
         menu_item_color_on[menu_item_size] = Color.GREEN
     else:
-        menu_item_var_1[menu_item_size] = strings_options[lang_type][0][1]
+        menu_item_var_2[menu_item_size] = strings_options[lang_type][0][1]
         menu_item_color_on[menu_item_size] = Color.RED
     new_menu_item_toggle()
 

@@ -296,13 +296,13 @@ enum STORED_ITEMS:
     BOUNDS_2,
     DISTANCE,
     
-globalvar action_var
 globalvar bot_slot
+globalvar profile_slot
 globalvar new_hero_array
 
-globalvar general_val
-globalvar general_val_2
-globalvar general_val_3
+globalvar action_var
+globalvar action_var_2
+globalvar action_var_3
 globalvar general_small
 globalvar general_large
 globalvar general_range_min
