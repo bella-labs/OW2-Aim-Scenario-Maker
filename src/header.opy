@@ -175,7 +175,7 @@ subroutine act_general_change_list
 subroutine act_general_change_min_max
 ### Custom Actions
 #### Main Menu
-subroutine act_sub0_open_hero_sel
+subroutine act_main_select_bot
 #### Bot Submenu
 subroutine act_bot_select_slot
 subroutine subact_select_slot_refresh
@@ -193,6 +193,10 @@ subroutine act_bot_distance
 subroutine act_bot_select_profile
 subroutine act_bot_rand_profile
 subroutine act_bot_custom_script
+#### Profile Menu
+subroutine act_prof_select_prof
+subroutine subact_select_prof_refresh
+subroutine act_bot_override_prof
 ## Bot Generation
 subroutine create_bot
 subroutine destroy_bot

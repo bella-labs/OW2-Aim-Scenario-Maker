@@ -58,6 +58,7 @@ def setup_menu_custom():
     menu_colors_custom[3] = rgb(24,208,195)
 
     bot_slot = 0
+    profile_slot = 0
 
 
 def create_hud():
@@ -540,12 +541,19 @@ def create_submenu_profile():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    menu_item_var_1[menu_item_size] = 0
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE]
     new_menu_item_cycle()
 
     # (Cycle) Override Profile From Slot
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_SLOT]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1]
+    menu_item_var_1[menu_item_size] = 0
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_OVERRIDE]
     new_menu_item_cycle()
 
     # (Subtext) Movement
