@@ -6,6 +6,7 @@ globalvar data_loaded
 globalvar menu_visible
 globalvar menu_action
 globalvar menu_wait
+globalvar menu_wait_index
 ## Menu Indexes
 globalvar menu_index
 globalvar submenu_index
@@ -175,7 +176,7 @@ subroutine act_general_change_list
 subroutine act_general_change_min_max
 ### Custom Actions
 #### Main Menu
-subroutine act_main_select_bot
+subroutine act_main_open_hero_sel
 #### Bot Submenu
 subroutine act_bot_select_slot
 subroutine subact_select_slot_refresh
@@ -330,3 +331,5 @@ subroutine update_bound_effect
 subroutine create_bound_effect
 subroutine update_distance_effect
 subroutine create_distance_effect
+globalvar color_options
+globalvar color_option_index

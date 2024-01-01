@@ -1,5 +1,5 @@
-def act_sub0_open_hero_sel():
-    @Name "SUB: act_sub0_open_hero_sel"
+def act_main_open_hero_sel():
+    @Name "SUB: act_main_open_hero_sel"
 
     eventPlayer.setAllowedHeroes(eventPlayer.getAllowedHeroes().exclude(eventPlayer.getCurrentHero()))
     eventPlayer.resetHeroAvailability()

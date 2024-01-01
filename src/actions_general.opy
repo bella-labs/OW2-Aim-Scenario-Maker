@@ -26,7 +26,7 @@ def act_general_chg_num():
     elif action_var > general_range_max:
         action_var = general_range_min
 
-    menu_wait = 0.05
+    menu_wait_index = 1
 
         
 def act_general_chg_var_1_num():

@@ -2,7 +2,7 @@ def perform_action():
     @Name "SUB: perform_action"
 
     submenu_curr_start = submenu_start_indexes[submenu_index]
-    menu_wait = 0.1
+    menu_wait_index = 0
 
     switch submenu_index:
         case SUBMENUS.SUBMENU_MAIN:
@@ -21,7 +21,7 @@ def perform_action():
             menu_act_submenu_movement()
             break
 
-    wait(menu_wait)
+    wait(menu_wait[menu_wait_index])
     if RULE_CONDITION:
         goto RULE_START
         
@@ -46,7 +46,7 @@ def menu_act_submenu_main():
             menu_act_change_submenu()
             break
         case submenu_curr_start + 3:
-            act_sub0_open_hero_sel()
+            act_main_open_hero_sel()
             break
         case submenu_curr_start + 4:
             break
