@@ -40,6 +40,8 @@ def default_settings():
     
     eventPlayer.import_mode = true
     
+    eventPlayer.scen_player_spawn = vect(0,0,0)
+
     for loop_index in range(0, 11, 1):
         eventPlayer.bot_slot_status[loop_index] = false
         eventPlayer.bot_hero_pool[loop_index] = [Hero.TRACER]
@@ -71,6 +73,39 @@ def default_settings():
 
         eventPlayer.prof_weight[loop_index] = 1
 
-        
-
-    eventPlayer.scen_player_spawn = vect(0,0,0)
+        eventPlayer.mvmt_hori_type[loop_index] = 0
+        eventPlayer.mvmt_hori_impulse[loop_index] = 0
+        eventPlayer.mvmt_left_chance[loop_index] = 50
+        eventPlayer.mvmt_right_chance[loop_index] = 50
+        eventPlayer.mvmt_left_speed_multi[loop_index] = 100
+        eventPlayer.mvmt_right_speed_multi[loop_index] = 100
+        eventPlayer.mvmt_left_min[loop_index] = 0
+        eventPlayer.mvmt_left_max[loop_index] = 0
+        eventPlayer.mvmt_right_min[loop_index] = 0
+        eventPlayer.mvmt_right_max[loop_index] = 0
+        eventPlayer.mvmt_fwd_chance[loop_index] = 50
+        eventPlayer.mvmt_back_chance[loop_index] = 50
+        eventPlayer.mvmt_fwd_speed_multi[loop_index] = 100
+        eventPlayer.mvmt_back_speed_multi[loop_index] = 100
+        eventPlayer.mvmt_fwd_min[loop_index] = 0
+        eventPlayer.mvmt_fwd_max[loop_index] = 0
+        eventPlayer.mvmt_back_min[loop_index] = 0
+        eventPlayer.mvmt_back_max[loop_index] = 0
+        eventPlayer.mvmt_vert_type[loop_index] = 0
+        eventPlayer.mvmt_vert_impulse[loop_index] = 0
+        eventPlayer.mvmt_jump_chance[loop_index] = 0
+        eventPlayer.mvmt_jump_min[loop_index] = 0
+        eventPlayer.mvmt_jump_max[loop_index] = 0
+        eventPlayer.mvmt_crouch_chance[loop_index] = 0
+        eventPlayer.mvmt_crouch_min[loop_index] = 0
+        eventPlayer.mvmt_crouch_max[loop_index] = 0
+        eventPlayer.mvmt_uncrouch_min[loop_index] = 0
+        eventPlayer.mvmt_uncrouch_max[loop_index] = 0
+        eventPlayer.mvmt_lr_idle_interval[loop_index] = 0
+        eventPlayer.mvmt_lr_idle_chance[loop_index] = 0
+        eventPlayer.mvmt_lr_idle_min[loop_index] = 0
+        eventPlayer.mvmt_lr_idle_max[loop_index] = 0
+        eventPlayer.mvmt_fb_idle_interval[loop_index] = 0
+        eventPlayer.mvmt_fb_idle_chance[loop_index] = 0
+        eventPlayer.mvmt_fb_idle_min[loop_index] = 0
+        eventPlayer.mvmt_fb_idle_max[loop_index] = 0

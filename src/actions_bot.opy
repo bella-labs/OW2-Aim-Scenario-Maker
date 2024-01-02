@@ -241,7 +241,7 @@ def act_bot_speed():
     else:
         action_var = menu_item_var_2[menu_index]
         action_var_2 = menu_item_var_3[menu_index]
-        
+
         if subitem_index[menu_index] == 1:
             general_target = GENERAL_TARGET.MIN
         else:
@@ -252,8 +252,6 @@ def act_bot_speed():
         menu_item_var_3[menu_index] = action_var_2
         databot.bot_speed_min[bot_slot] = action_var
         databot.bot_speed_max[bot_slot] = action_var_2
-
-                
 
 
 def act_bot_scale():

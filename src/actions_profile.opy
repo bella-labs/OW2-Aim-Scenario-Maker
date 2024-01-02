@@ -52,3 +52,4 @@ def act_prof_change_weight():
 
     act_general_num_var_1()
     databot.prof_weight[profile_slot] = menu_item_var_1[menu_index]
+    

@@ -615,11 +615,17 @@ def create_submenu_movement():
     menu_item_color_off[menu_item_size] = menu_colors_custom[3]
     new_menu_item_selection()
 
-    # (Subtext) Left / Right Movement
+    # (Subtext) Horizontal Movement
     increment_for_menu_label()
     menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
+
+    # (2 Var) Horizontal Type
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
 
     # (2 Var) Left Strafe
     increment_for_menu_item()
@@ -633,12 +639,6 @@ def create_submenu_movement():
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     new_menu_item_selection()
 
-    # (Subtext) Forward / Backward Movement
-    increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
     # (2 Var) Forward Strafe
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
@@ -651,35 +651,17 @@ def create_submenu_movement():
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     new_menu_item_selection()
 
-    # (Subtext) Idle Movement
-    increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
-    # (Cycle) Idle Type
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (4 Var) Left / Right Idle
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (4 Var) Forward / Backward Idle
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
     # (Subtext) Vertical Movement
     increment_for_menu_label()
     menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
+
+    # (2 Var) Vertical Type
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
 
     # (4 Var) Jump Frequency
     increment_for_menu_item()
@@ -694,6 +676,24 @@ def create_submenu_movement():
     new_menu_item_selection()
 
     # (2 Var) Uncrouch Frequency
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (Subtext) Idle Movement
+    increment_for_menu_label()
+    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_label_color[menu_label_size] = menu_color_label_subtext
+    new_menu_label_subtext()
+
+    # (4 Var) Left / Right Idle
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (4 Var) Forward / Backward Idle
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]

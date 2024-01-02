@@ -129,6 +129,44 @@ playervar bot_script_status
 
 playervar prof_weight
 
+playervar mvmt_hori_type
+playervar mvmt_hori_impulse
+playervar mvmt_left_chance
+playervar mvmt_right_chance
+playervar mvmt_left_speed_multi
+playervar mvmt_right_speed_multi
+playervar mvmt_left_min
+playervar mvmt_left_max
+playervar mvmt_right_min
+playervar mvmt_right_max
+playervar mvmt_fwd_chance
+playervar mvmt_back_chance
+playervar mvmt_fwd_speed_multi
+playervar mvmt_back_speed_multi
+playervar mvmt_fwd_min
+playervar mvmt_fwd_max
+playervar mvmt_back_min
+playervar mvmt_back_max
+playervar mvmt_vert_type
+playervar mvmt_vert_impulse
+playervar mvmt_jump_chance
+playervar mvmt_jump_min
+playervar mvmt_jump_max
+playervar mvmt_crouch_chance
+playervar mvmt_crouch_min
+playervar mvmt_crouch_max
+playervar mvmt_uncrouch_min
+playervar mvmt_uncrouch_max
+playervar mvmt_lr_idle_interval
+playervar mvmt_lr_idle_chance
+playervar mvmt_lr_idle_min
+playervar mvmt_lr_idle_max
+playervar mvmt_fb_idle_interval
+playervar mvmt_fb_idle_chance
+playervar mvmt_fb_idle_min
+playervar mvmt_fb_idle_max
+
+
 ### Scenario Settings
 
 # Subroutines
