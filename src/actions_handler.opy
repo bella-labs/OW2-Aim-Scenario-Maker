@@ -139,7 +139,7 @@ def menu_act_submenu_profile():
         case submenu_curr_start + 2:
             act_prof_override_prof()
             break
-        case submenu_curr_start + 2:
+        case submenu_curr_start + 3:
             act_prof_change_weight()
             break
         case submenu_curr_start + 4:

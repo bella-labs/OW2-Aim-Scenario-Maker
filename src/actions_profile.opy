@@ -10,6 +10,10 @@ def act_prof_select_prof():
 def subact_select_prof_refresh():
     @Name "SUB: subact_select_prof_refresh"
 
+    # Weight
+    refresh_index = menu_index + 2
+    menu_item_var_1[refresh_index] = databot.prof_weight[profile_slot]
+
 
 def act_prof_override_prof():
     @Name "SUB: act_prof_override_prof"
@@ -38,8 +42,13 @@ def act_prof_override_prof():
 def subact_prof_override_slot():
     @Name "SUB: subact_prof_override_slot"
 
+    action_var = menu_item_var_1[menu_index]
+
+    databot.prof_weight[action_var] = databot.prof_weight[profile_slot]
+
 
 def act_prof_change_weight():
     @Name "SUB: act_prof_change_weight"
 
     act_general_num_var_1()
+    databot.prof_weight[profile_slot] = menu_item_var_1[menu_index]

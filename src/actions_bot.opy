@@ -32,11 +32,8 @@ def act_bot_select_slot():
 def subact_select_slot_refresh():
     @Name "SUB: subact_select_slot_refresh"
 
-    refresh_index = menu_index
-    # Override Slot
-    refresh_index += 1
     # Hero Pool
-    refresh_index += 1
+    refresh_index = menu_index + 2
     action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] == true
     action_var_2 = refresh_index
     action_var_3 = OPTIONS_TYPE.TOGGLE
