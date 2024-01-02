@@ -5,7 +5,7 @@ def act_bot_select_slot():
         # Change bot slot.
         case MENU_ACTIONS.MENU_STEP_LEFT:
         case MENU_ACTIONS.MENU_STEP_RIGHT:
-            act_general_chg_var_1_num()
+            act_general_num_var_1()
             bot_slot = menu_item_var_1[menu_index]
             subact_select_slot_refresh()
             break
@@ -22,12 +22,12 @@ def act_bot_select_slot():
             databot.bot_slot_status[bot_slot] = not databot.bot_slot_status[bot_slot]
             break
     # Update the status text and color
-    if databot.bot_slot_status[bot_slot] == true:
-        menu_item_var_2[menu_index] = strings_options[lang_type][0][0]
-        menu_item_color_on[menu_index] = Color.GREEN
-    else:
-        menu_item_var_2[menu_index] = strings_options[lang_type][0][1]
-        menu_item_color_on[menu_index] = Color.RED
+
+    action_var = databot.bot_slot_status[bot_slot]
+    action_var_2 = menu_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
+
 
 def subact_select_slot_refresh():
     @Name "SUB: subact_select_slot_refresh"
@@ -37,12 +37,10 @@ def subact_select_slot_refresh():
     refresh_index += 1
     # Hero Pool
     refresh_index += 1
-    if hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] == true:
-        menu_item_var_2[refresh_index] = strings_options[lang_type][0][0]
-        menu_item_color_on[refresh_index] = Color.GREEN
-    else:
-        menu_item_var_2[refresh_index] = strings_options[lang_type][0][1]
-        menu_item_color_on[refresh_index] = Color.RED
+    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] == true
+    action_var_2 = refresh_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
     # Health
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.bot_health[bot_slot] 
@@ -50,7 +48,7 @@ def subact_select_slot_refresh():
     menu_item_var_3[refresh_index] = databot.bot_hps_wait[bot_slot]
     # Scale
     refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][3][databot.bot_scale_type[bot_slot]]
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.SCALE][databot.bot_scale_type[bot_slot]]
     menu_item_var_2[refresh_index] = databot.bot_scale_min[bot_slot]
     menu_item_var_3[refresh_index] = databot.bot_scale_max[bot_slot]
     # Gravity
@@ -58,13 +56,13 @@ def subact_select_slot_refresh():
     menu_item_var_1[refresh_index] = databot.bot_gravity[bot_slot]
     # Spawn
     refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][4][databot.bot_spawn_type[bot_slot]]
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.SPAWN][databot.bot_spawn_type[bot_slot]]
     menu_item_var_2[refresh_index] = databot.bot_spawn_vect[bot_slot].x
     menu_item_var_3[refresh_index] = databot.bot_spawn_vect[bot_slot].y
     menu_item_var_4[refresh_index] = databot.bot_spawn_vect[bot_slot].z
     # Facing
     refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][5][databot.bot_facing_type[bot_slot]]
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.FACING][databot.bot_facing_type[bot_slot]]
     menu_item_var_2[refresh_index] = databot.bot_facing_vect[bot_slot].x
     menu_item_var_3[refresh_index] = databot.bot_facing_vect[bot_slot].y
     menu_item_var_4[refresh_index] = databot.bot_facing_vect[bot_slot].z
@@ -85,25 +83,22 @@ def subact_select_slot_refresh():
     menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
     # Profile Status
     refresh_index += 1
-    if databot.bot_profile_status[bot_slot][menu_item_var_1[menu_index]] == true:
-        menu_item_var_2[refresh_index] = strings_options[lang_type][0][0]
-        menu_item_color_on[refresh_index] = Color.GREEN
-    else:
-        menu_item_var_2[refresh_index] = strings_options[lang_type][0][1]
-        menu_item_color_on[refresh_index] = Color.RED
+    action_var = databot.bot_profile_status[bot_slot][menu_item_var_1[menu_index]]
+    action_var_2 = refresh_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
     # Random Profile
     refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][6][databot.bot_profile_type[bot_slot]]
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.PROFILE][databot.bot_profile_type[bot_slot]]
     menu_item_var_2[refresh_index] = databot.bot_profile_min[bot_slot]
     menu_item_var_3[refresh_index] = databot.bot_profile_max[bot_slot]
     # Custom Scripts
     refresh_index += 1
-    if databot.bot_custom_script[bot_slot] == true:
-        menu_item_var_2[refresh_index] = strings_options[lang_type][0][0]
-        menu_item_color_on[refresh_index] = Color.GREEN
+    if databot.bot_script_status[bot_slot] == 0:
+        menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TOGGLE][0]
     else:
-        menu_item_var_2[refresh_index] = strings_options[lang_type][0][1]
-        menu_item_color_on[refresh_index] = Color.RED
+        menu_item_var_1[refresh_index] = databot.bot_script_status[bot_slot]
+    menu_item_var_2[refresh_index] = databot.bot_script_status[bot_slot]
     
 def act_bot_override_slot():
     @Name "SUB: act_bot_override_slot"
@@ -112,7 +107,7 @@ def act_bot_override_slot():
         # Change target slot
         case MENU_ACTIONS.MENU_STEP_LEFT:
         case MENU_ACTIONS.MENU_STEP_RIGHT:
-            act_general_chg_var_1_num()
+            act_general_num_var_1()
             break
         # Override all slots? not sure if good / needed
         case MENU_ACTIONS.MENU_JUMP_LEFT:
@@ -167,7 +162,7 @@ def subact_bot_override_slot():
     databot.bot_profile_min[action_var] = databot.bot_profile_min[bot_slot]
     databot.bot_profile_max[action_var] = databot.bot_profile_max[bot_slot]
 
-    databot.bot_custom_script[action_var] = databot.bot_custom_script[bot_slot]
+    databot.bot_script_status[action_var] = databot.bot_script_status[bot_slot]
 
 
 def act_bot_hero_pool():
@@ -177,7 +172,7 @@ def act_bot_hero_pool():
         # Change target hero
         case MENU_ACTIONS.MENU_STEP_LEFT:
         case MENU_ACTIONS.MENU_STEP_RIGHT:
-            act_general_chg_var_3_num()
+            act_general_num_var_3()
             break
         # Toggle all heroes
         case MENU_ACTIONS.MENU_JUMP_LEFT:
@@ -205,12 +200,10 @@ def act_bot_hero_pool():
     menu_item_title_on[menu_index] = heroIcon(hero_array[menu_item_var_3[menu_index]])
     menu_item_var_1[menu_index] = hero_array[menu_item_var_3[menu_index]]
 
-    if hero_array[menu_item_var_3[menu_index]] in databot.bot_hero_pool[bot_slot] == true:
-        menu_item_var_2[menu_index] = strings_options[lang_type][0][0]
-        menu_item_color_on[menu_index] = Color.GREEN
-    else:
-        menu_item_var_2[menu_index] = strings_options[lang_type][0][1]
-        menu_item_color_on[menu_index] = Color.RED
+    action_var = hero_array[menu_item_var_3[menu_index]] in databot.bot_hero_pool[bot_slot]
+    action_var_2 = menu_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
 	
 
 def act_bot_health():
@@ -223,15 +216,15 @@ def act_bot_health():
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             switch subitem_index[menu_index]:
                 case 0:
-                    act_general_chg_var_1_num()
+                    act_general_num_var_1()
                     databot.bot_health[bot_slot] = menu_item_var_1[menu_index]
                     break
                 case 1:
-                    act_general_chg_var_2_num()
+                    act_general_num_var_2()
                     databot.bot_hps[bot_slot] = menu_item_var_2[menu_index]
                     break
                 case 2:
-                    act_general_chg_var_3_num()
+                    act_general_num_var_3()
                     databot.bot_hps_wait[bot_slot] = menu_item_var_3[menu_index]
                     break
 
@@ -242,18 +235,18 @@ def act_bot_scale():
     switch subitem_index[menu_index]:
         case 0:
             action_var = databot.bot_scale_type[bot_slot]
-            general_option_size = len(strings_options[lang_type][3])
-            act_general_change_list()
+            action_var_2 = menu_index
+            action_var_3 = OPTIONS_TYPE.SCALE
+            act_general_change_list_var_1()
             databot.bot_scale_type[bot_slot] = action_var
-            menu_item_var_1[menu_index] = strings_options[lang_type][3][databot.bot_scale_type[bot_slot]]
             break
         case 1:
-            act_general_chg_var_2_num()
+            act_general_num_var_2()
             databot.bot_scale_min[bot_slot] = menu_item_var_2[menu_index]
             break
 
         case 2:
-            act_general_chg_var_3_num()
+            act_general_num_var_3()
             databot.bot_scale_max[bot_slot] = menu_item_var_3[menu_index]
             break
 
@@ -261,7 +254,7 @@ def act_bot_scale():
 def act_bot_gravity():
     @Name "SUB: act_bot_gravity"
 
-    act_general_chg_var_1_num()
+    act_general_num_var_1()
     databot.bot_gravity[bot_slot] = menu_item_var_1[menu_index]
 
 
@@ -279,10 +272,10 @@ def act_bot_spawn():
         switch subitem_index[menu_index]:
             case 0:
                 action_var = databot.bot_spawn_type[bot_slot]
-                general_option_size = len(strings_options[lang_type][4])
-                act_general_change_list()
+                action_var_2 = menu_index
+                action_var_3 = OPTIONS_TYPE.SPAWN
+                act_general_change_list_var_1()
                 databot.bot_spawn_type[bot_slot] = action_var
-                menu_item_var_1[menu_index] = strings_options[lang_type][4][databot.bot_spawn_type[bot_slot]]
                 break
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
@@ -318,10 +311,10 @@ def act_bot_facing():
         switch subitem_index[menu_index]:
             case 0:
                 action_var = databot.bot_facing_type[bot_slot]
-                general_option_size = len(strings_options[lang_type][5])
-                act_general_change_list()
+                action_var_2 = menu_index
+                action_var_3 = OPTIONS_TYPE.FACING
+                act_general_change_list_var_1()
                 databot.bot_facing_type[bot_slot] = action_var
-                menu_item_var_1[menu_index] = strings_options[lang_type][5][databot.bot_facing_type[bot_slot]]
                 break
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
@@ -382,7 +375,7 @@ def act_bot_bound_dim():
     action_var_2 = databot.bot_bound_dim[bot_slot]
     switch subitem_index[menu_index]:
         case 0:
-            act_general_chg_var_1_num()
+            act_general_num_var_1()
             databot.bot_bound_angle[bot_slot] = menu_item_var_1[menu_index]
             break
         case 1:
@@ -438,7 +431,7 @@ def act_bot_select_profile():
         # Change bot slot.
         case MENU_ACTIONS.MENU_STEP_LEFT:
         case MENU_ACTIONS.MENU_STEP_RIGHT:
-            act_general_chg_var_1_num()
+            act_general_num_var_1()
             profile_slot = menu_item_var_1[menu_index]
             break
         # Toggle all slots.
@@ -458,25 +451,22 @@ def act_bot_select_profile():
             databot.bot_profile_status[bot_slot] = action_var
             break
     # Update the status text and color
-    if databot.bot_profile_status[bot_slot][profile_slot] == true:
-        menu_item_var_2[menu_index] = strings_options[lang_type][0][0]
-        menu_item_color_on[menu_index] = Color.GREEN
-    else:
-        menu_item_var_2[menu_index] = strings_options[lang_type][0][1]
-        menu_item_color_on[menu_index] = Color.RED
+    action_var = databot.bot_profile_status[bot_slot][profile_slot]
+    action_var_2 = menu_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
 
 
 def act_bot_rand_profile():
     @Name "SUB: act_bot_rand_profile"
     
     if subitem_index[menu_index] == 0:
-        databot.bot_profile_type[bot_slot] = not databot.bot_profile_type[bot_slot]
-        if databot.bot_profile_type[bot_slot] == true:
-            menu_item_var_1[menu_index] = strings_options[lang_type][0][0]
-            menu_item_color_on[menu_index] = Color.GREEN
-        else:
-            menu_item_var_1[menu_index] = strings_options[lang_type][0][1]
-            menu_item_color_on[menu_index] = Color.RED
+
+        action_var = databot.bot_profile_type[bot_slot]
+        action_var_2 = menu_index
+        action_var_3 = OPTIONS_TYPE.PROFILE
+        act_general_change_list_var_1()
+        databot.bot_profile_type[bot_slot] = action_var
     else:
         action_var = menu_item_var_2[menu_index]
         action_var_2 = menu_item_var_3[menu_index]
@@ -491,14 +481,11 @@ def act_bot_rand_profile():
         databot.bot_dist_max[bot_slot] = action_var_2
 
 
-def act_bot_custom_script():
-    @Name "SUB: act_bot_custom_script"
-
-    databot.bot_custom_script[bot_slot] = not databot.bot_custom_script[bot_slot]
-
-    if databot.bot_custom_script[bot_slot] == true:
-        menu_item_var_2[menu_index] = strings_options[lang_type][0][0]
-        menu_item_color_on[menu_index] = Color.GREEN
-    else:
-        menu_item_var_2[menu_index] = strings_options[lang_type][0][1]
-        menu_item_color_on[menu_index] = Color.RED
+def act_bot_script_status():
+    @Name "SUB: act_bot_script_status"
+    
+    databot.bot_script_status[bot_slot] = not databot.bot_script_status[bot_slot]
+    action_var = databot.bot_script_status[bot_slot]
+    action_var_2 = menu_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_1()

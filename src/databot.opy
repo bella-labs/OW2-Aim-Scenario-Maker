@@ -63,6 +63,8 @@ def default_settings():
         eventPlayer.bot_profile_type[loop_index] = 0
         eventPlayer.bot_profile_min[loop_index] = 0
         eventPlayer.bot_profile_max[loop_index] = 0
-        eventPlayer.bot_custom_script[loop_index] = false
+        eventPlayer.bot_script_status[loop_index] = false
+
+        
 
     eventPlayer.scen_player_spawn = vect(0,0,0)

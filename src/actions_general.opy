@@ -29,8 +29,8 @@ def act_general_chg_num():
     menu_wait_index = 1
 
         
-def act_general_chg_var_1_num():
-    @Name "SUB: act_general_chg_var_1_num"
+def act_general_num_var_1():
+    @Name "SUB: act_general_num_var_1"
 
     action_var = menu_item_var_1[menu_index]
     general_small = small_steps[menu_item_small_step[menu_index][0]]
@@ -41,8 +41,8 @@ def act_general_chg_var_1_num():
     menu_item_var_1[menu_index] = action_var
 
 
-def act_general_chg_var_2_num():
-    @Name "SUB: act_general_chg_var_2_num"
+def act_general_num_var_2():
+    @Name "SUB: act_general_num_var_2"
 
     action_var = menu_item_var_2[menu_index]
     general_small = small_steps[menu_item_small_step[menu_index][1]]
@@ -53,8 +53,8 @@ def act_general_chg_var_2_num():
     menu_item_var_2[menu_index] = action_var
 
 
-def act_general_chg_var_3_num():
-    @Name "SUB: act_general_chg_var_3_num"
+def act_general_num_var_3():
+    @Name "SUB: act_general_num_var_3"
 
     action_var = menu_item_var_3[menu_index]
     general_small = small_steps[menu_item_small_step[menu_index][2]]
@@ -65,11 +65,30 @@ def act_general_chg_var_3_num():
     menu_item_var_3[menu_index] = action_var
 
         
-def act_general_toggle_var_1_bool():
-    @Name "SUB: act_general_toggle_var_1_bool" 
+def act_general_toggle_status():
+    @Name "SUB: act_general_toggle_status" 
 
-    menu_item_var_1[menu_index] = not menu_item_var_1[menu_index]
+    if action_var == true:
+        action_result = 1
+        menu_item_color_on[action_var_2] = Color.GREEN
+    else:
+        action_result = 0
+        menu_item_color_on[action_var_2] = Color.RED
     
+
+def act_general_toggle_var_1():
+    @Name "SUB: act_general_toggle_var_1" 
+
+    act_general_toggle_status()
+    menu_item_var_1[action_var_2] = strings_options[lang_type][action_var_3][action_result]
+
+
+def act_general_toggle_var_2():
+    @Name "SUB: act_general_toggle_var_2" 
+
+    act_general_toggle_status()
+    menu_item_var_2[action_var_2] = strings_options[lang_type][action_var_3][action_result]
+
 
 def act_general_change_vect():
     @Name "SUB: act_general_change_vect"
@@ -111,9 +130,16 @@ def act_general_change_list():
             break
 
     if action_var < 0:
-        action_var = general_option_size-1
-    elif action_var >= general_option_size:
+        action_var = len(strings_options[lang_type][action_var_3])-1
+    elif action_var >= len(strings_options[lang_type][action_var_3]):
         action_var = 0
+
+
+def act_general_change_list_var_1():
+    @Name "SUB: act_general_change_list_var_1"
+
+    act_general_change_list()
+    menu_item_var_1[action_var_2] = strings_options[lang_type][action_var_3][action_var]
 
 
 def act_general_change_min_max():

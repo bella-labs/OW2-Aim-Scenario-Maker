@@ -118,7 +118,7 @@ playervar bot_profile_status
 playervar bot_profile_type
 playervar bot_profile_min
 playervar bot_profile_max
-playervar bot_custom_script
+playervar bot_script_status
 
 playervar scen_player_spawn
 ### Scenario Settings
@@ -167,16 +167,21 @@ subroutine menu_act_submenu_movement
 ### Generalized Actions
 subroutine menu_act_change_submenu
 subroutine act_general_chg_num
-subroutine act_general_chg_var_1_num
-subroutine act_general_chg_var_2_num
-subroutine act_general_chg_var_3_num
-subroutine act_general_toggle_var_1_bool
+subroutine act_general_num_var_1
+subroutine act_general_num_var_2
+subroutine act_general_num_var_3
+subroutine act_general_toggle_status
+subroutine act_general_toggle_var_1
+subroutine act_general_toggle_var_2
 subroutine act_general_change_vect
 subroutine act_general_change_list
+subroutine act_general_change_list_var_1
 subroutine act_general_change_min_max
 ### Custom Actions
 #### Main Menu
 subroutine act_main_open_hero_sel
+subroutine act_main_toggle_import
+subroutine act_main_toggle_export
 #### Bot Submenu
 subroutine act_bot_select_slot
 subroutine subact_select_slot_refresh
@@ -193,11 +198,13 @@ subroutine act_bot_bound_dim
 subroutine act_bot_distance
 subroutine act_bot_select_profile
 subroutine act_bot_rand_profile
-subroutine act_bot_custom_script
+subroutine act_bot_script_status
 #### Profile Menu
 subroutine act_prof_select_prof
 subroutine subact_select_prof_refresh
-subroutine act_bot_override_prof
+subroutine act_prof_override_prof
+subroutine subact_prof_override_slot
+subroutine act_prof_change_weight
 ## Bot Generation
 subroutine create_bot
 subroutine destroy_bot
@@ -301,6 +308,17 @@ enum STORED_ITEMS:
     BOUNDS_2,
     DISTANCE,
     
+
+enum OPTIONS_TYPE:
+    TOGGLE = 0,
+    VISIBILITY,
+    GAME_TYPE,
+    SCALE,
+    SPAWN,
+    FACING,
+    PROFILE
+
+
 globalvar bot_slot
 globalvar profile_slot
 globalvar new_hero_array
@@ -308,6 +326,7 @@ globalvar new_hero_array
 globalvar action_var
 globalvar action_var_2
 globalvar action_var_3
+globalvar action_result
 globalvar general_small
 globalvar general_large
 globalvar general_range_min
@@ -331,5 +350,4 @@ subroutine update_bound_effect
 subroutine create_bound_effect
 subroutine update_distance_effect
 subroutine create_distance_effect
-globalvar color_options
-globalvar color_option_index
+globalvar display_help

@@ -53,8 +53,10 @@ def menu_act_submenu_main():
         case submenu_curr_start + 5:
             break
         case submenu_curr_start + 6:
+            act_main_toggle_import()
+            break
         case submenu_curr_start + 7:
-            act_general_toggle_var_1_bool()
+            act_main_toggle_import()
             break
         
 
@@ -118,7 +120,7 @@ def menu_act_submenu_bot():
             act_bot_rand_profile()
             break
         case submenu_curr_start + 14:
-            act_bot_custom_script()
+            act_bot_script_status()
             break
 
 
@@ -131,7 +133,16 @@ def menu_act_submenu_profile():
             chg_submenu_item_target = 2
             menu_act_change_submenu()
             break
-        case submenu_curr_start + 3:
+        case submenu_curr_start + 1:
+            act_prof_select_prof()
+            break
+        case submenu_curr_start + 2:
+            act_prof_override_prof()
+            break
+        case submenu_curr_start + 2:
+            act_prof_change_weight()
+            break
+        case submenu_curr_start + 4:
             chg_submenu_target = SUBMENUS.SUBMENU_MOVEMENT
             chg_submenu_item_target = 0
             menu_act_change_submenu()

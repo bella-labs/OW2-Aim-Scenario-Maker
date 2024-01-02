@@ -1,22 +1,24 @@
 def act_prof_select_prof():
     @Name "SUB: act_prof_select_prof"
 
-    act_general_chg_var_1_num()
+    act_general_num_var_1()
     profile_slot = menu_item_var_1[menu_index]
+    smallMessage(hostPlayer, "HI")
+    subact_select_prof_refresh()
 
 
 def subact_select_prof_refresh():
     @Name "SUB: subact_select_prof_refresh"
 
 
-def act_bot_override_prof():
-    @Name "SUB: act_bot_override_prof"
+def act_prof_override_prof():
+    @Name "SUB: act_prof_override_prof"
 
     switch menu_action:
         # Change target slot
         case MENU_ACTIONS.MENU_STEP_LEFT:
         case MENU_ACTIONS.MENU_STEP_RIGHT:
-            act_general_chg_var_1_num()
+            act_general_num_var_1()
             break
         # Override all slots? not sure if good / needed
         case MENU_ACTIONS.MENU_JUMP_LEFT:
@@ -26,8 +28,18 @@ def act_bot_override_prof():
             menu_item_color_on[menu_index] = Color.RED
             waitUntil(eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8]), 2)
             if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
-                subact_bot_override_slot()
+                subact_prof_override_slot()
                 menu_item_color_on[menu_index] = Color.GREEN
                 wait(0.25)
         
             menu_item_color_on[menu_index] = menu_color_on_index
+
+
+def subact_prof_override_slot():
+    @Name "SUB: subact_prof_override_slot"
+
+
+def act_prof_change_weight():
+    @Name "SUB: act_prof_change_weight"
+
+    act_general_num_var_1()
