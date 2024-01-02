@@ -96,11 +96,18 @@ globalvar hero_array
 ## Data Storage
 ### Bot Settings
 playervar import_mode
+
+playervar scen_player_spawn
+
 playervar bot_slot_status
 playervar bot_hero_pool
 playervar bot_health
 playervar bot_hps
 playervar bot_hps_wait
+playervar bot_speed_type
+playervar bot_speed_min
+playervar bot_speed_max
+playervar bot_speed_elims
 playervar bot_scale_type
 playervar bot_scale_min
 playervar bot_scale_max
@@ -120,7 +127,8 @@ playervar bot_profile_min
 playervar bot_profile_max
 playervar bot_script_status
 
-playervar scen_player_spawn
+playervar prof_weight
+
 ### Scenario Settings
 
 # Subroutines
@@ -170,6 +178,7 @@ subroutine act_general_chg_num
 subroutine act_general_num_var_1
 subroutine act_general_num_var_2
 subroutine act_general_num_var_3
+subroutine act_general_num_var_4
 subroutine act_general_toggle_status
 subroutine act_general_toggle_var_1
 subroutine act_general_toggle_var_2
@@ -189,6 +198,7 @@ subroutine act_bot_override_slot
 subroutine subact_bot_override_slot
 subroutine act_bot_hero_pool
 subroutine act_bot_health
+subroutine act_bot_speed
 subroutine act_bot_scale
 subroutine act_bot_gravity
 subroutine act_bot_spawn
@@ -298,7 +308,8 @@ enum GENERAL_TARGET:
 enum TAG_TYPE:
     HEALTH = 0,
     MIN_MAX,
-    TYPE_MIN_MAX,
+    TYPE_MIN_MAX_TIME,
+    TYPE_MIN_MAX_ELIM,
     VECT,
     TYPE_VECT,
     ANGLE_DIM
@@ -313,6 +324,7 @@ enum OPTIONS_TYPE:
     TOGGLE = 0,
     VISIBILITY,
     GAME_TYPE,
+    SPEED,
     SCALE,
     SPAWN,
     FACING,

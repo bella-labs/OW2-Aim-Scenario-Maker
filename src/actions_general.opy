@@ -64,6 +64,18 @@ def act_general_num_var_3():
     act_general_chg_num()
     menu_item_var_3[menu_index] = action_var
 
+
+def act_general_num_var_4():
+    @Name "SUB: act_general_num_var_4"
+
+    action_var = menu_item_var_4[menu_index]
+    general_small = small_steps[menu_item_small_step[menu_index][3]]
+    general_large = large_steps[menu_item_large_step[menu_index][3]]
+    general_range_min = ranges[menu_item_range[menu_index][3]][0]
+    general_range_max = ranges[menu_item_range[menu_index][3]][1]
+    act_general_chg_num()
+    menu_item_var_4[menu_index] = action_var
+
         
 def act_general_toggle_status():
     @Name "SUB: act_general_toggle_status" 

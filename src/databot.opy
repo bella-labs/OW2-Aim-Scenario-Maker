@@ -46,6 +46,10 @@ def default_settings():
         eventPlayer.bot_health[loop_index] = 100
         eventPlayer.bot_hps[loop_index] = 0
         eventPlayer.bot_hps_wait[loop_index] = 0
+        eventPlayer.bot_speed_type[loop_index] = 0
+        eventPlayer.bot_speed_min[loop_index] = 0
+        eventPlayer.bot_speed_max[loop_index] = 0
+        eventPlayer.bot_speed_elims[loop_index] = 0
         eventPlayer.bot_scale_type[loop_index] = 0
         eventPlayer.bot_scale_min[loop_index] = 100
         eventPlayer.bot_scale_max[loop_index] = 100

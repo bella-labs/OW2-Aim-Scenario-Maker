@@ -93,33 +93,36 @@ def menu_act_submenu_bot():
             act_bot_health()
             break
         case submenu_curr_start + 5:
-            act_bot_scale()
+            act_bot_speed()
             break
         case submenu_curr_start + 6:
-            act_bot_gravity()
+            act_bot_scale()
             break
         case submenu_curr_start + 7:
-            act_bot_spawn()
+            act_bot_gravity()
             break
         case submenu_curr_start + 8:
-            act_bot_facing()
+            act_bot_spawn()
             break
         case submenu_curr_start + 9:
-            act_bot_bound_pos()
+            act_bot_facing()
             break
         case submenu_curr_start + 10:
-            act_bot_bound_dim()
+            act_bot_bound_pos()
             break
         case submenu_curr_start + 11:
-            act_bot_distance()
+            act_bot_bound_dim()
             break
         case submenu_curr_start + 12:
-            act_bot_select_profile()
+            act_bot_distance()
             break
         case submenu_curr_start + 13:
-            act_bot_rand_profile()
+            act_bot_select_profile()
             break
         case submenu_curr_start + 14:
+            act_bot_rand_profile()
+            break
+        case submenu_curr_start + 15:
             act_bot_script_status()
             break
 

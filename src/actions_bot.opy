@@ -225,7 +225,37 @@ def act_bot_health():
                     databot.bot_hps_wait[bot_slot] = menu_item_var_3[menu_index]
                     break
 
-                    
+
+def act_bot_speed():
+    @Name "SUB: act_bot_speed"
+
+    if subitem_index[menu_index] == 0:
+        action_var = databot.bot_speed_type[bot_slot]
+        action_var_2 = menu_index
+        action_var_3 = OPTIONS_TYPE.SPEED
+        act_general_change_list_var_1()
+        databot.bot_speed_type[bot_slot] = action_var
+    elif subitem_index[menu_index] == 3:
+        act_general_num_var_4()
+        databot.bot_speed_elims[bot_slot] = menu_item_var_4[menu_index]
+    else:
+        action_var = menu_item_var_2[menu_index]
+        action_var_2 = menu_item_var_3[menu_index]
+        
+        if subitem_index[menu_index] == 1:
+            general_target = GENERAL_TARGET.MIN
+        else:
+            general_target = GENERAL_TARGET.MAX
+
+        act_general_change_min_max()
+        menu_item_var_2[menu_index] = action_var
+        menu_item_var_3[menu_index] = action_var_2
+        databot.bot_speed_min[bot_slot] = action_var
+        databot.bot_speed_max[bot_slot] = action_var_2
+
+                
+
+
 def act_bot_scale():
     @Name "SUB: act_bot_scale"
 

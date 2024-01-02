@@ -352,12 +352,27 @@ def create_submenu_bot():
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
     new_menu_item_3var()
 
-    # (4 Var) Scale
+    # (4 Var) Speed
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX]
-    menu_item_var_1[menu_item_size] = strings_options[lang_type][3][databot.bot_scale_type[0]]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX_ELIM]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SPEED][databot.bot_speed_type[0]]
+    menu_item_var_2[menu_item_size] = databot.bot_speed_min[0]
+    menu_item_var_3[menu_item_size] = databot.bot_speed_max[0]
+    menu_item_var_4[menu_item_size] = databot.bot_speed_elims[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_SCALAR]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
+    new_menu_item_4var()
+
+    # (3 Var) Scale
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX_TIME]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCALE][databot.bot_scale_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_scale_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_scale_max[0]
     menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_SCALAR]
@@ -490,7 +505,7 @@ def create_submenu_bot():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX_TIME]
     menu_item_var_1[menu_item_size] = strings_options[lang_type][6][databot.bot_profile_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_profile_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_profile_max[0]
@@ -606,43 +621,13 @@ def create_submenu_movement():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (2 Var) Sync Left / Right Settings
+    # (2 Var) Left Strafe
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     new_menu_item_selection()
 
-    # (2 Var) Left Strafe Time
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (2 Var) Right Strafe Time
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Swap Left / Right Strafe Time
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Left Strafe Speed
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Right Strafe Speed
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Swap Left / Right Strafe Speed
+    # (2 Var) Right Strafe
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
@@ -654,43 +639,13 @@ def create_submenu_movement():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (2 Var) Sync Forward / Backward Settings
+    # (2 Var) Forward Strafe
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     new_menu_item_selection()
 
-    # (2 Var) Forward Strafe Time
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (2 Var) Backward Strafe Time
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Swap Forward / Backward Strafe Time
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Forward Strafe Speed
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Backward Strafe Speed
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (3 Var) Swap Forward / Backward Strafe Speed
+    # (2 Var) Backward Strafe
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
@@ -743,6 +698,3 @@ def create_submenu_movement():
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     new_menu_item_selection()
-
-
-
