@@ -50,7 +50,7 @@ rule "Load Static Data":
     help_configs = [[0,0,0,0,0,0,0,0], # Default
                     [0,0,1,1,1,1,0,1], # Cycle List
                     [0,0,1,1,3,3,0,1], # Cycle Toggle
-                    [0,0,1,1,4,4,0,1], # Cycle Override
+                    [0,0,1,1,4,4,0,2], # Cycle Override
                     [0,0,1,1,1,1,1,1], # Subitem Cycle List
                     [0,0,2,2,2,2,1,1], # Subitem Cycle List + Toggle
                     [0,0,1,1,1,1,1,2], # Subitem Vector List
@@ -65,7 +65,7 @@ rule "load_language_data":
     data_loaded[DATA_TYPE.DATA_STATIC] = false
 
     strings_prompt = [["Hold", "Press", "to", "close", "open", "menu", "to confirm override"],[],[]]
-    strings_help = [[["Previous Item"], ["Next Item"], ["Select Item", "-", "Previous Option / -"], ["Select Item", "+", "Next Option / +"], ["Select Item", "-", "Previous Option / -", "Toggle All", "Override All", ], ["Select Item", "+", "Next Option / +", "Toggle Selected", "Override Selected"], ["N/A", "Next Subitem"], ["Select Item", "N/A", "Set Vector to Current", "Update Visual Effect"]]]
+    strings_help = [[["Previous Item"], ["Next Item"], ["Select Item", "-", "Previous Option / -"], ["Select Item", "+", "Next Option / +"], ["Select Item", "-", "Previous Option / -", "Toggle All", "Override All", ], ["Select Item", "+", "Next Option / +", "Toggle Selected", "Override Selected"], ["N/A", "Next Subitem"], ["Select Item", "N/A", "Set Vector to Current", "Confirm Override"]]]
     strings_controls = [[["Up", "Down", "Step Left", "Step Right", "Jump Left", "Jump Right", "Next Subitem", "Action Item"]],[[""]],[[""]]]
     strings_inputs = [["Forward", "Backward", "Left", "Right"], ["", "", "", ""], ["", "", "", ""]]
     strings_misc = [["Iris", "Open The Menu to Begin Editing. See <website> for documentation."], ["데이터 저장소"], ["数据存储"]]
@@ -91,13 +91,13 @@ rule "load_language_data":
         ["Type: ", "X: ", "Y: ", "Z: "],
         ["Angle: ", "Length: ", "Height: ", "Width: "],
         ["Type: ", "Impulse Strength: ", "Impulse Interval: "],
-        ["L Chance %: ", "R Chance %: ", "F Chance %: ", "B Chance %: "],
-        ["L Min: ", "L Max: ", "R Min: ", "R Max: "],
-        ["F Min: ", "F Max", "B Min:", "B Max: "],
+        ["Left/Right Ratio (0/100) : ", "Forward/Backward Ratio (0/100): "],
+        ["Left Min: ", "Left Max: ", "Right Min: ", "Right Max: "],
+        ["Forward Min: ", "Forward Max: ", "Backward Min:", "Backward Max: "],
         ["Jump Chance %: ", "Jump Interval: ", "Crouch Chance %: ", "Crouch Interval: "],
         ["Crouch Min: ", "Crouch Max: ", "Uncrouch Min: ", "Uncrouch Max: "],
-        ["LR Idle Chance %: ", "LR Idle Interval: ", "FB Idle Chance %: ", "FB Idle Interval: "],
-        ["LR Min: ", "LR Max: ", "FB Min: ", "FB Max: "]
+        ["Left/Right Idle Chance %: ", "Left/Right Idle Interval: ", "Forward/Backward Idle Chance %: ", "Forward/Backward Idle Interval: "],
+        ["Left/Right Min: ", "Left/Right Max: ", "Forward/Backward Min: ", "Forward/Backward Max: "]
        ],
        [[]], [[]]]
     

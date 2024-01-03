@@ -629,23 +629,21 @@ def create_submenu_movement():
     menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_TIME]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_3var()
 
-    # (4 Var) Horizontal Probability
+    # (2 Var) Horizontal Probability
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.HORI_CHANCE]
-    menu_item_var_1[menu_item_size] = databot.mvmt_left_chance[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_right_chance[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_fwd_chance[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_back_chance[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
+    menu_item_var_1[menu_item_size] = databot.mvmt_lr_chance[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_fb_chance[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
-    new_menu_item_4var()
+    new_menu_item_2var()
 
     # (2 Var) Left / Right Time
     increment_for_menu_item()
@@ -694,7 +692,7 @@ def create_submenu_movement():
     menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_TIME]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_3var()
 
     # (2 Var) Verical Probability
@@ -730,7 +728,7 @@ def create_submenu_movement():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.CROUCH_TIME]
     menu_item_var_1[menu_item_size] = databot.mvmt_crouch_min[0]
     menu_item_var_2[menu_item_size] = databot.mvmt_crouch_max[0]
     menu_item_var_3[menu_item_size] = databot.mvmt_uncrouch_min[0]
@@ -751,7 +749,7 @@ def create_submenu_movement():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.IDLE_CHANCE]
     menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_chance[0]
     menu_item_var_2[menu_item_size] = databot.mvmt_lr_idle_interval[0]
     menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_chance[0]
@@ -766,7 +764,7 @@ def create_submenu_movement():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.IDLE_TIME]
     menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_min[0]
     menu_item_var_2[menu_item_size] = databot.mvmt_lr_idle_max[0]
     menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_min[0]

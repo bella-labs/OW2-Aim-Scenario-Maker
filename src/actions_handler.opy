@@ -161,3 +161,33 @@ def menu_act_submenu_movement():
             chg_submenu_item_target = 3
             menu_act_change_submenu()
             break 
+        case submenu_curr_start + 1:
+            act_mvmt_hori_type()
+            break
+        case submenu_curr_start + 2:
+            act_mvmt_hori_chance()
+            break
+        case submenu_curr_start + 3:
+            act_mvmt_lr_time()
+            break
+        case submenu_curr_start + 4:
+            act_mvmt_fb_time()
+            break
+        case submenu_curr_start + 5:
+            act_mvmt_vert_type()
+            break
+        case submenu_curr_start + 6:
+            act_mvmt_vert_chance()
+            break
+        case submenu_curr_start + 7:
+            act_mvmt_jump_time()
+            break
+        case submenu_curr_start + 8:
+            act_mvmt_crouch_time()
+            break
+        case submenu_curr_start + 9:
+            act_mvmt_idle_chance()
+            break   
+        case submenu_curr_start + 10:
+            act_mvmt_idle_time()
+            break                                                                       

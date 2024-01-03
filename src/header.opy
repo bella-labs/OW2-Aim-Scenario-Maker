@@ -133,10 +133,8 @@ playervar mvmt_hori_type
 playervar mvmt_hori_impulse
 playervar mvmt_hori_interval
 #### Left / Right Probability
-playervar mvmt_left_chance
-playervar mvmt_right_chance
-playervar mvmt_fwd_chance
-playervar mvmt_back_chance
+playervar mvmt_lr_chance
+playervar mvmt_fb_chance
 #### Left / Right Time
 playervar mvmt_left_min
 playervar mvmt_left_max

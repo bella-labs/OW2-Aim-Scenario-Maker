@@ -78,10 +78,8 @@ def default_settings():
         eventPlayer.mvmt_hori_impulse[loop_index] = 0
         eventPlayer.mvmt_hori_interval[loop_index] = 0
 
-        eventPlayer.mvmt_left_chance[loop_index] = 50
-        eventPlayer.mvmt_right_chance[loop_index] = 50
-        eventPlayer.mvmt_fwd_chance[loop_index] = 50
-        eventPlayer.mvmt_back_chance[loop_index] = 50
+        eventPlayer.mvmt_lr_chance[loop_index] = 50
+        eventPlayer.mvmt_fb_chance[loop_index] = 50
 
         eventPlayer.mvmt_left_min[loop_index] = 0
         eventPlayer.mvmt_left_max[loop_index] = 0
