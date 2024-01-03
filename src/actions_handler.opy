@@ -160,4 +160,4 @@ def menu_act_submenu_movement():
             chg_submenu_target = SUBMENUS.SUBMENU_PROFILE
             chg_submenu_item_target = 3
             menu_act_change_submenu()
-            break
+            break 

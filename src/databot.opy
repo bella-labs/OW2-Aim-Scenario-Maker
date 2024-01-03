@@ -22,7 +22,7 @@ def setup_databot():
     bot_gen_hero = Hero.ECHO
     bot_gen_team = Team.1
     bot_gen_slot = 1
-    bot_gen_position = vect(1000,1000,1000)
+    bot_gen_position = vect(0,9999,0)
     bot_gen_facing = vect(0,0,0)
     create_bot()
 
@@ -30,6 +30,7 @@ def setup_databot():
     databot.setGravity(0)
     databot.startForcingName(strings_misc[lang_type][0])
     databot.setStatusEffect(null, Status.PHASED_OUT, 9999)
+
     #eventPlayer.setInvisibility(Invis.ALL)
     #eventPlayer.startFacing(directionTowards( eventPlayer.getEyePosition(), (getPlayersInSlot(eventPlayer.getSlot() - 6, Team.1)).getEyePosition()), default_turn_rate, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     #eventPlayer.attachTo(getPlayersInSlot(eventPlayer.getSlot() - 6, Team.1), vect(0, 0, -2))
@@ -75,37 +76,46 @@ def default_settings():
 
         eventPlayer.mvmt_hori_type[loop_index] = 0
         eventPlayer.mvmt_hori_impulse[loop_index] = 0
+        eventPlayer.mvmt_hori_interval[loop_index] = 0
+
         eventPlayer.mvmt_left_chance[loop_index] = 50
         eventPlayer.mvmt_right_chance[loop_index] = 50
-        eventPlayer.mvmt_left_speed_multi[loop_index] = 100
-        eventPlayer.mvmt_right_speed_multi[loop_index] = 100
+        eventPlayer.mvmt_fwd_chance[loop_index] = 50
+        eventPlayer.mvmt_back_chance[loop_index] = 50
+
         eventPlayer.mvmt_left_min[loop_index] = 0
         eventPlayer.mvmt_left_max[loop_index] = 0
         eventPlayer.mvmt_right_min[loop_index] = 0
         eventPlayer.mvmt_right_max[loop_index] = 0
-        eventPlayer.mvmt_fwd_chance[loop_index] = 50
-        eventPlayer.mvmt_back_chance[loop_index] = 50
-        eventPlayer.mvmt_fwd_speed_multi[loop_index] = 100
-        eventPlayer.mvmt_back_speed_multi[loop_index] = 100
+
         eventPlayer.mvmt_fwd_min[loop_index] = 0
         eventPlayer.mvmt_fwd_max[loop_index] = 0
         eventPlayer.mvmt_back_min[loop_index] = 0
         eventPlayer.mvmt_back_max[loop_index] = 0
+
         eventPlayer.mvmt_vert_type[loop_index] = 0
         eventPlayer.mvmt_vert_impulse[loop_index] = 0
+        eventPlayer.mvmt_vert_interval[loop_index] = 0
+
         eventPlayer.mvmt_jump_chance[loop_index] = 0
+        eventPlayer.mvmt_jump_interval[loop_index] = 0
+        eventPlayer.mvmt_crouch_chance[loop_index] = 0
+        eventPlayer.mvmt_crouch_interval[loop_index] = 0
+
         eventPlayer.mvmt_jump_min[loop_index] = 0
         eventPlayer.mvmt_jump_max[loop_index] = 0
-        eventPlayer.mvmt_crouch_chance[loop_index] = 0
+        
         eventPlayer.mvmt_crouch_min[loop_index] = 0
         eventPlayer.mvmt_crouch_max[loop_index] = 0
         eventPlayer.mvmt_uncrouch_min[loop_index] = 0
         eventPlayer.mvmt_uncrouch_max[loop_index] = 0
-        eventPlayer.mvmt_lr_idle_interval[loop_index] = 0
+
         eventPlayer.mvmt_lr_idle_chance[loop_index] = 0
+        eventPlayer.mvmt_lr_idle_interval[loop_index] = 0
+        eventPlayer.mvmt_fb_idle_chance[loop_index] = 0
+        eventPlayer.mvmt_fb_idle_interval[loop_index] = 0
+
         eventPlayer.mvmt_lr_idle_min[loop_index] = 0
         eventPlayer.mvmt_lr_idle_max[loop_index] = 0
-        eventPlayer.mvmt_fb_idle_interval[loop_index] = 0
-        eventPlayer.mvmt_fb_idle_chance[loop_index] = 0
         eventPlayer.mvmt_fb_idle_min[loop_index] = 0
         eventPlayer.mvmt_fb_idle_max[loop_index] = 0

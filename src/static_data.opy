@@ -64,25 +64,42 @@ rule "load_language_data":
 
     data_loaded[DATA_TYPE.DATA_STATIC] = false
 
+    strings_prompt = [["Hold", "Press", "to", "close", "open", "menu", "to confirm override"],[],[]]
     strings_help = [[["Previous Item"], ["Next Item"], ["Select Item", "-", "Previous Option / -"], ["Select Item", "+", "Next Option / +"], ["Select Item", "-", "Previous Option / -", "Toggle All", "Override All", ], ["Select Item", "+", "Next Option / +", "Toggle Selected", "Override Selected"], ["N/A", "Next Subitem"], ["Select Item", "N/A", "Set Vector to Current", "Update Visual Effect"]]]
     strings_controls = [[["Up", "Down", "Step Left", "Step Right", "Jump Left", "Jump Right", "Next Subitem", "Action Item"]],[[""]],[[""]]]
     strings_inputs = [["Forward", "Backward", "Left", "Right"], ["", "", "", ""], ["", "", "", ""]]
     strings_misc = [["Iris", "Open The Menu to Begin Editing. See <website> for documentation."], ["데이터 저장소"], ["数据存储"]]
     strings_submenu_0 = [["For detailed documentation visit\nbellalabs.dev/OW2-Aim-Scenario-Maker\n", "Configure", "Scenario  ▶", "Bot       ▶", "Profile   ▶", "Test", "Open Hero Select", "Test Bot in Slot", "Test Scenario", "Save and Export", "Export Instructions", "Import Instructions"]]
     strings_submenu_1 = [["Bot Settings", "◀ Main Menu", "Bot Slot", "Select Bot Slot", "Override Bot Slot", "Bot Parameters", "Hero Pool", "Health", "Speed", "Scale", "Gravity", "Spawn and Boundaries", "Spawn Type", "Facing", "Boundary Position", "Boundary Dimentions", "Distance", "Profiles", "Profiles Status", "Profile Order", "Use Custom Script"]]
-    strings_submenu_2 = [["Profile Settings", "◀ Main Menu", "Profiles", "Select Profile Slot", "Override Profile from Slot", "Profile Weight", "Movement", "Movement Settings ▶", "Reactions", "Detect Collisions", "Swap Strafe Direction When Damage", "Swap Strafe Wait Timer"]]
-    strings_submenu_2_1 = [["Movement Settings", "◀ Profile Settings", "Horizontal Movement", "Horizontal Type", "Left Strafe", "Right Strafe", "Forward Strafe", "Backward Strafe", "Vertical Movement", "Vertical Type", "Jump", "Crouch", "Uncrouch", "Idle Movement" "Left / Right Idle", "Forward / Backward Idle"]]
+    strings_submenu_2 = [["Profile Settings", "◀ Main Menu", "Profiles", "Select Profile Slot", "Override Profile from Slot", "Profile Weight", "Movement", "Movement Settings ▶"]]
+    strings_submenu_2_1 = [["Movement Settings", "◀ Profile Settings", "Horizontal Movement", "Horizontal Movement Type", "Left / Right Probability", "Left / Right Time", "Forward / Backward Time", "Vertical Movement", "Vertical Type", "Vertical Probability", "Jump Time", "Crouch Time", "Idle Movement", "Idle Probability", "Idle Time"]]
     strings_submenu_3 = [["Scenario Settings", "◀ Main Menu", "Scoring", "Score Type", "Points", "Strafe Score", "Player", "Spawn Position", "Spawn Facing", "Speed", "Gravity", "Custom Script"]]
     strings_on_titles = [["", "Slot", "Profile", "Hero"]]
-    strings_options = [[["Disabled", "Enabled"], ["Hidden", "Visible"], ["Timed", "Score Limit"], ["Static", "Random", "Health", "Elims"], ["Static", "Random", "Health"], ["Fixed Position", "Random Position"], ["Fixed", "Player"], ["In Order", "Randomized"]], [["사용 안 함", "사용"]], [["禁用", "已启用"]]]
-    strings_prompt = [["Hold", "Press", "to", "close", "open", "menu", "to confirm override"],[],[]]
-    
     strings_instructions = [["How to export your configuration:\n1. Open the Overwatch menu (esc)\n2. Select \"Open Workshop Inspector\"\n3. Select \"auto\"\n4. Select \"Iris\"\n5. Select the rightmost button from the bottom left that looks like this: [(x)]\n    When you hover over the button it should say\n    \"Copy clipboard current varaibles for current variables target as workshop actions\"\n6. Your settings variables will now be in your clipboard\n    6a. To save your work, paste your settings into a text file on your computer.\n    6b. To share your scenario or resume your work please see \"import instructions\"\n", 
                        "How to import your configuration:\n1. Select the import code button from the settings page of the lobby menu.\n2. Enter the code\n    2a. If you want to share your scenario use the code for the Aim Scenario Player: XXXXX\n    2b. If you are resuming creating a scenario enter code for the Aim Scenario Maker: YYYYY\n3.Select the \"Workshop\" tile with black text.\n4. Scroll to the top of the first page\n5. Click the \">\" icon to the left of the first rule titled \"Paste Player Variables Here\"\n6. In the \"actions\" column to the right, select the orange \"paste\" button.\n7. Start/Restart the Match and your settings should load.\n    7a. If you are using the Aim Scenario Player code you may now create a share code by\n        selecting \"Share Code\" in the workshop settings menu\n    7b. If you are using the Aim Scenario Maker code you may now continue designing your scenario \n", 
                        "To list your share code on bellalabs.dev/ow2-scenario-codes\nfill out the form avaliable at: bellalabs.dev/ow2-share-form\n","",""],
                        ["", ""],
                        ["", ""]]
-    strings_tags = [[["Health %: ", "HPS: ", "Wait Until Heal: "], ["min: ", "max: "], ["Type: ", "min: ", "max: ", "time: "], ["Type: ", "min: ", "max: ", "elims: "], ["X: ", "Y: ", "Z: "],  ["Type: ", "X: ", "Y: ", "Z: "], ["Angle: ", "Length: ", "Height: ", "Width: "]], [[]], [[]]]
-    strings_symbols = ["—————————————————————————\n", [iconString(Icon.CHECKMARK), iconString(Icon.CROSS)]]
+    strings_symbols = ["—————————————————————————\n"]
+    strings_options = [[["Disabled", "Enabled"], ["Hidden", "Visible"], ["Timed", "Score Limit"], ["Static", "Random", "Health", "Elims"], ["Static", "Random", "Health"], ["Fixed Position", "Random Position"], ["Fixed", "Player"], ["In Order", "Randomized"], ["Inputs", "Impulse"]], [["사용 안 함", "사용"]], [["禁用", "已启用"]]]
+    strings_tags = [
+       [["Health %: ", "HPS: ", "Wait Until Heal: "], 
+        ["min: ", "max: "],
+        ["Type: ", "min: ", "max: ", "time: "],
+        ["Type: ", "min: ", "max: ", "elims: "],
+        ["X: ", "Y: ", "Z: "],
+        ["Type: ", "X: ", "Y: ", "Z: "],
+        ["Angle: ", "Length: ", "Height: ", "Width: "],
+        ["Type: ", "Impulse Strength: ", "Impulse Interval: "],
+        ["L Chance %: ", "R Chance %: ", "F Chance %: ", "B Chance %: "],
+        ["L Min: ", "L Max: ", "R Min: ", "R Max: "],
+        ["F Min: ", "F Max", "B Min:", "B Max: "],
+        ["Jump Chance %: ", "Jump Interval: ", "Crouch Chance %: ", "Crouch Interval: "],
+        ["Crouch Min: ", "Crouch Max: ", "Uncrouch Min: ", "Uncrouch Max: "],
+        ["LR Idle Chance %: ", "LR Idle Interval: ", "FB Idle Chance %: ", "FB Idle Interval: "],
+        ["LR Min: ", "LR Max: ", "FB Min: ", "FB Max: "]
+       ],
+       [[]], [[]]]
+    
 
     data_loaded[DATA_TYPE.DATA_STATIC] = true

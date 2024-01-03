@@ -514,3 +514,4 @@ def act_bot_script_status():
     action_var_2 = menu_index
     action_var_3 = OPTIONS_TYPE.TOGGLE
     act_general_toggle_var_1()
+    

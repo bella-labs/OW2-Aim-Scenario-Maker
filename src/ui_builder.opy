@@ -261,9 +261,6 @@ def create_submenu_scenario():
     new_menu_item_selection()
 
 
-
-
-
 def create_submenu_bot():
     @Name "SUB: create_submenu_bot"
 
@@ -333,8 +330,8 @@ def create_submenu_bot():
     act_general_toggle_var_2()
     
     menu_item_var_3[menu_item_size] = 0
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_HERO]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_NONE, SMALL_TYPE.SMALL_NONE, SMALL_TYPE.SMALL_1]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.NONE, RANGE_TYPE.RANGE_HERO]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.NONE, SMALL_TYPE.SMALL_1]
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_TOGGLE]
     new_menu_item_toggle_list()
 
@@ -361,9 +358,9 @@ def create_submenu_bot():
     menu_item_var_2[menu_item_size] = databot.bot_speed_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_speed_max[0]
     menu_item_var_4[menu_item_size] = databot.bot_speed_elims[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_SCALAR]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10] 
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_SCALAR]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_4var()
 
@@ -375,9 +372,9 @@ def create_submenu_bot():
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCALE][databot.bot_scale_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_scale_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_scale_max[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_SCALAR]
-    menu_item_small_step[menu_item_size] = [RANGE_TYPE.RANGE_NONE, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [RANGE_TYPE.RANGE_NONE, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_SCALAR]
+    menu_item_small_step[menu_item_size] = [RANGE_TYPE.NONE, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [RANGE_TYPE.NONE, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_3var()
 
@@ -407,9 +404,9 @@ def create_submenu_bot():
     menu_item_var_2[menu_item_size] = databot.bot_spawn_vect[0].x
     menu_item_var_3[menu_item_size] = databot.bot_spawn_vect[0].y
     menu_item_var_4[menu_item_size] = databot.bot_spawn_vect[0].z
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR]
-    menu_item_small_step[menu_item_size] = [RANGE_TYPE.RANGE_NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
-    menu_item_large_step[menu_item_size] = [RANGE_TYPE.RANGE_NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR]
+    menu_item_small_step[menu_item_size] = [RANGE_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [RANGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_TOGGLE] 
     new_menu_item_4var()
 
@@ -422,9 +419,9 @@ def create_submenu_bot():
     menu_item_var_2[menu_item_size] = databot.bot_facing_vect[0].x
     menu_item_var_3[menu_item_size] = databot.bot_facing_vect[0].y
     menu_item_var_4[menu_item_size] = databot.bot_facing_vect[0].z
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR]
-    menu_item_small_step[menu_item_size] = [RANGE_TYPE.RANGE_NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
-    menu_item_large_step[menu_item_size] = [RANGE_TYPE.RANGE_NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR]
+    menu_item_small_step[menu_item_size] = [RANGE_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [RANGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_TOGGLE] 
     new_menu_item_4var()
 
@@ -509,9 +506,9 @@ def create_submenu_bot():
     menu_item_var_1[menu_item_size] = strings_options[lang_type][6][databot.bot_profile_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_profile_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_profile_max[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_TOGGLE]
     new_menu_item_3var()
 
@@ -621,35 +618,64 @@ def create_submenu_movement():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (2 Var) Horizontal Type
+    # (3 Var) Horizontal Type
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_TYPE]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_hori_type[0]]
+    menu_item_var_2[menu_item_size] = databot.mvmt_hori_impulse[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_hori_impulse[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_3var()
 
-    # (2 Var) Left Strafe
+    # (4 Var) Horizontal Probability
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.HORI_CHANCE]
+    menu_item_var_1[menu_item_size] = databot.mvmt_left_chance[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_right_chance[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_fwd_chance[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_back_chance[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_4var()
 
-    # (2 Var) Right Strafe
+    # (2 Var) Left / Right Time
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.LR_TIME]
+    menu_item_var_1[menu_item_size] = databot.mvmt_left_min[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_left_max[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_right_min[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_right_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_4var()
 
-    # (2 Var) Forward Strafe
+    # (2 Var) Forward Backward Time
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
-
-    # (2 Var) Backward Strafe
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.FB_TIME]
+    menu_item_var_1[menu_item_size] = databot.mvmt_fwd_min[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_fwd_max[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_back_min[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_back_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_4var()
 
     # (Subtext) Vertical Movement
     increment_for_menu_label()
@@ -660,26 +686,60 @@ def create_submenu_movement():
     # (2 Var) Vertical Type
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_TYPE]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_vert_type[0]]
+    menu_item_var_2[menu_item_size] = databot.mvmt_vert_impulse[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_vert_interval[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_3var()
 
-    # (4 Var) Jump Frequency
+    # (2 Var) Verical Probability
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
+    menu_item_var_1[menu_item_size] = databot.mvmt_jump_chance[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_jump_interval[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_crouch_chance[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_crouch_interval[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_4var()
 
-    # (4 Var) Crouch Frequency
+    # (2 Var) Jump Time
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MIN_MAX]
+    menu_item_var_1[menu_item_size] = databot.mvmt_jump_min[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_jump_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_2var()
 
-    # (2 Var) Uncrouch Frequency
+    # (4 Var) Crouch Time
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
+    menu_item_var_1[menu_item_size] = databot.mvmt_crouch_min[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_crouch_max[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_uncrouch_min[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_uncrouch_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_4var()
 
     # (Subtext) Idle Movement
     increment_for_menu_label()
@@ -687,14 +747,32 @@ def create_submenu_movement():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (4 Var) Left / Right Idle
+    # (4 Var) Idle Probability 
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
+    menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_chance[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_lr_idle_interval[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_chance[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_fb_idle_interval[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_4var()
 
-    # (4 Var) Forward / Backward Idle
+    # (2 Var) Idle Time
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    new_menu_item_selection()
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
+    menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_min[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_lr_idle_max[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_min[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_fb_idle_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_4var()

@@ -128,41 +128,50 @@ playervar bot_profile_max
 playervar bot_script_status
 
 playervar prof_weight
-
+#### Horizontal Type
 playervar mvmt_hori_type
 playervar mvmt_hori_impulse
+playervar mvmt_hori_interval
+#### Left / Right Probability
 playervar mvmt_left_chance
 playervar mvmt_right_chance
-playervar mvmt_left_speed_multi
-playervar mvmt_right_speed_multi
+playervar mvmt_fwd_chance
+playervar mvmt_back_chance
+#### Left / Right Time
 playervar mvmt_left_min
 playervar mvmt_left_max
 playervar mvmt_right_min
 playervar mvmt_right_max
-playervar mvmt_fwd_chance
-playervar mvmt_back_chance
-playervar mvmt_fwd_speed_multi
-playervar mvmt_back_speed_multi
+#### Forward / Back Time
 playervar mvmt_fwd_min
 playervar mvmt_fwd_max
 playervar mvmt_back_min
 playervar mvmt_back_max
+#### Vertical Type
 playervar mvmt_vert_type
 playervar mvmt_vert_impulse
+playervar mvmt_vert_interval
+#### Vertical Probability
 playervar mvmt_jump_chance
+playervar mvmt_jump_interval
+playervar mvmt_crouch_chance
+playervar mvmt_crouch_interval
+#### Jump Time
 playervar mvmt_jump_min
 playervar mvmt_jump_max
-playervar mvmt_crouch_chance
+#### Crouch Time
 playervar mvmt_crouch_min
 playervar mvmt_crouch_max
 playervar mvmt_uncrouch_min
 playervar mvmt_uncrouch_max
-playervar mvmt_lr_idle_interval
+#### Idle Probability 
 playervar mvmt_lr_idle_chance
+playervar mvmt_lr_idle_interval
+playervar mvmt_fb_idle_chance
+playervar mvmt_fb_idle_interval
+#### Idle Time
 playervar mvmt_lr_idle_min
 playervar mvmt_lr_idle_max
-playervar mvmt_fb_idle_interval
-playervar mvmt_fb_idle_chance
 playervar mvmt_fb_idle_min
 playervar mvmt_fb_idle_max
 
@@ -253,6 +262,16 @@ subroutine subact_select_prof_refresh
 subroutine act_prof_override_prof
 subroutine subact_prof_override_slot
 subroutine act_prof_change_weight
+subroutine act_mvmt_hori_type
+subroutine act_mvmt_hori_chance
+subroutine act_mvmt_lr_time
+subroutine act_mvmt_fb_time
+subroutine act_mvmt_vert_type
+subroutine act_mvmt_vert_chance
+subroutine act_mvmt_jump_time
+subroutine act_mvmt_crouch_time
+subroutine act_mvmt_idle_chance
+subroutine act_mvmt_idle_time
 ## Bot Generation
 subroutine create_bot
 subroutine destroy_bot
@@ -298,7 +317,7 @@ enum MENU_ACTIONS:
     MENU_SET_VECTOR
 
 enum RANGE_TYPE:
-    RANGE_NONE = 0,
+    NONE = 0,
     RANGE_SLOT,
     RANGE_HERO,
     RANGE_PERCENTAGE,
@@ -310,12 +329,12 @@ enum RANGE_TYPE:
     RANGE_SCORE
 
 enum SMALL_TYPE:
-    SMALL_NONE = 0,
+    NONE = 0,
     SMALL_0_01,
     SMALL_1
 
 enum LARGE_TYPE:
-    LARGE_NONE = 0,
+    NONE = 0,
     LARGE_1,
     LARGE_10,
 
@@ -350,7 +369,16 @@ enum TAG_TYPE:
     TYPE_MIN_MAX_ELIM,
     VECT,
     TYPE_VECT,
-    ANGLE_DIM
+    ANGLE_DIM,
+    MVMT_TYPE,
+    HORI_CHANCE,
+    LR_TIME,
+    FB_TIME,
+    VERT_CHANCE,
+    CROUCH_TIME,
+    IDLE_CHANCE,
+    IDLE_TIME,
+
 
 enum STORED_ITEMS:
     BOUNDS_1 = 0,
@@ -366,7 +394,9 @@ enum OPTIONS_TYPE:
     SCALE,
     SPAWN,
     FACING,
-    PROFILE
+    PROFILE,
+    MVMT_TYPE
+
 
 
 globalvar bot_slot
