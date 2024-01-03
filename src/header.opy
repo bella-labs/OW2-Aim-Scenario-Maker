@@ -74,9 +74,7 @@ globalvar strings_submenu_0
 globalvar strings_submenu_1
 globalvar strings_submenu_2
 globalvar strings_submenu_3
-globalvar strings_submenu_2_1
 globalvar strings_options
-globalvar strings_controls
 globalvar strings_instructions
 globalvar strings_tags
 globalvar strings_symbols
@@ -95,38 +93,72 @@ globalvar hero_array
 # Player Variables
 ## Data Storage
 ### Bot Settings
-playervar import_mode
+#### Import Status
+playervar import_status
 
-playervar scen_player_spawn
+#### Game Mode
+playervar sce_game_mode
+playervar sce_game_limit
+#### Points
+playervar sce_bs_points
+playervar sce_hs_points
+playervar sce_elim_points
+#### Strafe Score
+playervar sce_strafe_pps
+playervar sce_strafe_min
+playervar sce_strafe_max
+#### Spawn
+playervar sce_player_spawn
+#### Facing
+playervar sce_player_facing
+#### Speed
+playervar sce_player_speed
+#### Gravity
+playervar sce_player_gravity
+#### Custom Script
+playervar sce_custom_status
 
+#### Slot
 playervar bot_slot_status
+#### Hero Pool
 playervar bot_hero_pool
+#### Health
 playervar bot_health
 playervar bot_hps
 playervar bot_hps_wait
+#### Speed
 playervar bot_speed_type
 playervar bot_speed_min
 playervar bot_speed_max
 playervar bot_speed_elims
+#### Scale
 playervar bot_scale_type
 playervar bot_scale_min
 playervar bot_scale_max
+#### Gravity
 playervar bot_gravity
+#### Spawn
 playervar bot_spawn_type
 playervar bot_spawn_vect
+#### Facing
 playervar bot_facing_type
 playervar bot_facing_vect
+#### Bounds
 playervar bot_bound_pos
 playervar bot_bound_angle
 playervar bot_bound_dim
+#### Distance
 playervar bot_dist_min
 playervar bot_dist_max
+#### Profile
 playervar bot_profile_status
 playervar bot_profile_type
 playervar bot_profile_min
 playervar bot_profile_max
+#### Custom Script
 playervar bot_script_status
 
+#### Profile Weight
 playervar prof_weight
 #### Horizontal Type
 playervar mvmt_hori_type
@@ -205,10 +237,10 @@ subroutine setup_menu
 subroutine create_hud
 subroutine setup_menu_custom
 subroutine create_submenu_main
+subroutine create_submenu_scenario
 subroutine create_submenu_bot
 subroutine create_submenu_profile
-subroutine create_submenu_scenario
-subroutine create_submenu_movement
+
 ## Menu Actions
 ### Control Flow
 subroutine perform_action
@@ -236,6 +268,15 @@ subroutine act_general_change_min_max
 subroutine act_main_open_hero_sel
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
+#### Scenario Submenu
+subroutine act_sce_mode
+subroutine act_sce_points
+subroutine act_sce_strafe
+subroutine act_sce_player_spawn
+subroutine act_sce_player_facing
+subroutine act_sce_player_speed
+subroutine act_sce_player_gravity
+subroutine act_sce_script_status
 #### Bot Submenu
 subroutine act_bot_select_slot
 subroutine subact_select_slot_refresh
@@ -254,12 +295,13 @@ subroutine act_bot_distance
 subroutine act_bot_select_profile
 subroutine act_bot_rand_profile
 subroutine act_bot_script_status
-#### Profile Menu
+#### Profile Submenu
 subroutine act_prof_select_prof
 subroutine subact_select_prof_refresh
 subroutine act_prof_override_prof
 subroutine subact_prof_override_slot
 subroutine act_prof_change_weight
+#### Movement Submenu
 subroutine act_mvmt_hori_type
 subroutine act_mvmt_hori_chance
 subroutine act_mvmt_lr_time
@@ -284,8 +326,7 @@ enum SUBMENUS:
     SUBMENU_MAIN = 0,
     SUBMENU_SCENARIO,
     SUBMENU_BOT,
-    SUBMENU_PROFILE,
-    SUBMENU_MOVEMENT
+    SUBMENU_PROFILE
 
 enum INPUT_OPTIONS:
     VECT_FORWARD = 0,

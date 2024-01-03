@@ -77,7 +77,7 @@ def create_bound_effect():
 def update_distance_effect():
     @Name "SUB: update_distance_effect"
 
-    ring_data[0] = databot.scen_player_spawn
+    ring_data[0] = databot.sce_player_spawn
     ring_data[1] = databot.bot_dist_min[bot_slot]
     ring_data[2] = databot.bot_dist_max[bot_slot]
 

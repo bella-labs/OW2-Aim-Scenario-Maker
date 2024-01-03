@@ -40,7 +40,6 @@ rule "Menu Setup: Creation":
     create_submenu_scenario()
     create_submenu_bot()
     create_submenu_profile()
-    create_submenu_movement()
 
     data_loaded[DATA_TYPE.DATA_MENU] = true
     menu_visible = false
@@ -255,6 +254,12 @@ def create_submenu_scenario():
     new_menu_item_selection()
 
     # (Percentage) Player Gravity
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    new_menu_item_selection()
+
+    # (Toggle) Player Custom Script
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_3[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
@@ -581,46 +586,15 @@ def create_submenu_profile():
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE]
     new_menu_item_cycle()
 
-    # (Subtext) Movement
+    # (Subtext) Horizontal Movement
     increment_for_menu_label()
     menu_label[menu_label_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (Selection) Movement Settings
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[3]
-    new_menu_item_selection()
-
-
-def create_submenu_movement():
-    @Name "SUB: create_submenu_movement"
-
-    increment_for_submenu_item()
-
-    # (Header) Movement Settings
-    increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    new_menu_label_header()
-
-    # (Selection) Return to Profile Settings
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[3]
-    new_menu_item_selection()
-
-    # (Subtext) Horizontal Movement
-    increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
-    menu_label_color[menu_label_size] = menu_color_label_subtext
-    new_menu_label_subtext()
-
     # (3 Var) Horizontal Type
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_TYPE]
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_hori_type[0]]
@@ -634,7 +608,7 @@ def create_submenu_movement():
 
     # (2 Var) Horizontal Probability
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.HORI_CHANCE]
     menu_item_var_1[menu_item_size] = databot.mvmt_lr_chance[0]
@@ -647,7 +621,7 @@ def create_submenu_movement():
 
     # (2 Var) Left / Right Time
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.LR_TIME]
     menu_item_var_1[menu_item_size] = databot.mvmt_left_min[0]
@@ -662,7 +636,7 @@ def create_submenu_movement():
 
     # (2 Var) Forward Backward Time
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.FB_TIME]
     menu_item_var_1[menu_item_size] = databot.mvmt_fwd_min[0]
@@ -677,13 +651,13 @@ def create_submenu_movement():
 
     # (Subtext) Vertical Movement
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_label[menu_label_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
     # (2 Var) Vertical Type
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_TYPE]
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_vert_type[0]]
@@ -697,7 +671,7 @@ def create_submenu_movement():
 
     # (2 Var) Verical Probability
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
     menu_item_var_1[menu_item_size] = databot.mvmt_jump_chance[0]
@@ -712,7 +686,7 @@ def create_submenu_movement():
 
     # (2 Var) Jump Time
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MIN_MAX]
     menu_item_var_1[menu_item_size] = databot.mvmt_jump_min[0]
@@ -726,7 +700,7 @@ def create_submenu_movement():
 
     # (4 Var) Crouch Time
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.CROUCH_TIME]
     menu_item_var_1[menu_item_size] = databot.mvmt_crouch_min[0]
@@ -741,13 +715,13 @@ def create_submenu_movement():
 
     # (Subtext) Idle Movement
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_label[menu_label_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
     # (4 Var) Idle Probability 
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.IDLE_CHANCE]
     menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_chance[0]
@@ -762,7 +736,7 @@ def create_submenu_movement():
 
     # (2 Var) Idle Time
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_submenu_2_1[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_submenu_2[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.IDLE_TIME]
     menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_min[0]

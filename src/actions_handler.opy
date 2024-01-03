@@ -17,9 +17,6 @@ def perform_action():
         case SUBMENUS.SUBMENU_PROFILE:
             menu_act_submenu_profile()
             break
-        case SUBMENUS.SUBMENU_MOVEMENT:
-            menu_act_submenu_movement()
-            break
 
     wait(menu_wait[menu_wait_index])
     if RULE_CONDITION:
@@ -68,6 +65,30 @@ def menu_act_submenu_scenario():
             chg_submenu_target = SUBMENUS.SUBMENU_MAIN
             chg_submenu_item_target = 0
             menu_act_change_submenu()
+            break
+        case submenu_curr_start + 1:
+            act_sce_mode()
+            break
+        case submenu_curr_start + 2:
+            act_sce_points()
+            break
+        case submenu_curr_start + 3:
+            act_sce_strafe()
+            break
+        case submenu_curr_start + 4:
+            act_sce_player_spawn()
+            break
+        case submenu_curr_start + 5:
+            act_sce_player_facing()
+            break
+        case submenu_curr_start + 6:
+            act_sce_player_speed()
+            break
+        case submenu_curr_start + 7:
+            act_sce_player_gravity()
+            break
+        case submenu_curr_start + 8:
+            act_sce_script_status()
             break
 
 
@@ -146,48 +167,32 @@ def menu_act_submenu_profile():
             act_prof_change_weight()
             break
         case submenu_curr_start + 4:
-            chg_submenu_target = SUBMENUS.SUBMENU_MOVEMENT
-            chg_submenu_item_target = 0
-            menu_act_change_submenu()
-            break
-
-
-def menu_act_submenu_movement():
-    @Name "SUB: menu_act_submenu_movement"
-
-    switch menu_index:
-        case submenu_curr_start + 0:
-            chg_submenu_target = SUBMENUS.SUBMENU_PROFILE
-            chg_submenu_item_target = 3
-            menu_act_change_submenu()
-            break 
-        case submenu_curr_start + 1:
             act_mvmt_hori_type()
             break
-        case submenu_curr_start + 2:
+        case submenu_curr_start + 5:
             act_mvmt_hori_chance()
             break
-        case submenu_curr_start + 3:
+        case submenu_curr_start + 6:
             act_mvmt_lr_time()
             break
-        case submenu_curr_start + 4:
+        case submenu_curr_start + 7:
             act_mvmt_fb_time()
             break
-        case submenu_curr_start + 5:
+        case submenu_curr_start + 8:
             act_mvmt_vert_type()
             break
-        case submenu_curr_start + 6:
+        case submenu_curr_start + 9:
             act_mvmt_vert_chance()
             break
-        case submenu_curr_start + 7:
+        case submenu_curr_start + 10:
             act_mvmt_jump_time()
             break
-        case submenu_curr_start + 8:
+        case submenu_curr_start + 11:
             act_mvmt_crouch_time()
             break
-        case submenu_curr_start + 9:
+        case submenu_curr_start + 12:
             act_mvmt_idle_chance()
             break   
-        case submenu_curr_start + 10:
+        case submenu_curr_start + 13:
             act_mvmt_idle_time()
             break                                                                       

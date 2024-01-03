@@ -8,9 +8,9 @@ rule "Databot Populate Settings":
     data_loaded[DATA_TYPE.DATA_BOT] = false
     waitUntil(data_loaded[DATA_TYPE.DATA_CONTROLS] == true, 9999)
     
-    eventPlayer.import_mode = false
+    eventPlayer.import_status = false
     import_settings()
-    if eventPlayer.import_mode == false:
+    if eventPlayer.import_status == false:
         default_settings()
 
     data_loaded[DATA_TYPE.DATA_BOT] = true
@@ -39,9 +39,21 @@ def setup_databot():
 def default_settings():
     @Name "SUB: default_settings"
     
-    eventPlayer.import_mode = true
+    eventPlayer.import_status = true
     
-    eventPlayer.scen_player_spawn = vect(0,0,0)
+    eventPlayer.sce_game_mode = 0
+    eventPlayer.sce_game_limit = 0
+    eventPlayer.sce_bs_points = 0
+    eventPlayer.sce_hs_points = 0
+    eventPlayer.sce_elim_points = 0
+    eventPlayer.sce_strafe_pps = 0
+    eventPlayer.sce_strafe_min = 0
+    eventPlayer.sce_strafe_max = 0
+    eventPlayer.sce_player_spawn = vect(0,0,0)
+    eventPlayer.sce_player_facing = vect(0,0,0)
+    eventPlayer.sce_player_speed = 0
+    eventPlayer.sce_player_gravity = 0
+    eventPlayer.sce_custom_status = false
 
     for loop_index in range(0, 11, 1):
         eventPlayer.bot_slot_status[loop_index] = false
