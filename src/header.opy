@@ -266,10 +266,12 @@ subroutine act_general_change_min_max
 ### Custom Actions
 #### Main Menu
 subroutine act_main_open_hero_sel
+subroutine act_main_test_bot_in_slot
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
 #### Scenario Submenu
 subroutine act_sce_mode
+subroutine subact_sce_set_limit_type
 subroutine act_sce_points
 subroutine act_sce_strafe
 subroutine act_sce_player_spawn
@@ -315,6 +317,8 @@ subroutine act_mvmt_idle_time
 ## Bot Generation
 subroutine create_bot
 subroutine destroy_bot
+subroutine create_target_bot
+subroutine destroy_target_bot
 ## Data Bot
 subroutine setup_databot
 subroutine import_settings
@@ -417,6 +421,10 @@ enum TAG_TYPE:
     CROUCH_TIME,
     IDLE_CHANCE,
     IDLE_TIME,
+    SCE_TIMED,
+    SCE_SCORE,
+    SCE_POINTS,
+    SCE_STRAFE
 
 
 enum STORED_ITEMS:
@@ -434,7 +442,8 @@ enum OPTIONS_TYPE:
     SPAWN,
     FACING,
     PROFILE,
-    MVMT_TYPE
+    MVMT_TYPE,
+    SCE_MODE
 
 
 
@@ -470,3 +479,5 @@ subroutine create_bound_effect
 subroutine update_distance_effect
 subroutine create_distance_effect
 globalvar display_help
+globalvar active_bot_status
+globalvar new_bot
