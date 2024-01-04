@@ -42,7 +42,7 @@ def default_settings():
     eventPlayer.import_status = true
     
     eventPlayer.sce_game_mode = 0
-    eventPlayer.sce_game_limit = 0
+    eventPlayer.sce_game_limit = 60
     eventPlayer.sce_bs_points = 0
     eventPlayer.sce_hs_points = 0
     eventPlayer.sce_elim_points = 0
@@ -55,19 +55,20 @@ def default_settings():
     eventPlayer.sce_player_gravity = 0
     eventPlayer.sce_custom_status = false
 
-    for loop_index in range(0, 11, 1):
+    for loop_index in range(0, 12, 1):
         eventPlayer.bot_slot_status[loop_index] = false
         eventPlayer.bot_hero_pool[loop_index] = [Hero.TRACER]
         eventPlayer.bot_health[loop_index] = 100
         eventPlayer.bot_hps[loop_index] = 0
         eventPlayer.bot_hps_wait[loop_index] = 0
         eventPlayer.bot_speed_type[loop_index] = 0
-        eventPlayer.bot_speed_min[loop_index] = 0
-        eventPlayer.bot_speed_max[loop_index] = 0
-        eventPlayer.bot_speed_elims[loop_index] = 0
+        eventPlayer.bot_speed_min[loop_index] = 100
+        eventPlayer.bot_speed_max[loop_index] = 100
+        eventPlayer.bot_speed_target[loop_index] = 0
         eventPlayer.bot_scale_type[loop_index] = 0
-        eventPlayer.bot_scale_min[loop_index] = 100
-        eventPlayer.bot_scale_max[loop_index] = 100
+        eventPlayer.bot_scale_min[loop_index] = 1
+        eventPlayer.bot_scale_max[loop_index] = 1
+        eventPlayer.bot_scale_target[loop_index] = 0
         eventPlayer.bot_gravity[loop_index] = 100
         eventPlayer.bot_spawn_type[loop_index] = 0
         eventPlayer.bot_spawn_vect[loop_index] = vect(0,0,0)

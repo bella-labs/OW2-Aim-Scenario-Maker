@@ -35,14 +35,6 @@ def create_target_bot():
             break
     bot_gen_facing = databot.bot_facing_vect[bot_gen_slot]
     create_bot()
-    new_bot = getPlayersInSlot(bot_gen_slot,bot_gen_team)
-    new_bot.setHealth(databot.bot_health[bot_gen_slot])
-    action_var = databot.bot_hps[bot_gen_slot]
-    if action_var > 0:
-        new_bot.startHoT(null, 9999, action_var)
-    elif action_var < 0:
-        new_bot.startDoT(null, 9999, action_var)
-
 
 
 def destroy_target_bot():

@@ -43,11 +43,18 @@ def subact_select_slot_refresh():
     menu_item_var_1[refresh_index] = databot.bot_health[bot_slot] 
     menu_item_var_2[refresh_index] = databot.bot_hps[bot_slot]
     menu_item_var_3[refresh_index] = databot.bot_hps_wait[bot_slot]
+    # Speed
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_speed_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_speed_min[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_speed_max[bot_slot]
+    menu_item_var_4[refresh_index] = databot.bot_speed_target[bot_slot]
     # Scale
     refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.SCALE][databot.bot_scale_type[bot_slot]]
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_scale_type[bot_slot]]
     menu_item_var_2[refresh_index] = databot.bot_scale_min[bot_slot]
     menu_item_var_3[refresh_index] = databot.bot_scale_max[bot_slot]
+    menu_item_var_4[refresh_index] = databot.bot_scale_target[bot_slot]
     # Gravity
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.bot_gravity[bot_slot]
@@ -97,6 +104,7 @@ def subact_select_slot_refresh():
         menu_item_var_1[refresh_index] = databot.bot_script_status[bot_slot]
     menu_item_var_2[refresh_index] = databot.bot_script_status[bot_slot]
     
+
 def act_bot_override_slot():
     @Name "SUB: act_bot_override_slot"
 
@@ -125,36 +133,43 @@ def subact_bot_override_slot():
     @Name "SUB: subact_bot_override_slot"
     action_var = menu_item_var_1[menu_index]
 
+    # Slot Status
     databot.bot_slot_status[action_var] = databot.bot_slot_status[bot_slot]
-
+    # Hero Pool
     databot.bot_hero_pool[action_var] = databot.bot_hero_pool[bot_slot]
-
+    # Health
     databot.bot_health[action_var] = databot.bot_health[bot_slot]
     databot.bot_hps[action_var] = databot.bot_hps[bot_slot]
     databot.bot_hps_wait[action_var] = databot.bot_hps_wait[bot_slot]
-
+    # Speed
+    databot.bot_scale_type[action_var] = databot.bot_speed_type[bot_slot]
+    databot.bot_scale_min[action_var] = databot.bot_speed_min[bot_slot]
+    databot.bot_scale_max[action_var] = databot.bot_speed_max[bot_slot]
+    databot.bot_speed_target[action_var] = databot.bot_speed_target[bot_slot]
+    # Scale
     databot.bot_scale_type[action_var] = databot.bot_scale_type[bot_slot]
     databot.bot_scale_min[action_var] = databot.bot_scale_min[bot_slot]
     databot.bot_scale_max[action_var] = databot.bot_scale_max[bot_slot]
-
+    databot.bot_scale_target[action_var] = databot.bot_scale_target[bot_slot]
+    # Gravity
     databot.bot_gravity[action_var] = databot.bot_gravity[bot_slot]
-
+    # Spawn
     databot.bot_spawn_type[action_var] = databot.bot_spawn_type[bot_slot]
     databot.bot_spawn_vect[action_var] = databot.bot_spawn_vect[bot_slot]
-    
+    # Facing
     databot.bot_facing_type[action_var] = databot.bot_facing_type[bot_slot]
     databot.bot_facing_vect[action_var] = databot.bot_facing_vect[bot_slot]
-
+    # Boundary Origin
     databot.bot_bound_pos[action_var] = databot.bot_bound_pos[bot_slot]
-
+    # Boundary Box
     databot.bot_bound_angle[action_var] = databot.bot_bound_angle[bot_slot]
     databot.bot_bound_dim[action_var] = databot.bot_bound_dim[bot_slot]
-
+    # Distance
     databot.bot_dist_min[action_var] = databot.bot_dist_min[bot_slot]
     databot.bot_dist_max[action_var] = databot.bot_dist_max[bot_slot]
-
+    # Profile Status
     databot.bot_profile_status[action_var] = databot.bot_profile_status[bot_slot]
-
+    # Profile Randomizer
     databot.bot_profile_type[action_var] = databot.bot_profile_type[bot_slot]
     databot.bot_profile_min[action_var] = databot.bot_profile_min[bot_slot]
     databot.bot_profile_max[action_var] = databot.bot_profile_max[bot_slot]
@@ -232,15 +247,15 @@ def act_bot_speed():
     if subitem_index[menu_index] == 0:
         action_var = databot.bot_speed_type[bot_slot]
         action_var_2 = menu_index
-        action_var_3 = OPTIONS_TYPE.SPEED
+        action_var_3 = OPTIONS_TYPE.TARGET
         act_general_change_list_var_1()
         databot.bot_speed_type[bot_slot] = action_var
     elif subitem_index[menu_index] == 3:
         act_general_num_var_4()
-        databot.bot_speed_elims[bot_slot] = menu_item_var_4[menu_index]
+        databot.bot_speed_target[bot_slot] = menu_item_var_4[menu_index]
     else:
-        action_var = menu_item_var_2[menu_index]
-        action_var_2 = menu_item_var_3[menu_index]
+        action_var = databot.bot_speed_min[bot_slot]
+        action_var_2 = databot.bot_speed_max[bot_slot]
 
         if subitem_index[menu_index] == 1:
             general_target = GENERAL_TARGET.MIN
@@ -257,23 +272,29 @@ def act_bot_speed():
 def act_bot_scale():
     @Name "SUB: act_bot_scale"
 
-    switch subitem_index[menu_index]:
-        case 0:
-            action_var = databot.bot_scale_type[bot_slot]
-            action_var_2 = menu_index
-            action_var_3 = OPTIONS_TYPE.SCALE
-            act_general_change_list_var_1()
-            databot.bot_scale_type[bot_slot] = action_var
-            break
-        case 1:
-            act_general_num_var_2()
-            databot.bot_scale_min[bot_slot] = menu_item_var_2[menu_index]
-            break
+    if subitem_index[menu_index] == 0:
+        action_var = databot.bot_scale_type[bot_slot]
+        action_var_2 = menu_index
+        action_var_3 = OPTIONS_TYPE.TARGET
+        act_general_change_list_var_1()
+        databot.bot_scale_type[bot_slot] = action_var
+    elif subitem_index[menu_index] == 3:
+        act_general_num_var_4()
+        databot.bot_scale_target[bot_slot] = menu_item_var_4[menu_index]
+    else:
+        action_var = databot.bot_scale_min[bot_slot]
+        action_var_2 = databot.bot_scale_max[bot_slot]
 
-        case 2:
-            act_general_num_var_3()
-            databot.bot_scale_max[bot_slot] = menu_item_var_3[menu_index]
-            break
+        if subitem_index[menu_index] == 1:
+            general_target = GENERAL_TARGET.MIN
+        else:
+            general_target = GENERAL_TARGET.MAX
+
+        act_general_change_min_max()
+        menu_item_var_2[menu_index] = action_var
+        menu_item_var_3[menu_index] = action_var_2
+        databot.bot_scale_min[bot_slot] = action_var
+        databot.bot_scale_max[bot_slot] = action_var_2
 
 
 def act_bot_gravity():

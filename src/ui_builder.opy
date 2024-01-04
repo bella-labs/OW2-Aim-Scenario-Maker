@@ -109,6 +109,15 @@ def create_hud():
         HudReeval.VISIBILITY_AND_STRING,
         SpecVisibility.DEFAULT)
 
+    # Stats Display Top
+    hudSubheader([i for i in localPlayer if stat_tracking_status == true],
+    "Timer: {0}\nElims: {1}".format(timer, elims), 
+    HudPosition.TOP, 
+    -9999, 
+    Color.WHITE, 
+    HudReeval.VISIBILITY_AND_STRING, 
+    SpecVisibility.DEFAULT)
+
 
 def create_submenu_main():
     @Name "SUB: create_submenu_main"
@@ -430,30 +439,31 @@ def create_submenu_bot():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX_ELIM]
-    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SPEED][databot.bot_speed_type[0]]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TARGET]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_speed_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_speed_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_speed_max[0]
-    menu_item_var_4[menu_item_size] = databot.bot_speed_elims[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_SCALAR]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10] 
+    menu_item_var_4[menu_item_size] = databot.bot_speed_target[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_SCALAR]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_4var()
 
-    # (3 Var) Scale
+    # (4 Var) Scale
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX_TIME]
-    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCALE][databot.bot_scale_type[0]]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TARGET]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_scale_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_scale_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_scale_max[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_SCALAR]
-    menu_item_small_step[menu_item_size] = [RANGE_TYPE.NONE, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [RANGE_TYPE.NONE, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
+    menu_item_var_4[menu_item_size] = databot.bot_scale_target[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_SCALAR, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
-    new_menu_item_3var()
+    new_menu_item_4var()
 
     # (Percentage) Gravity
     increment_for_menu_item()
@@ -579,7 +589,7 @@ def create_submenu_bot():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_MIN_MAX_TIME]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.PROFILE]
     menu_item_var_1[menu_item_size] = strings_options[lang_type][6][databot.bot_profile_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_profile_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_profile_max[0]

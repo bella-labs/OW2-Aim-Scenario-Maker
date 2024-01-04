@@ -16,6 +16,10 @@ def act_main_test_bot_in_slot():
             bot_gen_slot = menu_item_var_1[menu_index]
             break
         case MENU_ACTIONS.MENU_JUMP_LEFT:
+            if stat_tracking_status == true:
+                stats_stop_stat_tracking()
+            else:
+                stats_start_stat_tracking()
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             if active_bot_status[bot_gen_slot] == true:
                 destroy_target_bot()

@@ -394,8 +394,7 @@ rule "load_language_data":
             ["Disabled", "Enabled"], 
             ["Hidden", "Visible"],
             ["Timed", "Score Limit"],
-            ["Static", "Random", "Health", "Elims"],
-            ["Static", "Random", "Health"],
+            ["Static", "Random", "Health", "Elims (Target)", "Looping (Target)"],
             ["Fixed Position", "Random in Boundary", "Random Walkable in Boundary"],
             ["Fixed", "Player"],
             ["In Order", "Randomized"],
@@ -411,7 +410,6 @@ rule "load_language_data":
             ["", ""],
             ["", ""],
             ["", ""],
-            ["", ""],
             ["", ""]
         ], 
         [
@@ -423,7 +421,6 @@ rule "load_language_data":
             ["", ""],
             ["", ""],
             ["", ""],
-            ["", ""],
             ["", ""]
         ]
     ]
@@ -431,8 +428,8 @@ rule "load_language_data":
         [
             ["Health %: ", "HPS: ", "Wait Until Heal: "], 
             ["min: ", "max: "],
+            ["Type: ", "min: ", "max: ", "target: "],
             ["Type: ", "min: ", "max: ", "time: "],
-            ["Type: ", "min: ", "max: ", "elims: "],
             ["X: ", "Y: ", "Z: "],
             ["Type: ", "X: ", "Y: ", "Z: "],
             ["Angle: ", "Length: ", "Height: ", "Width: "],
@@ -453,7 +450,6 @@ rule "load_language_data":
             ["", "", ""], 
             ["", ""],
             ["", "", "", ""],
-            ["", "", "", ""],
             ["", "", ""],
             ["", "", "", ""],
             ["", "", "", ""],
@@ -473,7 +469,6 @@ rule "load_language_data":
         [
             ["", "", ""], 
             ["", ""],
-            ["", "", "", ""],
             ["", "", "", ""],
             ["", "", ""],
             ["", "", "", ""],

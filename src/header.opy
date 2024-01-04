@@ -130,11 +130,12 @@ playervar bot_hps_wait
 playervar bot_speed_type
 playervar bot_speed_min
 playervar bot_speed_max
-playervar bot_speed_elims
+playervar bot_speed_target
 #### Scale
 playervar bot_scale_type
 playervar bot_scale_min
 playervar bot_scale_max
+playervar bot_scale_target
 #### Gravity
 playervar bot_gravity
 #### Spawn
@@ -369,7 +370,7 @@ enum RANGE_TYPE:
     RANGE_TIME,
     RANGE_SCALAR,
     RANGE_VECTOR,
-    RANGE_SCORE
+    RANGE_SCORE,
 
 enum SMALL_TYPE:
     NONE = 0,
@@ -408,8 +409,8 @@ enum GENERAL_TARGET:
 enum TAG_TYPE:
     HEALTH = 0,
     MIN_MAX,
-    TYPE_MIN_MAX_TIME,
-    TYPE_MIN_MAX_ELIM,
+    TARGET,
+    PROFILE,
     VECT,
     TYPE_VECT,
     ANGLE_DIM,
@@ -437,8 +438,7 @@ enum OPTIONS_TYPE:
     TOGGLE = 0,
     VISIBILITY,
     GAME_TYPE,
-    SPEED,
-    SCALE,
+    TARGET,
     SPAWN,
     FACING,
     PROFILE,
@@ -481,3 +481,15 @@ subroutine create_distance_effect
 globalvar display_help
 globalvar active_bot_status
 globalvar new_bot
+
+globalvar elims
+globalvar timer
+globalvar stat_tracking_status
+
+playervar normalized_timer
+playervar normalized_speed_elims
+playervar normalized_scale_elims
+
+
+subroutine stats_start_stat_tracking
+subroutine stats_stop_stat_tracking
