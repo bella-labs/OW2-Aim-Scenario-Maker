@@ -465,31 +465,32 @@ globalvar general_target
 globalvar refresh_index
 
 globalvar menu_effect_index
-globalvar unit_cube
 globalvar effect_array
-globalvar start_pos
-globalvar scalar_length
-globalvar scalar_height
-globalvar scalar_width
-globalvar start_angle
+
 globalvar ring_data
 subroutine destroy_effects
 subroutine update_bound_effect
+subroutine set_unit_cube
 subroutine create_bound_effect
 subroutine update_distance_effect
 subroutine create_distance_effect
 globalvar display_help
 globalvar active_bot_status
-globalvar new_bot
 
 globalvar elims
 globalvar timer
 globalvar stat_tracking_status
 
-playervar normalized_timer
-playervar normalized_speed_elims
-playervar normalized_scale_elims
+playervar boundary_limits
 
+playervar unit_cube
+
+playervar calc_var_1
+playervar calc_var_2
+
+playervar is_in_bounds
+playervar disabled_movements
+playervar owner_player
 
 subroutine stats_start_stat_tracking
 subroutine stats_stop_stat_tracking
