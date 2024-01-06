@@ -8,7 +8,7 @@ def act_sce_player_spawn():
         menu_item_var_2[menu_index] = action_var_2.y
         menu_item_var_3[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.bot_spawn_vect
+        action_var_2 = databot.sce_player_spawn
         switch subitem_index[menu_index]:
             case 0:
                 general_target = GENERAL_TARGET.VECT_X
@@ -40,7 +40,7 @@ def act_sce_player_facing():
         menu_item_var_2[menu_index] = action_var_2.y
         menu_item_var_3[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.bot_spawn_vect
+        action_var_2 = databot.sce_player_spawn
         switch subitem_index[menu_index]:
             case 0:
                 general_target = GENERAL_TARGET.VECT_X
