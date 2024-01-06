@@ -2,14 +2,14 @@ rule "Target Bot Initalization":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.hasSpawned() == true
-
+    # Set Owner Player
+    eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
     # Set Health
     eventPlayer.bot_health = databot.bot_health[eventPlayer.getSlot()]
     eventPlayer.setMaxHealth(eventPlayer.bot_health)
     # Set HPS
     eventPlayer.bot_hps = databot.bot_hps[eventPlayer.getSlot()]
     eventPlayer.bot_hps_wait = databot.bot_hps_wait[eventPlayer.getSlot()]
-    # Start Bot HPS/DOT
     if eventPlayer.bot_hps > 0:
         eventPlayer.startHoT(null, 9999, eventPlayer.bot_hps)
     elif eventPlayer.bot_hps < 0:
@@ -27,36 +27,25 @@ rule "Target Bot Initalization":
     set_target_scale()
     # Set Gravity
     eventPlayer.bot_gravity = databot.bot_gravity[eventPlayer.getSlot()]
-    # Modify Bot Gravity
     eventPlayer.setGravity(eventPlayer.bot_gravity)
-    # Facing
-    if eventPlayer.bot_facing_type == 0:
-        eventPlayer.startFacing(normalize(databot.bot_facing_vect[eventPlayer.getSlot()]), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
-    else:
-        eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), getClosestPlayer(eventPlayer.getPosition(), Team.1).getEyePosition()), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
+    # Set Facing
     eventPlayer.bot_facing_type = databot.bot_facing_type[eventPlayer.getSlot()]
-    #eventPlayer.mvmt_relativity = Relativity.TO_WORLD if eventPlayer.bot_facing_type == 0 else Relativity.TO_PLAYER
+    eventPlayer.bot_facing_vect = databot.bot_facing_vect[eventPlayer.getSlot()]
+    if eventPlayer.bot_facing_type == 0:
+        eventPlayer.startFacing(normalize(eventPlayer.bot_facing_vect), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
+    else:
+        eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.owner_player.getEyePosition()), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     # Boundaries
+
     # 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
-    for eventPlayer.calc_var_1 in range (0, 10, 1):
-        eventPlayer.disabled_movements[eventPlayer.calc_var_1] = false
+    for eventPlayer.import_status in range (0, 10, 1):
+        eventPlayer.disabled_movements[eventPlayer.import_status] = false
+
     eventPlayer.bot_bound_pos = databot.bot_bound_pos[eventPlayer.getSlot()]
     eventPlayer.bot_bound_dim = databot.bot_bound_dim[eventPlayer.getSlot()]
     eventPlayer.bot_bound_angle = databot.bot_bound_angle[eventPlayer.getSlot()]
-    set_unit_cube()
-
-    eventPlayer.boundary_limits[0] = vect(
-    min(eventPlayer.unit_cube[0].x, min(eventPlayer.unit_cube[1].x, min(eventPlayer.unit_cube[2].x, min(eventPlayer.unit_cube[3].x, min(eventPlayer.unit_cube[4].x, min(eventPlayer.unit_cube[5].x, min(eventPlayer.unit_cube[6].x, eventPlayer.unit_cube[7].x))))))),
-    min(eventPlayer.unit_cube[0].y, min(eventPlayer.unit_cube[1].y, min(eventPlayer.unit_cube[2].y, min(eventPlayer.unit_cube[3].y, min(eventPlayer.unit_cube[4].y, min(eventPlayer.unit_cube[5].y, min(eventPlayer.unit_cube[6].y, eventPlayer.unit_cube[7].y))))))),
-    min(eventPlayer.unit_cube[0].z, min(eventPlayer.unit_cube[1].z, min(eventPlayer.unit_cube[2].z, min(eventPlayer.unit_cube[3].z, min(eventPlayer.unit_cube[4].z, min(eventPlayer.unit_cube[5].z, min(eventPlayer.unit_cube[6].z, eventPlayer.unit_cube[7].z)))))))
-    )
-    eventPlayer.boundary_limits[1] = vect(
-    max(eventPlayer.unit_cube[0].x, max(eventPlayer.unit_cube[1].x, max(eventPlayer.unit_cube[2].x, max(eventPlayer.unit_cube[3].x, max(eventPlayer.unit_cube[4].x, max(eventPlayer.unit_cube[5].x, max(eventPlayer.unit_cube[6].x, eventPlayer.unit_cube[7].x))))))),
-    max(eventPlayer.unit_cube[0].y, max(eventPlayer.unit_cube[1].y, max(eventPlayer.unit_cube[2].y, max(eventPlayer.unit_cube[3].y, max(eventPlayer.unit_cube[4].y, max(eventPlayer.unit_cube[5].y, max(eventPlayer.unit_cube[6].y, eventPlayer.unit_cube[7].y))))))),
-    max(eventPlayer.unit_cube[0].z, max(eventPlayer.unit_cube[1].z, max(eventPlayer.unit_cube[2].z, max(eventPlayer.unit_cube[3].z, max(eventPlayer.unit_cube[4].z, max(eventPlayer.unit_cube[5].z, max(eventPlayer.unit_cube[6].z, eventPlayer.unit_cube[7].z)))))))
-    )
+    set_cube()
     # Distance
-    eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
     eventPlayer.bot_dist_min = databot.bot_dist_min[eventPlayer.getSlot()]
     eventPlayer.bot_dist_max = databot.bot_dist_min[eventPlayer.getSlot()]
 
@@ -260,4 +249,3 @@ def set_disabled_index_dist():
 
     eventPlayer.disabled_indexes[eventPlayer.disabled_target] = (-1 * horizontalAngleTowards(eventPlayer, eventPlayer.disabled_indexes[2 + eventPlayer.disabled_target]) / 45 + eventPlayer.disabled_indexes[1 + eventPlayer.disabled_target])
     eventPlayer.disabled_indexes[eventPlayer.disabled_target] = round(eventPlayer.disabled_indexes[eventPlayer.disabled_target] - floor(eventPlayer.disabled_indexes[eventPlayer.disabled_target] / 8) * 8) % 8
-    

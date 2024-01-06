@@ -427,12 +427,6 @@ enum TAG_TYPE:
     SCE_SCORE,
     SCE_POINTS,
     SCE_STRAFE
-
-
-enum STORED_ITEMS:
-    BOUNDS_1 = 0,
-    BOUNDS_2,
-    DISTANCE,
     
 
 enum OPTIONS_TYPE:
@@ -471,7 +465,7 @@ globalvar effect_array
 globalvar ring_data
 subroutine destroy_effects
 subroutine update_bound_effect
-subroutine set_unit_cube
+subroutine set_cube
 subroutine create_bound_effect
 subroutine update_distance_effect
 subroutine create_distance_effect
@@ -484,7 +478,7 @@ globalvar stat_tracking_status
 
 playervar boundary_limits
 
-playervar unit_cube
+playervar cube
 
 playervar calc_var_1
 playervar calc_var_2

@@ -3,7 +3,7 @@ rule "text":
     @Condition eventPlayer == hostPlayer
 
     # eventPlayer.owner_player = getPlayersInSlot(0, Team.2)
-    createBeam(eventPlayer, Beam.GRAPPLE, vect(0,3,0), vect(0,3,100), Color.BLUE, EffectReeval.VISIBILITY_POSITION_RADIUS_AND_COLOR)
+    #createBeam(eventPlayer, Beam.GRAPPLE, vect(0,3,0), vect(0,3,100), Color.BLUE, EffectReeval.VISIBILITY_POSITION_RADIUS_AND_COLOR)
 
     hudSubheader(eventPlayer, "{0}".format(scenario_in_progress), HudPosition.TOP, 9999, Color.RED, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
     hudSubheader(eventPlayer, "dist: {0}".format(distance(eventPlayer.getPosition(), getPlayersInSlot(0, Team.2).getPosition())), HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)

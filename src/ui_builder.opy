@@ -483,7 +483,11 @@ def create_submenu_bot():
     new_menu_label_subtext()
 
     # (4 Var) Spawn Settings
+
     increment_for_menu_item()
+
+    menu_effect_index[0] = menu_item_size
+
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_VECT]
@@ -498,7 +502,12 @@ def create_submenu_bot():
     new_menu_item_4var()
 
     # (4 Var) Facing Settings
+
+    
     increment_for_menu_item()
+
+    menu_effect_index.append(menu_item_size)
+
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_VECT]
@@ -515,7 +524,7 @@ def create_submenu_bot():
     # (3 Var) Boundary Position
     increment_for_menu_item()
 
-    menu_effect_index[STORED_ITEMS.BOUNDS_1] = menu_item_size
+    menu_effect_index.append(menu_item_size)
 
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
@@ -532,7 +541,7 @@ def create_submenu_bot():
     # (4 Var) Boundary Dimensions
     increment_for_menu_item()
 
-    menu_effect_index[STORED_ITEMS.BOUNDS_2] = menu_item_size
+    menu_effect_index.append(menu_item_size)
 
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
@@ -550,7 +559,7 @@ def create_submenu_bot():
     # (2 Var) Distance
     increment_for_menu_item()
 
-    menu_effect_index[STORED_ITEMS.DISTANCE] = menu_item_size
+    menu_effect_index.append(menu_item_size)
 
     menu_item_title_off[menu_item_size] = strings_submenu_1[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
