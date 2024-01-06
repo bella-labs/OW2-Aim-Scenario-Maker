@@ -25,17 +25,17 @@ rule "Create Effects on effect index":
     effect_array.append(getLastCreatedEntity())
 
     # Create Player Spawn Effect
-    createEffect(hostPlayer, Effect.SPHERE, Color.TEAM_1, databot.bot_spawn_vect[bot_slot], 0.5, EffectReeval.POSITION_AND_RADIUS)
+    createEffect(hostPlayer, Effect.SPHERE, Color.TEAM_1, databot.sce_player_spawn, 0.5, EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
     # Create Player Facing Effect
-    createBeam(hostPlayer, Beam.BAD, databot.bot_spawn_vect[bot_slot], databot.bot_spawn_vect[bot_slot] + normalize(databot.bot_facing_vect) * 5, Color.TEAM_1, EffectReeval.POSITION_AND_RADIUS)
+    createBeam(hostPlayer, Beam.BAD, databot.sce_player_spawn, databot.sce_player_spawn + normalize(databot.sce_player_facing) * 3, Color.TEAM_1, EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
-    
+
     # Create Spawn Effect
     createEffect(hostPlayer, Effect.SPHERE, Color.TEAM_2, databot.bot_spawn_vect[bot_slot], 0.5, EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
     # Create Facing Effect
-    createBeam(hostPlayer, Beam.BAD, databot.bot_spawn_vect[bot_slot], databot.bot_spawn_vect[bot_slot] + normalize(databot.bot_facing_vect) * 5, Color.TEAM_2, EffectReeval.POSITION_AND_RADIUS)
+    createBeam(hostPlayer, Beam.BAD, databot.bot_spawn_vect[bot_slot], databot.bot_spawn_vect[bot_slot] + normalize(databot.bot_facing_vect) * 3, Color.TEAM_2, EffectReeval.POSITION_AND_RADIUS)
     
     effect_array.append(getLastCreatedEntity())
     # Create Boundary Origin Effect

@@ -1,3 +1,169 @@
+def act_bot_spawn():
+    @Name "SUB: act_bot_spawn"
+
+    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
+        action_var_2 = eventPlayer.getPosition()
+        databot.bot_spawn_vect[bot_slot] = action_var_2
+        menu_item_var_2[menu_index] = action_var_2.x
+        menu_item_var_3[menu_index] = action_var_2.y
+        menu_item_var_4[menu_index] = action_var_2.z
+    else:
+        action_var_2 = databot.bot_spawn_vect[bot_slot]
+        switch subitem_index[menu_index]:
+            case 0:
+                action_var = databot.bot_spawn_type[bot_slot]
+                action_var_2 = menu_index
+                action_var_3 = OPTIONS_TYPE.SPAWN
+                act_general_change_list_var_1()
+                databot.bot_spawn_type[bot_slot] = action_var
+                break
+            case 1:
+                general_target = GENERAL_TARGET.VECT_X
+                act_general_change_vect()
+                databot.bot_spawn_vect[bot_slot] = action_var_2
+                menu_item_var_2[menu_index] = action_var_2.x
+                break
+            case 2:
+                general_target = GENERAL_TARGET.VECT_Y
+                act_general_change_vect()
+                databot.bot_spawn_vect[bot_slot] = action_var_2
+                menu_item_var_3[menu_index] = action_var_2.y
+                break
+            case 3:
+                general_target = GENERAL_TARGET.VECT_Z
+                act_general_change_vect()
+                databot.bot_spawn_vect[bot_slot] = action_var_2
+                menu_item_var_4[menu_index] = action_var_2.z
+                break
+
+
+def act_bot_facing():
+    @Name "SUB: act_bot_facing"
+
+    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
+        action_var_2 = eventPlayer.getFacingDirection()
+        databot.bot_facing_vect[bot_slot] = action_var_2
+        menu_item_var_2[menu_index] = action_var_2.x
+        menu_item_var_3[menu_index] = action_var_2.y
+        menu_item_var_4[menu_index] = action_var_2.z
+    else:
+        action_var_2 = databot.bot_facing_vect[bot_slot]
+        switch subitem_index[menu_index]:
+            case 0:
+                action_var = databot.bot_facing_type[bot_slot]
+                action_var_2 = menu_index
+                action_var_3 = OPTIONS_TYPE.FACING
+                act_general_change_list_var_1()
+                databot.bot_facing_type[bot_slot] = action_var
+                break
+            case 1:
+                general_target = GENERAL_TARGET.VECT_X
+                act_general_change_vect()
+                databot.bot_facing_vect[bot_slot] = action_var_2
+                menu_item_var_2[menu_index] = action_var_2.x
+                break
+            case 2:
+                general_target = GENERAL_TARGET.VECT_Y
+                act_general_change_vect()
+                databot.bot_facing_vect[bot_slot] = action_var_2
+                menu_item_var_3[menu_index] = action_var_2.y
+                break
+            case 3:
+                general_target = GENERAL_TARGET.VECT_Z
+                act_general_change_vect()
+                databot.bot_facing_vect[bot_slot] = action_var_2
+                menu_item_var_4[menu_index] = action_var_2.z
+                break
+
+
+def act_bot_bound_pos():
+    @Name "SUB: act_bot_bound_pos"
+
+    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
+        action_var_2 = eventPlayer.getPosition()
+        databot.bot_bound_pos[bot_slot] = action_var_2
+        menu_item_var_1[menu_index] = action_var_2.x
+        menu_item_var_2[menu_index] = action_var_2.y
+        menu_item_var_3[menu_index] = action_var_2.z
+    else:
+        action_var_2 = databot.bot_bound_pos[bot_slot]
+        switch subitem_index[menu_index]:
+            case 0:
+                general_target = GENERAL_TARGET.VECT_X
+                act_general_change_vect()
+                databot.bot_bound_pos[bot_slot] = action_var_2
+                menu_item_var_1[menu_index] = action_var_2.x
+                break
+            case 1:
+                general_target = GENERAL_TARGET.VECT_Y
+                act_general_change_vect()
+                databot.bot_bound_pos[bot_slot] = action_var_2
+                menu_item_var_2[menu_index] = action_var_2.y
+                break
+            case 2:
+                general_target = GENERAL_TARGET.VECT_Z
+                act_general_change_vect()
+                databot.bot_bound_pos[bot_slot] = action_var_2
+                menu_item_var_3[menu_index] = action_var_2.z
+                break
+    update_bound_effect()
+
+    
+def act_bot_bound_dim():
+    @Name "SUB: act_bot_bound_dim"
+
+    action_var_2 = databot.bot_bound_dim[bot_slot]
+    switch subitem_index[menu_index]:
+        case 0:
+            act_general_num_var_1()
+            databot.bot_bound_angle[bot_slot] = menu_item_var_1[menu_index]
+            break
+        case 1:
+            general_target = GENERAL_TARGET.VECT_X
+            act_general_change_vect()
+            databot.bot_bound_dim[bot_slot] = action_var_2
+            menu_item_var_2[menu_index] = action_var_2.x
+            break
+        case 2:
+            general_target = GENERAL_TARGET.VECT_Y
+            act_general_change_vect()
+            databot.bot_bound_dim[bot_slot] = action_var_2
+            menu_item_var_3[menu_index] = action_var_2.y
+            break
+        case 3:
+            general_target = GENERAL_TARGET.VECT_Z
+            act_general_change_vect()
+            databot.bot_bound_dim[bot_slot] = action_var_2
+            menu_item_var_4[menu_index] = action_var_2.z
+            break
+    update_bound_effect()
+
+
+def act_bot_distance():
+    @Name "SUB: act_bot_distance"
+
+    action_var = menu_item_var_1[menu_index]
+    action_var_2 = menu_item_var_2[menu_index]
+
+    switch subitem_index[menu_index]:
+        case 0:
+            general_target = GENERAL_TARGET.MIN
+            break
+        case 1:
+            general_target = GENERAL_TARGET.MAX
+            break
+
+    act_general_change_min_max()
+
+    menu_item_var_1[menu_index] = action_var
+    menu_item_var_2[menu_index] = action_var_2
+
+    databot.bot_dist_min[bot_slot] = action_var
+    databot.bot_dist_max[bot_slot] = action_var_2
+
+    update_distance_effect()
+
+    
 def act_bot_select_slot():
     @Name "SUB: act_bot_select_slot"
 
@@ -302,172 +468,6 @@ def act_bot_gravity():
 
     act_general_num_var_1()
     databot.bot_gravity[bot_slot] = menu_item_var_1[menu_index]
-
-
-def act_bot_spawn():
-    @Name "SUB: act_bot_spawn"
-
-    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
-        action_var_2 = eventPlayer.getPosition()
-        databot.bot_spawn_vect[bot_slot] = action_var_2
-        menu_item_var_2[menu_index] = action_var_2.x
-        menu_item_var_3[menu_index] = action_var_2.y
-        menu_item_var_4[menu_index] = action_var_2.z
-    else:
-        action_var_2 = databot.bot_spawn_vect[bot_slot]
-        switch subitem_index[menu_index]:
-            case 0:
-                action_var = databot.bot_spawn_type[bot_slot]
-                action_var_2 = menu_index
-                action_var_3 = OPTIONS_TYPE.SPAWN
-                act_general_change_list_var_1()
-                databot.bot_spawn_type[bot_slot] = action_var
-                break
-            case 1:
-                general_target = GENERAL_TARGET.VECT_X
-                act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.x
-                break
-            case 2:
-                general_target = GENERAL_TARGET.VECT_Y
-                act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.y
-                break
-            case 3:
-                general_target = GENERAL_TARGET.VECT_Z
-                act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_4[menu_index] = action_var_2.z
-                break
-
-
-def act_bot_facing():
-    @Name "SUB: act_bot_facing"
-
-    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
-        action_var_2 = eventPlayer.getFacingDirection()
-        databot.bot_facing_vect[bot_slot] = action_var_2
-        menu_item_var_2[menu_index] = action_var_2.x
-        menu_item_var_3[menu_index] = action_var_2.y
-        menu_item_var_4[menu_index] = action_var_2.z
-    else:
-        action_var_2 = databot.bot_facing_vect[bot_slot]
-        switch subitem_index[menu_index]:
-            case 0:
-                action_var = databot.bot_facing_type[bot_slot]
-                action_var_2 = menu_index
-                action_var_3 = OPTIONS_TYPE.FACING
-                act_general_change_list_var_1()
-                databot.bot_facing_type[bot_slot] = action_var
-                break
-            case 1:
-                general_target = GENERAL_TARGET.VECT_X
-                act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.x
-                break
-            case 2:
-                general_target = GENERAL_TARGET.VECT_Y
-                act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.y
-                break
-            case 3:
-                general_target = GENERAL_TARGET.VECT_Z
-                act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_4[menu_index] = action_var_2.z
-                break
-
-
-def act_bot_bound_pos():
-    @Name "SUB: act_bot_bound_pos"
-
-    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
-        action_var_2 = eventPlayer.getPosition()
-        databot.bot_bound_pos[bot_slot] = action_var_2
-        menu_item_var_1[menu_index] = action_var_2.x
-        menu_item_var_2[menu_index] = action_var_2.y
-        menu_item_var_3[menu_index] = action_var_2.z
-    else:
-        action_var_2 = databot.bot_bound_pos[bot_slot]
-        switch subitem_index[menu_index]:
-            case 0:
-                general_target = GENERAL_TARGET.VECT_X
-                act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
-                menu_item_var_1[menu_index] = action_var_2.x
-                break
-            case 1:
-                general_target = GENERAL_TARGET.VECT_Y
-                act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.y
-                break
-            case 2:
-                general_target = GENERAL_TARGET.VECT_Z
-                act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.z
-                break
-    update_bound_effect()
-
-    
-def act_bot_bound_dim():
-    @Name "SUB: act_bot_bound_dim"
-
-    action_var_2 = databot.bot_bound_dim[bot_slot]
-    switch subitem_index[menu_index]:
-        case 0:
-            act_general_num_var_1()
-            databot.bot_bound_angle[bot_slot] = menu_item_var_1[menu_index]
-            break
-        case 1:
-            general_target = GENERAL_TARGET.VECT_X
-            act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_2[menu_index] = action_var_2.x
-            break
-        case 2:
-            general_target = GENERAL_TARGET.VECT_Y
-            act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_3[menu_index] = action_var_2.y
-            break
-        case 3:
-            general_target = GENERAL_TARGET.VECT_Z
-            act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_4[menu_index] = action_var_2.z
-            break
-    update_bound_effect()
-
-
-def act_bot_distance():
-    @Name "SUB: act_bot_distance"
-
-    action_var = menu_item_var_1[menu_index]
-    action_var_2 = menu_item_var_2[menu_index]
-
-    switch subitem_index[menu_index]:
-        case 0:
-            general_target = GENERAL_TARGET.MIN
-            break
-        case 1:
-            general_target = GENERAL_TARGET.MAX
-            break
-
-    act_general_change_min_max()
-
-    menu_item_var_1[menu_index] = action_var
-    menu_item_var_2[menu_index] = action_var_2
-
-    databot.bot_dist_min[bot_slot] = action_var
-    databot.bot_dist_max[bot_slot] = action_var_2
-
-    update_distance_effect()
 
 
 def act_bot_select_profile():

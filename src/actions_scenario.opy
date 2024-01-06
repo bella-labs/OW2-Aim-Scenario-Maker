@@ -1,3 +1,81 @@
+def act_sce_player_spawn():
+    @Name "SUB: act_sce_player_spawn"
+
+    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
+        action_var_2 = eventPlayer.getPosition()
+        databot.sce_player_spawn = action_var_2
+        menu_item_var_1[menu_index] = action_var_2.x
+        menu_item_var_2[menu_index] = action_var_2.y
+        menu_item_var_3[menu_index] = action_var_2.z
+    else:
+        action_var_2 = databot.bot_spawn_vect
+        switch subitem_index[menu_index]:
+            case 0:
+                general_target = GENERAL_TARGET.VECT_X
+                act_general_change_vect()
+                databot.sce_player_spawn = action_var_2
+                menu_item_var_1[menu_index] = action_var_2.x
+                break
+            case 1:
+                general_target = GENERAL_TARGET.VECT_Y
+                act_general_change_vect()
+                databot.sce_player_spawn = action_var_2
+                menu_item_var_2[menu_index] = action_var_2.y
+                break
+            case 2:
+                general_target = GENERAL_TARGET.VECT_Z
+                act_general_change_vect()
+                databot.sce_player_spawn = action_var_2
+                menu_item_var_3[menu_index] = action_var_2.z
+                break
+
+
+def act_sce_player_facing():
+    @Name "SUB: act_sce_player_facing"
+
+    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
+        action_var_2 = eventPlayer.getFacingDirection()
+        databot.sce_player_spawn = action_var_2
+        menu_item_var_1[menu_index] = action_var_2.x
+        menu_item_var_2[menu_index] = action_var_2.y
+        menu_item_var_3[menu_index] = action_var_2.z
+    else:
+        action_var_2 = databot.bot_spawn_vect
+        switch subitem_index[menu_index]:
+            case 0:
+                general_target = GENERAL_TARGET.VECT_X
+                act_general_change_vect()
+                databot.sce_player_spawn = action_var_2
+                menu_item_var_1[menu_index] = action_var_2.x
+                break
+            case 1:
+                general_target = GENERAL_TARGET.VECT_Y
+                act_general_change_vect()
+                databot.sce_player_spawn = action_var_2
+                menu_item_var_2[menu_index] = action_var_2.y
+                break
+            case 2:
+                general_target = GENERAL_TARGET.VECT_Z
+                act_general_change_vect()
+                databot.sce_player_spawn = action_var_2
+                menu_item_var_3[menu_index] = action_var_2.z
+                break
+
+
+def act_sce_player_speed():
+    @Name "SUB: act_sce_player_speed"
+
+    act_general_num_var_1()
+    databot.sce_player_speed = menu_item_var_1[menu_index]
+
+
+def act_sce_player_gravity():
+    @Name "SUB: act_sce_player_gravity"
+
+    act_general_num_var_1()
+    databot.sce_player_gravity = menu_item_var_1[menu_index]
+
+
 def act_sce_mode():
     @Name "SUB: act_sce_mode"
 
@@ -62,84 +140,6 @@ def act_sce_strafe():
             act_general_num_var_3()
             databot.sce_elim_points = menu_item_var_3[menu_index]
             break
-
-
-def act_sce_player_spawn():
-    @Name "SUB: act_sce_player_spawn"
-
-    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
-        action_var_2 = eventPlayer.getPosition()
-        databot.sce_player_spawn = action_var_2
-        menu_item_var_2[menu_index] = action_var_2.x
-        menu_item_var_3[menu_index] = action_var_2.y
-        menu_item_var_4[menu_index] = action_var_2.z
-    else:
-        action_var_2 = databot.bot_spawn_vect
-        switch subitem_index[menu_index]:
-            case 0:
-                general_target = GENERAL_TARGET.VECT_X
-                act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_1[menu_index] = action_var_2.x
-                break
-            case 1:
-                general_target = GENERAL_TARGET.VECT_Y
-                act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.y
-                break
-            case 2:
-                general_target = GENERAL_TARGET.VECT_Z
-                act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.z
-                break
-
-
-def act_sce_player_facing():
-    @Name "SUB: act_sce_player_facing"
-
-    if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
-        action_var_2 = eventPlayer.getFacingDirection()
-        databot.sce_player_spawn = action_var_2
-        menu_item_var_2[menu_index] = action_var_2.x
-        menu_item_var_3[menu_index] = action_var_2.y
-        menu_item_var_4[menu_index] = action_var_2.z
-    else:
-        action_var_2 = databot.bot_spawn_vect
-        switch subitem_index[menu_index]:
-            case 0:
-                general_target = GENERAL_TARGET.VECT_X
-                act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_1[menu_index] = action_var_2.x
-                break
-            case 1:
-                general_target = GENERAL_TARGET.VECT_Y
-                act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.y
-                break
-            case 2:
-                general_target = GENERAL_TARGET.VECT_Z
-                act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.z
-                break
-
-
-def act_sce_player_speed():
-    @Name "SUB: act_sce_player_speed"
-
-    act_general_num_var_1()
-    databot.sce_player_speed = menu_item_var_1[menu_index]
-
-
-def act_sce_player_gravity():
-    @Name "SUB: act_sce_player_gravity"
-
-    act_general_num_var_1()
-    databot.sce_player_gravity = menu_item_var_1[menu_index]
 
 
 def act_sce_script_status():
