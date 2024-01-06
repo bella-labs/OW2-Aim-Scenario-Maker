@@ -68,25 +68,25 @@ def menu_act_submenu_scenario():
             menu_act_change_submenu()
             break
         case submenu_curr_start + 1:
-            act_sce_mode()
-            break
-        case submenu_curr_start + 2:
-            act_sce_points()
-            break
-        case submenu_curr_start + 3:
-            act_sce_strafe()
-            break
-        case submenu_curr_start + 4:
             act_sce_player_spawn()
             break
-        case submenu_curr_start + 5:
+        case submenu_curr_start + 2:
             act_sce_player_facing()
             break
-        case submenu_curr_start + 6:
+        case submenu_curr_start + 3:
             act_sce_player_speed()
             break
-        case submenu_curr_start + 7:
+        case submenu_curr_start + 4:
             act_sce_player_gravity()
+            break
+        case submenu_curr_start + 5:
+            act_sce_mode()
+            break
+        case submenu_curr_start + 6:
+            act_sce_points()
+            break
+        case submenu_curr_start + 7:
+            act_sce_strafe()
             break
         case submenu_curr_start + 8:
             act_sce_script_status()
@@ -109,34 +109,34 @@ def menu_act_submenu_bot():
             act_bot_override_slot()
             break
         case submenu_curr_start + 3:
-            act_bot_hero_pool()
-            break
-        case submenu_curr_start + 4:
-            act_bot_health()
-            break
-        case submenu_curr_start + 5:
-            act_bot_speed()
-            break
-        case submenu_curr_start + 6:
-            act_bot_scale()
-            break
-        case submenu_curr_start + 7:
-            act_bot_gravity()
-            break
-        case submenu_curr_start + 8:
             act_bot_spawn()
             break
-        case submenu_curr_start + 9:
+        case submenu_curr_start + 4:
             act_bot_facing()
             break
-        case submenu_curr_start + 10:
+        case submenu_curr_start + 5:
             act_bot_bound_pos()
             break
-        case submenu_curr_start + 11:
+        case submenu_curr_start + 6:
             act_bot_bound_dim()
             break
-        case submenu_curr_start + 12:
+        case submenu_curr_start + 7:
             act_bot_distance()
+            break
+        case submenu_curr_start + 8:
+            act_bot_hero_pool()
+            break
+        case submenu_curr_start + 9:
+            act_bot_health()
+            break
+        case submenu_curr_start + 10:
+            act_bot_speed()
+            break
+        case submenu_curr_start + 11:
+            act_bot_scale()
+            break
+        case submenu_curr_start + 12:
+            act_bot_gravity()
             break
         case submenu_curr_start + 13:
             act_bot_select_profile()

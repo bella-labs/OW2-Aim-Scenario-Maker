@@ -10,6 +10,7 @@ rule "Create Effects on effect index":
     update_bound_effect()
     update_distance_effect()
 
+
     set_cube()
     # Create Boundary Box Effect, Use unused player variables cuz space ain't cheap
     eventPlayer.import_status = [[0, 1], [0, 2], [0, 4], [1, 3], [1, 5], [2, 3], [2, 6], [3, 7], [4, 5], [4, 6], [5, 7], [6, 7]]
@@ -23,11 +24,19 @@ rule "Create Effects on effect index":
     createEffect(hostPlayer, Effect.RING, Color.GREEN, databot.sce_player_spawn,  databot.bot_dist_max[bot_slot], EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
 
+    # Create Player Spawn Effect
+    createEffect(hostPlayer, Effect.SPHERE, Color.TEAM_1, databot.bot_spawn_vect[bot_slot], 0.5, EffectReeval.POSITION_AND_RADIUS)
+    effect_array.append(getLastCreatedEntity())
+    # Create Player Facing Effect
+    createBeam(hostPlayer, Beam.BAD, databot.bot_spawn_vect[bot_slot], databot.bot_spawn_vect[bot_slot] + normalize(databot.bot_facing_vect) * 5, Color.TEAM_1, EffectReeval.POSITION_AND_RADIUS)
+    effect_array.append(getLastCreatedEntity())
+    
     # Create Spawn Effect
-    createEffect(hostPlayer, Effect.SPHERE, Color.BLUE, databot.bot_spawn_vect[bot_slot], 0.5, EffectReeval.POSITION_AND_RADIUS)
+    createEffect(hostPlayer, Effect.SPHERE, Color.TEAM_2, databot.bot_spawn_vect[bot_slot], 0.5, EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
     # Create Facing Effect
-    createBeam(hostPlayer, Beam.BAD, databot.bot_spawn_vect[bot_slot], databot.bot_spawn_vect[bot_slot] + normalize(databot.bot_facing_vect) * 5, Color.PURPLE, EffectReeval.POSITION_AND_RADIUS)
+    createBeam(hostPlayer, Beam.BAD, databot.bot_spawn_vect[bot_slot], databot.bot_spawn_vect[bot_slot] + normalize(databot.bot_facing_vect) * 5, Color.TEAM_2, EffectReeval.POSITION_AND_RADIUS)
+    
     effect_array.append(getLastCreatedEntity())
     # Create Boundary Origin Effect
     createEffect(hostPlayer, Effect.SPHERE, Color.ORANGE, databot.bot_bound_pos[bot_slot], 0.1, EffectReeval.POSITION_AND_RADIUS)

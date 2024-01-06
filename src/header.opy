@@ -70,10 +70,10 @@ globalvar strings_inputs
 globalvar strings_misc
 globalvar strings_on_titles
 globalvar strings_labels
-globalvar strings_submenu_0
-globalvar strings_submenu_1
-globalvar strings_submenu_2
-globalvar strings_submenu_3
+globalvar strings_main_menu
+globalvar strings_bot_menu
+globalvar strings_prof_menu
+globalvar strings_sce_menu
 globalvar strings_options
 globalvar strings_instructions
 globalvar strings_tags

@@ -144,7 +144,7 @@ rule "load_language_data":
             ""
         ]
     ]
-    strings_submenu_0 = [
+    strings_main_menu = [
         [
             "For detailed documentation visit\nbellalabs.dev/OW2-Aim-Scenario-Maker\n", 
             "Configure",
@@ -188,25 +188,25 @@ rule "load_language_data":
             ""
         ]
     ]
-    strings_submenu_1 = [
+    strings_bot_menu = [
         [
             "Bot Settings",
             "◀ Main Menu",
             "Bot Slot",
             "Select Bot Slot",
             "Override Bot Slot",
-            "Bot Parameters",
-            "Hero Pool",
-            "Health",
-            "Speed",
-            "Scale",
-            "Gravity",
             "Spawn and Boundaries",
             "Spawn Type",
             "Facing",
             "Boundary Position",
             "Boundary Dimentions",
             "Distance",
+            "Bot Parameters",
+            "Hero Pool",
+            "Health",
+            "Speed",
+            "Scale",
+            "Gravity",
             "Profiles",
             "Profiles Status",
             "Profile Order",
@@ -259,7 +259,7 @@ rule "load_language_data":
             ""
         ]
     ]
-    strings_submenu_2 = [
+    strings_prof_menu = [
         [
             "Profile Settings", 
             "◀ Main Menu",
@@ -324,19 +324,19 @@ rule "load_language_data":
             ""
         ]
     ]
-    strings_submenu_3 = [
+    strings_sce_menu = [
         [
             "Scenario Settings",
             "◀ Main Menu",
-            "Scoring",
-            "Scenario Type",
-            "Points",
-            "Strafe Score",
             "Player",
             "Spawn Position",
             "Spawn Facing",
             "Speed",
             "Gravity",
+            "Scoring",
+            "Scenario Type",
+            "Points",
+            "Strafe Score",
             "Custom Script"
         ],
         [
