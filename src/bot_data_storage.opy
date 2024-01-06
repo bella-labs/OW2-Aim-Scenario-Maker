@@ -73,7 +73,7 @@ def default_settings():
         eventPlayer.bot_spawn_type[loop_index] = 0
         eventPlayer.bot_spawn_vect[loop_index] = vect(0,0,0)
         eventPlayer.bot_facing_type[loop_index] = 0
-        eventPlayer.bot_facing_vect[loop_index] = vect(0,0,0)
+        eventPlayer.bot_facing_vect[loop_index] = vect(0,0,1)
         eventPlayer.bot_bound_pos[loop_index] = vect(0,0,0)
         eventPlayer.bot_bound_angle[loop_index] = 0
         eventPlayer.bot_bound_dim[loop_index] = vect(10,10,10)

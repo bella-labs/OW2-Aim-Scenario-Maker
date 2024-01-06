@@ -506,7 +506,7 @@ def create_submenu_bot():
     menu_item_var_2[menu_item_size] = databot.bot_facing_vect[0].x
     menu_item_var_3[menu_item_size] = databot.bot_facing_vect[0].y
     menu_item_var_4[menu_item_size] = databot.bot_facing_vect[0].z
-    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR, RANGE_TYPE.RANGE_VECTOR]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_NORMAL, RANGE_TYPE.RANGE_NORMAL, RANGE_TYPE.RANGE_NORMAL]
     menu_item_small_step[menu_item_size] = [RANGE_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
     menu_item_large_step[menu_item_size] = [RANGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_TOGGLE] 

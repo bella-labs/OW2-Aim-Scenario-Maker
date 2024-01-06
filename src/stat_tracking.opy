@@ -23,3 +23,12 @@ rule "increment elims":
     @Condition stat_tracking_status == true
 
     elims += 1
+
+
+rule "set scenario in progress":
+    @Event global
+    #@Condition timer > 0
+
+    scenario_in_progress = true
+    waitUntil(timer == 0, 9999)
+    scenario_in_progress = false

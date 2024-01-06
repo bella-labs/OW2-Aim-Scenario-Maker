@@ -33,7 +33,7 @@ def create_target_bot():
                 databot.bot_bound_pos[bot_gen_slot].z + random.uniform(-1 * databot.bot_bound_dim[bot_gen_slot].z, databot.bot_bound_dim[bot_gen_slot].z)/2)
             )
             break
-    bot_gen_facing = databot.bot_facing_vect[bot_gen_slot]
+    bot_gen_facing = normalize(databot.bot_facing_vect[bot_gen_slot])
     create_bot()
 
 

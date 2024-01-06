@@ -362,6 +362,7 @@ enum MENU_ACTIONS:
 
 enum RANGE_TYPE:
     NONE = 0,
+    RANGE_NORMAL,
     RANGE_SLOT,
     RANGE_HERO,
     RANGE_PERCENTAGE,
@@ -489,8 +490,26 @@ playervar calc_var_1
 playervar calc_var_2
 
 playervar is_in_bounds
+
+playervar disabled_target
+playervar disabled_indexes
 playervar disabled_movements
 playervar owner_player
 
 subroutine stats_start_stat_tracking
 subroutine stats_stop_stat_tracking
+
+
+globalvar angle
+globalvar scenario_in_progress
+subroutine set_disabled_index_dist
+subroutine set_target_scale
+
+enum DISABLED_VARS:
+    BOUNDS_CALC = 0,
+    BOUNDS_OFFSET,
+    BOUNDS_POS,
+    DIST_CALC,
+    DIST_OFFSET,
+    DIST_POS
+    
