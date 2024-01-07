@@ -514,8 +514,8 @@ def act_bot_rand_profile():
         act_general_change_list_var_1()
         databot.bot_profile_type[bot_slot] = action_var
     else:
-        action_var = menu_item_var_2[menu_index]
-        action_var_2 = menu_item_var_3[menu_index]
+        action_var = databot.bot_profile_min[bot_slot]
+        action_var_2 = databot.bot_profile_max[bot_slot]
         if subitem_index[menu_index] == 1:
             general_target = GENERAL_TARGET.MIN
         else:
@@ -523,8 +523,8 @@ def act_bot_rand_profile():
         act_general_change_min_max()
         menu_item_var_2[menu_index] = action_var
         menu_item_var_3[menu_index] = action_var_2
-        databot.bot_dist_min[bot_slot] = action_var
-        databot.bot_dist_max[bot_slot] = action_var_2
+        databot.bot_profile_min[bot_slot] = action_var
+        databot.bot_profile_max[bot_slot] = action_var_2
 
 
 def act_bot_script_status():

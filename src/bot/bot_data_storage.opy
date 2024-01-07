@@ -65,7 +65,7 @@ def default_settings():
         eventPlayer.bot_bound_angle[loop_index] = 0
         eventPlayer.bot_bound_dim[loop_index] = vect(10,10,10)
         eventPlayer.bot_dist_min[loop_index] = 0
-        eventPlayer.bot_dist_max[loop_index] = 0
+        eventPlayer.bot_dist_max[loop_index] = 50
         eventPlayer.bot_hero_pool[loop_index] = [Hero.TRACER]
         eventPlayer.bot_health[loop_index] = 100
         eventPlayer.bot_hps[loop_index] = 0

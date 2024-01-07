@@ -12,9 +12,9 @@ rule "text":
     hudSubheader(eventPlayer, "{0}".format(eventPlayer.disabled_indexes[DISABLED_VARS.DIST_CALC]), HudPosition.RIGHT, 994, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
     hudSubheader(eventPlayer, "{0}".format(bot_gen_facing), HudPosition.RIGHT, 995, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
     hudSubheader(eventPlayer, "{0}".format(getPlayersInSlot(0, Team.2).getFacingDirection()), HudPosition.RIGHT, 995, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+    hudSubheader(eventPlayer, "{0} {1}".format(getPlayersInSlot(0, Team.2).bot_hps_wait, databot.bot_hps_wait[0]), HudPosition.RIGHT, 997, Color.AQUA, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
-
-
+    
 rule "recalc dist idx":
     @Event eachPlayer
     @Condition eventPlayer == hostPlayer

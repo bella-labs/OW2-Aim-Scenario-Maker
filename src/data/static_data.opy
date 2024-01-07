@@ -44,7 +44,16 @@ rule "Load Static Data":
                    #Hero.SPACE_RANGER 
                     ]
 
-    ranges = [["N/A", "N/A"], [-1,1], [0,11], [0,len(hero_array)-1], [0,100], [0,179], [0,200], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
+    ranges =    [   ["N/A", "N/A"], # None
+                    [0,11], # Slot
+                    [0,len(hero_array)-1], # Hero
+                    [0,100], # Percentage
+                    [0,179], # Angle
+                    [0,600], # Time
+                    [0, 1000], # Scalar
+                    [-1000,1000], # Vector
+                    [0, 1000000] # Score
+                ]
     small_steps = ["N/A", 0.01, 1]
     large_steps = ["N/A", 1, 10]
     help_configs = [[0,0,0,0,0,0,0,0], # Default

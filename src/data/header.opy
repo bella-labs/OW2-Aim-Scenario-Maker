@@ -362,12 +362,10 @@ enum MENU_ACTIONS:
 
 enum RANGE_TYPE:
     NONE = 0,
-    RANGE_NORMAL,
     RANGE_SLOT,
     RANGE_HERO,
     RANGE_PERCENTAGE,
     RANGE_ANGLE,
-    RANGE_DISTANCE,
     RANGE_TIME,
     RANGE_SCALAR,
     RANGE_VECTOR,
@@ -480,8 +478,7 @@ playervar boundary_limits
 
 playervar cube
 
-playervar calc_var_1
-playervar calc_var_2
+playervar calc_var
 
 playervar is_in_bounds
 
