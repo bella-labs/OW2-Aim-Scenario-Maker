@@ -1,15 +1,3 @@
-rule "Target Bot Initalization":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.hasSpawned() == true
-
-    # Set Owner Player
-    eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
-    # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
-    for eventPlayer.loop_index in range (0, 10, 1):
-        eventPlayer.disabled_movements[eventPlayer.loop_index] = false
-
-
 rule "Boundary Handler - Reset in Bounds XZ":
     @Event eachPlayer
     @Team 2
@@ -119,31 +107,6 @@ rule "Distance Handler - Correct Max Distance":
     eventPlayer.calc_var[5] = "C"
 
 
-rule "Hero Pool Handler":
-    @Event playerDied
-    @Team 2
-
-    for eventPlayer.loop_index in range (0, 10, 1):
-        eventPlayer.disabled_movements[eventPlayer.loop_index] = false
-
-    wait()
-    if len(eventPlayer.bot_hero_pool) == 1:
-        eventPlayer.resurrect()
-    else:
-        eventPlayer.startForcingHero(random.choice(eventPlayer.bot_hero_pool))
-
-    switch eventPlayer.bot_spawn_type:
-        case 0:
-            eventPlayer.teleport(eventPlayer.bot_spawn_vect)
-            break
-        case 1:
-            eventPlayer.teleport(eventPlayer.bot_bound_pos + vect(random.uniform(-1 * eventPlayer.bot_bound_dim.x, eventPlayer.bot_bound_dim.x)/2, random.uniform(-eventPlayer.bot_bound_dim.y, eventPlayer.bot_bound_dim.y)/2, random.uniform(-eventPlayer.bot_bound_dim.z, eventPlayer.bot_bound_dim.z)/2))
-            break
-        case 2:
-            eventPlayer.teleport(nearestWalkablePosition(eventPlayer.bot_bound_pos + vect(random.uniform(-eventPlayer.bot_bound_dim.x, eventPlayer.bot_bound_dim.x)/2, random.uniform(-eventPlayer.bot_bound_dim.y, eventPlayer.bot_bound_dim.y)/2, random.uniform(-eventPlayer.bot_bound_dim.z, eventPlayer.bot_bound_dim.z)/2)))
-            break
-
-
 rule "HPS Handler - Reset HoT":
     @Event playerTookDamage
     @Team 2
@@ -242,6 +205,31 @@ rule "Profile Handler: Randomized":
 
     if RULE_CONDITION:
         goto RULE_START
+
+
+rule "Death Handler":
+    @Event playerDied
+    @Team 2
+
+    for eventPlayer.loop_index in range (0, 10, 1):
+        eventPlayer.disabled_movements[eventPlayer.loop_index] = false
+
+    wait()
+    if len(eventPlayer.bot_hero_pool) == 1:
+        eventPlayer.resurrect()
+    else:
+        eventPlayer.startForcingHero(random.choice(eventPlayer.bot_hero_pool).exclude(eventPlayer.getCurrentHero()))
+
+    switch eventPlayer.bot_spawn_type:
+        case 0:
+            eventPlayer.teleport(eventPlayer.bot_spawn_vect)
+            break
+        case 1:
+            eventPlayer.teleport(eventPlayer.bot_bound_pos + vect(random.uniform(-1 * eventPlayer.bot_bound_dim.x, eventPlayer.bot_bound_dim.x)/2, random.uniform(-eventPlayer.bot_bound_dim.y, eventPlayer.bot_bound_dim.y)/2, random.uniform(-eventPlayer.bot_bound_dim.z, eventPlayer.bot_bound_dim.z)/2))
+            break
+        case 2:
+            eventPlayer.teleport(nearestWalkablePosition(eventPlayer.bot_bound_pos + vect(random.uniform(-eventPlayer.bot_bound_dim.x, eventPlayer.bot_bound_dim.x)/2, random.uniform(-eventPlayer.bot_bound_dim.y, eventPlayer.bot_bound_dim.y)/2, random.uniform(-eventPlayer.bot_bound_dim.z, eventPlayer.bot_bound_dim.z)/2)))
+            break
 
 
 def set_disabled_index_dist():

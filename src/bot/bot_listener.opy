@@ -1,3 +1,15 @@
+rule "Target Bot Initalization":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.hasSpawned() == true
+
+    # Set Owner Player
+    eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
+    # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
+    for eventPlayer.loop_index in range (0, 10, 1):
+        eventPlayer.disabled_movements[eventPlayer.loop_index] = false
+
+        
 rule "Target Bot Listener - Spawn":
     @Event eachPlayer
     @Team 2
