@@ -3,38 +3,17 @@ rule "Target Bot Initalization":
     @Team 2
     @Condition eventPlayer.hasSpawned() == true
 
+    # Set Owner Player
+    eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
+
     # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
     for eventPlayer.import_status in range (0, 10, 1):
         eventPlayer.disabled_movements[eventPlayer.import_status] = false
-    # Set Owner Player
-    eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
-    # Set Health
-    eventPlayer.bot_health = databot.bot_health[eventPlayer.getSlot()]
-    if eventPlayer.bot_health == 0:
-        eventPlayer.setStatusEffect(null, Status.UNKILLABLE, 9999)
-    else:
-        eventPlayer.setMaxHealth(eventPlayer.bot_health)
-    # Set HPS
-    eventPlayer.bot_hps = databot.bot_hps[eventPlayer.getSlot()]
-    eventPlayer.bot_hps_wait = databot.bot_hps_wait[eventPlayer.getSlot()]
-    if eventPlayer.bot_hps > 0:
-        eventPlayer.startHoT(null, 9999, eventPlayer.bot_hps)
-    elif eventPlayer.bot_hps < 0:
-        eventPlayer.startDoT(null, 9999, -1 * eventPlayer.bot_hps)
-    # Set Speed
-    eventPlayer.bot_speed_type = databot.bot_speed_type[eventPlayer.getSlot()]
-    eventPlayer.bot_speed_min = databot.bot_speed_min[eventPlayer.getSlot()]
-    eventPlayer.bot_speed_max = databot.bot_speed_max[eventPlayer.getSlot()]
-    eventPlayer.bot_speed_target = databot.bot_speed_target[eventPlayer.getSlot()]
-    # Set Scale
-    eventPlayer.bot_scale_type = databot.bot_scale_type[eventPlayer.getSlot()]
-    eventPlayer.bot_scale_min = databot.bot_scale_min[eventPlayer.getSlot()]
-    eventPlayer.bot_scale_max = databot.bot_scale_max[eventPlayer.getSlot()]
-    eventPlayer.bot_scale_target = databot.bot_scale_target[eventPlayer.getSlot()]
-    set_target_scale()
-    # Set Gravity
-    eventPlayer.bot_gravity = databot.bot_gravity[eventPlayer.getSlot()]
-    eventPlayer.setGravity(eventPlayer.bot_gravity)
+
+    # Set Spawn
+    eventPlayer.bot_spawn_type = databot.bot_spawn_type[eventPlayer.getSlot()]
+    eventPlayer.bot_spawn_vect = databot.bot_spawn_vect[eventPlayer.getSlot()]
+    
     # Set Facing
     eventPlayer.bot_facing_type = databot.bot_facing_type[eventPlayer.getSlot()]
     eventPlayer.bot_facing_vect = databot.bot_facing_vect[eventPlayer.getSlot()]
@@ -42,115 +21,80 @@ rule "Target Bot Initalization":
         eventPlayer.startFacing(normalize(eventPlayer.bot_facing_vect), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     else:
         eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.owner_player.getEyePosition()), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
+    
     # Boundaries
     eventPlayer.bot_bound_pos = databot.bot_bound_pos[eventPlayer.getSlot()]
-    eventPlayer.bot_bound_dim = databot.bot_bound_dim[eventPlayer.getSlot()]
+    eventPlayer.bot_bound_dim = eventPlayer.bot_bound_dim[eventPlayer.getSlot()]
     eventPlayer.bot_bound_angle = databot.bot_bound_angle[eventPlayer.getSlot()]
     set_cube()
+    
     # Distance
     eventPlayer.bot_dist_min = databot.bot_dist_min[eventPlayer.getSlot()]
     eventPlayer.bot_dist_max = databot.bot_dist_max[eventPlayer.getSlot()]
+    
+    # Hero Pool
+    eventPlayer.bot_hero_pool = databot.bot_hero_pool[eventPlayer.getSlot()]
+    
+    # Set Health
+    eventPlayer.bot_health = databot.bot_health[eventPlayer.getSlot()]
+    if eventPlayer.bot_health == 0:
+        eventPlayer.setStatusEffect(null, Status.UNKILLABLE, 9999)
+    else:
+        eventPlayer.setMaxHealth(eventPlayer.bot_health)
+    
+    # Set HPS
+    eventPlayer.bot_hps = databot.bot_hps[eventPlayer.getSlot()]
+    eventPlayer.bot_hps_wait = databot.bot_hps_wait[eventPlayer.getSlot()]
+    if eventPlayer.bot_hps > 0:
+        eventPlayer.startHoT(null, 9999, eventPlayer.bot_hps)
+    elif eventPlayer.bot_hps < 0:
+        eventPlayer.startDoT(null, 9999, -1 * eventPlayer.bot_hps)
+    
+    # Set Speed
+    eventPlayer.bot_speed_type = databot.bot_speed_type[eventPlayer.getSlot()]
+    eventPlayer.bot_speed_min = databot.bot_speed_min[eventPlayer.getSlot()]
+    eventPlayer.bot_speed_max = databot.bot_speed_max[eventPlayer.getSlot()]
+    eventPlayer.bot_speed_target = databot.bot_speed_target[eventPlayer.getSlot()]
+    
+    # Set Scale
+    eventPlayer.bot_scale_type = databot.bot_scale_type[eventPlayer.getSlot()]
+    eventPlayer.bot_scale_min = databot.bot_scale_min[eventPlayer.getSlot()]
+    eventPlayer.bot_scale_max = databot.bot_scale_max[eventPlayer.getSlot()]
+    eventPlayer.bot_scale_target = databot.bot_scale_target[eventPlayer.getSlot()]
+    set_target_scale()
+    
+    # Set Gravity
+    eventPlayer.bot_gravity = databot.bot_gravity[eventPlayer.getSlot()]
+    eventPlayer.setGravity(eventPlayer.bot_gravity)
 
 
-rule "HPS Handler - Reset HoT":
-    @Event playerTookDamage
-    @Team 2
-    @Condition eventPlayer.isAlive() == true
-    @Condition eventPlayer.bot_hps > 0
-    @Condition eventPlayer.bot_hps_wait > 0
-
-    eventPlayer.stopAllHoT()
-    wait(eventPlayer.bot_hps_wait, Wait.RESTART_WHEN_TRUE)
-    eventPlayer.startHoT(null, 9999, eventPlayer.bot_hps)
-
-
-rule "HPS Handler - Reset DoT":
-    @Event playerTookDamage
-    @Team 2
-    @Condition eventPlayer.isAlive() == true
-    @Condition eventPlayer.bot_hps < 0
-    @Condition eventPlayer.bot_hps_wait > 0
-
-    eventPlayer.stopAllDoT()
-    wait(eventPlayer.bot_hps_wait, Wait.RESTART_WHEN_TRUE)
-    eventPlayer.startDoT(null, 9999, -1 * eventPlayer.bot_hps)
-
-
-rule "Speed Handler - Random":
+rule "Bot Died: Swap Hero":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() == true
-    @Condition eventPlayer.bot_speed_type == 0
+    @Condition eventPlayer.isDead() == true
 
-    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min)
+    for eventPlayer.import_status in range (0, 10, 1):
+        eventPlayer.disabled_movements[eventPlayer.import_status] = false
 
+    wait()
+    if len(eventPlayer.bot_hero_pool) == 1:
+        eventPlayer.resurrect()
+    else:
+        eventPlayer.startForcingHero(random.choice(eventPlayer.bot_hero_pool))
 
-rule "Speed Handler - Random":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.isAlive() == true
-    @Condition eventPlayer.bot_speed_type == 1
-
-    eventPlayer.setMoveSpeed(random.uniform(eventPlayer.bot_speed_min, eventPlayer.bot_speed_max))
-
-
-rule "Speed Handler - Health":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.isAlive() == true
-    @Condition eventPlayer.bot_speed_type == 2
-
-    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (1 - eventPlayer.getNormalizedHealth()))
-    wait(0.25)
-
-    if RULE_CONDITION:
-        goto RULE_START
-
-
-rule "Speed Handler - Elims":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.isAlive() == true
-    @Condition eventPlayer.bot_speed_type == 3
-
-    eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (elims * eventPlayer.bot_scale_target)))
-
-
-rule "Speed Handler - Loop":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.isAlive() == true
-    @Condition eventPlayer.bot_speed_type == 4
-
-    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(timer%eventPlayer.bot_scale_target)/eventPlayer.bot_scale_target)))
-    wait(0.25)
-
-    if RULE_CONDITION:
-        goto RULE_START
-
-
-def set_target_scale():
-    @Name "SUB: set_target_scale"
-
-    switch eventPlayer.bot_scale_type:
-        case 0: # Static
-            eventPlayer.startScalingSize(eventPlayer.bot_scale_min, true)
+    switch eventPlayer.bot_spawn_type:
+        case 0:
+            eventPlayer.teleport(eventPlayer.bot_spawn_vect)
             break
-        case 1: # Random
-            eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
+        case 1:
+            eventPlayer.teleport(eventPlayer.bot_bound_pos + vect(random.uniform(-1 * eventPlayer.bot_bound_dim.x, eventPlayer.bot_bound_dim.x)/2, random.uniform(-eventPlayer.bot_bound_dim.y, eventPlayer.bot_bound_dim.y)/2, random.uniform(-eventPlayer.bot_bound_dim.z, eventPlayer.bot_bound_dim.z)/2))
             break
-        case 2: # Health
-            eventPlayer.startScalingSize(eventPlayer.bot_scale_min + (eventPlayer.bot_scale_max - eventPlayer.bot_scale_min) * eventPlayer.getNormalizedHealth(), true)
-            break
-        case 3: #Elims
-            eventPlayer.startScalingSize(max(eventPlayer.bot_scale_min, (eventPlayer.bot_scale_max) - (elims * eventPlayer.bot_scale_target)), true)
-            break
-        case 4: #Time
-            eventPlayer.startScalingSize(eventPlayer.bot_scale_min + (eventPlayer.bot_scale_max - eventPlayer.bot_scale_min) * (sin(Math.PI*(timer%eventPlayer.bot_scale_target)/eventPlayer.bot_scale_target)), true)
+        case 2:
+            eventPlayer.teleport(nearestWalkablePosition(eventPlayer.bot_bound_pos + vect(random.uniform(-eventPlayer.bot_bound_dim.x, eventPlayer.bot_bound_dim.x)/2, random.uniform(-eventPlayer.bot_bound_dim.y, eventPlayer.bot_bound_dim.y)/2, random.uniform(-eventPlayer.bot_bound_dim.z, eventPlayer.bot_bound_dim.z)/2)))
             break
 
 
-rule "Boundary Handler - Reset when in Bounds XZ":
+rule "Boundary Handler - Reset in Bounds XZ":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive() == true
@@ -164,7 +108,7 @@ rule "Boundary Handler - Reset when in Bounds XZ":
     eventPlayer.disabled_movements[(eventPlayer.disabled_indexes[DISABLED_VARS.BOUNDS_CALC] + 2) % 8] = false
 
 
-rule "Boundary Handler - Correct when out of Bounds XZ":
+rule "Boundary Handler - Correct out of Bounds XZ":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive() == true
@@ -185,7 +129,7 @@ rule "Boundary Handler - Correct when out of Bounds XZ":
 
 
 
-rule "Boundary Handler - Reset when Y in Bounds":
+rule "Boundary Handler - Reset in Bounds Y":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.boundary_limits[0].y < eventPlayer.getPosition().y 
@@ -257,6 +201,104 @@ rule "Distance Handler - Correct Max Distance":
     eventPlayer.disabled_movements[(eventPlayer.disabled_indexes[DISABLED_VARS.DIST_CALC] + 2) % 8] = true
 
     eventPlayer.calc_var[5] = "C"
+
+
+rule "HPS Handler - Reset HoT":
+    @Event playerTookDamage
+    @Team 2
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_hps > 0
+    @Condition eventPlayer.bot_hps_wait > 0
+
+    eventPlayer.stopAllHoT()
+    wait(eventPlayer.bot_hps_wait, Wait.RESTART_WHEN_TRUE)
+    eventPlayer.startHoT(null, 9999, eventPlayer.bot_hps)
+
+
+rule "HPS Handler - Reset DoT":
+    @Event playerTookDamage
+    @Team 2
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_hps < 0
+    @Condition eventPlayer.bot_hps_wait > 0
+
+    eventPlayer.stopAllDoT()
+    wait(eventPlayer.bot_hps_wait, Wait.RESTART_WHEN_TRUE)
+    eventPlayer.startDoT(null, 9999, -1 * eventPlayer.bot_hps)
+
+
+rule "Speed Handler - Static":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_speed_type == 0
+
+    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min)
+
+
+rule "Speed Handler - Random":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_speed_type == 1
+
+    eventPlayer.setMoveSpeed(random.uniform(eventPlayer.bot_speed_min, eventPlayer.bot_speed_max))
+
+
+rule "Speed Handler - Health":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_speed_type == 2
+
+    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (1 - eventPlayer.getNormalizedHealth()))
+    wait(0.25)
+
+    if RULE_CONDITION:
+        goto RULE_START
+
+
+rule "Speed Handler - Elims":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_speed_type == 3
+
+    eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (elims * eventPlayer.bot_scale_target)))
+
+
+rule "Speed Handler - Loop":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_speed_type == 4
+
+    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(timer%eventPlayer.bot_scale_target)/eventPlayer.bot_scale_target)))
+    wait(0.25)
+
+    if RULE_CONDITION:
+        goto RULE_START
+
+
+def set_target_scale():
+    @Name "SUB: set_target_scale"
+
+    switch eventPlayer.bot_scale_type:
+        case 0: # Static
+            eventPlayer.startScalingSize(eventPlayer.bot_scale_min, true)
+            break
+        case 1: # Random
+            eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
+            break
+        case 2: # Health
+            eventPlayer.startScalingSize(eventPlayer.bot_scale_min + (eventPlayer.bot_scale_max - eventPlayer.bot_scale_min) * eventPlayer.getNormalizedHealth(), true)
+            break
+        case 3: #Elims
+            eventPlayer.startScalingSize(max(eventPlayer.bot_scale_min, (eventPlayer.bot_scale_max) - (elims * eventPlayer.bot_scale_target)), true)
+            break
+        case 4: #Time
+            eventPlayer.startScalingSize(eventPlayer.bot_scale_min + (eventPlayer.bot_scale_max - eventPlayer.bot_scale_min) * (sin(Math.PI*(timer%eventPlayer.bot_scale_target)/eventPlayer.bot_scale_target)), true)
+            break
 
 
 def set_disabled_index_dist():

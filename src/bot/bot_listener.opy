@@ -1,3 +1,16 @@
+rule "Target Bot Listener - Hero Pool":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.bot_hero_pool != databot.bot_hero_pool[eventPlayer.getSlot()]
+
+    eventPlayer.bot_hero_pool = databot.bot_hero_pool[eventPlayer.getSlot()]
+    # Cooldown to prevent overflow
+    wait(1)
+    smallMessage(hostPlayer, "0")
+    if RULE_CONDITION:
+        goto RULE_START
+
+
 rule "Target Bot Listener - Health":
     @Event eachPlayer
     @Team 2
