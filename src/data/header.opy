@@ -486,6 +486,9 @@ playervar disabled_target
 playervar disabled_indexes
 playervar disabled_movements
 playervar owner_player
+playervar profile_list
+playervar profile_index
+playervar loop_index
 
 subroutine stats_start_stat_tracking
 subroutine stats_stop_stat_tracking

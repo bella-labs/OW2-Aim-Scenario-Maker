@@ -7,8 +7,8 @@ rule "Target Bot Initalization":
     eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
 
     # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
-    for eventPlayer.import_status in range (0, 10, 1):
-        eventPlayer.disabled_movements[eventPlayer.import_status] = false
+    for eventPlayer.loop_index in range (0, 10, 1):
+        eventPlayer.disabled_movements[eventPlayer.loop_index] = false
 
     # Set Spawn
     eventPlayer.bot_spawn_type = databot.bot_spawn_type[eventPlayer.getSlot()]
@@ -67,14 +67,33 @@ rule "Target Bot Initalization":
     eventPlayer.bot_gravity = databot.bot_gravity[eventPlayer.getSlot()]
     eventPlayer.setGravity(eventPlayer.bot_gravity)
 
+    # Set Profile
+    eventPlayer.bot_profile_status = databot.bot_profile_status[eventPlayer.getSlot()]
+    eventPlayer.bot_profile_type = databot.bot_profile_type[eventPlayer.getSlot()]
+    eventPlayer.bot_profile_min = databot.bot_profile_min[eventPlayer.getSlot()]
+    eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
+
+    for eventPlayer.profile_index in range(0, len(eventPlayer.bot_profile_status))
+        if eventPlayer.bot_profile_status[eventPlayer.profile_index] == true:
+            if len(eventPlayer.profile_list) > 0:
+                eventPlayer.profile_list.append(eventPlayer.profile_index)
+            else:
+                eventPlayer.profile_list = eventPlayer.profile_index
+    if eventPlayer.bot_profile_type == 0:
+        profile_index = 0
+    else:
+        profile_index = random.randint(0, len(eventPlayer.profile_list))
+    # Set Script Status
+    eventPlayer.bot_script_status = databot.bot_script_status[eventPlayer.getSlot()]
+
 
 rule "Bot Died: Swap Hero":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isDead() == true
 
-    for eventPlayer.import_status in range (0, 10, 1):
-        eventPlayer.disabled_movements[eventPlayer.import_status] = false
+    for eventPlayer.loop_index in range (0, 10, 1):
+        eventPlayer.disabled_movements[eventPlayer.loop_index] = false
 
     wait()
     if len(eventPlayer.bot_hero_pool) == 1:
@@ -301,6 +320,30 @@ def set_target_scale():
             break
 
 
+rule "Profile Handler: In-Order":
+    @Event eachPlayer
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_profile_type == 0
+
+    eventPlayer.profile_index += 1
+    if eventPlayer.profile_index >= len(eventPlayer.profile_list):
+        eventPlayer.profile_index = 0
+
+
+rule "Profile Handler: Randomized":
+    @Event eachPlayer
+    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.bot_profile_type == 1
+
+    eventPlayer.profile_index = random.choice(eventPlayer.profile_list.exclude(eventPlayer.profile_index))
+    if eventPlayer.profile_index == null:
+        eventPlayer.profile_index = 0
+    wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max), Wait.ABORT_WHEN_FALSE)
+
+    if RULE_CONDITION:
+        goto RULE_START
+        
+    
 def set_disabled_index_dist():
     @Name "SUB: set_disabled_index_dist"
 
