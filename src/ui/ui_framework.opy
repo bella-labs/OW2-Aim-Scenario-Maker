@@ -175,6 +175,7 @@ def setup_menu():
     @Name "SUB: setup_menu"
 
     # Default Menu Variables
+    submenu_index = 0
     submenu_start_indexes[0] = 0
     submenu_start_indexes[1] = 1
     menu_max_pos = -1

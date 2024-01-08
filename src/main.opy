@@ -5,7 +5,7 @@ settings "settings.json"
 ##!optimizeForSize
 
 # Includes
-#!include "data/header.opy"
+#!include "header.opy"
 #!include "data/init.opy"
 #!include "data/static_data.opy"
 #!include "ui/ui_framework.opy"

@@ -487,8 +487,9 @@ playervar disabled_indexes
 playervar disabled_movements
 playervar owner_player
 playervar profile_list
-playervar profile_index
+playervar current_profile
 playervar loop_index
+playervar profiles_loaded
 
 subroutine stats_start_stat_tracking
 subroutine stats_stop_stat_tracking
@@ -497,7 +498,6 @@ subroutine stats_stop_stat_tracking
 globalvar angle
 globalvar scenario_in_progress
 subroutine set_disabled_index_dist
-subroutine set_target_scale
 
 enum DISABLED_VARS:
     BOUNDS_CALC = 0,

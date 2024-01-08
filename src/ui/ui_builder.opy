@@ -24,10 +24,10 @@ rule "Player Spawned: Display notice banner":
 
 rule "Menu Setup: Creation":
     @Event global
+    @Condition data_loaded[DATA_TYPE.DATA_STATIC] == true
 
     
     data_loaded[DATA_TYPE.DATA_MENU] = false
-    waitUntil(data_loaded[DATA_TYPE.DATA_STATIC] == true, 9999)
 
     setup_databot()
     waitUntil(data_loaded[DATA_TYPE.DATA_BOT] == true, 9999)
