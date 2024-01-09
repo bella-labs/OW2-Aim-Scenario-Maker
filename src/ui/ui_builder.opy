@@ -396,7 +396,7 @@ def create_submenu_bot():
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_OVERRIDE]
     new_menu_item_cycle()
 
-        # (Subtext) Bot Spawn and Boundaries
+    # (Subtext) Bot Spawn and Boundaries
     increment_for_menu_label()
     menu_label[menu_label_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
@@ -681,7 +681,7 @@ def create_submenu_profile():
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_3var()
 
-    # (2 Var) Horizontal Probability
+    # (2 Var) Horizontal Ratio
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]

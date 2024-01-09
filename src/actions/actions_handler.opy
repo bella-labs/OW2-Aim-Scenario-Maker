@@ -171,7 +171,7 @@ def menu_act_submenu_profile():
             act_mvmt_hori_type()
             break
         case submenu_curr_start + 5:
-            act_mvmt_hori_chance()
+            act_mvmt_hori_ratio()
             break
         case submenu_curr_start + 6:
             act_mvmt_lr_time()

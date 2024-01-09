@@ -306,7 +306,7 @@ subroutine subact_prof_override_slot
 subroutine act_prof_change_weight
 #### Movement Submenu
 subroutine act_mvmt_hori_type
-subroutine act_mvmt_hori_chance
+subroutine act_mvmt_hori_ratio
 subroutine act_mvmt_lr_time
 subroutine act_mvmt_fb_time
 subroutine act_mvmt_vert_type
