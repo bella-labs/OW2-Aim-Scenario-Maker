@@ -25,11 +25,11 @@ def act_mvmt_hori_ratio():
     switch subitem_index[menu_index]:
         case 0:
             act_general_num_var_1()
-            databot.mvmt_lr_chance[profile_slot] = menu_item_var_1[menu_index]
+            databot.mvmt_lr_ratio[profile_slot] = menu_item_var_1[menu_index]
             break
         case 1:
             act_general_num_var_2()
-            databot.mvmt_fb_chance[profile_slot] = menu_item_var_2[menu_index]
+            databot.mvmt_fb_ratio[profile_slot] = menu_item_var_2[menu_index]
             break
 
 

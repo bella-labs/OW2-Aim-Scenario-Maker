@@ -166,8 +166,8 @@ playervar mvmt_hori_type
 playervar mvmt_hori_impulse
 playervar mvmt_hori_interval
 #### Left / Right Probability
-playervar mvmt_lr_chance
-playervar mvmt_fb_chance
+playervar mvmt_lr_ratio
+playervar mvmt_fb_ratio
 #### Left / Right Time
 playervar mvmt_left_min
 playervar mvmt_left_max
@@ -488,8 +488,8 @@ playervar disabled_movements
 playervar owner_player
 playervar profile_list
 playervar current_profile
-playervar loop_index
-playervar profiles_loaded
+playervar loop_indexes
+playervar profile_weights
 
 subroutine stats_start_stat_tracking
 subroutine stats_stop_stat_tracking
@@ -507,3 +507,18 @@ enum DISABLED_VARS:
     DIST_OFFSET,
     DIST_POS
     
+enum PLAYER_INDEXES:
+    DISABLE_MVMT = 0,
+    PROFILE_1,
+    PROFILE_2,
+    PROFILE_3,
+    PROFILE_4
+
+enum MVMT_RAND:
+    LR = 0,
+    FB,
+    JUMP,
+    CROUCH
+
+playervar movement_direction
+playervar movement_randomizer

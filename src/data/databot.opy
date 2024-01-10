@@ -79,7 +79,7 @@ def default_settings():
         eventPlayer.bot_scale_max[loop_index] = 1
         eventPlayer.bot_scale_target[loop_index] = 0
         eventPlayer.bot_gravity[loop_index] = 100
-        eventPlayer.bot_profile_status[loop_index] = [false, false, false, false, false, false, false, false, false, false, false, false]
+        eventPlayer.bot_profile_status[loop_index] = [true, false, false, false, false, false, false, false, false, false, false, false]
         eventPlayer.bot_profile_type[loop_index] = 0
         eventPlayer.bot_profile_min[loop_index] = 0
         eventPlayer.bot_profile_max[loop_index] = 0
@@ -91,8 +91,8 @@ def default_settings():
         eventPlayer.mvmt_hori_impulse[loop_index] = 0
         eventPlayer.mvmt_hori_interval[loop_index] = 0
 
-        eventPlayer.mvmt_lr_chance[loop_index] = 50
-        eventPlayer.mvmt_fb_chance[loop_index] = 50
+        eventPlayer.mvmt_lr_ratio[loop_index] = 50
+        eventPlayer.mvmt_fb_ratio[loop_index] = 50
 
         eventPlayer.mvmt_left_min[loop_index] = 0
         eventPlayer.mvmt_left_max[loop_index] = 0

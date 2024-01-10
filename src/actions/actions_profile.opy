@@ -20,8 +20,8 @@ def subact_select_prof_refresh():
     menu_item_var_3[refresh_index] = databot.mvmt_hori_impulse[profile_slot]
     # Horizontal Probability
     refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.mvmt_lr_chance[profile_slot]
-    menu_item_var_2[refresh_index] = databot.mvmt_fb_chance[profile_slot]
+    menu_item_var_1[refresh_index] = databot.mvmt_lr_ratio[profile_slot]
+    menu_item_var_2[refresh_index] = databot.mvmt_fb_ratio[profile_slot]
     # Left / Right Time
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.mvmt_left_min[profile_slot]
@@ -105,8 +105,8 @@ def subact_prof_override_slot():
     databot.mvmt_hori_impulse[action_var] = databot.mvmt_hori_impulse[profile_slot]
     databot.mvmt_hori_impulse[action_var] = databot.mvmt_hori_impulse[profile_slot]
     # Horizontal Probability
-    databot.mvmt_lr_chance[action_var] = databot.mvmt_lr_chance[profile_slot]
-    databot.mvmt_fb_chance[action_var] = databot.mvmt_fb_chance[profile_slot]
+    databot.mvmt_lr_ratio[action_var] = databot.mvmt_lr_ratio[profile_slot]
+    databot.mvmt_fb_ratio[action_var] = databot.mvmt_fb_ratio[profile_slot]
     # Left / Right Time
     databot.mvmt_left_min[action_var] = databot.mvmt_left_min[profile_slot]
     databot.mvmt_left_max[action_var] = databot.mvmt_left_max[profile_slot]

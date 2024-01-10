@@ -1,13 +1,14 @@
 rule "Target Bot Initalization":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.hasSpawned() == true
 
     # Set Owner Player
     eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
     # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
-    for eventPlayer.loop_index in range (0, 10, 1):
-        eventPlayer.disabled_movements[eventPlayer.loop_index] = false
+    eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] = 0
+    while(eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] < 10):
+        eventPlayer.disabled_movements[eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT]] = false
+        eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] += 1
 
         
 rule "Target Bot Listener - Spawn":
@@ -237,22 +238,35 @@ rule "Target Bot Listener - Profile":
                 eventPlayer.bot_profile_status != databot.bot_profile_status[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_type != databot.bot_profile_type[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_min != databot.bot_profile_min[eventPlayer.getSlot()] or
-                eventPlayer.bot_profile_max != databot.bot_profile_max[eventPlayer.getSlot()]
+                eventPlayer.bot_profile_max != databot.bot_profile_max[eventPlayer.getSlot()] or
+                eventPlayer.prof_weight != databot.prof_weight[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.profiles_loaded = false
+    # Set current_profile to -1 to prevent profile handler rules from updating current_profile
+    eventPlayer.current_profile = -1
     eventPlayer.bot_profile_type = databot.bot_profile_type[eventPlayer.getSlot()]
     eventPlayer.bot_profile_min = databot.bot_profile_min[eventPlayer.getSlot()]
     eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
     eventPlayer.bot_profile_status = databot.bot_profile_status[eventPlayer.getSlot()]
+    eventPlayer.prof_weight = databot.prof_weight[eventPlayer.getSlot()]
 
+    # Indexes 1 and 2 of loop_indexes are used to loop through and copy over the indexes of bot_profile_status that are set to true
+    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] = 0
+    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] = 0
+    while(eventPlayer.loop_indexes[1] < len(eventPlayer.bot_profile_status)):
+        if eventPlayer.bot_profile_status[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]] == true:
+                eventPlayer.profile_list[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]
+                if eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] == 0:
+                    eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.prof_weight
+                else:
+                    eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.prof_weight + eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]-1]
+                eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] += 1
+        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] += 1
+
+    # Set index 3 of loop_indexes to 9999 so that if the type is set to in-order the profile handler rule will loop over to the 0th index of profile_list
+    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 9999
+    # Set current_profile to 0 so the profile handler rules can process
     eventPlayer.current_profile = 0
-    for eventPlayer.loop_index in range(0, len(eventPlayer.bot_profile_status)):
-        if eventPlayer.bot_profile_status[eventPlayer.loop_index] == true:
-                eventPlayer.profile_list[eventPlayer.current_profile] = eventPlayer.loop_index
-                eventPlayer.current_profile += 1
-    eventPlayer.current_profile = 0
-    eventPlayer.profiles_loaded = true
 
     # Cooldown to prevent overflow
     wait(1)
@@ -280,14 +294,14 @@ rule "Target Bot Listener - Movement Horizontal Type":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_hori_type != databot.mvmt_hori_type[bot_slot] or 
-                eventPlayer.mvmt_hori_impulse != databot.mvmt_hori_impulse[bot_slot] or 
-                eventPlayer.mvmt_hori_interval != databot.mvmt_hori_interval[bot_slot]
+                eventPlayer.mvmt_hori_type != databot.mvmt_hori_type[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_hori_impulse != databot.mvmt_hori_impulse[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_hori_interval != databot.mvmt_hori_interval[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_hori_type = databot.mvmt_hori_type[bot_slot]
-    eventPlayer.mvmt_hori_impulse = databot.mvmt_hori_impulse[bot_slot]
-    eventPlayer.mvmt_hori_interval = databot.mvmt_hori_interval[bot_slot]
+    eventPlayer.mvmt_hori_type = databot.mvmt_hori_type[eventPlayer.getSlot()]
+    eventPlayer.mvmt_hori_impulse = databot.mvmt_hori_impulse[eventPlayer.getSlot()]
+    eventPlayer.mvmt_hori_interval = databot.mvmt_hori_interval[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
@@ -297,20 +311,39 @@ rule "Target Bot Listener - Movement Horizontal Type":
         goto RULE_START
 
 
+rule "Target Bot Listener - Movement Horizontal Ratio":
+    @Event eachPlayer
+    @Team 2
+    @Condition  (
+                eventPlayer.mvmt_lr_ratio != databot.mvmt_lr_ratio[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_fb_ratio != databot.mvmt_fb_ratio[eventPlayer.getSlot()]
+                )
+
+    eventPlayer.mvmt_lr_ratio = databot.mvmt_lr_ratio[eventPlayer.getSlot()]
+    eventPlayer.mvmt_fb_ratio = databot.mvmt_fb_ratio[eventPlayer.getSlot()]
+
+    # Cooldown to prevent overflow
+    wait(1)
+    smallMessage(hostPlayer, "Horizontal Ratio")
+
+    if RULE_CONDITION:
+        goto RULE_START
+
+
 rule "Target Bot Listener - Movement Left Right Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_left_min != databot.mvmt_left_min[bot_slot] or 
-                eventPlayer.mvmt_left_max != databot.mvmt_left_max[bot_slot] or 
-                eventPlayer.mvmt_right_min != databot.mvmt_right_min[bot_slot] or
-                eventPlayer.mvmt_right_max != databot.mvmt_right_max[bot_slot]
+                eventPlayer.mvmt_left_min != databot.mvmt_left_min[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_left_max != databot.mvmt_left_max[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_right_min != databot.mvmt_right_min[eventPlayer.getSlot()] or
+                eventPlayer.mvmt_right_max != databot.mvmt_right_max[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_left_min = databot.mvmt_left_min[bot_slot]
-    eventPlayer.mvmt_left_max = databot.mvmt_left_max[bot_slot]
-    eventPlayer.mvmt_right_min = databot.mvmt_right_min[bot_slot]
-    eventPlayer.mvmt_right_max = databot.mvmt_right_max[bot_slot]
+    eventPlayer.mvmt_left_min = databot.mvmt_left_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_left_max = databot.mvmt_left_max[eventPlayer.getSlot()]
+    eventPlayer.mvmt_right_min = databot.mvmt_right_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_right_max = databot.mvmt_right_max[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
@@ -324,16 +357,16 @@ rule "Target Bot Listener - Movement Forward Back Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_fwd_min != databot.mvmt_fwd_min[bot_slot] or 
-                eventPlayer.mvmt_fwd_max != databot.mvmt_fwd_max[bot_slot] or 
-                eventPlayer.mvmt_back_min != databot.mvmt_back_min[bot_slot] or
-                eventPlayer.mvmt_back_max != databot.mvmt_back_max[bot_slot]
+                eventPlayer.mvmt_fwd_min != databot.mvmt_fwd_min[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_fwd_max != databot.mvmt_fwd_max[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_back_min != databot.mvmt_back_min[eventPlayer.getSlot()] or
+                eventPlayer.mvmt_back_max != databot.mvmt_back_max[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_fwd_min = databot.mvmt_fwd_min[bot_slot]
-    eventPlayer.mvmt_fwd_max = databot.mvmt_fwd_max[bot_slot]
-    eventPlayer.mvmt_back_min = databot.mvmt_back_min[bot_slot]
-    eventPlayer.mvmt_back_max = databot.mvmt_back_max[bot_slot]
+    eventPlayer.mvmt_fwd_min = databot.mvmt_fwd_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_fwd_max = databot.mvmt_fwd_max[eventPlayer.getSlot()]
+    eventPlayer.mvmt_back_min = databot.mvmt_back_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_back_max = databot.mvmt_back_max[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
@@ -347,14 +380,14 @@ rule "Target Bot Listener - Movement Vertical Type":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_vert_type != databot.mvmt_vert_type[bot_slot] or 
-                eventPlayer.mvmt_vert_impulse != databot.mvmt_vert_impulse[bot_slot] or 
-                eventPlayer.mvmt_vert_interval != databot.mvmt_vert_interval[bot_slot]
+                eventPlayer.mvmt_vert_type != databot.mvmt_vert_type[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_vert_impulse != databot.mvmt_vert_impulse[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_vert_interval != databot.mvmt_vert_interval[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_vert_type = databot.mvmt_vert_type[bot_slot]
-    eventPlayer.mvmt_vert_impulse = databot.mvmt_vert_impulse[bot_slot]
-    eventPlayer.mvmt_vert_interval = databot.mvmt_vert_interval[bot_slot]
+    eventPlayer.mvmt_vert_type = databot.mvmt_vert_type[eventPlayer.getSlot()]
+    eventPlayer.mvmt_vert_impulse = databot.mvmt_vert_impulse[eventPlayer.getSlot()]
+    eventPlayer.mvmt_vert_interval = databot.mvmt_vert_interval[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
@@ -368,16 +401,16 @@ rule "Target Bot Listener - Movement Vertical Chance":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_jump_chance != databot.mvmt_jump_chance[bot_slot] or 
-                eventPlayer.mvmt_jump_interval != databot.mvmt_jump_interval[bot_slot] or 
-                eventPlayer.mvmt_crouch_chance != databot.mvmt_crouch_chance[bot_slot] or
-                eventPlayer.mvmt_crouch_interval != databot.mvmt_crouch_interval[bot_slot]
+                eventPlayer.mvmt_jump_chance != databot.mvmt_jump_chance[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_jump_interval != databot.mvmt_jump_interval[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_crouch_chance != databot.mvmt_crouch_chance[eventPlayer.getSlot()] or
+                eventPlayer.mvmt_crouch_interval != databot.mvmt_crouch_interval[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_jump_chance = databot.mvmt_jump_chance[bot_slot]
-    eventPlayer.mvmt_jump_interval = databot.mvmt_jump_interval[bot_slot]
-    eventPlayer.mvmt_crouch_chance = databot.mvmt_crouch_chance[bot_slot]
-    eventPlayer.mvmt_crouch_interval = databot.mvmt_crouch_interval[bot_slot]
+    eventPlayer.mvmt_jump_chance = databot.mvmt_jump_chance[eventPlayer.getSlot()]
+    eventPlayer.mvmt_jump_interval = databot.mvmt_jump_interval[eventPlayer.getSlot()]
+    eventPlayer.mvmt_crouch_chance = databot.mvmt_crouch_chance[eventPlayer.getSlot()]
+    eventPlayer.mvmt_crouch_interval = databot.mvmt_crouch_interval[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
@@ -391,12 +424,12 @@ rule "Target Bot Listener - Movement Jump Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_jump_min != databot.mvmt_jump_min[bot_slot] or 
-                eventPlayer.mvmt_jump_max != databot.mvmt_jump_max[bot_slot]
+                eventPlayer.mvmt_jump_min != databot.mvmt_jump_min[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_jump_max != databot.mvmt_jump_max[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_jump_min = databot.mvmt_jump_min[bot_slot]
-    eventPlayer.mvmt_jump_max = databot.mvmt_jump_max[bot_slot]
+    eventPlayer.mvmt_jump_min = databot.mvmt_jump_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_jump_max = databot.mvmt_jump_max[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
@@ -410,16 +443,16 @@ rule "Target Bot Listener - Movement Crouch Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_crouch_min != databot.mvmt_crouch_min[bot_slot] or 
-                eventPlayer.mvmt_crouch_max != databot.mvmt_crouch_max[bot_slot] or 
-                eventPlayer.mvmt_uncrouch_min != databot.mvmt_uncrouch_min[bot_slot] or
-                eventPlayer.mvmt_uncrouch_max != databot.mvmt_uncrouch_max[bot_slot]
+                eventPlayer.mvmt_crouch_min != databot.mvmt_crouch_min[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_crouch_max != databot.mvmt_crouch_max[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_uncrouch_min != databot.mvmt_uncrouch_min[eventPlayer.getSlot()] or
+                eventPlayer.mvmt_uncrouch_max != databot.mvmt_uncrouch_max[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_crouch_min = databot.mvmt_crouch_min[bot_slot]
-    eventPlayer.mvmt_crouch_max = databot.mvmt_crouch_max[bot_slot]
-    eventPlayer.mvmt_uncrouch_min = databot.mvmt_uncrouch_min[bot_slot]
-    eventPlayer.mvmt_uncrouch_max = databot.mvmt_uncrouch_max[bot_slot]
+    eventPlayer.mvmt_crouch_min = databot.mvmt_crouch_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_crouch_max = databot.mvmt_crouch_max[eventPlayer.getSlot()]
+    eventPlayer.mvmt_uncrouch_min = databot.mvmt_uncrouch_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_uncrouch_max = databot.mvmt_uncrouch_max[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
@@ -433,16 +466,16 @@ rule "Target Bot Listener - Movement Idle Chance":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_lr_idle_chance != databot.mvmt_lr_idle_chance[bot_slot] or 
-                eventPlayer.mvmt_lr_idle_interval != databot.mvmt_lr_idle_interval[bot_slot] or 
-                eventPlayer.mvmt_fb_idle_chance != databot.mvmt_fb_idle_chance[bot_slot] or
-                eventPlayer.mvmt_fb_idle_interval != databot.mvmt_fb_idle_interval[bot_slot]
+                eventPlayer.mvmt_lr_idle_chance != databot.mvmt_lr_idle_chance[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_lr_idle_interval != databot.mvmt_lr_idle_interval[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_fb_idle_chance != databot.mvmt_fb_idle_chance[eventPlayer.getSlot()] or
+                eventPlayer.mvmt_fb_idle_interval != databot.mvmt_fb_idle_interval[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_lr_idle_chance = databot.mvmt_lr_idle_chance[bot_slot]
-    eventPlayer.mvmt_lr_idle_interval = databot.mvmt_lr_idle_interval[bot_slot]
-    eventPlayer.mvmt_fb_idle_chance = databot.mvmt_fb_idle_chance[bot_slot]
-    eventPlayer.mvmt_fb_idle_interval = databot.mvmt_fb_idle_interval[bot_slot]
+    eventPlayer.mvmt_lr_idle_chance = databot.mvmt_lr_idle_chance[eventPlayer.getSlot()]
+    eventPlayer.mvmt_lr_idle_interval = databot.mvmt_lr_idle_interval[eventPlayer.getSlot()]
+    eventPlayer.mvmt_fb_idle_chance = databot.mvmt_fb_idle_chance[eventPlayer.getSlot()]
+    eventPlayer.mvmt_fb_idle_interval = databot.mvmt_fb_idle_interval[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
@@ -456,16 +489,16 @@ rule "Target Bot Listener - Movement Idle Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_lr_idle_min != databot.mvmt_lr_idle_min[bot_slot] or 
-                eventPlayer.mvmt_lr_idle_max != databot.mvmt_lr_idle_max[bot_slot] or 
-                eventPlayer.mvmt_fb_idle_min != databot.mvmt_fb_idle_min[bot_slot] or
-                eventPlayer.mvmt_fb_idle_max != databot.mvmt_fb_idle_max[bot_slot]
+                eventPlayer.mvmt_lr_idle_min != databot.mvmt_lr_idle_min[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_lr_idle_max != databot.mvmt_lr_idle_max[eventPlayer.getSlot()] or 
+                eventPlayer.mvmt_fb_idle_min != databot.mvmt_fb_idle_min[eventPlayer.getSlot()] or
+                eventPlayer.mvmt_fb_idle_max != databot.mvmt_fb_idle_max[eventPlayer.getSlot()]
                 )
 
-    eventPlayer.mvmt_lr_idle_min = databot.mvmt_lr_idle_min[bot_slot]
-    eventPlayer.mvmt_lr_idle_max = databot.mvmt_lr_idle_max[bot_slot]
-    eventPlayer.mvmt_fb_idle_min = databot.mvmt_fb_idle_min[bot_slot]
-    eventPlayer.mvmt_fb_idle_max = databot.mvmt_fb_idle_max[bot_slot]
+    eventPlayer.mvmt_lr_idle_min = databot.mvmt_lr_idle_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_lr_idle_max = databot.mvmt_lr_idle_max[eventPlayer.getSlot()]
+    eventPlayer.mvmt_fb_idle_min = databot.mvmt_fb_idle_min[eventPlayer.getSlot()]
+    eventPlayer.mvmt_fb_idle_max = databot.mvmt_fb_idle_max[eventPlayer.getSlot()]
 
     # Cooldown to prevent overflow
     wait(1)
