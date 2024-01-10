@@ -391,7 +391,7 @@ def create_submenu_bot():
     menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_ANGLE]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1]
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1] 
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_TOGGLE] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_OPT] 
     new_menu_item_4var()
     menu_effect_index.append(menu_item_size)
 
@@ -401,14 +401,11 @@ def create_submenu_bot():
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_VECT]
-    menu_item_var_1[menu_item_size] = strings_options[lang_type][5][databot.bot_spawn_type[0]]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.FACING][databot.bot_spawn_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_facing_vect[0].x
     menu_item_var_3[menu_item_size] = databot.bot_facing_vect[0].y
     menu_item_var_4[menu_item_size] = databot.bot_facing_vect[0].z
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_ANGLE]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1] 
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_TOGGLE] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_OPT] 
     new_menu_item_4var()
     menu_effect_index.append(menu_item_size)
 
@@ -416,12 +413,13 @@ def create_submenu_bot():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VECT]
-    menu_item_var_1[menu_item_size] = databot.bot_bound_pos[0].x
-    menu_item_var_2[menu_item_size] = databot.bot_bound_pos[0].y
-    menu_item_var_3[menu_item_size] = databot.bot_bound_pos[0].z
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT] 
-    new_menu_item_3var()
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_VECT]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.FACING][databot.bot_bound_type[0]]
+    menu_item_var_2[menu_item_size] = databot.bot_bound_pos[0].x
+    menu_item_var_3[menu_item_size] = databot.bot_bound_pos[0].y
+    menu_item_var_4[menu_item_size] = databot.bot_bound_pos[0].z
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_OPT] 
+    new_menu_item_4var()
     menu_effect_index.append(menu_item_size)
 
     # (4 Var) Boundary Dimensions
@@ -565,7 +563,7 @@ def create_submenu_bot():
     menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_TOGGLE]
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT_OPT]
     new_menu_item_3var()
 
     # (Toggle) Custom Script ID

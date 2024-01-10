@@ -145,6 +145,7 @@ playervar bot_spawn_vect
 playervar bot_facing_type
 playervar bot_facing_vect
 #### Bounds
+playervar bot_bound_type
 playervar bot_bound_pos
 playervar bot_bound_angle
 playervar bot_bound_dim
@@ -292,7 +293,7 @@ subroutine act_bot_scale
 subroutine act_bot_gravity
 subroutine act_bot_spawn
 subroutine act_bot_facing
-subroutine act_bot_bound_pos
+subroutine act_bot_bound
 subroutine act_bot_bound_dim
 subroutine act_bot_distance
 subroutine act_bot_select_profile
@@ -396,7 +397,7 @@ enum HELP_CONFIGS:
     SUBITEM_CYCLE,
     SUBITEM_TOGGLE,
     SUBITEM_VECT,
-    SUBITEM_VECT_TOGGLE
+    SUBITEM_VECT_OPT
     
 enum GENERAL_TARGET:
     VECT_X = 0,
@@ -434,6 +435,7 @@ enum OPTIONS_TYPE:
     TARGET,
     SPAWN,
     FACING,
+    BOUNDS,
     PROFILE,
     MVMT_TYPE,
     SCE_MODE

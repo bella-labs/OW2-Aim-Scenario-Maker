@@ -115,7 +115,7 @@ def menu_act_submenu_bot():
             act_bot_facing()
             break
         case submenu_curr_start + 5:
-            act_bot_bound_pos()
+            act_bot_bound()
             break
         case submenu_curr_start + 6:
             act_bot_bound_dim()

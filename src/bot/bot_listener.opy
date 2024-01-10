@@ -57,11 +57,13 @@ rule "Target Bot Listener - Boundary":
     @Event eachPlayer
     @Team 2
     @Condition  (
+                eventPlayer.bot_bound_type != databot.bot_bound_type[eventPlayer.getSlot()] or
                 eventPlayer.bot_bound_pos != databot.bot_bound_pos[eventPlayer.getSlot()] or
                 eventPlayer.bot_bound_dim != databot.bot_bound_dim[eventPlayer.getSlot()] or
                 eventPlayer.bot_bound_angle != databot.bot_bound_angle[eventPlayer.getSlot()]
                 )
 
+    eventPlayer.bot_bound_type = databot.bot_bound_type[eventPlayer.getSlot()]
     eventPlayer.bot_bound_pos = databot.bot_bound_pos[eventPlayer.getSlot()]
     eventPlayer.bot_bound_dim = databot.bot_bound_dim[eventPlayer.getSlot()]
     eventPlayer.bot_bound_angle = databot.bot_bound_angle[eventPlayer.getSlot()]
