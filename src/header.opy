@@ -520,5 +520,19 @@ enum MVMT_RAND:
     JUMP,
     CROUCH
 
-playervar movement_direction
-playervar movement_randomizer
+enum DISABLED_VECT:
+    FORWARD = 0,
+    FORWARD_RIGHT,
+    RIGHT,
+    BACKWARD_RIGHT,
+    BACKWARD,
+    BACKWARD_LEFT,
+    LEFT,
+    FORWARD_LEFT,
+    UP,
+    DOWN
+
+
+playervar mvmt_dir
+playervar mvmt_rand
+playervar mvmt_wait

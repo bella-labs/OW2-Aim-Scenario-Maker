@@ -6,13 +6,27 @@ rule "text":
     #createBeam(eventPlayer, Beam.GRAPPLE, vect(0,3,0), vect(0,3,100), Color.BLUE, EffectReeval.VISIBILITY_POSITION_RADIUS_AND_COLOR)
 
     hudSubheader(eventPlayer, "{0}".format(getPlayersInSlot(0, Team.2).owner_player), HudPosition.TOP, 9999, Color.RED, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    hudSubheader(eventPlayer, "dist: {0}".format(distance(eventPlayer.getPosition(), getPlayersInSlot(0, Team.2).getPosition())), HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    hudSubheader(eventPlayer, "{0}".format(horizontalAngleTowards(eventPlayer, getPlayersInSlot(0, Team.2).getPosition())), HudPosition.RIGHT, 991, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    hudSubheader(eventPlayer, "{0}".format(eventPlayer.disabled_indexes[DISABLED_VARS.DIST_CALC]), HudPosition.RIGHT, 993, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    hudSubheader(eventPlayer, "{0}".format(eventPlayer.disabled_indexes[DISABLED_VARS.DIST_CALC]), HudPosition.RIGHT, 994, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    hudSubheader(eventPlayer, "{0}".format(bot_gen_facing), HudPosition.RIGHT, 995, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    hudSubheader(eventPlayer, "{0}".format(getPlayersInSlot(0, Team.2).getFacingDirection()), HudPosition.RIGHT, 995, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    hudSubheader(eventPlayer, "{0} {1}".format(getPlayersInSlot(0, Team.2).bot_hps_wait, databot.bot_hps_wait[0]), HudPosition.RIGHT, 997, Color.AQUA, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+    hudSubheader(eventPlayer, 
+    " f: {0}\n fr: {1}\n r: {2}\n rb: {3}\n b: {4}\n bl {5}\n l {6}\n lr {7}\n u {8}\n d {9}".format(
+        getPlayersInSlot(0, Team.2).disabled_movements[0],
+        getPlayersInSlot(0, Team.2).disabled_movements[1],
+        getPlayersInSlot(0, Team.2).disabled_movements[2],
+        getPlayersInSlot(0, Team.2).disabled_movements[3],
+        getPlayersInSlot(0, Team.2).disabled_movements[4],
+        getPlayersInSlot(0, Team.2).disabled_movements[5],
+        getPlayersInSlot(0, Team.2).disabled_movements[6],
+        getPlayersInSlot(0, Team.2).disabled_movements[7],
+        getPlayersInSlot(0, Team.2).disabled_movements[8],
+        getPlayersInSlot(0, Team.2).disabled_movements[9]), 
+        HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+
+        hudSubheader(eventPlayer, 
+    " dir: {0}\n rand: {1}\n wait: {2}\n".format(
+        getPlayersInSlot(0, Team.2).mvmt_dir, 
+        getPlayersInSlot(0, Team.2).mvmt_rand,
+        getPlayersInSlot(0, Team.2).mvmt_wait), 
+        HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+    
 
     
 rule "recalc dist idx":

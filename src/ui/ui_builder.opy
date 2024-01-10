@@ -1,27 +1,3 @@
-rule "Player Joined: Disable GameHUD":
-    @Event playerJoined
-    @Team 1
-
-    eventPlayer.disableGamemodeHud()
-
-
-rule "Player Spawned: Display notice banner":
-    @Event eachPlayer
-    @Team 1
-    @Condition eventPlayer == hostPlayer
-    @Condition eventPlayer.hasSpawned() == true
-
-    # Allow player to use inputs
-    enable_player_input()
-    # Make player unkillable by default.
-    eventPlayer.setStatusEffect(eventPlayer, Status.UNKILLABLE, 9999)
-
-    #hudHeader(eventPlayer, strings_misc[0][1], HudPosition.TOP, -9999, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
-    #hud_text_id = getLastCreatedText()
-    #wait(5)
-    #destroyHudText(hud_text_id)
-    
-
 rule "Menu Setup: Creation":
     @Event global
     @Condition data_loaded[DATA_TYPE.DATA_STATIC] == true

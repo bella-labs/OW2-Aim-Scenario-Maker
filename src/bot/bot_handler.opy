@@ -244,5 +244,5 @@ rule "Death Handler":
 def set_disabled_index_dist():
     @Name "SUB: set_disabled_index_dist"
 
-    eventPlayer.disabled_indexes[eventPlayer.disabled_target] = (-1 * horizontalAngleTowards(eventPlayer, eventPlayer.disabled_indexes[2 + eventPlayer.disabled_target]) / 45 + eventPlayer.disabled_indexes[1 + eventPlayer.disabled_target])
+    eventPlayer.disabled_indexes[eventPlayer.disabled_target] = (horizontalAngleTowards(eventPlayer, eventPlayer.disabled_indexes[2 + eventPlayer.disabled_target]) / 45 + eventPlayer.disabled_indexes[1 + eventPlayer.disabled_target])
     eventPlayer.disabled_indexes[eventPlayer.disabled_target] = round(eventPlayer.disabled_indexes[eventPlayer.disabled_target] - floor(eventPlayer.disabled_indexes[eventPlayer.disabled_target] / 8) * 8) % 8
