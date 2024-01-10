@@ -1,3 +1,182 @@
+def act_bot_select_slot():
+    @Name "SUB: act_bot_select_slot"
+
+    switch menu_action:
+        # Change bot slot.
+        case MENU_ACTIONS.MENU_STEP_LEFT:
+        case MENU_ACTIONS.MENU_STEP_RIGHT:
+            act_general_num_var_1()
+            bot_slot = menu_item_var_1[menu_index]
+            subact_select_slot_refresh()
+            break
+        # Toggle all slots.
+        case MENU_ACTIONS.MENU_JUMP_LEFT:
+            # Set the action var to the opposite of the current selection boolean.
+            action_var = not databot.bot_slot_status[bot_slot]
+            # Loop through all slots and set the flag to the new value.
+            for loop_index in range(0, len(databot.bot_slot_status), 1):
+                databot.bot_slot_status[loop_index] = action_var
+            break
+        # Toggle current slot.
+        case MENU_ACTIONS.MENU_JUMP_RIGHT:
+            databot.bot_slot_status[bot_slot] = not databot.bot_slot_status[bot_slot]
+            break
+    # Update the status text and color
+
+    action_var = databot.bot_slot_status[bot_slot]
+    action_var_2 = menu_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
+
+
+def subact_select_slot_refresh():
+    @Name "SUB: subact_select_slot_refresh"
+
+    # Hero Pool
+    refresh_index = menu_index + 2
+    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] == true
+    action_var_2 = refresh_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
+    # Health
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_health[bot_slot] 
+    menu_item_var_2[refresh_index] = databot.bot_hps[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_hps_wait[bot_slot]
+    # Speed
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_speed_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_speed_min[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_speed_max[bot_slot]
+    menu_item_var_4[refresh_index] = databot.bot_speed_target[bot_slot]
+    # Scale
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_scale_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_scale_min[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_scale_max[bot_slot]
+    menu_item_var_4[refresh_index] = databot.bot_scale_target[bot_slot]
+    # Gravity
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_gravity[bot_slot]
+    # Spawn
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.SPAWN][databot.bot_spawn_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_spawn_vect[bot_slot].x
+    menu_item_var_3[refresh_index] = databot.bot_spawn_vect[bot_slot].y
+    menu_item_var_4[refresh_index] = databot.bot_spawn_vect[bot_slot].z
+    # Facing
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.FACING][databot.bot_facing_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_facing_vect[bot_slot].x
+    menu_item_var_3[refresh_index] = databot.bot_facing_vect[bot_slot].y
+    menu_item_var_4[refresh_index] = databot.bot_facing_vect[bot_slot].z
+    # Boundary Position
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_bound_pos[bot_slot].x
+    menu_item_var_2[refresh_index] = databot.bot_bound_pos[bot_slot].y
+    menu_item_var_3[refresh_index] = databot.bot_bound_pos[bot_slot].z
+    # Boundary Dimension
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_bound_angle[bot_slot]
+    menu_item_var_2[refresh_index] = databot.bot_bound_dim[bot_slot].x
+    menu_item_var_3[refresh_index] = databot.bot_bound_dim[bot_slot].y
+    menu_item_var_4[refresh_index] = databot.bot_bound_dim[bot_slot].z
+    # Distance
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_dist_min[bot_slot]
+    menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
+    # Profile Status
+    refresh_index += 1
+    action_var = databot.bot_profile_status[bot_slot][profile_slot]
+    action_var_2 = refresh_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
+    # Random Profile
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.PROFILE][databot.bot_profile_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_profile_min[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_profile_max[bot_slot]
+    # Custom Scripts
+    refresh_index += 1
+    if databot.bot_script_status[bot_slot] == 0:
+        menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TOGGLE][0]
+    else:
+        menu_item_var_1[refresh_index] = databot.bot_script_status[bot_slot]
+    menu_item_var_2[refresh_index] = databot.bot_script_status[bot_slot]
+    
+
+def act_bot_override_slot():
+    @Name "SUB: act_bot_override_slot"
+
+    switch menu_action:
+        # Change target slot
+        case MENU_ACTIONS.MENU_STEP_LEFT:
+        case MENU_ACTIONS.MENU_STEP_RIGHT:
+            act_general_num_var_1()
+            break
+        # Override all slots? not sure if good / needed
+        case MENU_ACTIONS.MENU_JUMP_LEFT:
+        # Override target slot
+        case MENU_ACTIONS.MENU_JUMP_RIGHT:
+            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][6]))
+            menu_item_color_on[menu_index] = Color.RED
+            waitUntil(eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8]), 2)
+            if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
+                subact_bot_override_slot()
+                menu_item_color_on[menu_index] = Color.GREEN
+                wait(0.25)
+        
+            menu_item_color_on[menu_index] = menu_color_on_index
+
+
+def subact_bot_override_slot():
+    @Name "SUB: subact_bot_override_slot"
+    action_var = menu_item_var_1[menu_index]
+
+    # Slot Status
+    databot.bot_slot_status[action_var] = databot.bot_slot_status[bot_slot]
+    # Hero Pool
+    databot.bot_hero_pool[action_var] = databot.bot_hero_pool[bot_slot]
+    # Health
+    databot.bot_health[action_var] = databot.bot_health[bot_slot]
+    databot.bot_hps[action_var] = databot.bot_hps[bot_slot]
+    databot.bot_hps_wait[action_var] = databot.bot_hps_wait[bot_slot]
+    # Speed
+    databot.bot_scale_type[action_var] = databot.bot_speed_type[bot_slot]
+    databot.bot_scale_min[action_var] = databot.bot_speed_min[bot_slot]
+    databot.bot_scale_max[action_var] = databot.bot_speed_max[bot_slot]
+    databot.bot_speed_target[action_var] = databot.bot_speed_target[bot_slot]
+    # Scale
+    databot.bot_scale_type[action_var] = databot.bot_scale_type[bot_slot]
+    databot.bot_scale_min[action_var] = databot.bot_scale_min[bot_slot]
+    databot.bot_scale_max[action_var] = databot.bot_scale_max[bot_slot]
+    databot.bot_scale_target[action_var] = databot.bot_scale_target[bot_slot]
+    # Gravity
+    databot.bot_gravity[action_var] = databot.bot_gravity[bot_slot]
+    # Spawn
+    databot.bot_spawn_type[action_var] = databot.bot_spawn_type[bot_slot]
+    databot.bot_spawn_vect[action_var] = databot.bot_spawn_vect[bot_slot]
+    # Facing
+    databot.bot_facing_type[action_var] = databot.bot_facing_type[bot_slot]
+    databot.bot_facing_vect[action_var] = databot.bot_facing_vect[bot_slot]
+    # Boundary Origin
+    databot.bot_bound_pos[action_var] = databot.bot_bound_pos[bot_slot]
+    # Boundary Box
+    databot.bot_bound_angle[action_var] = databot.bot_bound_angle[bot_slot]
+    databot.bot_bound_dim[action_var] = databot.bot_bound_dim[bot_slot]
+    # Distance
+    databot.bot_dist_min[action_var] = databot.bot_dist_min[bot_slot]
+    databot.bot_dist_max[action_var] = databot.bot_dist_max[bot_slot]
+    # Profile Status
+    databot.bot_profile_status[action_var] = databot.bot_profile_status[bot_slot]
+    # Profile Randomizer
+    databot.bot_profile_type[action_var] = databot.bot_profile_type[bot_slot]
+    databot.bot_profile_min[action_var] = databot.bot_profile_min[bot_slot]
+    databot.bot_profile_max[action_var] = databot.bot_profile_max[bot_slot]
+
+    databot.bot_script_status[action_var] = databot.bot_script_status[bot_slot]
+
+
 def act_bot_spawn():
     @Name "SUB: act_bot_spawn"
 
@@ -162,185 +341,6 @@ def act_bot_distance():
     databot.bot_dist_max[bot_slot] = action_var_2
 
     update_distance_effect()
-
-    
-def act_bot_select_slot():
-    @Name "SUB: act_bot_select_slot"
-
-    switch menu_action:
-        # Change bot slot.
-        case MENU_ACTIONS.MENU_STEP_LEFT:
-        case MENU_ACTIONS.MENU_STEP_RIGHT:
-            act_general_num_var_1()
-            bot_slot = menu_item_var_1[menu_index]
-            subact_select_slot_refresh()
-            break
-        # Toggle all slots.
-        case MENU_ACTIONS.MENU_JUMP_LEFT:
-            # Set the action var to the opposite of the current selection boolean.
-            action_var = not databot.bot_slot_status[bot_slot]
-            # Loop through all slots and set the flag to the new value.
-            for loop_index in range(0, len(databot.bot_slot_status), 1):
-                databot.bot_slot_status[loop_index] = action_var
-            break
-        # Toggle current slot.
-        case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            databot.bot_slot_status[bot_slot] = not databot.bot_slot_status[bot_slot]
-            break
-    # Update the status text and color
-
-    action_var = databot.bot_slot_status[bot_slot]
-    action_var_2 = menu_index
-    action_var_3 = OPTIONS_TYPE.TOGGLE
-    act_general_toggle_var_2()
-
-
-def subact_select_slot_refresh():
-    @Name "SUB: subact_select_slot_refresh"
-
-    # Hero Pool
-    refresh_index = menu_index + 2
-    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] == true
-    action_var_2 = refresh_index
-    action_var_3 = OPTIONS_TYPE.TOGGLE
-    act_general_toggle_var_2()
-    # Health
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_health[bot_slot] 
-    menu_item_var_2[refresh_index] = databot.bot_hps[bot_slot]
-    menu_item_var_3[refresh_index] = databot.bot_hps_wait[bot_slot]
-    # Speed
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_speed_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_speed_min[bot_slot]
-    menu_item_var_3[refresh_index] = databot.bot_speed_max[bot_slot]
-    menu_item_var_4[refresh_index] = databot.bot_speed_target[bot_slot]
-    # Scale
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_scale_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_scale_min[bot_slot]
-    menu_item_var_3[refresh_index] = databot.bot_scale_max[bot_slot]
-    menu_item_var_4[refresh_index] = databot.bot_scale_target[bot_slot]
-    # Gravity
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_gravity[bot_slot]
-    # Spawn
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.SPAWN][databot.bot_spawn_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_spawn_vect[bot_slot].x
-    menu_item_var_3[refresh_index] = databot.bot_spawn_vect[bot_slot].y
-    menu_item_var_4[refresh_index] = databot.bot_spawn_vect[bot_slot].z
-    # Facing
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.FACING][databot.bot_facing_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_facing_vect[bot_slot].x
-    menu_item_var_3[refresh_index] = databot.bot_facing_vect[bot_slot].y
-    menu_item_var_4[refresh_index] = databot.bot_facing_vect[bot_slot].z
-    # Boundary Position
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_bound_pos[bot_slot].x
-    menu_item_var_2[refresh_index] = databot.bot_bound_pos[bot_slot].y
-    menu_item_var_3[refresh_index] = databot.bot_bound_pos[bot_slot].z
-    # Boundary Dimension
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_bound_angle[bot_slot]
-    menu_item_var_2[refresh_index] = databot.bot_bound_dim[bot_slot].x
-    menu_item_var_3[refresh_index] = databot.bot_bound_dim[bot_slot].y
-    menu_item_var_4[refresh_index] = databot.bot_bound_dim[bot_slot].z
-    # Distance
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_dist_min[bot_slot]
-    menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
-    # Profile Status
-    refresh_index += 1
-    action_var = databot.bot_profile_status[bot_slot][menu_item_var_1[menu_index]]
-    action_var_2 = refresh_index
-    action_var_3 = OPTIONS_TYPE.TOGGLE
-    act_general_toggle_var_2()
-    # Random Profile
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.PROFILE][databot.bot_profile_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_profile_min[bot_slot]
-    menu_item_var_3[refresh_index] = databot.bot_profile_max[bot_slot]
-    # Custom Scripts
-    refresh_index += 1
-    if databot.bot_script_status[bot_slot] == 0:
-        menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TOGGLE][0]
-    else:
-        menu_item_var_1[refresh_index] = databot.bot_script_status[bot_slot]
-    menu_item_var_2[refresh_index] = databot.bot_script_status[bot_slot]
-    
-
-def act_bot_override_slot():
-    @Name "SUB: act_bot_override_slot"
-
-    switch menu_action:
-        # Change target slot
-        case MENU_ACTIONS.MENU_STEP_LEFT:
-        case MENU_ACTIONS.MENU_STEP_RIGHT:
-            act_general_num_var_1()
-            break
-        # Override all slots? not sure if good / needed
-        case MENU_ACTIONS.MENU_JUMP_LEFT:
-        # Override target slot
-        case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][6]))
-            menu_item_color_on[menu_index] = Color.RED
-            waitUntil(eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8]), 2)
-            if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
-                subact_bot_override_slot()
-                menu_item_color_on[menu_index] = Color.GREEN
-                wait(0.25)
-        
-            menu_item_color_on[menu_index] = menu_color_on_index
-
-
-def subact_bot_override_slot():
-    @Name "SUB: subact_bot_override_slot"
-    action_var = menu_item_var_1[menu_index]
-
-    # Slot Status
-    databot.bot_slot_status[action_var] = databot.bot_slot_status[bot_slot]
-    # Hero Pool
-    databot.bot_hero_pool[action_var] = databot.bot_hero_pool[bot_slot]
-    # Health
-    databot.bot_health[action_var] = databot.bot_health[bot_slot]
-    databot.bot_hps[action_var] = databot.bot_hps[bot_slot]
-    databot.bot_hps_wait[action_var] = databot.bot_hps_wait[bot_slot]
-    # Speed
-    databot.bot_scale_type[action_var] = databot.bot_speed_type[bot_slot]
-    databot.bot_scale_min[action_var] = databot.bot_speed_min[bot_slot]
-    databot.bot_scale_max[action_var] = databot.bot_speed_max[bot_slot]
-    databot.bot_speed_target[action_var] = databot.bot_speed_target[bot_slot]
-    # Scale
-    databot.bot_scale_type[action_var] = databot.bot_scale_type[bot_slot]
-    databot.bot_scale_min[action_var] = databot.bot_scale_min[bot_slot]
-    databot.bot_scale_max[action_var] = databot.bot_scale_max[bot_slot]
-    databot.bot_scale_target[action_var] = databot.bot_scale_target[bot_slot]
-    # Gravity
-    databot.bot_gravity[action_var] = databot.bot_gravity[bot_slot]
-    # Spawn
-    databot.bot_spawn_type[action_var] = databot.bot_spawn_type[bot_slot]
-    databot.bot_spawn_vect[action_var] = databot.bot_spawn_vect[bot_slot]
-    # Facing
-    databot.bot_facing_type[action_var] = databot.bot_facing_type[bot_slot]
-    databot.bot_facing_vect[action_var] = databot.bot_facing_vect[bot_slot]
-    # Boundary Origin
-    databot.bot_bound_pos[action_var] = databot.bot_bound_pos[bot_slot]
-    # Boundary Box
-    databot.bot_bound_angle[action_var] = databot.bot_bound_angle[bot_slot]
-    databot.bot_bound_dim[action_var] = databot.bot_bound_dim[bot_slot]
-    # Distance
-    databot.bot_dist_min[action_var] = databot.bot_dist_min[bot_slot]
-    databot.bot_dist_max[action_var] = databot.bot_dist_max[bot_slot]
-    # Profile Status
-    databot.bot_profile_status[action_var] = databot.bot_profile_status[bot_slot]
-    # Profile Randomizer
-    databot.bot_profile_type[action_var] = databot.bot_profile_type[bot_slot]
-    databot.bot_profile_min[action_var] = databot.bot_profile_min[bot_slot]
-    databot.bot_profile_max[action_var] = databot.bot_profile_max[bot_slot]
-
-    databot.bot_script_status[action_var] = databot.bot_script_status[bot_slot]
 
 
 def act_bot_hero_pool():

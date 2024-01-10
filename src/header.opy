@@ -487,7 +487,7 @@ playervar disabled_indexes
 playervar disabled_movements
 playervar owner_player
 playervar profile_list
-playervar current_profile
+playervar profile_index
 playervar loop_indexes
 playervar profile_weights
 
@@ -533,7 +533,6 @@ enum DISABLED_VECT:
     DOWN
 
 
-playervar mvmt_dir
-playervar mvmt_rand
-playervar mvmt_wait
-subroutine update_profile_data
+playervar target_mvmt_dir
+playervar target_mvmt_rand
+playervar target_mvmt_wait

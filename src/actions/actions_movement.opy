@@ -24,12 +24,14 @@ def act_mvmt_hori_ratio():
 
     switch subitem_index[menu_index]:
         case 0:
-            act_general_num_var_1()
-            databot.mvmt_lr_ratio[profile_slot] = menu_item_var_1[menu_index]
+            act_general_num_var_3()
+            databot.mvmt_lr_ratio[profile_slot] = menu_item_var_3[menu_index]
+            menu_item_var_1[menu_index] = "{0}/{1}".format((100 - databot.mvmt_lr_ratio[profile_slot]), databot.mvmt_lr_ratio[profile_slot])
             break
         case 1:
-            act_general_num_var_2()
-            databot.mvmt_fb_ratio[profile_slot] = menu_item_var_2[menu_index]
+            act_general_num_var_4()
+            databot.mvmt_fb_ratio[profile_slot] = menu_item_var_4[menu_index]
+            menu_item_var_2[menu_index] = "{0}/{1}".format((100 - databot.mvmt_fb_ratio[profile_slot]), databot.mvmt_fb_ratio[profile_slot])
             break
 
 

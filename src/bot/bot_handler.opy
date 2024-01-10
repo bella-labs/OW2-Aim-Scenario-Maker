@@ -187,27 +187,27 @@ rule "Speed Handler - Loop":
 rule "Profile Handler: In-Order":
     @Event playerDied
     @Condition eventPlayer.bot_profile_type == 0
-    @Condition eventPlayer.current_profile != -1
+    @Condition eventPlayer.profile_index != -1
 
     
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] += 1
     if eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] >= len(eventPlayer.profile_list):
         eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 0
     
-    eventPlayer.current_profile = eventPlayer.profile_list[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]]
+    eventPlayer.profile_index = eventPlayer.profile_list[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]]
 
 
 rule "Profile Handler: Randomized":
     @Event eachPlayer
     @Condition eventPlayer.isAlive() == true
     @Condition eventPlayer.bot_profile_type == 1
-    @Condition eventPlayer.current_profile != -1
+    @Condition eventPlayer.profile_index != -1
 
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_4] = random.uniform(0, eventPlayer.profile_weights[len(eventPlayer.profile_weights-1)])
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 0
     while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] < len(eventPlayer.profile_weights) and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_4] > eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]] ):
         eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] += 1
-    eventPlayer.current_profile = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]
+    eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]
     wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max), Wait.ABORT_WHEN_FALSE)
 
     if RULE_CONDITION:

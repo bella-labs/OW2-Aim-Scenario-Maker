@@ -5,8 +5,8 @@ rule "Target Bot Initalization":
     # Set Owner Player
     eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
     # Set Movement Direction
-    eventPlayer.mvmt_dir = vect(0,0,0)
-    eventPlayer.startThrottleInDirection(eventPlayer.mvmt_dir, 1, Relativity.TO_PLAYER, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
+    eventPlayer.target_mvmt_dir = vect(0,0,0)
+    eventPlayer.startThrottleInDirection(eventPlayer.target_mvmt_dir, 1, Relativity.TO_PLAYER, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
     # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
     eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] = 0
     while(eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] < 10):
@@ -245,8 +245,8 @@ rule "Target Bot Listener - Profile":
                 eventPlayer.prof_weight != databot.prof_weight[eventPlayer.getSlot()]
                 )
 
-    # Set current_profile to -1 to prevent profile handler rules from updating current_profile
-    eventPlayer.current_profile = -1
+    # Set profile_index to -1 to prevent profile handler rules from updating profile_index
+    eventPlayer.profile_index = -1
     eventPlayer.bot_profile_type = databot.bot_profile_type[eventPlayer.getSlot()]
     eventPlayer.bot_profile_min = databot.bot_profile_min[eventPlayer.getSlot()]
     eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
@@ -256,7 +256,7 @@ rule "Target Bot Listener - Profile":
     # Indexes 1 and 2 of loop_indexes are used to loop through and copy over the indexes of bot_profile_status that are set to true
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] = 0
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] = 0
-    while(eventPlayer.loop_indexes[1] < len(eventPlayer.bot_profile_status)):
+    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] < len(eventPlayer.bot_profile_status)):
         if eventPlayer.bot_profile_status[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]] == true:
                 eventPlayer.profile_list[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]
                 if eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] == 0:
@@ -268,8 +268,8 @@ rule "Target Bot Listener - Profile":
 
     # Set index 3 of loop_indexes to 9999 so that if the type is set to in-order the profile handler rule will loop over to the 0th index of profile_list
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 9999
-    # Set current_profile to 0 so the profile handler rules can process
-    eventPlayer.current_profile = 0
+    # Set profile_index to 0 so the profile handler rules can process
+    eventPlayer.profile_index = 0
 
     # Cooldown to prevent overflow
     wait(1)

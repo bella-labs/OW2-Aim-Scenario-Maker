@@ -662,11 +662,13 @@ def create_submenu_profile():
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.HORI_CHANCE]
-    menu_item_var_1[menu_item_size] = databot.mvmt_lr_ratio[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_fb_ratio[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
+    menu_item_var_1[menu_item_size] = "{0}/{1}".format((100 - databot.mvmt_lr_ratio[0]), databot.mvmt_lr_ratio[0])
+    menu_item_var_2[menu_item_size] = "{0}/{1}".format((100 - databot.mvmt_fb_ratio[0]), databot.mvmt_fb_ratio[0])
+    menu_item_var_3[menu_item_size] = databot.mvmt_lr_ratio[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_fb_ratio[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.NONE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.NONE, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.NONE, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
     new_menu_item_2var()
 

@@ -21,10 +21,11 @@ rule "text":
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
         hudSubheader(eventPlayer, 
-    " dir: {0}\n rand: {1}\n wait: {2}\n".format(
-        getPlayersInSlot(0, Team.2).mvmt_dir, 
-        getPlayersInSlot(0, Team.2).mvmt_rand,
-        getPlayersInSlot(0, Team.2).mvmt_wait), 
+    " dir: {0}\n rand: {1}\n wait: {2}\n idx: {3}".format(
+        getPlayersInSlot(0, Team.2).target_mvmt_dir, 
+        getPlayersInSlot(0, Team.2).target_mvmt_rand,
+        getPlayersInSlot(0, Team.2).target_mvmt_wait,
+        getPlayersInSlot(0, Team.2).profile_index), 
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
     
 
