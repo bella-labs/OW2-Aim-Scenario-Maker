@@ -56,3 +56,7 @@ rule "Target Bot Movement - L/R Impulse":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.mvmt_hori_type == 1
+
+
+def update_profile_data():
+    @Name "SUB: update_profile_data"

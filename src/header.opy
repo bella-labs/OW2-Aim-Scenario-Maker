@@ -536,3 +536,4 @@ enum DISABLED_VECT:
 playervar mvmt_dir
 playervar mvmt_rand
 playervar mvmt_wait
+subroutine update_profile_data
