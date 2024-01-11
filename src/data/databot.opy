@@ -2,8 +2,8 @@ rule "Databot Populate Settings":
     @Event eachPlayer
     @Team 1
     @Slot 1
-    @Condition eventPlayer.isDummy() == true
-    @Condition eventPlayer.hasSpawned() == true
+    @Condition eventPlayer.isDummy() 
+    @Condition eventPlayer.hasSpawned() 
 
     data_loaded[DATA_TYPE.DATA_BOT] = false
     waitUntil(data_loaded[DATA_TYPE.DATA_CONTROLS] == true, 9999)

@@ -9,7 +9,7 @@ rule "Player Spawned: Setup Host":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition eventPlayer.hasSpawned() == true
+    @Condition eventPlayer.hasSpawned() 
 
     # Allow player to use inputs
     enable_player_input()

@@ -523,14 +523,14 @@ enum MVMT_RAND:
     CROUCH
 
 enum DISABLED_VECT:
-    FORWARD = 0,
-    FORWARD_RIGHT,
-    RIGHT,
+    BACKWARD = 0,
     BACKWARD_RIGHT,
-    BACKWARD,
-    BACKWARD_LEFT,
-    LEFT,
+    RIGHT,
+    FORWARD_RIGHT,
+    FORWARD,
     FORWARD_LEFT,
+    LEFT,
+    BACKWARD_LEFT,
     UP,
     DOWN
 
@@ -538,3 +538,11 @@ enum DISABLED_VECT:
 playervar target_mvmt_dir
 playervar target_mvmt_rand
 playervar target_mvmt_wait
+
+
+
+subroutine left_movement
+subroutine right_movement
+playervar lr_waiting
+playervar fb_waiting
+playervar movement_interrupt

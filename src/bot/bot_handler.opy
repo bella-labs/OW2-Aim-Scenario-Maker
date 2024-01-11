@@ -1,7 +1,7 @@
 rule "Boundary Handler - Reset in Bounds XZ":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.boundary_limits[0].x < eventPlayer.getPosition().x
     @Condition eventPlayer.getPosition().x < eventPlayer.boundary_limits[1].x
     @Condition eventPlayer.boundary_limits[0].z < eventPlayer.getPosition().z
@@ -15,7 +15,7 @@ rule "Boundary Handler - Reset in Bounds XZ":
 rule "Boundary Handler - Correct out of Bounds XZ":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.boundary_limits[0].x > eventPlayer.getPosition().x or eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x or eventPlayer.boundary_limits[0].z > eventPlayer.getPosition().z or eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z
 
 
@@ -26,11 +26,6 @@ rule "Boundary Handler - Correct out of Bounds XZ":
         set_disabled_index_dist()
     
     eventPlayer.disabled_movements[eventPlayer.disabled_indexes[DISABLED_VARS.BOUNDS_CALC] % 8] = true
-    eventPlayer.disabled_movements[(eventPlayer.disabled_indexes[DISABLED_VARS.BOUNDS_CALC] + 1) % 8] = true
-    eventPlayer.disabled_movements[(eventPlayer.disabled_indexes[DISABLED_VARS.BOUNDS_CALC] + 2) % 8] = true
-
-    eventPlayer.calc_var[3] = "A"
-
 
 
 rule "Boundary Handler - Reset in Bounds Y":
@@ -110,7 +105,7 @@ rule "Distance Handler - Correct Max Distance":
 rule "HPS Handler - Reset HoT":
     @Event playerTookDamage
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_hps > 0
     @Condition eventPlayer.bot_hps_wait > 0
 
@@ -122,7 +117,7 @@ rule "HPS Handler - Reset HoT":
 rule "HPS Handler - Reset DoT":
     @Event playerTookDamage
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_hps < 0
     @Condition eventPlayer.bot_hps_wait > 0
 
@@ -134,7 +129,7 @@ rule "HPS Handler - Reset DoT":
 rule "Speed Handler - Static":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 0
 
     eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min)
@@ -143,7 +138,7 @@ rule "Speed Handler - Static":
 rule "Speed Handler - Random":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 1
 
     eventPlayer.setMoveSpeed(random.uniform(eventPlayer.bot_speed_min, eventPlayer.bot_speed_max))
@@ -152,7 +147,7 @@ rule "Speed Handler - Random":
 rule "Speed Handler - Health":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 2
 
     eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (1 - eventPlayer.getNormalizedHealth()))
@@ -165,7 +160,7 @@ rule "Speed Handler - Health":
 rule "Speed Handler - Elims":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 3
 
     eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (elims * eventPlayer.bot_scale_target)))
@@ -174,7 +169,7 @@ rule "Speed Handler - Elims":
 rule "Speed Handler - Loop":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 4
 
     eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(timer%eventPlayer.bot_scale_target)/eventPlayer.bot_scale_target)))
@@ -199,7 +194,7 @@ rule "Profile Handler: In-Order":
 
 rule "Profile Handler: Randomized":
     @Event eachPlayer
-    @Condition eventPlayer.isAlive() == true
+    @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_profile_type == 1
     @Condition eventPlayer.profile_index != -1
 

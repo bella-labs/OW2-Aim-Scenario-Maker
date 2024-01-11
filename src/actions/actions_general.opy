@@ -80,7 +80,7 @@ def act_general_num_var_4():
 def act_general_toggle_status():
     @Name "SUB: act_general_toggle_status" 
 
-    if action_var == true:
+    if action_var :
         action_result = 1
         menu_item_color_on[action_var_2] = Color.GREEN
     else:

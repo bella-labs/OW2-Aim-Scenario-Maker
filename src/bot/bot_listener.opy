@@ -12,6 +12,13 @@ rule "Target Bot Initalization":
     while(eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] < 10):
         eventPlayer.disabled_movements[eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT]] = false
         eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] += 1
+    # Set Gravity and Speed to -1 to force listener rule trigger when set to 0
+    eventPlayer.bot_speed_min = -1
+    eventPlayer.bot_gravity = -1
+
+
+    eventPlayer.target_mvmt_wait = 0.01
+    eventPlayer.movement_interrupt = true
 
         
 rule "Target Bot Listener - Spawn":
@@ -259,7 +266,7 @@ rule "Target Bot Listener - Profile":
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] = 0
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] = 0
     while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] < len(eventPlayer.bot_profile_status)):
-        if eventPlayer.bot_profile_status[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]] == true:
+        if eventPlayer.bot_profile_status[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]] :
                 eventPlayer.profile_list[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]
                 if eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] == 0:
                     eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.prof_weight

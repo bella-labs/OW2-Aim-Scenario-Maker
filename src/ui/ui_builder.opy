@@ -1,12 +1,12 @@
 rule "Menu Setup: Creation":
     @Event global
-    @Condition data_loaded[DATA_TYPE.DATA_STATIC] == true
+    @Condition data_loaded[DATA_TYPE.DATA_STATIC] 
 
     
     data_loaded[DATA_TYPE.DATA_MENU] = false
 
     setup_databot()
-    waitUntil(data_loaded[DATA_TYPE.DATA_BOT] == true, 9999)
+    waitUntil(data_loaded[DATA_TYPE.DATA_BOT] == true , 9999)
 
     create_hud()
     setup_menu()
@@ -77,7 +77,7 @@ def create_hud():
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[7]] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[7]), menu_help_display[6]) if menu_visible else "",
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), menu_help_display[7]) if menu_visible else "",
         strings_symbols[0] if menu_visible else "",
-        "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if display_help[0] == true else "",
+        "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if display_help[0]  else "",
         "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if display_help[1] else ""),
         HudPosition.LEFT,
         -1,
@@ -86,7 +86,7 @@ def create_hud():
         SpecVisibility.DEFAULT)
 
     # Stats Display Top
-    hudSubheader([i for i in localPlayer if stat_tracking_status == true],
+    hudSubheader([i for i in localPlayer if stat_tracking_status ],
     "Timer: {0}\nElims: {1}".format(timer, elims), 
     HudPosition.TOP, 
     -9999, 

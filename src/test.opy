@@ -7,7 +7,7 @@ rule "text":
 
     hudSubheader(eventPlayer, "{0}".format(getPlayersInSlot(0, Team.2).owner_player), HudPosition.TOP, 9999, Color.RED, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
     hudSubheader(eventPlayer, 
-    " f: {0}\n fr: {1}\n r: {2}\n rb: {3}\n b: {4}\n bl {5}\n l {6}\n lr {7}\n u {8}\n d {9}".format(
+    " b: {0}\n rb: {1}\n r: {2}\n fr: {3}\n f: {4}\n fl {5}\n l {6}\n bl {7}\n u {8}\n d {9}".format(
         getPlayersInSlot(0, Team.2).disabled_movements[0],
         getPlayersInSlot(0, Team.2).disabled_movements[1],
         getPlayersInSlot(0, Team.2).disabled_movements[2],
@@ -21,11 +21,13 @@ rule "text":
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
         hudSubheader(eventPlayer, 
-    " dir: {0}\n rand: {1}\n wait: {2}\n idx: {3}".format(
+    " dir: {0}\n rand1: {1}\n rand2: {2}\n wait: {3}\n idx: {4}".format(
         getPlayersInSlot(0, Team.2).target_mvmt_dir, 
-        getPlayersInSlot(0, Team.2).target_mvmt_rand,
-        getPlayersInSlot(0, Team.2).target_mvmt_wait,
-        getPlayersInSlot(0, Team.2).profile_index), 
+        getPlayersInSlot(0, Team.2).target_mvmt_rand[0],
+        getPlayersInSlot(0, Team.2).target_mvmt_rand[1],
+        getPlayersInSlot(0, Team.2).target_mvmt_wait[0],
+        getPlayersInSlot(0, Team.2).target_mvmt_wait[1]
+        ), 
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
     
 

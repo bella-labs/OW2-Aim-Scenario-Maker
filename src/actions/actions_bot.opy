@@ -34,7 +34,7 @@ def subact_select_slot_refresh():
 
     # Hero Pool
     refresh_index = menu_index + 2
-    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] == true
+    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] 
     action_var_2 = refresh_index
     action_var_3 = OPTIONS_TYPE.TOGGLE
     act_general_toggle_var_2()
@@ -120,7 +120,7 @@ def act_bot_override_slot():
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][6]))
             menu_item_color_on[menu_index] = Color.RED
-            waitUntil(eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8]), 2)
+            waitUntil((eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])) == true, 2)
             if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
                 subact_bot_override_slot()
                 menu_item_color_on[menu_index] = Color.GREEN
@@ -362,7 +362,7 @@ def act_bot_hero_pool():
         # Toggle all heroes
         case MENU_ACTIONS.MENU_JUMP_LEFT:
             new_hero_array = databot.bot_hero_pool[bot_slot]
-            if hero_array[menu_item_var_3[menu_index]] in new_hero_array == true:
+            if hero_array[menu_item_var_3[menu_index]] in new_hero_array :
                 new_hero_array = []
             else:
                 new_hero_array = hero_array
@@ -371,7 +371,7 @@ def act_bot_hero_pool():
         # Toggle selected hero
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             new_hero_array = databot.bot_hero_pool[bot_slot]
-            if hero_array[menu_item_var_3[menu_index]] in new_hero_array == true:
+            if hero_array[menu_item_var_3[menu_index]] in new_hero_array :
                 new_hero_array.remove(hero_array[menu_item_var_3[menu_index]])
             else:
                 if len(new_hero_array) > 0:
