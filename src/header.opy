@@ -415,7 +415,7 @@ enum TAG_TYPE:
     TYPE_VECT,
     ANGLE_DIM,
     MVMT_TYPE,
-    HORI_CHANCE,
+    WEIGHTS,
     LR_TIME,
     FB_TIME,
     VERT_CHANCE,
@@ -522,7 +522,7 @@ enum MVMT_RAND:
     JUMP,
     CROUCH
 
-enum DISABLED_VECT:
+enum XZ_DIR:
     BACKWARD = 0,
     BACKWARD_RIGHT,
     RIGHT,
@@ -531,7 +531,9 @@ enum DISABLED_VECT:
     FORWARD_LEFT,
     LEFT,
     BACKWARD_LEFT,
-    UP,
+
+enum Y_DIR:
+    UP = 0,
     DOWN
 
 
@@ -546,3 +548,5 @@ subroutine right_movement
 playervar lr_waiting
 playervar fb_waiting
 playervar movement_interrupt
+
+playervar mvmt_weights

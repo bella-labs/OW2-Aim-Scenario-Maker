@@ -409,12 +409,12 @@ def create_submenu_bot():
     new_menu_item_4var()
     menu_effect_index.append(menu_item_size)
 
-    # (3 Var) Boundary Position
+    # (3 Var) Boundary
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.TYPE_VECT]
-    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.FACING][databot.bot_bound_type[0]]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.BOUNDS][databot.bot_bound_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_bound_pos[0].x
     menu_item_var_3[menu_item_size] = databot.bot_bound_pos[0].y
     menu_item_var_4[menu_item_size] = databot.bot_bound_pos[0].z
@@ -422,7 +422,7 @@ def create_submenu_bot():
     new_menu_item_4var()
     menu_effect_index.append(menu_item_size)
 
-    # (4 Var) Boundary Dimensions
+    # (4 Var) Dimensions
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
@@ -655,20 +655,20 @@ def create_submenu_profile():
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_3var()
 
-    # (2 Var) Horizontal Ratio
+    # (2 Var) Horizontal Weights
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.HORI_CHANCE]
-    menu_item_var_1[menu_item_size] = "{0}/{1}".format((100 - databot.mvmt_lr_ratio[0]), databot.mvmt_lr_ratio[0])
-    menu_item_var_2[menu_item_size] = "{0}/{1}".format((100 - databot.mvmt_fb_ratio[0]), databot.mvmt_fb_ratio[0])
-    menu_item_var_3[menu_item_size] = databot.mvmt_lr_ratio[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_fb_ratio[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.NONE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.NONE, SMALL_TYPE.NONE, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.NONE, LARGE_TYPE.NONE, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.WEIGHTS]
+    menu_item_var_1[menu_item_size] = databot.mvmt_weights[0][0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_weights[0][2]
+    menu_item_var_3[menu_item_size] = databot.mvmt_weights[0][4]
+    menu_item_var_4[menu_item_size] = databot.mvmt_weights[0][6]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
-    new_menu_item_2var()
+    new_menu_item_4var()
 
     # (2 Var) Left / Right Time
     increment_for_menu_item()
