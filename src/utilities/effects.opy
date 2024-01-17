@@ -52,11 +52,6 @@ rule "Destroy Effects on non effect index":
     @Slot 0
     @Condition menu_index not in menu_effect_index
     
-    destroy_effects()
-
-
-def destroy_effects():
-    @Name "SUB: destroy_effects"
     # Use a random variable that the player doesn't touch for loop since there is potential runtime conflict with using loop_index
     for eventPlayer.import_status in range(0,len(effect_array),1):
         destroyEffect(effect_array[eventPlayer.import_status])
@@ -71,10 +66,3 @@ def update_bound_effect():
     eventPlayer.bot_bound_angle = databot.bot_bound_angle[bot_slot]
 
     set_cube()
-
-
-def create_bound_effect():
-    @Name "SUB: create_bound_effect"
-
-
-

@@ -18,7 +18,6 @@ rule "Boundary Handler - Correct out of Bounds XZ":
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.boundary_limits[0].x > eventPlayer.getPosition().x or eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x or eventPlayer.boundary_limits[0].z > eventPlayer.getPosition().z or eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z
 
-
     if eventPlayer.bot_facing_type == 0:
         eventPlayer.disabled_target = DISABLED_VARS.BOUNDS_CALC
         eventPlayer.disabled_indexes[DISABLED_VARS.BOUNDS_OFFSET] = -1
@@ -182,31 +181,34 @@ rule "Speed Handler - Loop":
 rule "Profile Handler: In-Order":
     @Event playerDied
     @Condition eventPlayer.bot_profile_type == 0
-    @Condition eventPlayer.profile_index != -1
+    #@Condition eventPlayer.prof_weight_list == databot.prof_weight_list
+    #@Condition eventPlayer.prof_weight_status == databot.prof_weight_status
 
-    
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] += 1
-    if eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] >= len(eventPlayer.profile_list):
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 0
-    
-    eventPlayer.profile_index = eventPlayer.profile_list[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]]
+
+    #eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
+    #if eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.prof_weight_list):
+    #    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 0
+#
+    #eventPlayer.profile_index = eventPlayer.prof_weight_list[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]]
 
 
 rule "Profile Handler: Randomized":
     @Event eachPlayer
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_profile_type == 1
-    @Condition eventPlayer.profile_index != -1
+    #@Condition eventPlayer.prof_weight_list == eventPlayer.prof_weight_list
+    #@Condition eventPlayer.prof_weight_status == eventPlayer.prof_weight_status
+#
+    #eventPlayer.target_rand[PLAYER_RAND.PROFILE] = random.uniform(0, eventPlayer.profile_weights_list[len(eventPlayer.profile_weights-1)])
+   # eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_4] = random.uniform(0, eventPlayer.profile_weights[len(eventPlayer.profile_weights-1)])
+    #eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 0
+   # while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] < len(eventPlayer.profile_weights) and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_4] > eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]] ):
+   #     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] += 1
+   # eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]
+   # wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max), Wait.ABORT_WHEN_FALSE)
 
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_4] = random.uniform(0, eventPlayer.profile_weights[len(eventPlayer.profile_weights-1)])
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 0
-    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] < len(eventPlayer.profile_weights) and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_4] > eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]] ):
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] += 1
-    eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]
-    wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max), Wait.ABORT_WHEN_FALSE)
-
-    if RULE_CONDITION:
-        goto RULE_START
+  #  if RULE_CONDITION:
+   #     goto RULE_START
 
 
 rule "Death Handler":

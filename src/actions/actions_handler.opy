@@ -142,7 +142,7 @@ def menu_act_submenu_bot():
             act_bot_select_profile()
             break
         case submenu_curr_start + 14:
-            act_bot_rand_profile()
+            act_bot_profile_order()
             break
         case submenu_curr_start + 15:
             act_bot_script_status()
@@ -165,35 +165,32 @@ def menu_act_submenu_profile():
             act_prof_override_prof()
             break
         case submenu_curr_start + 3:
-            act_prof_change_weight()
-            break
-        case submenu_curr_start + 4:
             act_mvmt_hori_type()
             break
-        case submenu_curr_start + 5:
+        case submenu_curr_start + 4:
             act_mvmt_hori_weight()
             break
-        case submenu_curr_start + 6:
+        case submenu_curr_start + 5:
             act_mvmt_lr_time()
             break
-        case submenu_curr_start + 7:
+        case submenu_curr_start + 6:
             act_mvmt_fb_time()
             break
-        case submenu_curr_start + 8:
+        case submenu_curr_start + 7:
             act_mvmt_vert_type()
             break
-        case submenu_curr_start + 9:
+        case submenu_curr_start + 8:
             act_mvmt_vert_chance()
             break
-        case submenu_curr_start + 10:
+        case submenu_curr_start + 9:
             act_mvmt_jump_time()
             break
-        case submenu_curr_start + 11:
+        case submenu_curr_start + 10:
             act_mvmt_crouch_time()
             break
-        case submenu_curr_start + 12:
+        case submenu_curr_start + 11:
             act_mvmt_idle_chance()
             break   
-        case submenu_curr_start + 13:
+        case submenu_curr_start + 12:
             act_mvmt_idle_time()
             break                                                                       

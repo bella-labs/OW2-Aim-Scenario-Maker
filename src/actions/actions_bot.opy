@@ -85,12 +85,9 @@ def subact_select_slot_refresh():
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.bot_dist_min[bot_slot]
     menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
-    # Profile Status
+    # Profile Weights
     refresh_index += 1
-    action_var = databot.bot_profile_status[bot_slot][profile_slot]
-    action_var_2 = refresh_index
-    action_var_3 = OPTIONS_TYPE.TOGGLE
-    act_general_toggle_var_2()
+    menu_item_var_2[refresh_index] = databot.bot_profile_weights[bot_slot][profile_slot]
     # Random Profile
     refresh_index += 1
     menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.PROFILE][databot.bot_profile_type[bot_slot]]
@@ -168,7 +165,7 @@ def subact_bot_override_slot():
     databot.bot_dist_min[action_var] = databot.bot_dist_min[bot_slot]
     databot.bot_dist_max[action_var] = databot.bot_dist_max[bot_slot]
     # Profile Status
-    databot.bot_profile_status[action_var] = databot.bot_profile_status[bot_slot]
+    databot.bot_profile_weights[action_var] = databot.bot_profile_weights[bot_slot]
     # Profile Randomizer
     databot.bot_profile_type[action_var] = databot.bot_profile_type[bot_slot]
     databot.bot_profile_min[action_var] = databot.bot_profile_min[bot_slot]
@@ -480,41 +477,33 @@ def act_bot_gravity():
 def act_bot_select_profile():
     @Name "SUB: act_bot_select_profile"
 
-    switch menu_action:
-        # Change bot slot.
-        case MENU_ACTIONS.MENU_STEP_LEFT:
-        case MENU_ACTIONS.MENU_STEP_RIGHT:
-            act_general_num_var_1()
-            profile_slot = menu_item_var_1[menu_index]
-            break
-        # Toggle all slots.
-        case MENU_ACTIONS.MENU_JUMP_LEFT:
-            # Set the action var to the opposite of the current selection boolean.
-            action_var = databot.bot_profile_status[bot_slot]
-            action_var_2 = not action_var[profile_slot]
-            # Loop through all slots and set the flag to the new value.
-            for loop_index in range(0, len(action_var), 1):
-                action_var[loop_index] = action_var_2
-            databot.bot_profile_status[bot_slot] = action_var
-            break
-        # Toggle current slot.
-        case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            action_var = databot.bot_profile_status[bot_slot]
-            action_var[profile_slot] = not action_var[profile_slot]
-            databot.bot_profile_status[bot_slot] = action_var
-            break
-    # Update the status text and color
-    action_var = databot.bot_profile_status[bot_slot][profile_slot]
-    action_var_2 = menu_index
-    action_var_3 = OPTIONS_TYPE.TOGGLE
-    act_general_toggle_var_2()
+    if subitem_index[menu_index] == 0:
+        act_general_num_var_3()
+        profile_slot = menu_item_var_3[menu_index]
+    else:
+        action_var = menu_item_var_2[menu_index]
+        act_general_clear_disabled()
+        menu_item_var_2[menu_index] = action_var
+
+        act_general_num_var_2()
+        action_var = databot.bot_profile_weights[bot_slot]
+        action_var_2 = profile_slot
+        action_var_3 = menu_item_var_2[menu_index]
+        act_general_update_weights()
+        databot.bot_profile_weights[bot_slot] = action_var
+
+        action_var = menu_item_var_2[menu_index]
+        act_general_set_if_disabled()
+        menu_item_var_2[menu_index] = action_var
 
 
-def act_bot_rand_profile():
-    @Name "SUB: act_bot_rand_profile"
+
+
+
+def act_bot_profile_order():
+    @Name "SUB: act_bot_profile_order"
     
     if subitem_index[menu_index] == 0:
-
         action_var = databot.bot_profile_type[bot_slot]
         action_var_2 = menu_index
         action_var_3 = OPTIONS_TYPE.PROFILE

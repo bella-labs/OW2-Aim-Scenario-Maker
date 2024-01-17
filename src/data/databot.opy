@@ -12,6 +12,8 @@ rule "Databot Populate Settings":
     import_settings()
     if eventPlayer.import_status == false:
         default_settings()
+    for loop_index in range(0, 12):
+
 
     data_loaded[DATA_TYPE.DATA_BOT] = true
         
@@ -24,7 +26,7 @@ def setup_databot():
     bot_gen_slot = 1
     bot_gen_position = vect(0,9999,0)
     bot_gen_facing = vect(0,0,0)
-    create_bot()
+    createDummy(bot_gen_hero, bot_gen_team, bot_gen_slot, bot_gen_position, bot_gen_facing)
 
     databot = getPlayersInSlot(bot_gen_slot,bot_gen_team)
     databot.setGravity(0)
@@ -55,7 +57,7 @@ def default_settings():
     eventPlayer.sce_strafe_max = 0
     eventPlayer.sce_custom_status = false
 
-    for loop_index in range(0, 12, 1):
+    for loop_index in range(0, 12):
         eventPlayer.bot_slot_status[loop_index] = false
         eventPlayer.bot_spawn_type[loop_index] = 0
         eventPlayer.bot_spawn_vect[loop_index] = vect(0,0,0)
@@ -80,19 +82,20 @@ def default_settings():
         eventPlayer.bot_scale_max[loop_index] = 1
         eventPlayer.bot_scale_target[loop_index] = 0
         eventPlayer.bot_gravity[loop_index] = 100
-        eventPlayer.bot_profile_status[loop_index] = [true, false, false, false, false, false, false, false, false, false, false, false]
+
+        eventPlayer.bot_profile_weights[loop_index] = [1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+
+
         eventPlayer.bot_profile_type[loop_index] = 0
         eventPlayer.bot_profile_min[loop_index] = 0
         eventPlayer.bot_profile_max[loop_index] = 0
         eventPlayer.bot_script_status[loop_index] = false
 
-        eventPlayer.prof_weight[loop_index] = 1
-
         eventPlayer.mvmt_hori_type[loop_index] = 0
         eventPlayer.mvmt_hori_impulse[loop_index] = 0
         eventPlayer.mvmt_hori_interval[loop_index] = 0
 
-        eventPlayer.mvmt_weights[loop_index] = [1,1,1,1,1,1,1,1]
+        eventPlayer.mvmt_weight_list[loop_index] =     [1, 2, 3, 4, 5, 6, 7, 8]
 
         eventPlayer.mvmt_left_min[loop_index] = 0
         eventPlayer.mvmt_left_max[loop_index] = 0
@@ -130,3 +133,5 @@ def default_settings():
         eventPlayer.mvmt_lr_idle_max[loop_index] = 0
         eventPlayer.mvmt_fb_idle_min[loop_index] = 0
         eventPlayer.mvmt_fb_idle_max[loop_index] = 0
+
+

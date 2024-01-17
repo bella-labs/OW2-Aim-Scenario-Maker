@@ -80,7 +80,7 @@ def act_general_num_var_4():
 def act_general_toggle_status():
     @Name "SUB: act_general_toggle_status" 
 
-    if action_var :
+    if action_var:
         action_result = 1
         menu_item_color_on[action_var_2] = Color.GREEN
     else:
@@ -100,6 +100,20 @@ def act_general_toggle_var_2():
 
     act_general_toggle_status()
     menu_item_var_2[action_var_2] = strings_options[lang_type][action_var_3][action_result]
+
+
+def act_general_toggle_var_3():
+    @Name "SUB: act_general_toggle_var_3" 
+
+    act_general_toggle_status()
+    menu_item_var_3[action_var_2] = strings_options[lang_type][action_var_3][action_result]
+
+
+def act_general_toggle_var_4():
+    @Name "SUB: act_general_toggle_var_4" 
+
+    act_general_toggle_status()
+    menu_item_var_4[action_var_2] = strings_options[lang_type][action_var_3][action_result]
 
 
 def act_general_change_vect():
@@ -177,3 +191,56 @@ def act_general_change_min_max():
             if action_var_3 < action_var_2:
                 action_var = action_var_3
             break
+
+
+def act_general_update_weights():
+    @Name "SUB: act_general_update_weights"
+
+    
+    # action_var => Summed Weight, action_var_2 => Profile Slot, action_var_3 => New Weight, action_result => Unsummed Weight, general_target => Max Sum
+    general_target = 0
+    if action_var_2 == 0:
+        if action_var_3 > 0:
+            general_target = action_var_3
+            action_var[0] = general_target
+
+        else:
+            action_var[0] = -1
+    if action_var[0] > 0:
+        action_result[0] = action_var[0]
+    else:
+        action_result[0] = 0
+    
+    for loop_index in range(1, len(action_var)):
+        if action_var_2 == loop_index:
+            action_result[loop_index] = action_var_3
+        elif action_var[loop_index] > 0:
+            action_result[loop_index] = action_var[loop_index] - general_target
+        else:
+            action_result[loop_index] = 0
+        
+        if action_result[loop_index] > 0:
+            general_target += action_result[loop_index]
+            action_var[loop_index] = general_target
+        else:
+            action_var[loop_index] = -1
+
+
+
+def act_general_set_if_disabled():
+    @Name "SUB: act_general_set_if_disabled"
+
+    if action_var == 0:
+        action_var = strings_options[lang_type][action_var_3][0]
+        menu_item_color_on[action_var_2] = Color.RED
+    else:
+        menu_item_color_on[action_var_2] = Color.RED
+
+
+def act_general_clear_disabled():
+    @Name "SUB: act_general_clear_disabled"
+
+    if action_var == strings_options[lang_type][action_var_3][0]:
+        action_var = 0
+        
+

@@ -536,27 +536,24 @@ def create_submenu_bot():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (Toggle List) Select Profiles for Bot
+    # (Toggle List) Select Profile
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos] 
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.PROFILE_STATUS]
     menu_item_var_1[menu_item_size] = 0
-
-    action_var = databot.bot_profile_status[0][0]
-    action_var_2 = menu_item_size
-    action_var_3 = OPTIONS_TYPE.TOGGLE
-    act_general_toggle_var_2()
-
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_SLOT]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1]
+    menu_item_var_2[menu_item_size] = databot.bot_profile_weights[0][0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_SLOT, RANGE_TYPE.RANGE_PERCENTAGE]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10]
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_TOGGLE]
-    new_menu_item_toggle_list()
+    new_menu_item_2var()
 
     # (3 Var) Profile Order
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.PROFILE]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.PROFILE_ORDER]
     menu_item_var_1[menu_item_size] = strings_options[lang_type][6][databot.bot_profile_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_profile_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_profile_max[0]
@@ -584,7 +581,7 @@ def create_submenu_profile():
 
     increment_for_submenu_item()
 
-    # (Header) Profile Settings
+    # (Header) Movement Settings
     increment_for_menu_label()
     menu_label[menu_label_size] = strings_prof_menu[lang_type][menu_max_pos]
     new_menu_label_header()
@@ -596,13 +593,13 @@ def create_submenu_profile():
     menu_item_color_off[menu_item_size] = menu_colors_custom[0]
     new_menu_item_selection()
 
-    # (Subtext) Profiles
+    # (Subtext) Movement Profiles
     increment_for_menu_label()
     menu_label[menu_label_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (Cycle) Select Profile Slot
+    # (Cycle) Select Movement Profile Slot
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
@@ -613,7 +610,7 @@ def create_submenu_profile():
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE]
     new_menu_item_cycle()
 
-    # (Cycle) Override Profile From Slot
+    # (Cycle) Override Movement Profile From Slot
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
@@ -622,17 +619,6 @@ def create_submenu_profile():
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1]
     menu_item_var_1[menu_item_size] = 0
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE_OVERRIDE]
-    new_menu_item_cycle()
-
-    # (Cycle) Profile Weight
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10]
-    menu_item_var_1[menu_item_size] = 0
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.CYCLE]
     new_menu_item_cycle()
 
     # (Subtext) Horizontal Movement
@@ -660,10 +646,10 @@ def create_submenu_profile():
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.WEIGHTS]
-    menu_item_var_1[menu_item_size] = databot.mvmt_weights[0][0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_weights[0][2]
-    menu_item_var_3[menu_item_size] = databot.mvmt_weights[0][4]
-    menu_item_var_4[menu_item_size] = databot.mvmt_weights[0][6]
+    menu_item_var_1[menu_item_size] = 1#databot.mvmt_weights[0][XZ_DIR.LEFT]
+    menu_item_var_2[menu_item_size] = 1#databot.mvmt_weights[0][XZ_DIR.RIGHT]
+    menu_item_var_3[menu_item_size] = 1#databot.mvmt_weights[0][XZ_DIR.FORWARD]
+    menu_item_var_4[menu_item_size] = 1#databot.mvmt_weights[0][XZ_DIR.BACKWARD]
     menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 

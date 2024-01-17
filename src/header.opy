@@ -153,22 +153,20 @@ playervar bot_bound_dim
 playervar bot_dist_min
 playervar bot_dist_max
 #### Profile
-playervar bot_profile_status
+playervar bot_profile_weights
+#### Profile Order
 playervar bot_profile_type
 playervar bot_profile_min
 playervar bot_profile_max
 #### Custom Script
 playervar bot_script_status
 
-#### Profile Weight
-playervar prof_weight
 #### Horizontal Type
 playervar mvmt_hori_type
 playervar mvmt_hori_impulse
 playervar mvmt_hori_interval
-#### Left / Right Probability
-playervar mvmt_lr_ratio
-playervar mvmt_fb_ratio
+#### Horizontal Weights
+playervar mvmt_weight_list
 #### Left / Right Time
 playervar mvmt_left_min
 playervar mvmt_left_max
@@ -261,10 +259,13 @@ subroutine act_general_num_var_4
 subroutine act_general_toggle_status
 subroutine act_general_toggle_var_1
 subroutine act_general_toggle_var_2
+subroutine act_general_toggle_var_3
+subroutine act_general_toggle_var_4
 subroutine act_general_change_vect
 subroutine act_general_change_list
 subroutine act_general_change_list_var_1
 subroutine act_general_change_min_max
+subroutine act_general_update_weights
 ### Custom Actions
 #### Main Menu
 subroutine act_main_open_hero_sel
@@ -297,7 +298,7 @@ subroutine act_bot_bound
 subroutine act_bot_bound_dim
 subroutine act_bot_distance
 subroutine act_bot_select_profile
-subroutine act_bot_rand_profile
+subroutine act_bot_profile_order
 subroutine act_bot_script_status
 #### Profile Submenu
 subroutine act_prof_select_prof
@@ -317,8 +318,6 @@ subroutine act_mvmt_crouch_time
 subroutine act_mvmt_idle_chance
 subroutine act_mvmt_idle_time
 ## Bot Generation
-subroutine create_bot
-subroutine destroy_bot
 subroutine create_target_bot
 subroutine destroy_target_bot
 ## Data Bot
@@ -410,7 +409,8 @@ enum TAG_TYPE:
     HEALTH = 0,
     MIN_MAX,
     TARGET,
-    PROFILE,
+    PROFILE_STATUS,
+    PROFILE_ORDER,
     VECT,
     TYPE_VECT,
     ANGLE_DIM,
@@ -463,12 +463,9 @@ globalvar menu_effect_index
 globalvar effect_array
 
 globalvar ring_data
-subroutine destroy_effects
 subroutine update_bound_effect
 subroutine set_cube
-subroutine create_bound_effect
 subroutine update_distance_effect
-subroutine create_distance_effect
 globalvar display_help
 globalvar active_bot_status
 
@@ -491,7 +488,7 @@ playervar owner_player
 playervar profile_list
 playervar profile_index
 playervar loop_indexes
-playervar profile_weights
+
 
 subroutine stats_start_stat_tracking
 subroutine stats_stop_stat_tracking
@@ -511,13 +508,13 @@ enum DISABLED_VARS:
     
 enum PLAYER_INDEXES:
     DISABLE_MVMT = 0,
-    PROFILE_1,
-    PROFILE_2,
-    PROFILE_3,
-    PROFILE_4
+    PROFILE,
+    WEIGHTS_1,
+    WEIGHTS_2
 
-enum MVMT_RAND:
-    LR = 0,
+enum PLAYER_RAND:
+    PROFILE = 0,
+    LR,
     FB,
     JUMP,
     CROUCH
@@ -538,15 +535,20 @@ enum Y_DIR:
 
 
 playervar target_mvmt_dir
-playervar target_mvmt_rand
+playervar target_rand
 playervar target_mvmt_wait
 
 
 
-subroutine left_movement
-subroutine right_movement
 playervar lr_waiting
 playervar fb_waiting
 playervar movement_interrupt
 
-playervar mvmt_weights
+subroutine act_general_clear_var_1
+subroutine act_general_disable_var_1
+subroutine act_general_clear_var_2
+subroutine act_general_disable_var_2
+subroutine act_general_clear_var_3
+subroutine act_general_disable_var_3
+subroutine act_general_clear_var_4
+subroutine act_general_disable_var_4

@@ -243,46 +243,24 @@ rule "Target Bot Listener - Gravity":
         goto RULE_START
 
 
-rule "Target Bot Listener - Profile":
+rule "Target Bot Listener - Bot Profile":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.bot_profile_status != databot.bot_profile_status[eventPlayer.getSlot()] or
+                eventPlayer.bot_profile_weights != databot.bot_profile_weights[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_type != databot.bot_profile_type[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_min != databot.bot_profile_min[eventPlayer.getSlot()] or
-                eventPlayer.bot_profile_max != databot.bot_profile_max[eventPlayer.getSlot()] or
-                eventPlayer.prof_weight != databot.prof_weight[eventPlayer.getSlot()]
+                eventPlayer.bot_profile_max != databot.bot_profile_max[eventPlayer.getSlot()]
                 )
 
-    # Set profile_index to -1 to prevent profile handler rules from updating profile_index
-    eventPlayer.profile_index = -1
+    eventPlayer.bot_profile_weights = databot.bot_profile_weights[eventPlayer.getSlot()]
     eventPlayer.bot_profile_type = databot.bot_profile_type[eventPlayer.getSlot()]
     eventPlayer.bot_profile_min = databot.bot_profile_min[eventPlayer.getSlot()]
     eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
-    eventPlayer.bot_profile_status = databot.bot_profile_status[eventPlayer.getSlot()]
-    eventPlayer.prof_weight = databot.prof_weight[eventPlayer.getSlot()]
-
-    # Indexes 1 and 2 of loop_indexes are used to loop through and copy over the indexes of bot_profile_status that are set to true
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] = 0
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] = 0
-    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] < len(eventPlayer.bot_profile_status)):
-        if eventPlayer.bot_profile_status[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]] :
-                eventPlayer.profile_list[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1]
-                if eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] == 0:
-                    eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.prof_weight
-                else:
-                    eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]] = eventPlayer.prof_weight + eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2]-1]
-                eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_2] += 1
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_1] += 1
-
-    # Set index 3 of loop_indexes to 9999 so that if the type is set to in-order the profile handler rule will loop over to the 0th index of profile_list
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 9999
-    # Set profile_index to 0 so the profile handler rules can process
-    eventPlayer.profile_index = 0
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Profile")
+    smallMessage(hostPlayer, "Bot Profile")
 
     if RULE_CONDITION:
         goto RULE_START
@@ -323,20 +301,17 @@ rule "Target Bot Listener - Movement Horizontal Type":
         goto RULE_START
 
 
-rule "Target Bot Listener - Movement Horizontal Ratio":
+rule "Target Bot Listener - Movement Weights":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_lr_ratio != databot.mvmt_lr_ratio or 
-                eventPlayer.mvmt_fb_ratio != databot.mvmt_fb_ratio
+                eventPlayer.mvmt_weight_list != databot.mvmt_weight_list
                 )
 
-    eventPlayer.mvmt_lr_ratio = databot.mvmt_lr_ratio
-    eventPlayer.mvmt_fb_ratio = databot.mvmt_fb_ratio
-
+    eventPlayer.mvmt_weight_list = databot.mvmt_weight_list
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Horizontal Ratio")
+    smallMessage(hostPlayer, "Weight")
 
     if RULE_CONDITION:
         goto RULE_START
