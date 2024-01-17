@@ -159,10 +159,10 @@ def menu_act_submenu_profile():
             menu_act_change_submenu()
             break
         case submenu_curr_start + 1:
-            act_prof_select_prof()
+            act_mvmt_select_prof()
             break
         case submenu_curr_start + 2:
-            act_prof_override_prof()
+            act_mvmt_override_prof()
             break
         case submenu_curr_start + 3:
             act_mvmt_hori_type()

@@ -204,8 +204,8 @@ def act_general_change_min_max():
             break
 
 # Usage: action_var => unsummed weights, action_var => calculated summed weights, action_result = max weight
-def act_general_update_weights():
-    @Name "SUB: act_general_update_weights"
+def act_general_calc_weights():
+    @Name "SUB: act_general_calc_weights"
 
     action_result = 0
     action_var_2 = null

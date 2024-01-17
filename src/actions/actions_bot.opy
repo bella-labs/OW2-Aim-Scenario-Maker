@@ -166,6 +166,7 @@ def subact_bot_override_slot():
     databot.bot_dist_max[action_var] = databot.bot_dist_max[bot_slot]
     # Profile Status
     databot.bot_profile_weights[action_var] = databot.bot_profile_weights[bot_slot]
+    databot.bor_profile_max_weight[action_var] = databot.bor_profile_max_weight[bot_slot]
     # Profile Randomizer
     databot.bot_profile_type[action_var] = databot.bot_profile_type[bot_slot]
     databot.bot_profile_min[action_var] = databot.bot_profile_min[bot_slot]
@@ -489,7 +490,7 @@ def act_bot_select_profile():
         profile_weights[profile_slot] = action_temp
 
         action_var = profile_weights
-        act_general_update_weights()
+        act_general_calc_weights()
         databot.bot_profile_weights = action_var_2
         databot.bot_profile_max_weight = action_result
 

@@ -167,7 +167,8 @@ playervar mvmt_hori_type
 playervar mvmt_hori_impulse
 playervar mvmt_hori_interval
 #### Horizontal Weights
-playervar mvmt_weight_list
+playervar mvmt_weights
+playervar mvmt_max_weight
 #### Left / Right Time
 playervar mvmt_left_min
 playervar mvmt_left_max
@@ -267,7 +268,7 @@ subroutine act_general_change_vect
 subroutine act_general_change_list
 subroutine act_general_change_list_var_1
 subroutine act_general_change_min_max
-subroutine act_general_update_weights
+subroutine act_general_calc_weights
 subroutine act_general_unsum_weights
 ### Custom Actions
 #### Main Menu
@@ -304,10 +305,10 @@ subroutine act_bot_select_profile
 subroutine act_bot_profile_order
 subroutine act_bot_script_status
 #### Profile Submenu
-subroutine act_prof_select_prof
-subroutine subact_select_prof_refresh
-subroutine act_prof_override_prof
-subroutine subact_prof_override_slot
+subroutine act_mvmt_select_prof
+subroutine subact_mvmt_select_refresh
+subroutine act_mvmt_override_prof
+subroutine subact_mvmt_override_slot
 subroutine act_prof_change_weight
 #### Movement Submenu
 subroutine act_mvmt_hori_type

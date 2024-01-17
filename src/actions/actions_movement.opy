@@ -1,26 +1,26 @@
-def act_prof_select_prof():
-    @Name "SUB: act_prof_select_prof"
+def act_mvmt_select_prof():
+    @Name "SUB: act_mvmt_select_prof"
 
     act_general_num_var_1()
     profile_slot = menu_item_var_1[menu_index]
     smallMessage(hostPlayer, "HI")
-    subact_select_prof_refresh()
+    subact_mvmt_select_refresh()
 
 
-def subact_select_prof_refresh():
-    @Name "SUB: subact_select_prof_refresh"
+def subact_mvmt_select_refresh():
+    @Name "SUB: subact_mvmt_select_refresh"
 
     # Horizontal Type
     refresh_index = menu_index + 2
     menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_hori_type[profile_slot]]
     menu_item_var_2[refresh_index] = databot.mvmt_hori_impulse[profile_slot]
     menu_item_var_3[refresh_index] = databot.mvmt_hori_impulse[profile_slot]
-    # Horizontal Probability
+    # Horizontal Weight
     refresh_index += 1
-    #menu_item_var_1[refresh_index] = databot.mvmt_weights[profile_slot][XZ_DIR.LEFT]
-    #menu_item_var_2[refresh_index] = databot.mvmt_weights[profile_slot][XZ_DIR.RIGHT]
-    #menu_item_var_3[refresh_index] = databot.mvmt_weights[profile_slot][XZ_DIR.FORWARD]
-    #menu_item_var_4[refresh_index] = databot.mvmt_weights[profile_slot][XZ_DIR.BACKWARD]
+    menu_item_var_1[refresh_index] = movement_weights[profile_slot][XZ_DIR.LEFT]
+    menu_item_var_2[refresh_index] = movement_weights[profile_slot][XZ_DIR.RIGHT]
+    menu_item_var_3[refresh_index] = movement_weights[profile_slot][XZ_DIR.FORWARD]
+    menu_item_var_4[refresh_index] = movement_weights[profile_slot][XZ_DIR.BACKWARD]
     # Left / Right Time
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.mvmt_left_min[profile_slot]
@@ -68,8 +68,8 @@ def subact_select_prof_refresh():
     menu_item_var_4[refresh_index] = databot.mvmt_fb_idle_max[profile_slot]
 
 
-def act_prof_override_prof():
-    @Name "SUB: act_prof_override_prof"
+def act_mvmt_override_prof():
+    @Name "SUB: act_mvmt_override_prof"
 
     switch menu_action:
         # Change target slot
@@ -85,15 +85,15 @@ def act_prof_override_prof():
             menu_item_color_on[menu_index] = Color.RED
             waitUntil((eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])) == true, 2)
             if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
-                subact_prof_override_slot()
+                subact_mvmt_override_slot()
                 menu_item_color_on[menu_index] = Color.GREEN
                 wait(0.25)
         
             menu_item_color_on[menu_index] = menu_color_on_index
 
 
-def subact_prof_override_slot():
-    @Name "SUB: subact_prof_override_slot"
+def subact_mvmt_override_slot():
+    @Name "SUB: subact_mvmt_override_slot"
 
     action_var = menu_item_var_1[menu_index]
 
@@ -101,9 +101,9 @@ def subact_prof_override_slot():
     databot.mvmt_hori_type[action_var] = databot.mvmt_hori_type[profile_slot]
     databot.mvmt_hori_impulse[action_var] = databot.mvmt_hori_impulse[profile_slot]
     databot.mvmt_hori_impulse[action_var] = databot.mvmt_hori_impulse[profile_slot]
-    # Horizontal Probability
-    #databot.mvmt_weights[action_var] = databot.mvmt_weights[profile_slot]
-    databot.mvmt_weight_list[action_var] = databot.mvmt_weight_list[profile_slot]
+    # Horizontal Weight
+    databot.mvmt_weights[action_var] = databot.mvmt_weights[profile_slot]
+    databot.mvmt_max_weight[action_var] = databot.mvmt_max_weight[profile_slot]
     # Left / Right Time
     databot.mvmt_left_min[action_var] = databot.mvmt_left_min[profile_slot]
     databot.mvmt_left_max[action_var] = databot.mvmt_left_max[profile_slot]
@@ -167,51 +167,40 @@ def act_mvmt_hori_type():
 def act_mvmt_hori_weight():
     @Name "SUB: act_mvmt_hori_weight" 
 
-    #general_target = databot.mvmt_weights[profile_slot]
+    action_var = movement_weights[profile_slot]
+
     switch subitem_index[menu_index]:
         case 0:
             act_general_num_var_1()
-            general_target[XZ_DIR.LEFT] = menu_item_var_1[menu_index]
-            general_target[XZ_DIR.FORWARD_LEFT] = menu_item_var_1[menu_index] * menu_item_var_3[menu_index]
-            general_target[XZ_DIR.BACKWARD_LEFT] = menu_item_var_1[menu_index] * menu_item_var_4[menu_index]
+            action_var[XZ_DIR.LEFT] = menu_item_var_1[menu_index]
+            action_var[XZ_DIR.FORWARD_LEFT] = action_var[XZ_DIR.LEFT] * action_var[XZ_DIR.FORWARD]
+            action_var[XZ_DIR.BACKWARD_LEFT] = action_var[XZ_DIR.LEFT] * action_var[XZ_DIR.BACKWARD]
             break
         case 1:
             act_general_num_var_2()
-            general_target[XZ_DIR.RIGHT] = menu_item_var_2[menu_index]
-            general_target[XZ_DIR.FORWARD_RIGHT] = menu_item_var_2[menu_index] * menu_item_var_3[menu_index]
-            general_target[XZ_DIR.BACKWARD_RIGHT] = menu_item_var_2[menu_index] * menu_item_var_4[menu_index]
+            action_var[XZ_DIR.RIGHT] = menu_item_var_2[menu_index]
+            action_var[XZ_DIR.FORWARD_RIGHT] = action_var[XZ_DIR.RIGHT] * action_var[XZ_DIR.FORWARD]
+            action_var[XZ_DIR.BACKWARD_RIGHT] = action_var[XZ_DIR.RIGHT] * action_var[XZ_DIR.BACKWARD]
             break
         case 2:
             act_general_num_var_3()
-            general_target[XZ_DIR.FORWARD] = menu_item_var_3[menu_index]
-            general_target[XZ_DIR.FORWARD_LEFT] = menu_item_var_3[menu_index] * menu_item_var_1[menu_index]
-            general_target[XZ_DIR.FORWARD_RIGHT] = menu_item_var_3[menu_index] * menu_item_var_2[menu_index]
+            action_var[XZ_DIR.FORWARD] = menu_item_var_3[menu_index]
+            action_var[XZ_DIR.FORWARD_LEFT] = action_var[XZ_DIR.FORWARD] * action_var[XZ_DIR.LEFT]
+            action_var[XZ_DIR.FORWARD_RIGHT] = action_var[XZ_DIR.FORWARD] * action_var[XZ_DIR.RIGHT]
             
             break
         case 3:
             act_general_num_var_4()
-            general_target[XZ_DIR.BACKWARD] = menu_item_var_4[menu_index]
-            general_target[XZ_DIR.BACKWARD_LEFT] = menu_item_var_4[menu_index] * menu_item_var_1[menu_index]
-            general_target[XZ_DIR.BACKWARD_RIGHT] = menu_item_var_4[menu_index] * menu_item_var_2[menu_index]
+            action_var[XZ_DIR.BACKWARD] = menu_item_var_4[menu_index]
+            action_var[XZ_DIR.BACKWARD_LEFT] = action_var[XZ_DIR.BACKWARD] * action_var[XZ_DIR.LEFT]
+            action_var[XZ_DIR.BACKWARD_RIGHT] = action_var[XZ_DIR.BACKWARD] * action_var[XZ_DIR.RIGHT]
             break
-    #databot.mvmt_weights[profile_slot] = general_target
-
-
-    #general_target = null
-    #for loop_index in range(0, len(databot.mvmt_weights[profile_slot])):
-    #    general_target[loop_index] = databot.mvmt_weights[profile_slot][loop_index] == 0
-    #databot.mvmt_weight_status[profile_slot] = general_target
     
-    #general_target = null
-    #if true in databot.mvmt_weights[profile_slot]:
-    #    action_var = databot.mvmt_weights[profile_slot]
-    #    for loop_index in range(0, len(databot.mvmt_weight_status[profile_slot])):
-    #    general_target[0] = action_var[databot.mvmt_weight_status[profile_slot][0]]
-    #    
-    #        general_target[loop_index] = general_target[loop_index-1] + action_var[databot.mvmt_weight_status[profile_slot][loop_index]]
-    #databot.mvmt_weight_list[profile_slot] = general_target
+    act_general_calc_weights()
+    databot.mvmt_weights = action_var_2
+    databot.mvmt_max_weight = action_result
 
-
+    
 def act_mvmt_lr_time():
     @Name "SUB: act_mvmt_lr_time" 
 
