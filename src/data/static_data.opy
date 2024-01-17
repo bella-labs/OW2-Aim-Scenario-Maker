@@ -278,7 +278,7 @@ rule "load_language_data":
             "Profile Weight",
             "Horizontal Movement",
             "Horizontal Movement Type", 
-            "Left / Right Probability",
+            "Horizontal Weight",
             "Left / Right Time",
             "Forward / Backward Time",
             "Vertical Movement",

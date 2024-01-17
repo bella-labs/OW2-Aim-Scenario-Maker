@@ -19,20 +19,37 @@ def act_mvmt_hori_type():
             break
 
 
-def act_mvmt_hori_ratio():
-    @Name "SUB: act_mvmt_hori_ratio" 
+def act_mvmt_hori_weight():
+    @Name "SUB: act_mvmt_hori_weight" 
 
+    general_target = databot.mvmt_weights[profile_slot]
     switch subitem_index[menu_index]:
         case 0:
-            act_general_num_var_3()
-            databot.mvmt_lr_ratio[profile_slot] = menu_item_var_3[menu_index]
-            menu_item_var_1[menu_index] = "{0}/{1}".format((100 - databot.mvmt_lr_ratio[profile_slot]), databot.mvmt_lr_ratio[profile_slot])
+            act_general_num_var_1()
+            general_target[XZ_DIR.LEFT] = menu_item_var_1[menu_index]
+            general_target[XZ_DIR.FORWARD_LEFT] = menu_item_var_1[menu_index] * menu_item_var_3[menu_index]
+            general_target[XZ_DIR.BACKWARD_LEFT] = menu_item_var_1[menu_index] * menu_item_var_4[menu_index]
             break
         case 1:
-            act_general_num_var_4()
-            databot.mvmt_fb_ratio[profile_slot] = menu_item_var_4[menu_index]
-            menu_item_var_2[menu_index] = "{0}/{1}".format((100 - databot.mvmt_fb_ratio[profile_slot]), databot.mvmt_fb_ratio[profile_slot])
+            act_general_num_var_2()
+            general_target[XZ_DIR.RIGHT] = menu_item_var_2[menu_index]
+            general_target[XZ_DIR.FORWARD_RIGHT] = menu_item_var_2[menu_index] * menu_item_var_3[menu_index]
+            general_target[XZ_DIR.BACKWARD_RIGHT] = menu_item_var_2[menu_index] * menu_item_var_4[menu_index]
             break
+        case 2:
+            act_general_num_var_3()
+            general_target[XZ_DIR.FORWARD] = menu_item_var_3[menu_index]
+            general_target[XZ_DIR.FORWARD_LEFT] = menu_item_var_3[menu_index] * menu_item_var_1[menu_index]
+            general_target[XZ_DIR.FORWARD_RIGHT] = menu_item_var_3[menu_index] * menu_item_var_2[menu_index]
+            
+            break
+        case 3:
+            act_general_num_var_4()
+            general_target[XZ_DIR.BACKWARD] = menu_item_var_4[menu_index]
+            general_target[XZ_DIR.BACKWARD_LEFT] = menu_item_var_4[menu_index] * menu_item_var_1[menu_index]
+            general_target[XZ_DIR.BACKWARD_RIGHT] = menu_item_var_4[menu_index] * menu_item_var_2[menu_index]
+            break
+    databot.mvmt_weights[profile_slot] = general_target
 
 
 def act_mvmt_lr_time():
