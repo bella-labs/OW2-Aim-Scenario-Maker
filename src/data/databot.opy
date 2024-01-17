@@ -84,7 +84,7 @@ def default_settings():
         eventPlayer.bot_gravity[loop_index] = 100
 
         eventPlayer.bot_profile_weights[loop_index] = [1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-
+        eventPlayer.bot_profile_max_weight = 1
 
         eventPlayer.bot_profile_type[loop_index] = 0
         eventPlayer.bot_profile_min[loop_index] = 0

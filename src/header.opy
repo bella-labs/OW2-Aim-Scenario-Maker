@@ -154,6 +154,7 @@ playervar bot_dist_min
 playervar bot_dist_max
 #### Profile
 playervar bot_profile_weights
+playervar bot_profile_max_weight
 #### Profile Order
 playervar bot_profile_type
 playervar bot_profile_min
@@ -252,6 +253,7 @@ subroutine menu_act_submenu_movement
 ### Generalized Actions
 subroutine menu_act_change_submenu
 subroutine act_general_chg_num
+subroutine act_general_num_temp
 subroutine act_general_num_var_1
 subroutine act_general_num_var_2
 subroutine act_general_num_var_3
@@ -266,6 +268,7 @@ subroutine act_general_change_list
 subroutine act_general_change_list_var_1
 subroutine act_general_change_min_max
 subroutine act_general_update_weights
+subroutine act_general_unsum_weights
 ### Custom Actions
 #### Main Menu
 subroutine act_main_open_hero_sel
@@ -450,6 +453,7 @@ globalvar action_var
 globalvar action_var_2
 globalvar action_var_3
 globalvar action_result
+globalvar action_temp
 globalvar general_small
 globalvar general_large
 globalvar general_range_min
@@ -544,11 +548,8 @@ playervar lr_waiting
 playervar fb_waiting
 playervar movement_interrupt
 
-subroutine act_general_clear_var_1
-subroutine act_general_disable_var_1
-subroutine act_general_clear_var_2
-subroutine act_general_disable_var_2
-subroutine act_general_clear_var_3
-subroutine act_general_disable_var_3
-subroutine act_general_clear_var_4
-subroutine act_general_disable_var_4
+subroutine act_general_clear
+subroutine act_general_disable
+
+globalvar profile_weights
+globalvar movement_weights

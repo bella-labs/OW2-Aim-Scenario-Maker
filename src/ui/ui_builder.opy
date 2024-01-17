@@ -542,7 +542,15 @@ def create_submenu_bot():
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.PROFILE_STATUS]
     menu_item_var_1[menu_item_size] = 0
-    menu_item_var_2[menu_item_size] = databot.bot_profile_weights[0][0]
+
+    action_var = databot.bot_profile_weights[0]
+    act_general_unsum_weights()
+    profile_weights = action_result
+    
+    action_var = profile_weights[0]
+    act_general_disable()
+    menu_item_var_2[menu_item_size] = action_var
+
     menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_SLOT, RANGE_TYPE.RANGE_PERCENTAGE]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10]

@@ -478,26 +478,24 @@ def act_bot_select_profile():
     @Name "SUB: act_bot_select_profile"
 
     if subitem_index[menu_index] == 0:
-        act_general_num_var_3()
-        profile_slot = menu_item_var_3[menu_index]
+        act_general_num_var_1()
+        profile_slot = menu_item_var_1[menu_index]
     else:
         action_var = menu_item_var_2[menu_index]
-        act_general_clear_disabled()
-        menu_item_var_2[menu_index] = action_var
+        act_general_clear()
+        
+        action_var_2 = 1
+        act_general_num_temp()
+        profile_weights[profile_slot] = action_temp
 
-        act_general_num_var_2()
-        action_var = databot.bot_profile_weights[bot_slot]
-        action_var_2 = profile_slot
-        action_var_3 = menu_item_var_2[menu_index]
+        action_var = profile_weights
         act_general_update_weights()
-        databot.bot_profile_weights[bot_slot] = action_var
+        databot.bot_profile_weights = action_var_2
+        databot.bot_profile_max_weight = action_result
 
-        action_var = menu_item_var_2[menu_index]
-        act_general_set_if_disabled()
-        menu_item_var_2[menu_index] = action_var
-
-
-
+    action_var = profile_weights[profile_slot]
+    act_general_disable()
+    menu_item_var_2[menu_index] = action_var
 
 
 def act_bot_profile_order():

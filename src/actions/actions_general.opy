@@ -28,7 +28,18 @@ def act_general_chg_num():
 
     menu_wait_index = 1
 
-        
+def act_general_num_temp():
+    @Name "SUB: act_general_num_temp"
+
+    action_var = action_temp
+    general_small = small_steps[menu_item_small_step[menu_index][action_var_2]]
+    general_large = large_steps[menu_item_large_step[menu_index][action_var_2]]
+    general_range_min = ranges[menu_item_range[menu_index][action_var_2]][0]
+    general_range_max = ranges[menu_item_range[menu_index][action_var_2]][1]
+    act_general_chg_num()
+    action_temp = action_var
+    
+    
 def act_general_num_var_1():
     @Name "SUB: act_general_num_var_1"
 
@@ -82,10 +93,10 @@ def act_general_toggle_status():
 
     if action_var:
         action_result = 1
-        menu_item_color_on[action_var_2] = Color.GREEN
+        menu_item_color_on[action_var_2] = menu_colors_custom[2]
     else:
         action_result = 0
-        menu_item_color_on[action_var_2] = Color.RED
+        menu_item_color_on[action_var_2] = menu_colors_custom[0]
     
 
 def act_general_toggle_var_1():
@@ -192,55 +203,39 @@ def act_general_change_min_max():
                 action_var = action_var_3
             break
 
-
+# Usage: action_var => unsummed weights, action_var => calculated summed weights, action_result = max weight
 def act_general_update_weights():
     @Name "SUB: act_general_update_weights"
 
+    action_result = 0
+    action_var_2 = null
+    for loop_index in range(0, len(action_var)):
+        if action_var[loop_index] > 0:
+            action_result += action_var[loop_index]
+            action_var_2[loop_index] = action_result
+        else:
+            action_var_2[loop_index] = -1
+
+
+def act_general_unsum_weights():
+    @Name "SUB: act_general_unsum_weights"
+
+    action_var_2 = 0
+    for loop_index in range(0, len(action_var)):
+        action_result[loop_index] = max(0, action_var[loop_index] - action_var_2)
+        if action_var[loop_index] > 0:
+            action_var_2 = action_var[loop_index]
     
-    # action_var => Summed Weight, action_var_2 => Profile Slot, action_var_3 => New Weight, action_result => Unsummed Weight, general_target => Max Sum
-    general_target = 0
-    if action_var_2 == 0:
-        if action_var_3 > 0:
-            general_target = action_var_3
-            action_var[0] = general_target
 
-        else:
-            action_var[0] = -1
-    if action_var[0] > 0:
-        action_result[0] = action_var[0]
-    else:
-        action_result[0] = 0
-    
-    for loop_index in range(1, len(action_var)):
-        if action_var_2 == loop_index:
-            action_result[loop_index] = action_var_3
-        elif action_var[loop_index] > 0:
-            action_result[loop_index] = action_var[loop_index] - general_target
-        else:
-            action_result[loop_index] = 0
-        
-        if action_result[loop_index] > 0:
-            general_target += action_result[loop_index]
-            action_var[loop_index] = general_target
-        else:
-            action_var[loop_index] = -1
+def act_general_clear():
+    @Name "SUB: act_general_clear"
+
+    if action_var == strings_options[lang_type][OPTIONS_TYPE.TOGGLE][0]:
+        action_temp = 0
 
 
-
-def act_general_set_if_disabled():
-    @Name "SUB: act_general_set_if_disabled"
+def act_general_disable():
+    @Name "SUB: act_general_disable"
 
     if action_var == 0:
-        action_var = strings_options[lang_type][action_var_3][0]
-        menu_item_color_on[action_var_2] = Color.RED
-    else:
-        menu_item_color_on[action_var_2] = Color.RED
-
-
-def act_general_clear_disabled():
-    @Name "SUB: act_general_clear_disabled"
-
-    if action_var == strings_options[lang_type][action_var_3][0]:
-        action_var = 0
-        
-
+        action_var = strings_options[lang_type][OPTIONS_TYPE.TOGGLE][0]
