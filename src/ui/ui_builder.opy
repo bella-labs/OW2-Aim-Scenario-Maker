@@ -460,6 +460,9 @@ def create_submenu_bot():
 
     # (Toggle List) Hero Pool
     increment_for_menu_item()
+
+    refresh_start[0] = menu_item_size
+
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = heroIcon(Hero.TRACER)
     menu_item_var_1[menu_item_size] = Hero.TRACER
@@ -637,6 +640,9 @@ def create_submenu_profile():
 
     # (3 Var) Horizontal Type
     increment_for_menu_item()
+    
+    refresh_start[1] = menu_item_size
+
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_TYPE]
@@ -654,10 +660,27 @@ def create_submenu_profile():
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.WEIGHTS]
-    menu_item_var_1[menu_item_size] = 1#databot.mvmt_weights[0][XZ_DIR.LEFT]
-    menu_item_var_2[menu_item_size] = 1#databot.mvmt_weights[0][XZ_DIR.RIGHT]
-    menu_item_var_3[menu_item_size] = 1#databot.mvmt_weights[0][XZ_DIR.FORWARD]
-    menu_item_var_4[menu_item_size] = 1#databot.mvmt_weights[0][XZ_DIR.BACKWARD]
+
+    action_var = databot.mvmt_weights[0]
+    act_general_unsum_weights()
+    movement_weights = action_result
+    
+    action_var = movement_weights[XZ_DIR.LEFT]
+    act_general_disable()
+    menu_item_var_1[menu_item_size] = action_var
+
+    action_var = movement_weights[XZ_DIR.RIGHT]
+    act_general_disable()
+    menu_item_var_2[menu_item_size] = action_var
+
+    action_var = movement_weights[XZ_DIR.FORWARD]
+    act_general_disable()
+    menu_item_var_3[menu_item_size] = action_var
+
+    action_var = movement_weights[XZ_DIR.BACKWARD]
+    act_general_disable()
+    menu_item_var_4[menu_item_size] = action_var
+
     menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 

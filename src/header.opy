@@ -463,6 +463,7 @@ globalvar general_range_max
 globalvar general_option_size
 globalvar general_target
 globalvar refresh_index
+globalvar refresh_start
 
 globalvar menu_effect_index
 globalvar effect_array

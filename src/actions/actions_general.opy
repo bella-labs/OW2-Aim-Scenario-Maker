@@ -232,6 +232,8 @@ def act_general_clear():
 
     if action_var == strings_options[lang_type][OPTIONS_TYPE.TOGGLE][0]:
         action_temp = 0
+    else:
+        action_temp = action_var
 
 
 def act_general_disable():

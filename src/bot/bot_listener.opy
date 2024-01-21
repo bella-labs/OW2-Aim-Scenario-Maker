@@ -305,10 +305,12 @@ rule "Target Bot Listener - Movement Weights":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_weight_list != databot.mvmt_weight_list
+                eventPlayer.mvmt_weights != databot.mvmt_weights or 
+                eventPlayer.mvmt_max_weight != databot.mvmt_max_weight
                 )
 
-    eventPlayer.mvmt_weight_list = databot.mvmt_weight_list
+    eventPlayer.mvmt_weights = databot.mvmt_weights
+    eventPlayer.mvmt_max_weight = databot.mvmt_max_weight
     # Cooldown to prevent overflow
     wait(1)
     smallMessage(hostPlayer, "Weight")

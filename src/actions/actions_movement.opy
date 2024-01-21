@@ -3,7 +3,8 @@ def act_mvmt_select_prof():
 
     act_general_num_var_1()
     profile_slot = menu_item_var_1[menu_index]
-    smallMessage(hostPlayer, "HI")
+    movement_weights = databot.mvmt_weights[profile_slot]
+    profile_weights = databot.bot_profile_weights[profile_slot]
     subact_mvmt_select_refresh()
 
 
@@ -11,7 +12,7 @@ def subact_mvmt_select_refresh():
     @Name "SUB: subact_mvmt_select_refresh"
 
     # Horizontal Type
-    refresh_index = menu_index + 2
+    refresh_index = refresh_start[1]
     menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_hori_type[profile_slot]]
     menu_item_var_2[refresh_index] = databot.mvmt_hori_impulse[profile_slot]
     menu_item_var_3[refresh_index] = databot.mvmt_hori_impulse[profile_slot]
@@ -167,38 +168,75 @@ def act_mvmt_hori_type():
 def act_mvmt_hori_weight():
     @Name "SUB: act_mvmt_hori_weight" 
 
-    action_var = movement_weights[profile_slot]
+    general_target = movement_weights
 
     switch subitem_index[menu_index]:
         case 0:
-            act_general_num_var_1()
-            action_var[XZ_DIR.LEFT] = menu_item_var_1[menu_index]
-            action_var[XZ_DIR.FORWARD_LEFT] = action_var[XZ_DIR.LEFT] * action_var[XZ_DIR.FORWARD]
-            action_var[XZ_DIR.BACKWARD_LEFT] = action_var[XZ_DIR.LEFT] * action_var[XZ_DIR.BACKWARD]
+            action_var = menu_item_var_1[menu_index]
+            act_general_clear()
+            
+            action_var_2 = 0
+            act_general_num_temp()
+
+            general_target[XZ_DIR.LEFT] = action_temp
+            general_target[XZ_DIR.FORWARD_LEFT] = general_target[XZ_DIR.LEFT] * general_target[XZ_DIR.FORWARD]
+            general_target[XZ_DIR.BACKWARD_LEFT] = general_target[XZ_DIR.LEFT] * general_target[XZ_DIR.BACKWARD]
+
+            action_var = action_temp
+            act_general_disable()
+            menu_item_var_1[menu_index] = action_var
             break
         case 1:
-            act_general_num_var_2()
-            action_var[XZ_DIR.RIGHT] = menu_item_var_2[menu_index]
-            action_var[XZ_DIR.FORWARD_RIGHT] = action_var[XZ_DIR.RIGHT] * action_var[XZ_DIR.FORWARD]
-            action_var[XZ_DIR.BACKWARD_RIGHT] = action_var[XZ_DIR.RIGHT] * action_var[XZ_DIR.BACKWARD]
+            action_var = menu_item_var_2[menu_index]
+            act_general_clear()
+
+            action_var_2 = 1
+            act_general_num_temp()
+
+            general_target[XZ_DIR.RIGHT] = action_temp
+            general_target[XZ_DIR.FORWARD_RIGHT] = general_target[XZ_DIR.RIGHT] * general_target[XZ_DIR.FORWARD]
+            general_target[XZ_DIR.BACKWARD_RIGHT] = general_target[XZ_DIR.RIGHT] * general_target[XZ_DIR.BACKWARD]
+
+            action_var = action_temp
+            act_general_disable()
+            menu_item_var_2[menu_index] = action_var
             break
         case 2:
-            act_general_num_var_3()
-            action_var[XZ_DIR.FORWARD] = menu_item_var_3[menu_index]
-            action_var[XZ_DIR.FORWARD_LEFT] = action_var[XZ_DIR.FORWARD] * action_var[XZ_DIR.LEFT]
-            action_var[XZ_DIR.FORWARD_RIGHT] = action_var[XZ_DIR.FORWARD] * action_var[XZ_DIR.RIGHT]
-            
+            action_var = menu_item_var_3[menu_index]
+            act_general_clear()
+
+            action_var_2 = 2
+            act_general_num_temp()
+
+            general_target[XZ_DIR.FORWARD] = action_temp
+            general_target[XZ_DIR.FORWARD_LEFT] = general_target[XZ_DIR.FORWARD] * general_target[XZ_DIR.LEFT]
+            general_target[XZ_DIR.FORWARD_RIGHT] = general_target[XZ_DIR.FORWARD] * general_target[XZ_DIR.RIGHT]
+
+            action_var = action_temp
+            act_general_disable()
+            menu_item_var_3[menu_index] = action_var
             break
         case 3:
-            act_general_num_var_4()
-            action_var[XZ_DIR.BACKWARD] = menu_item_var_4[menu_index]
-            action_var[XZ_DIR.BACKWARD_LEFT] = action_var[XZ_DIR.BACKWARD] * action_var[XZ_DIR.LEFT]
-            action_var[XZ_DIR.BACKWARD_RIGHT] = action_var[XZ_DIR.BACKWARD] * action_var[XZ_DIR.RIGHT]
+            action_var = menu_item_var_4[menu_index]
+            act_general_clear()
+
+            action_var_2 = 3
+            act_general_num_temp()
+
+            general_target[XZ_DIR.BACKWARD] = action_temp
+            general_target[XZ_DIR.BACKWARD_LEFT] = general_target[XZ_DIR.BACKWARD] * general_target[XZ_DIR.LEFT]
+            general_target[XZ_DIR.BACKWARD_RIGHT] = general_target[XZ_DIR.BACKWARD] * general_target[XZ_DIR.RIGHT]
+
+            action_var = action_temp
+            act_general_disable()
+            menu_item_var_4[menu_index] = action_var
             break
     
+    movement_weights = general_target
+    action_var = general_target
     act_general_calc_weights()
-    databot.mvmt_weights = action_var_2
-    databot.mvmt_max_weight = action_result
+    databot.mvmt_weights[profile_slot] = action_var_2
+    databot.mvmt_max_weight[profile_slot] = action_result
 
     
 def act_mvmt_lr_time():

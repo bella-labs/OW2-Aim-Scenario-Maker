@@ -33,7 +33,7 @@ def subact_select_slot_refresh():
     @Name "SUB: subact_select_slot_refresh"
 
     # Hero Pool
-    refresh_index = menu_index + 2
+    refresh_index = refresh_start[0]
     action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] 
     action_var_2 = refresh_index
     action_var_3 = OPTIONS_TYPE.TOGGLE
@@ -166,7 +166,7 @@ def subact_bot_override_slot():
     databot.bot_dist_max[action_var] = databot.bot_dist_max[bot_slot]
     # Profile Status
     databot.bot_profile_weights[action_var] = databot.bot_profile_weights[bot_slot]
-    databot.bor_profile_max_weight[action_var] = databot.bor_profile_max_weight[bot_slot]
+    databot.bot_profile_max_weight[action_var] = databot.bot_profile_max_weight[bot_slot]
     # Profile Randomizer
     databot.bot_profile_type[action_var] = databot.bot_profile_type[bot_slot]
     databot.bot_profile_min[action_var] = databot.bot_profile_min[bot_slot]
@@ -479,8 +479,7 @@ def act_bot_select_profile():
     @Name "SUB: act_bot_select_profile"
 
     if subitem_index[menu_index] == 0:
-        act_general_num_var_1()
-        profile_slot = menu_item_var_1[menu_index]
+        act_mvmt_select_prof()
     else:
         action_var = menu_item_var_2[menu_index]
         act_general_clear()
