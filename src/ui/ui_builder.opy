@@ -42,6 +42,10 @@ def setup_menu_custom():
     for loop_index in range(0, 12, 1):
         active_bot_status[loop_index] = false
 
+    action_var = databot.mvmt_weights[0]
+    act_general_unsum_weights()
+    movement_weights = action_result
+
 
 def create_hud():
 
@@ -566,7 +570,7 @@ def create_submenu_bot():
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.PROFILE_ORDER]
-    menu_item_var_1[menu_item_size] = strings_options[lang_type][6][databot.bot_profile_type[0]]
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.PROFILE][databot.bot_profile_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_profile_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_profile_max[0]
     menu_item_range[menu_item_size] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
@@ -656,67 +660,72 @@ def create_submenu_profile():
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_3var()
 
-    # (2 Var) Horizontal Weights
+
+
+    # (3 Var) Left Movement
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.WEIGHTS]
-
-    action_var = databot.mvmt_weights[0]
-    act_general_unsum_weights()
-    movement_weights = action_result
-    
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_DIR]
     action_var = movement_weights[XZ_DIR.LEFT]
     act_general_disable()
     menu_item_var_1[menu_item_size] = action_var
+    menu_item_var_2[menu_item_size] = databot.mvmt_left_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_left_max[0]
 
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_3var()
+
+    ## (3 Var) Right Movement
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_DIR]
     action_var = movement_weights[XZ_DIR.RIGHT]
     act_general_disable()
-    menu_item_var_2[menu_item_size] = action_var
+    menu_item_var_1[menu_item_size] = action_var
+    menu_item_var_2[menu_item_size] = databot.mvmt_right_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_right_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_3var()
 
+    # (3 Var) Forward Movement
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_DIR]
     action_var = movement_weights[XZ_DIR.FORWARD]
     act_general_disable()
-    menu_item_var_3[menu_item_size] = action_var
+    menu_item_var_1[menu_item_size] = action_var
+    menu_item_var_2[menu_item_size] = databot.mvmt_fwd_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_fwd_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
+    new_menu_item_3var()
 
+    # (3 Var) Backward Movement
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MVMT_DIR]
     action_var = movement_weights[XZ_DIR.BACKWARD]
     act_general_disable()
-    menu_item_var_4[menu_item_size] = action_var
-
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_10] 
+    menu_item_var_1[menu_item_size] = action_var
+    menu_item_var_2[menu_item_size] = databot.mvmt_back_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_back_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
-    new_menu_item_4var()
-
-    # (2 Var) Left / Right Time
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.LR_TIME]
-    menu_item_var_1[menu_item_size] = databot.mvmt_left_min[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_left_max[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_right_min[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_right_max[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
-    new_menu_item_4var()
-
-    # (2 Var) Forward /Backward Time
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.FB_TIME]
-    menu_item_var_1[menu_item_size] = databot.mvmt_fwd_min[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_fwd_max[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_back_min[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_back_max[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
-    new_menu_item_4var()
+    new_menu_item_3var()
 
     # (Subtext) Vertical Movement
     increment_for_menu_label()

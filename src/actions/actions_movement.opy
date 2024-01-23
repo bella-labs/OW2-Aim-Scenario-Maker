@@ -170,13 +170,13 @@ def act_mvmt_hori_type():
             break
 
 
-def act_mvmt_hori_weight():
-    @Name "SUB: act_mvmt_hori_weight" 
+def act_mvmt_left():
+    @Name "SUB: act_mvmt_left" 
 
-    general_target = movement_weights
 
     switch subitem_index[menu_index]:
         case 0:
+            general_target = movement_weights
             action_var = menu_item_var_1[menu_index]
             act_general_clear()
             
@@ -196,12 +196,41 @@ def act_mvmt_hori_weight():
             action_var = action_temp
             act_general_disable()
             menu_item_var_1[menu_index] = action_var
+
+            movement_weights = general_target
+            action_var = general_target
+            act_general_calc_weights()
+            databot.mvmt_weights[profile_slot] = action_var_2
+            databot.mvmt_max_weight[profile_slot] = action_result
             break
         case 1:
-            action_var = menu_item_var_2[menu_index]
-            act_general_clear()
+        case 2:
+            action_var = databot.mvmt_left_min[profile_slot]
+            action_var_2 = databot.mvmt_left_max[profile_slot]
+            if subitem_index[menu_index] == 1:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
+            act_general_change_min_max()
+    
+            menu_item_var_2[menu_index] = action_var
+            menu_item_var_3[menu_index] = action_var_2
+        
+            databot.mvmt_left_min[profile_slot] = action_var
+            databot.mvmt_left_max[profile_slot] = action_var_2
+            break
 
-            action_var_2 = 1
+    
+def act_mvmt_right():
+    @Name "SUB: act_mvmt_right" 
+
+    switch subitem_index[menu_index]:
+        case 0:
+            general_target = movement_weights
+            action_var = menu_item_var_1[menu_index]
+            act_general_clear()
+            
+            action_var_2 = 0
             act_general_num_temp()
 
             general_target[XZ_DIR.RIGHT] = action_temp
@@ -209,20 +238,49 @@ def act_mvmt_hori_weight():
                 if general_target[XZ_DIR.FORWARD] > 0:
                     general_target[XZ_DIR.FORWARD_RIGHT] = (action_temp + general_target[XZ_DIR.FORWARD]) / 2
                 if general_target[XZ_DIR.BACKWARD] > 0:
-                general_target[XZ_DIR.BACKWARD_RIGHT] = (action_temp + general_target[XZ_DIR.BACKWARD]) / 2
+                    general_target[XZ_DIR.BACKWARD_RIGHT] = (action_temp + general_target[XZ_DIR.BACKWARD]) / 2
             else:
                 general_target[XZ_DIR.FORWARD_RIGHT] = 0
                 general_target[XZ_DIR.BACKWARD_RIGHT] = 0
 
             action_var = action_temp
             act_general_disable()
-            menu_item_var_2[menu_index] = action_var
-            break
-        case 2:
-            action_var = menu_item_var_3[menu_index]
-            act_general_clear()
+            menu_item_var_1[menu_index] = action_var
 
-            action_var_2 = 2
+            movement_weights = general_target
+            action_var = general_target
+            act_general_calc_weights()
+            databot.mvmt_weights[profile_slot] = action_var_2
+            databot.mvmt_max_weight[profile_slot] = action_result
+            break
+        case 1:
+        case 2:
+            action_var = databot.mvmt_right_min[profile_slot]
+            action_var_2 = databot.mvmt_right_max[profile_slot]
+            if subitem_index[menu_index] == 1:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
+            act_general_change_min_max()
+    
+            menu_item_var_2[menu_index] = action_var
+            menu_item_var_3[menu_index] = action_var_2
+        
+            databot.mvmt_right_min[profile_slot] = action_var
+            databot.mvmt_right_max[profile_slot] = action_var_2
+            break
+
+
+def act_mvmt_forward():
+    @Name "SUB: act_mvmt_forward" 
+
+    switch subitem_index[menu_index]:
+        case 0:
+            general_target = movement_weights
+            action_var = menu_item_var_1[menu_index]
+            act_general_clear()
+            
+            action_var_2 = 0
             act_general_num_temp()
 
             general_target[XZ_DIR.FORWARD] = action_temp
@@ -237,18 +295,47 @@ def act_mvmt_hori_weight():
 
             action_var = action_temp
             act_general_disable()
-            menu_item_var_3[menu_index] = action_var
-            break
-        case 3:
-            action_var = menu_item_var_4[menu_index]
-            act_general_clear()
+            menu_item_var_1[menu_index] = action_var
 
-            action_var_2 = 3
+            movement_weights = general_target
+            action_var = general_target
+            act_general_calc_weights()
+            databot.mvmt_weights[profile_slot] = action_var_2
+            databot.mvmt_max_weight[profile_slot] = action_result
+            break
+        case 1:
+        case 2:
+            action_var = databot.mvmt_fwd_min[profile_slot]
+            action_var_2 = databot.mvmt_fwd_max[profile_slot]
+            if subitem_index[menu_index] == 1:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
+            act_general_change_min_max()
+    
+            menu_item_var_2[menu_index] = action_var
+            menu_item_var_3[menu_index] = action_var_2
+        
+            databot.mvmt_fwd_min[profile_slot] = action_var
+            databot.mvmt_fwd_max[profile_slot] = action_var_2
+            break
+
+
+def act_mvmt_backward():
+    @Name "SUB: act_mvmt_backward" 
+
+    switch subitem_index[menu_index]:
+        case 0:
+            general_target = movement_weights
+            action_var = menu_item_var_1[menu_index]
+            act_general_clear()
+            
+            action_var_2 = 0
             act_general_num_temp()
 
             general_target[XZ_DIR.BACKWARD] = action_temp
             if action_temp > 0:
-                if general_target[XZ_DIR.RIGHT] > 0:
+                if general_target[XZ_DIR.LEFT] > 0:
                     general_target[XZ_DIR.BACKWARD_LEFT] = (action_temp + general_target[XZ_DIR.LEFT]) / 2
                 if general_target[XZ_DIR.RIGHT] > 0:
                     general_target[XZ_DIR.BACKWARD_RIGHT] = (action_temp + general_target[XZ_DIR.RIGHT]) / 2
@@ -258,84 +345,30 @@ def act_mvmt_hori_weight():
 
             action_var = action_temp
             act_general_disable()
-            menu_item_var_4[menu_index] = action_var
+            menu_item_var_1[menu_index] = action_var
+
+            movement_weights = general_target
+            action_var = general_target
+            act_general_calc_weights()
+            databot.mvmt_weights[profile_slot] = action_var_2
+            databot.mvmt_max_weight[profile_slot] = action_result
             break
+        case 1:
+        case 2:
+            action_var = databot.mvmt_back_min[profile_slot]
+            action_var_2 = databot.mvmt_back_max[profile_slot]
+            if subitem_index[menu_index] == 1:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
+            act_general_change_min_max()
     
-    movement_weights = general_target
-    action_var = general_target
-    act_general_calc_weights()
-    databot.mvmt_weights[profile_slot] = action_var_2
-    databot.mvmt_max_weight[profile_slot] = action_result
-
-    
-def act_mvmt_lr_time():
-    @Name "SUB: act_mvmt_lr_time" 
-
-    if subitem_index[menu_index] <= 1:
-        action_var = databot.mvmt_left_min[profile_slot]
-        action_var_2 = databot.mvmt_left_max[profile_slot]
-        if subitem_index[menu_index] == 0:
-            general_target = GENERAL_TARGET.MIN
-        else:
-            general_target = GENERAL_TARGET.MAX
-        act_general_change_min_max()
-
-        menu_item_var_1[menu_index] = action_var
-        menu_item_var_2[menu_index] = action_var_2
-    
-        databot.mvmt_left_min[profile_slot] = action_var
-        databot.mvmt_left_max[profile_slot] = action_var_2
-    else:
-        action_var = databot.mvmt_right_min[profile_slot]
-        action_var_2 = databot.mvmt_right_max[profile_slot]
-        if subitem_index[menu_index] == 2:
-            general_target = GENERAL_TARGET.MIN
-        else:
-            general_target = GENERAL_TARGET.MAX
-        act_general_change_min_max()
-
-        menu_item_var_3[menu_index] = action_var
-        menu_item_var_4[menu_index] = action_var_2
-    
-        databot.mvmt_right_min[profile_slot] = action_var
-        databot.mvmt_right_max[profile_slot] = action_var_2
-
-
-def act_mvmt_fb_time():
-    @Name "SUB: act_mvmt_fb_time"
-
-    if subitem_index[menu_index] <= 1:
-        action_var = databot.mvmt_fwd_min[profile_slot]
-        action_var_2 = databot.mvmt_fwd_max[profile_slot]
-
-        if subitem_index[menu_index] == 0:
-            general_target = GENERAL_TARGET.MIN
-        else:
-            general_target = GENERAL_TARGET.MAX
-
-        act_general_change_min_max()
-
-        menu_item_var_1[menu_index] = action_var
-        menu_item_var_2[menu_index] = action_var_2
-    
-        databot.mvmt_fwd_min[profile_slot] = action_var
-        databot.mvmt_fwd_max[profile_slot] = action_var_2
-    else:
-        action_var = databot.mvmt_back_min[profile_slot]
-        action_var_2 = databot.mvmt_back_max[profile_slot]
-
-        if subitem_index[menu_index] == 2:
-            general_target = GENERAL_TARGET.MIN
-        else:
-            general_target = GENERAL_TARGET.MAX
-
-        act_general_change_min_max()
-
-        menu_item_var_3[menu_index] = action_var
-        menu_item_var_4[menu_index] = action_var_2
-    
-        databot.mvmt_back_min[profile_slot] = action_var
-        databot.mvmt_back_max[profile_slot] = action_var_2
+            menu_item_var_2[menu_index] = action_var
+            menu_item_var_3[menu_index] = action_var_2
+        
+            databot.mvmt_back_min[profile_slot] = action_var
+            databot.mvmt_back_max[profile_slot] = action_var_2
+            break
 
 
 def act_mvmt_vert_type():

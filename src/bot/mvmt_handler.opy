@@ -61,15 +61,14 @@ def select_mvmt_dir():
     if eventPlayer.disabled_movements[eventPlayer.target_mvmt_index] > 0:
         switch eventPlayer.bot_bound_type:
             case 0:
-                eventPlayer.target_mvmt_dir = eventPlayer.target_mvmt_vect * vect(-1, -1, -1)
+                eventPlayer.target_mvmt_vect = eventPlayer.target_mvmt_vect * vect(-1, 1, -1)
                 break
             case 1:
-                eventPlayer.target_mvmt_dir = vect(0,0,0)
+                eventPlayer.target_mvmt_vect = vect(0,0,0)
                 break
             case 2:
                 teleport_target()
-                eventPlayer.target_mvmt_dir = eventPlayer.target_mvmt_vect
                 break
-    else:
-        eventPlayer.target_mvmt_dir = eventPlayer.target_mvmt_vect
+
+    eventPlayer.target_mvmt_dir = eventPlayer.target_mvmt_vect
     

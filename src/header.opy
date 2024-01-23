@@ -321,9 +321,10 @@ subroutine subact_mvmt_override_slot
 subroutine act_prof_change_weight
 #### Movement Submenu
 subroutine act_mvmt_hori_type
-subroutine act_mvmt_hori_weight
-subroutine act_mvmt_lr_time
-subroutine act_mvmt_fb_time
+subroutine act_mvmt_left
+subroutine act_mvmt_right
+subroutine act_mvmt_forward
+subroutine act_mvmt_backward
 subroutine act_mvmt_vert_type
 subroutine act_mvmt_vert_chance
 subroutine act_mvmt_jump_time
@@ -428,9 +429,7 @@ enum TAG_TYPE:
     TYPE_VECT,
     ANGLE_DIM,
     MVMT_TYPE,
-    WEIGHTS,
-    LR_TIME,
-    FB_TIME,
+    MVMT_DIR,
     VERT_CHANCE,
     CROUCH_TIME,
     IDLE_CHANCE,
