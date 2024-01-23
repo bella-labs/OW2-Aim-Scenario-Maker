@@ -183,17 +183,17 @@ def menu_act_submenu_profile():
             act_mvmt_vert_type()
             break
         case submenu_curr_start + 9:
-            act_mvmt_vert_chance()
+            act_mvmt_jump()
             break
         case submenu_curr_start + 10:
-            act_mvmt_jump_time()
+            act_mvmt_crouch()
             break
         case submenu_curr_start + 11:
             act_mvmt_crouch_time()
             break
         case submenu_curr_start + 12:
-            act_mvmt_idle_chance()
+            act_mvmt_lr_idle()
             break   
         case submenu_curr_start + 13:
-            act_mvmt_idle_time()
+            act_mvmt_fb_idle()
             break                                                                       

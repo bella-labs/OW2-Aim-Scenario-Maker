@@ -392,8 +392,8 @@ def act_mvmt_vert_type():
             break
 
 
-def act_mvmt_vert_chance():
-    @Name "SUB: act_mvmt_vert_chance" 
+def act_mvmt_jump():
+    @Name "SUB: act_mvmt_jump" 
 
     switch subitem_index[menu_index]:
         case 0:
@@ -405,33 +405,37 @@ def act_mvmt_vert_chance():
             databot.mvmt_jump_interval[profile_slot] = menu_item_var_2[menu_index]
             break
         case 2:
-            act_general_num_var_3()
-            databot.mvmt_crouch_chance[profile_slot] = menu_item_var_3[menu_index]
-            break
         case 3:
-            act_general_num_var_4()
-            databot.mvmt_crouch_interval[profile_slot] = menu_item_var_4[menu_index]
+            action_var = databot.mvmt_jump_min[profile_slot]
+            action_var_2 = databot.mvmt_jump_max[profile_slot]
+        
+            if subitem_index[menu_index] == 0:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
+        
+            act_general_change_min_max()
+        
+            menu_item_var_3[menu_index] = action_var
+            menu_item_var_4[menu_index] = action_var_2
+        
+            databot.mvmt_jump_min[profile_slot] = action_var
+            databot.mvmt_jump_max[profile_slot] = action_var_2
             break
+        
 
-
-def act_mvmt_jump_time():
-    @Name "SUB: act_mvmt_jump_time" 
-
-    action_var = databot.mvmt_jump_min[profile_slot]
-    action_var_2 = databot.mvmt_jump_max[profile_slot]
-
-    if subitem_index[menu_index] == 0:
-        general_target = GENERAL_TARGET.MIN
-    else:
-        general_target = GENERAL_TARGET.MAX
-
-    act_general_change_min_max()
-
-    menu_item_var_1[menu_index] = action_var
-    menu_item_var_2[menu_index] = action_var_2
-
-    databot.mvmt_jump_min[profile_slot] = action_var
-    databot.mvmt_jump_max[profile_slot] = action_var_2
+def act_mvmt_crouch():
+    @Name "SUB: act_mvmt_crouch" 
+            
+    switch subitem_index[menu_index]:
+        case 0:
+            act_general_num_var_1()
+            databot.mvmt_crouch_chance[profile_slot] = menu_item_var_1[menu_index]
+            break
+        case 1:
+            act_general_num_var_2()
+            databot.mvmt_crouch_interval[profile_slot] = menu_item_var_2[menu_index]
+            break
 
 
 def act_mvmt_crouch_time():
@@ -470,9 +474,8 @@ def act_mvmt_crouch_time():
         databot.mvmt_uncrouch_min[profile_slot] = action_var
         databot.mvmt_uncrouch_max[profile_slot] = action_var_2
 
-
-def act_mvmt_idle_chance():
-    @Name "SUB: act_mvmt_idle_chance" 
+def act_mvmt_lr_idle():
+    @Name "SUB: act_mvmt_lr_idle" 
 
     switch subitem_index[menu_index]:
         case 0:
@@ -483,48 +486,51 @@ def act_mvmt_idle_chance():
             act_general_num_var_2()
             databot.mvmt_lr_idle_interval[profile_slot] = menu_item_var_2[menu_index]
             break
-        case 2:
-            act_general_num_var_3()
-            databot.mvmt_fb_idle_chance[profile_slot] = menu_item_var_3[menu_index]
+        case 3:
+        case 4:
+            action_var = databot.mvmt_lr_idle_min[profile_slot]
+            action_var_2 = databot.mvmt_lr_idle_max[profile_slot]
+    
+            if subitem_index[menu_index] == 2:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
+    
+            act_general_change_min_max()
+    
+            menu_item_var_3[menu_index] = action_var
+            menu_item_var_4[menu_index] = action_var_2
+        
+            databot.mvmt_lr_idle_min[profile_slot] = action_var
+            databot.mvmt_lr_idle_max[profile_slot] = action_var_2
+
+
+def act_mvmt_fb_idle():
+    @Name "SUB: act_mvmt_fb_idle"
+
+    switch subitem_index[menu_index]:
+        case 0:
+            act_general_num_var_1()
+            databot.mvmt_fb_idle_chance[profile_slot] = menu_item_var_1[menu_index]
+            break
+        case 1:
+            act_general_num_var_2()
+            databot.mvmt_fb_idle_interval[profile_slot] = menu_item_var_2[menu_index]
             break
         case 3:
-            act_general_num_var_4()
-            databot.mvmt_fb_idle_interval[profile_slot] = menu_item_var_4[menu_index]
-            break
-
-
-def act_mvmt_idle_time():
-    @Name "SUB: act_mvmt_idle_time" 
-
-    if subitem_index[menu_index] <= 1:
-        action_var = databot.mvmt_lr_idle_min[profile_slot]
-        action_var_2 = databot.mvmt_lr_idle_max[profile_slot]
-
-        if subitem_index[menu_index] == 0:
-            general_target = GENERAL_TARGET.MIN
-        else:
-            general_target = GENERAL_TARGET.MAX
-
-        act_general_change_min_max()
-
-        menu_item_var_1[menu_index] = action_var
-        menu_item_var_2[menu_index] = action_var_2
+        case 4:
+            action_var = databot.mvmt_fb_idle_min[profile_slot]
+            action_var_2 = databot.mvmt_fb_idle_max[profile_slot]
     
-        databot.mvmt_lr_idle_min[profile_slot] = action_var
-        databot.mvmt_lr_idle_max[profile_slot] = action_var_2
-    else:
-        action_var = databot.mvmt_fb_idle_min[profile_slot]
-        action_var_2 = databot.mvmt_fb_idle_max[profile_slot]
-
-        if subitem_index[menu_index] == 2:
-            general_target = GENERAL_TARGET.MIN
-        else:
-            general_target = GENERAL_TARGET.MAX
-
-        act_general_change_min_max()
-
-        menu_item_var_3[menu_index] = action_var
-        menu_item_var_4[menu_index] = action_var_2
+            if subitem_index[menu_index] == 2:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
     
-        databot.mvmt_fb_idle_min[profile_slot] = action_var
-        databot.mvmt_fb_idle_max[profile_slot] = action_var_2
+            act_general_change_min_max()
+    
+            menu_item_var_3[menu_index] = action_var
+            menu_item_var_4[menu_index] = action_var_2
+        
+            databot.mvmt_fb_idle_min[profile_slot] = action_var
+            databot.mvmt_fb_idle_max[profile_slot] = action_var_2

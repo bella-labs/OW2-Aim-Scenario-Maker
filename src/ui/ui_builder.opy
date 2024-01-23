@@ -747,32 +747,31 @@ def create_submenu_profile():
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_TOGGLE]
     new_menu_item_3var()
 
-    # (2 Var) Verical Probability
+    # (2 Var) Jump
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.VERT_CHANCE]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.CHANCE]
     menu_item_var_1[menu_item_size] = databot.mvmt_jump_chance[0]
     menu_item_var_2[menu_item_size] = databot.mvmt_jump_interval[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_crouch_chance[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_crouch_interval[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_jump_min[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_jump_max[0] 
     menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME]
     menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01]
     menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
     new_menu_item_4var()
 
-    # (2 Var) Jump Time
+    # (2 Var) Crouch
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.MIN_MAX]
-    menu_item_var_1[menu_item_size] = databot.mvmt_jump_min[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_jump_max[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_PERCENTAGE]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.CHANCE]
+    menu_item_var_1[menu_item_size] =  databot.mvmt_crouch_chance[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_crouch_interval[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1] 
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
     new_menu_item_2var()
 
@@ -797,32 +796,32 @@ def create_submenu_profile():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (4 Var) Idle Probability 
+    # (4 Var) Left / Right Idle
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.IDLE_CHANCE]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.CHANCE]
     menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_chance[0]
     menu_item_var_2[menu_item_size] = databot.mvmt_lr_idle_interval[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_chance[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_fb_idle_interval[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1]
+    menu_item_var_3[menu_item_size] = databot.mvmt_lr_idle_min[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_fb_idle_max[0]
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1]
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
     new_menu_item_4var()
 
-    # (2 Var) Idle Time
+    # (2 Var) Forward / Backward Idle
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.IDLE_TIME]
-    menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_min[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_lr_idle_max[0]
+    menu_item_var_tags[menu_item_size] = strings_tags[lang_type][TAG_TYPE.CHANCE]
+    menu_item_var_1[menu_item_size] = databot.mvmt_fb_idle_chance[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_fb_idle_interval[0]
     menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_min[0]
     menu_item_var_4[menu_item_size] = databot.mvmt_fb_idle_max[0]
-    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_PERCENTAGE, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME, RANGE_TYPE.RANGE_TIME]
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1]
     menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE]
     new_menu_item_4var()

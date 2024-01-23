@@ -326,11 +326,11 @@ subroutine act_mvmt_right
 subroutine act_mvmt_forward
 subroutine act_mvmt_backward
 subroutine act_mvmt_vert_type
-subroutine act_mvmt_vert_chance
-subroutine act_mvmt_jump_time
+subroutine act_mvmt_jump
+subroutine act_mvmt_crouch
 subroutine act_mvmt_crouch_time
-subroutine act_mvmt_idle_chance
-subroutine act_mvmt_idle_time
+subroutine act_mvmt_lr_idle
+subroutine act_mvmt_fb_idle
 ## Bot Generation
 subroutine create_target_bot
 subroutine destroy_target_bot
@@ -430,10 +430,8 @@ enum TAG_TYPE:
     ANGLE_DIM,
     MVMT_TYPE,
     MVMT_DIR,
-    VERT_CHANCE,
+    CHANCE,
     CROUCH_TIME,
-    IDLE_CHANCE,
-    IDLE_TIME,
     SCE_TIMED,
     SCE_SCORE,
     SCE_POINTS,
