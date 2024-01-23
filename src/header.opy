@@ -179,6 +179,15 @@ playervar mvmt_fwd_min
 playervar mvmt_fwd_max
 playervar mvmt_back_min
 playervar mvmt_back_max
+#### Diagonals Time
+playervar mvmt_fl_min
+playervar mvmt_fl_max
+playervar mvmt_fr_min
+playervar mvmt_fr_max
+playervar mvmt_bl_min
+playervar mvmt_bl_max
+playervar mvmt_br_min
+playervar mvmt_br_max
 #### Vertical Type
 playervar mvmt_vert_type
 playervar mvmt_vert_impulse
@@ -488,7 +497,7 @@ playervar calc_var
 playervar is_in_bounds
 
 playervar disabled_target
-playervar disabled_indexes
+
 playervar disabled_movements
 playervar owner_player
 playervar profile_list
@@ -504,14 +513,6 @@ globalvar angle
 globalvar scenario_in_progress
 subroutine set_disabled_index_dist
 
-enum DISABLED_VARS:
-    BOUNDS_CALC = 0,
-    BOUNDS_OFFSET,
-    BOUNDS_POS,
-    DIST_CALC,
-    DIST_OFFSET,
-    DIST_POS
-    
 enum PLAYER_INDEXES:
     DISABLE_MVMT = 0,
     PROFILE,
@@ -542,16 +543,22 @@ enum Y_DIR:
 
 playervar target_mvmt_dir
 playervar target_rand
+playervar target_mvmt_vect
+playervar target_mvmt_index
 playervar target_mvmt_wait
 
 
-
-playervar lr_waiting
-playervar fb_waiting
-playervar movement_interrupt
 
 subroutine act_general_clear
 subroutine act_general_disable
 
 globalvar profile_weights
 globalvar movement_weights
+
+subroutine teleport_target
+subroutine select_mvmt_dir
+playervar mvmt_collision_wait
+playervar mvmt_interrupt
+
+playervar disabled_bound
+playervar disabled_dist

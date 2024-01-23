@@ -10,15 +10,13 @@ rule "Target Bot Initalization":
     # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
     eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] = 0
     while(eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] < 10):
-        eventPlayer.disabled_movements[eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT]] = false
+        eventPlayer.disabled_movements[eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT]] = 0
         eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] += 1
     # Set Gravity and Speed to -1 to force listener rule trigger when set to 0
     eventPlayer.bot_speed_min = -1
     eventPlayer.bot_gravity = -1
 
-
-    eventPlayer.target_mvmt_wait = 0.01
-    eventPlayer.movement_interrupt = true
+    eventPlayer.mvmt_collision_wait = 0.1
 
         
 rule "Target Bot Listener - Spawn":
@@ -319,46 +317,42 @@ rule "Target Bot Listener - Movement Weights":
         goto RULE_START
 
 
-rule "Target Bot Listener - Movement Left Right Time":
+rule "Target Bot Listener - Movement Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
                 eventPlayer.mvmt_left_min != databot.mvmt_left_min or 
                 eventPlayer.mvmt_left_max != databot.mvmt_left_max or 
                 eventPlayer.mvmt_right_min != databot.mvmt_right_min or
-                eventPlayer.mvmt_right_max != databot.mvmt_right_max
-                )
-
-    eventPlayer.mvmt_left_min = databot.mvmt_left_min
-    eventPlayer.mvmt_left_max = databot.mvmt_left_max
-    eventPlayer.mvmt_right_min = databot.mvmt_right_min
-    eventPlayer.mvmt_right_max = databot.mvmt_right_max
-    # Cooldown to prevent overflow
-    wait(1)
-    smallMessage(hostPlayer, "LR Time")
-
-    if RULE_CONDITION:
-        goto RULE_START
-    
-
-rule "Target Bot Listener - Movement Forward Back Time":
-    @Event eachPlayer
-    @Team 2
-    @Condition  (
+                eventPlayer.mvmt_right_max != databot.mvmt_right_max or
                 eventPlayer.mvmt_fwd_min != databot.mvmt_fwd_min or 
                 eventPlayer.mvmt_fwd_max != databot.mvmt_fwd_max or 
                 eventPlayer.mvmt_back_min != databot.mvmt_back_min or
                 eventPlayer.mvmt_back_max != databot.mvmt_back_max
                 )
 
+    eventPlayer.mvmt_left_min = databot.mvmt_left_min
+    eventPlayer.mvmt_left_max = databot.mvmt_left_max
+    eventPlayer.mvmt_right_min = databot.mvmt_right_min
+    eventPlayer.mvmt_right_max = databot.mvmt_right_max
     eventPlayer.mvmt_fwd_min = databot.mvmt_fwd_min
     eventPlayer.mvmt_fwd_max = databot.mvmt_fwd_max
     eventPlayer.mvmt_back_min = databot.mvmt_back_min
     eventPlayer.mvmt_back_max = databot.mvmt_back_max
 
+    eventPlayer.mvmt_fl_min = (databot.mvmt_fwd_min + eventPlayer.mvmt_left_min) / 2
+    eventPlayer.mvmt_fl_max = (databot.mvmt_fwd_max + eventPlayer.mvmt_left_max) / 2
+    eventPlayer.mvmt_fr_min = (databot.mvmt_fwd_min + eventPlayer.mvmt_right_min) / 2
+    eventPlayer.mvmt_fr_max = (databot.mvmt_fwd_max + eventPlayer.mvmt_right_max) / 2
+    eventPlayer.mvmt_bl_min = (databot.mvmt_back_min + eventPlayer.mvmt_left_min) / 2
+    eventPlayer.mvmt_bl_max = (databot.mvmt_back_max + eventPlayer.mvmt_left_max) / 2
+    eventPlayer.mvmt_br_min = (databot.mvmt_back_min + eventPlayer.mvmt_right_min) / 2
+    eventPlayer.mvmt_br_max = (databot.mvmt_back_max + eventPlayer.mvmt_right_max) / 2
+    
+
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "FB Time")
+    smallMessage(hostPlayer, "Mvmt Time")
 
     if RULE_CONDITION:
         goto RULE_START

@@ -1,3 +1,32 @@
+settings "settings.json"
+
+#Extensions
+#!extension spawnMoreDummyBots
+##!optimizeForSize
+
+# Includes
+#!include "header.opy"
+#!include "data/init.opy"
+#!include "data/static_data.opy"
+#!include "ui/ui_framework.opy"
+#!include "ui/ui_builder.opy"
+#!include "actions/actions_handler.opy"
+#!include "actions/actions_general.opy"
+#!include "actions/actions_main_menu.opy"
+#!include "actions/actions_scenario.opy"
+#!include "actions/actions_bot.opy"
+#!include "actions/actions_movement.opy"
+#!include "utilities/util.opy"
+#!include "utilities/effects.opy"
+#!include "bot/bot_generation.opy"
+#!include "data/databot.opy"
+#!include "bot/bot_listener.opy"
+#!include "bot/bot_handler.opy"
+#!include "bot/mvmt_handler.opy"
+#!include "scenario/player.opy"
+#!include "scenario/scenario_handler.opy"
+
+
 rule "text":
     @Event eachPlayer
     @Condition eventPlayer == hostPlayer
@@ -23,24 +52,9 @@ rule "text":
         hudSubheader(eventPlayer, 
     " dir: {0}\n rand1: {1}\n rand2: {2}\n wait: {3}\n idx: {4}".format(
         getPlayersInSlot(0, Team.2).target_mvmt_dir, 
-        null,
-        null,
-        null,
-        null
+        getPlayersInSlot(0, Team.2).target_rand,
+        getPlayersInSlot(0, Team.2).target_mvmt_vect,
+        getPlayersInSlot(0, Team.2).target_mvmt_wait,
+        getPlayersInSlot(0, Team.2).disabled_dist
         ), 
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    
-
-    
-rule "recalc dist idx":
-    @Event eachPlayer
-    @Condition eventPlayer == hostPlayer
-
-    eventPlayer.disabled_target = DISABLED_VARS.DIST_CALC
-    eventPlayer.disabled_indexes[DISABLED_VARS.DIST_OFFSET] = -1
-    eventPlayer.disabled_indexes[DISABLED_VARS.DIST_POS] = getPlayersInSlot(0, Team.2).getPosition()
-    set_disabled_index_dist()
-    wait(0.25)
-    
-    if RULE_CONDITION:
-        goto RULE_START

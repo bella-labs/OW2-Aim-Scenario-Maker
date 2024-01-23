@@ -24,13 +24,14 @@ rule "Menu Setup: Creation":
 def setup_menu_custom():
     @Name "SUB: setup_menu_custom"
 
-    menu_color_on_index = rgb(128,154,213) 
+    menu_color_on_index = rgb(128,154,240) 
     menu_color_label_subtext = rgb(255,148,82)
 
-    menu_colors_custom[0] = rgb(218,80,121)
+    menu_colors_custom[0] = rgb(230,90,130)
     menu_colors_custom[1] = rgb(236,202,107)
     menu_colors_custom[2] = rgb(28,204,125)
     menu_colors_custom[3] = rgb(24,208,195)
+    menu_colors_custom[4] = rgb(180,80,180)
 
     bot_slot = 0
     profile_slot = 0
@@ -112,21 +113,21 @@ def create_submenu_main():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[0]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
     new_menu_item_selection()
 
     # (Selection) Bot
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[0]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
     new_menu_item_selection()
 
     # (Selection) Profiles
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[0]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
     new_menu_item_selection()
 
     # (Header) Test
@@ -201,7 +202,7 @@ def create_submenu_scenario():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_sce_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[0]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
     new_menu_item_selection()
 
     # (Subtext) Player
@@ -335,7 +336,7 @@ def create_submenu_bot():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos] 
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[0]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
     new_menu_item_selection()
 
     # (Subtext) Slot
@@ -601,7 +602,7 @@ def create_submenu_profile():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[0]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
     new_menu_item_selection()
 
     # (Subtext) Movement Profiles

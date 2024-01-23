@@ -19,9 +19,9 @@ rule "Create Effects on effect index":
         effect_array[eventPlayer.sce_game_mode] = getLastCreatedEntity()
 
     # Create Distance Effect
-    createEffect(hostPlayer, Effect.RING, Color.RED, databot.sce_player_spawn, databot.bot_dist_min[bot_slot], EffectReeval.POSITION_AND_RADIUS)
+    createEffect(hostPlayer, Effect.RING, Color.AQUA, eventPlayer.getPosition() * vect(1,0,1), databot.bot_dist_min[bot_slot], EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
-    createEffect(hostPlayer, Effect.RING, Color.GREEN, databot.sce_player_spawn,  databot.bot_dist_max[bot_slot], EffectReeval.POSITION_AND_RADIUS)
+    createEffect(hostPlayer, Effect.RING, Color.PURPLE, eventPlayer.getPosition() * vect(1,0,1),  databot.bot_dist_max[bot_slot], EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
 
     # Create Player Spawn Effect

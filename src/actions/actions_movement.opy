@@ -18,10 +18,15 @@ def subact_mvmt_select_refresh():
     menu_item_var_3[refresh_index] = databot.mvmt_hori_impulse[profile_slot]
     # Horizontal Weight
     refresh_index += 1
-    menu_item_var_1[refresh_index] = movement_weights[profile_slot][XZ_DIR.LEFT]
-    menu_item_var_2[refresh_index] = movement_weights[profile_slot][XZ_DIR.RIGHT]
-    menu_item_var_3[refresh_index] = movement_weights[profile_slot][XZ_DIR.FORWARD]
-    menu_item_var_4[refresh_index] = movement_weights[profile_slot][XZ_DIR.BACKWARD]
+
+    action_var = databot.mvmt_weights[profile_slot]
+    act_general_unsum_weights()
+    movement_weights = action_result
+
+    menu_item_var_1[refresh_index] = movement_weights[XZ_DIR.LEFT]
+    menu_item_var_2[refresh_index] = movement_weights[XZ_DIR.RIGHT]
+    menu_item_var_3[refresh_index] = movement_weights[XZ_DIR.FORWARD]
+    menu_item_var_4[refresh_index] = movement_weights[XZ_DIR.BACKWARD]
     # Left / Right Time
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.mvmt_left_min[profile_slot]
@@ -179,8 +184,14 @@ def act_mvmt_hori_weight():
             act_general_num_temp()
 
             general_target[XZ_DIR.LEFT] = action_temp
-            general_target[XZ_DIR.FORWARD_LEFT] = general_target[XZ_DIR.LEFT] * general_target[XZ_DIR.FORWARD]
-            general_target[XZ_DIR.BACKWARD_LEFT] = general_target[XZ_DIR.LEFT] * general_target[XZ_DIR.BACKWARD]
+            if action_temp > 0:
+                if general_target[XZ_DIR.FORWARD] > 0:
+                    general_target[XZ_DIR.FORWARD_LEFT] = (action_temp + general_target[XZ_DIR.FORWARD]) / 2
+                if general_target[XZ_DIR.BACKWARD] > 0:
+                    general_target[XZ_DIR.BACKWARD_LEFT] = (action_temp + general_target[XZ_DIR.BACKWARD]) / 2
+            else:
+                general_target[XZ_DIR.FORWARD_LEFT] = 0
+                general_target[XZ_DIR.BACKWARD_LEFT] = 0
 
             action_var = action_temp
             act_general_disable()
@@ -194,8 +205,14 @@ def act_mvmt_hori_weight():
             act_general_num_temp()
 
             general_target[XZ_DIR.RIGHT] = action_temp
-            general_target[XZ_DIR.FORWARD_RIGHT] = general_target[XZ_DIR.RIGHT] * general_target[XZ_DIR.FORWARD]
-            general_target[XZ_DIR.BACKWARD_RIGHT] = general_target[XZ_DIR.RIGHT] * general_target[XZ_DIR.BACKWARD]
+            if action_temp > 0:
+                if general_target[XZ_DIR.FORWARD] > 0:
+                    general_target[XZ_DIR.FORWARD_RIGHT] = (action_temp + general_target[XZ_DIR.FORWARD]) / 2
+                if general_target[XZ_DIR.BACKWARD] > 0:
+                general_target[XZ_DIR.BACKWARD_RIGHT] = (action_temp + general_target[XZ_DIR.BACKWARD]) / 2
+            else:
+                general_target[XZ_DIR.FORWARD_RIGHT] = 0
+                general_target[XZ_DIR.BACKWARD_RIGHT] = 0
 
             action_var = action_temp
             act_general_disable()
@@ -209,8 +226,14 @@ def act_mvmt_hori_weight():
             act_general_num_temp()
 
             general_target[XZ_DIR.FORWARD] = action_temp
-            general_target[XZ_DIR.FORWARD_LEFT] = general_target[XZ_DIR.FORWARD] * general_target[XZ_DIR.LEFT]
-            general_target[XZ_DIR.FORWARD_RIGHT] = general_target[XZ_DIR.FORWARD] * general_target[XZ_DIR.RIGHT]
+            if action_temp > 0:
+                if general_target[XZ_DIR.LEFT] > 0:
+                    general_target[XZ_DIR.FORWARD_LEFT] = (action_temp + general_target[XZ_DIR.LEFT]) / 2
+                if general_target[XZ_DIR.RIGHT] > 0:
+                    general_target[XZ_DIR.FORWARD_RIGHT] = (action_temp + general_target[XZ_DIR.RIGHT]) / 2
+            else:
+                general_target[XZ_DIR.FORWARD_LEFT] = 0
+                general_target[XZ_DIR.FORWARD_RIGHT] = 0
 
             action_var = action_temp
             act_general_disable()
@@ -224,8 +247,14 @@ def act_mvmt_hori_weight():
             act_general_num_temp()
 
             general_target[XZ_DIR.BACKWARD] = action_temp
-            general_target[XZ_DIR.BACKWARD_LEFT] = general_target[XZ_DIR.BACKWARD] * general_target[XZ_DIR.LEFT]
-            general_target[XZ_DIR.BACKWARD_RIGHT] = general_target[XZ_DIR.BACKWARD] * general_target[XZ_DIR.RIGHT]
+            if action_temp > 0:
+                if general_target[XZ_DIR.RIGHT] > 0:
+                    general_target[XZ_DIR.BACKWARD_LEFT] = (action_temp + general_target[XZ_DIR.LEFT]) / 2
+                if general_target[XZ_DIR.RIGHT] > 0:
+                    general_target[XZ_DIR.BACKWARD_RIGHT] = (action_temp + general_target[XZ_DIR.RIGHT]) / 2
+            else:
+                general_target[XZ_DIR.BACKWARD_LEFT] = 0
+                general_target[XZ_DIR.BACKWARD_RIGHT] = 0
 
             action_var = action_temp
             act_general_disable()
