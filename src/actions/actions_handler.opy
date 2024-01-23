@@ -115,7 +115,7 @@ def menu_act_submenu_bot():
             act_bot_facing()
             break
         case submenu_curr_start + 5:
-            act_bot_bound_pos()
+            act_bot_bound()
             break
         case submenu_curr_start + 6:
             act_bot_bound_dim()
@@ -142,7 +142,7 @@ def menu_act_submenu_bot():
             act_bot_select_profile()
             break
         case submenu_curr_start + 14:
-            act_bot_rand_profile()
+            act_bot_profile_order()
             break
         case submenu_curr_start + 15:
             act_bot_script_status()
@@ -159,41 +159,41 @@ def menu_act_submenu_profile():
             menu_act_change_submenu()
             break
         case submenu_curr_start + 1:
-            act_prof_select_prof()
+            act_mvmt_select_prof()
             break
         case submenu_curr_start + 2:
-            act_prof_override_prof()
+            act_mvmt_override_prof()
             break
         case submenu_curr_start + 3:
-            act_prof_change_weight()
-            break
-        case submenu_curr_start + 4:
             act_mvmt_hori_type()
             break
+        case submenu_curr_start + 4:
+            act_mvmt_left()
+            break
         case submenu_curr_start + 5:
-            act_mvmt_hori_chance()
+            act_mvmt_right()
             break
         case submenu_curr_start + 6:
-            act_mvmt_lr_time()
+            act_mvmt_forward()
             break
         case submenu_curr_start + 7:
-            act_mvmt_fb_time()
+            act_mvmt_backward()
             break
         case submenu_curr_start + 8:
             act_mvmt_vert_type()
             break
         case submenu_curr_start + 9:
-            act_mvmt_vert_chance()
+            act_mvmt_jump()
             break
         case submenu_curr_start + 10:
-            act_mvmt_jump_time()
+            act_mvmt_crouch()
             break
         case submenu_curr_start + 11:
             act_mvmt_crouch_time()
             break
         case submenu_curr_start + 12:
-            act_mvmt_idle_chance()
+            act_mvmt_lr_idle()
             break   
         case submenu_curr_start + 13:
-            act_mvmt_idle_time()
+            act_mvmt_fb_idle()
             break                                                                       
