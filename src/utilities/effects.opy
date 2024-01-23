@@ -19,9 +19,9 @@ rule "Create Effects on effect index":
         effect_array[eventPlayer.sce_game_mode] = getLastCreatedEntity()
 
     # Create Distance Effect
-    createEffect(hostPlayer, Effect.RING, Color.RED, databot.sce_player_spawn, databot.bot_dist_min[bot_slot], EffectReeval.POSITION_AND_RADIUS)
+    createEffect(hostPlayer, Effect.RING, Color.AQUA, eventPlayer.getPosition() * vect(1,0,1), databot.bot_dist_min[bot_slot], EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
-    createEffect(hostPlayer, Effect.RING, Color.GREEN, databot.sce_player_spawn,  databot.bot_dist_max[bot_slot], EffectReeval.POSITION_AND_RADIUS)
+    createEffect(hostPlayer, Effect.RING, Color.PURPLE, eventPlayer.getPosition() * vect(1,0,1),  databot.bot_dist_max[bot_slot], EffectReeval.POSITION_AND_RADIUS)
     effect_array.append(getLastCreatedEntity())
 
     # Create Player Spawn Effect
@@ -52,11 +52,6 @@ rule "Destroy Effects on non effect index":
     @Slot 0
     @Condition menu_index not in menu_effect_index
     
-    destroy_effects()
-
-
-def destroy_effects():
-    @Name "SUB: destroy_effects"
     # Use a random variable that the player doesn't touch for loop since there is potential runtime conflict with using loop_index
     for eventPlayer.import_status in range(0,len(effect_array),1):
         destroyEffect(effect_array[eventPlayer.import_status])
@@ -71,10 +66,3 @@ def update_bound_effect():
     eventPlayer.bot_bound_angle = databot.bot_bound_angle[bot_slot]
 
     set_cube()
-
-
-def create_bound_effect():
-    @Name "SUB: create_bound_effect"
-
-
-

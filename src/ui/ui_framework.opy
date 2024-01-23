@@ -2,11 +2,11 @@ rule "Menu Input Listener: Toggle Menu":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition data_loaded[2] == true
+    @Condition data_loaded[2] 
     @Condition (user_controls[0] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[0]) or (user_controls[0] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[0]))
 
     wait(ui_delay, Wait.ABORT_WHEN_FALSE)
-    if menu_visible == true:
+    if menu_visible :
         menu_visible = false
     else:
         menu_visible = true
@@ -16,11 +16,11 @@ rule "Menu Input Listener: Menu Up":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
     @Condition (user_controls[1] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[1]) or (user_controls[1] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[1]))
 
     menu_up_check()
-    while menu_item_hidden[menu_index] == true:
+    while menu_item_hidden[menu_index] :
         menu_up_check()
 
     update_help_data()
@@ -33,11 +33,11 @@ rule "Menu Input Listener: Menu Down":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
     @Condition (user_controls[2] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[2]) or (user_controls[2] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[2]))
 
     menu_down_check()
-    while menu_item_hidden[menu_index] == true:
+    while menu_item_hidden[menu_index] :
         menu_down_check()
 
     update_help_data()
@@ -50,7 +50,7 @@ rule "Menu Input Listener: Step Left":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
     @Condition (user_controls[3] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[3]) or (user_controls[3] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[3]))
 
     menu_action = MENU_ACTIONS.MENU_STEP_LEFT
@@ -61,7 +61,7 @@ rule "Menu Input Listener: Step Right":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
     @Condition (user_controls[4] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[4]) or (user_controls[4] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[4]))
 
     menu_action = MENU_ACTIONS.MENU_STEP_RIGHT
@@ -72,7 +72,7 @@ rule "Menu Input Listener: Jump Left":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
     @Condition (user_controls[5] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[5]) or (user_controls[5] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[5]))
 
     menu_action = MENU_ACTIONS.MENU_JUMP_LEFT
@@ -83,7 +83,7 @@ rule "Menu Input Listener: Jump Right":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
     @Condition (user_controls[6] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[6]) or (user_controls[6] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[6]))
 
     menu_action = MENU_ACTIONS.MENU_JUMP_RIGHT
@@ -94,7 +94,7 @@ rule "Menu Input Listener: Next Subitem":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
     @Condition (user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[7]) or (user_controls[7] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[7]))
 
     if subitem_index[menu_index] < subitem_size[menu_index]:
@@ -109,7 +109,7 @@ rule "Menu Input Listener: Set Vector":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
     @Condition (user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[8]) or (user_controls[8] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[8]))
 
     menu_action = MENU_ACTIONS.MENU_SET_VECTOR
@@ -120,7 +120,7 @@ rule "Menu Controls: Toggle On Setup":
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
-    @Condition menu_visible == true
+    @Condition menu_visible 
 
     disable_player_input()
 
@@ -175,6 +175,7 @@ def setup_menu():
     @Name "SUB: setup_menu"
 
     # Default Menu Variables
+    submenu_index = 0
     submenu_start_indexes[0] = 0
     submenu_start_indexes[1] = 1
     menu_max_pos = -1

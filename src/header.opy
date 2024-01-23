@@ -145,6 +145,7 @@ playervar bot_spawn_vect
 playervar bot_facing_type
 playervar bot_facing_vect
 #### Bounds
+playervar bot_bound_type
 playervar bot_bound_pos
 playervar bot_bound_angle
 playervar bot_bound_dim
@@ -152,22 +153,22 @@ playervar bot_bound_dim
 playervar bot_dist_min
 playervar bot_dist_max
 #### Profile
-playervar bot_profile_status
+playervar bot_profile_weights
+playervar bot_profile_max_weight
+#### Profile Order
 playervar bot_profile_type
 playervar bot_profile_min
 playervar bot_profile_max
 #### Custom Script
 playervar bot_script_status
 
-#### Profile Weight
-playervar prof_weight
 #### Horizontal Type
 playervar mvmt_hori_type
 playervar mvmt_hori_impulse
 playervar mvmt_hori_interval
-#### Left / Right Probability
-playervar mvmt_lr_chance
-playervar mvmt_fb_chance
+#### Horizontal Weights
+playervar mvmt_weights
+playervar mvmt_max_weight
 #### Left / Right Time
 playervar mvmt_left_min
 playervar mvmt_left_max
@@ -178,6 +179,15 @@ playervar mvmt_fwd_min
 playervar mvmt_fwd_max
 playervar mvmt_back_min
 playervar mvmt_back_max
+#### Diagonals Time
+playervar mvmt_fl_min
+playervar mvmt_fl_max
+playervar mvmt_fr_min
+playervar mvmt_fr_max
+playervar mvmt_bl_min
+playervar mvmt_bl_max
+playervar mvmt_br_min
+playervar mvmt_br_max
 #### Vertical Type
 playervar mvmt_vert_type
 playervar mvmt_vert_impulse
@@ -253,6 +263,7 @@ subroutine menu_act_submenu_movement
 ### Generalized Actions
 subroutine menu_act_change_submenu
 subroutine act_general_chg_num
+subroutine act_general_num_temp
 subroutine act_general_num_var_1
 subroutine act_general_num_var_2
 subroutine act_general_num_var_3
@@ -260,10 +271,14 @@ subroutine act_general_num_var_4
 subroutine act_general_toggle_status
 subroutine act_general_toggle_var_1
 subroutine act_general_toggle_var_2
+subroutine act_general_toggle_var_3
+subroutine act_general_toggle_var_4
 subroutine act_general_change_vect
 subroutine act_general_change_list
 subroutine act_general_change_list_var_1
 subroutine act_general_change_min_max
+subroutine act_general_calc_weights
+subroutine act_general_unsum_weights
 ### Custom Actions
 #### Main Menu
 subroutine act_main_open_hero_sel
@@ -292,32 +307,31 @@ subroutine act_bot_scale
 subroutine act_bot_gravity
 subroutine act_bot_spawn
 subroutine act_bot_facing
-subroutine act_bot_bound_pos
+subroutine act_bot_bound
 subroutine act_bot_bound_dim
 subroutine act_bot_distance
 subroutine act_bot_select_profile
-subroutine act_bot_rand_profile
+subroutine act_bot_profile_order
 subroutine act_bot_script_status
 #### Profile Submenu
-subroutine act_prof_select_prof
-subroutine subact_select_prof_refresh
-subroutine act_prof_override_prof
-subroutine subact_prof_override_slot
+subroutine act_mvmt_select_prof
+subroutine subact_mvmt_select_refresh
+subroutine act_mvmt_override_prof
+subroutine subact_mvmt_override_slot
 subroutine act_prof_change_weight
 #### Movement Submenu
 subroutine act_mvmt_hori_type
-subroutine act_mvmt_hori_chance
-subroutine act_mvmt_lr_time
-subroutine act_mvmt_fb_time
+subroutine act_mvmt_left
+subroutine act_mvmt_right
+subroutine act_mvmt_forward
+subroutine act_mvmt_backward
 subroutine act_mvmt_vert_type
-subroutine act_mvmt_vert_chance
-subroutine act_mvmt_jump_time
+subroutine act_mvmt_jump
+subroutine act_mvmt_crouch
 subroutine act_mvmt_crouch_time
-subroutine act_mvmt_idle_chance
-subroutine act_mvmt_idle_time
+subroutine act_mvmt_lr_idle
+subroutine act_mvmt_fb_idle
 ## Bot Generation
-subroutine create_bot
-subroutine destroy_bot
 subroutine create_target_bot
 subroutine destroy_target_bot
 ## Data Bot
@@ -362,12 +376,10 @@ enum MENU_ACTIONS:
 
 enum RANGE_TYPE:
     NONE = 0,
-    RANGE_NORMAL,
     RANGE_SLOT,
     RANGE_HERO,
     RANGE_PERCENTAGE,
     RANGE_ANGLE,
-    RANGE_DISTANCE,
     RANGE_TIME,
     RANGE_SCALAR,
     RANGE_VECTOR,
@@ -398,7 +410,7 @@ enum HELP_CONFIGS:
     SUBITEM_CYCLE,
     SUBITEM_TOGGLE,
     SUBITEM_VECT,
-    SUBITEM_VECT_TOGGLE
+    SUBITEM_VECT_OPT
     
 enum GENERAL_TARGET:
     VECT_X = 0,
@@ -411,18 +423,15 @@ enum TAG_TYPE:
     HEALTH = 0,
     MIN_MAX,
     TARGET,
-    PROFILE,
+    PROFILE_STATUS,
+    PROFILE_ORDER,
     VECT,
     TYPE_VECT,
     ANGLE_DIM,
     MVMT_TYPE,
-    HORI_CHANCE,
-    LR_TIME,
-    FB_TIME,
-    VERT_CHANCE,
+    MVMT_DIR,
+    CHANCE,
     CROUCH_TIME,
-    IDLE_CHANCE,
-    IDLE_TIME,
     SCE_TIMED,
     SCE_SCORE,
     SCE_POINTS,
@@ -436,6 +445,7 @@ enum OPTIONS_TYPE:
     TARGET,
     SPAWN,
     FACING,
+    BOUNDS,
     PROFILE,
     MVMT_TYPE,
     SCE_MODE
@@ -450,6 +460,7 @@ globalvar action_var
 globalvar action_var_2
 globalvar action_var_3
 globalvar action_result
+globalvar action_temp
 globalvar general_small
 globalvar general_large
 globalvar general_range_min
@@ -458,17 +469,15 @@ globalvar general_range_max
 globalvar general_option_size
 globalvar general_target
 globalvar refresh_index
+globalvar refresh_start
 
 globalvar menu_effect_index
 globalvar effect_array
 
 globalvar ring_data
-subroutine destroy_effects
 subroutine update_bound_effect
 subroutine set_cube
-subroutine create_bound_effect
 subroutine update_distance_effect
-subroutine create_distance_effect
 globalvar display_help
 globalvar active_bot_status
 
@@ -480,15 +489,18 @@ playervar boundary_limits
 
 playervar cube
 
-playervar calc_var_1
-playervar calc_var_2
+playervar calc_var
 
 playervar is_in_bounds
 
 playervar disabled_target
-playervar disabled_indexes
+
 playervar disabled_movements
 playervar owner_player
+playervar profile_list
+playervar profile_index
+playervar loop_indexes
+
 
 subroutine stats_start_stat_tracking
 subroutine stats_stop_stat_tracking
@@ -497,13 +509,53 @@ subroutine stats_stop_stat_tracking
 globalvar angle
 globalvar scenario_in_progress
 subroutine set_disabled_index_dist
-subroutine set_target_scale
 
-enum DISABLED_VARS:
-    BOUNDS_CALC = 0,
-    BOUNDS_OFFSET,
-    BOUNDS_POS,
-    DIST_CALC,
-    DIST_OFFSET,
-    DIST_POS
-    
+enum PLAYER_INDEXES:
+    DISABLE_MVMT = 0,
+    PROFILE,
+    WEIGHTS_1,
+    WEIGHTS_2
+
+enum PLAYER_RAND:
+    PROFILE = 0,
+    LR,
+    FB,
+    JUMP,
+    CROUCH
+
+enum XZ_DIR:
+    BACKWARD = 0,
+    BACKWARD_RIGHT,
+    RIGHT,
+    FORWARD_RIGHT,
+    FORWARD,
+    FORWARD_LEFT,
+    LEFT,
+    BACKWARD_LEFT,
+
+enum Y_DIR:
+    UP = 0,
+    DOWN
+
+
+playervar target_mvmt_dir
+playervar target_rand
+playervar target_mvmt_vect
+playervar target_mvmt_index
+playervar target_mvmt_wait
+
+
+
+subroutine act_general_clear
+subroutine act_general_disable
+
+globalvar profile_weights
+globalvar movement_weights
+
+subroutine teleport_target
+subroutine select_mvmt_dir
+playervar mvmt_collision_wait
+playervar mvmt_interrupt
+
+playervar disabled_bound
+playervar disabled_dist

@@ -20,7 +20,7 @@ def stats_stop_stat_tracking():
 rule "increment elims":
     @Event playerDealtFinalBlow
     @Team 1
-    @Condition stat_tracking_status == true
+    @Condition stat_tracking_status 
 
     elims += 1
 

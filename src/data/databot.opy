@@ -2,8 +2,8 @@ rule "Databot Populate Settings":
     @Event eachPlayer
     @Team 1
     @Slot 1
-    @Condition eventPlayer.isDummy() == true
-    @Condition eventPlayer.hasSpawned() == true
+    @Condition eventPlayer.isDummy() 
+    @Condition eventPlayer.hasSpawned() 
 
     data_loaded[DATA_TYPE.DATA_BOT] = false
     waitUntil(data_loaded[DATA_TYPE.DATA_CONTROLS] == true, 9999)
@@ -12,6 +12,8 @@ rule "Databot Populate Settings":
     import_settings()
     if eventPlayer.import_status == false:
         default_settings()
+    for loop_index in range(0, 12):
+
 
     data_loaded[DATA_TYPE.DATA_BOT] = true
         
@@ -24,7 +26,7 @@ def setup_databot():
     bot_gen_slot = 1
     bot_gen_position = vect(0,9999,0)
     bot_gen_facing = vect(0,0,0)
-    create_bot()
+    createDummy(bot_gen_hero, bot_gen_team, bot_gen_slot, bot_gen_position, bot_gen_facing)
 
     databot = getPlayersInSlot(bot_gen_slot,bot_gen_team)
     databot.setGravity(0)
@@ -55,17 +57,18 @@ def default_settings():
     eventPlayer.sce_strafe_max = 0
     eventPlayer.sce_custom_status = false
 
-    for loop_index in range(0, 12, 1):
+    for loop_index in range(0, 12):
         eventPlayer.bot_slot_status[loop_index] = false
         eventPlayer.bot_spawn_type[loop_index] = 0
         eventPlayer.bot_spawn_vect[loop_index] = vect(0,0,0)
         eventPlayer.bot_facing_type[loop_index] = 0
         eventPlayer.bot_facing_vect[loop_index] = vect(1,0,0)
-        eventPlayer.bot_bound_pos[loop_index] = vect(0,0,0)
+        eventPlayer.bot_bound_type[loop_index] = 0
+        eventPlayer.bot_bound_pos[loop_index] = vect(0,10,0)
         eventPlayer.bot_bound_angle[loop_index] = 0
         eventPlayer.bot_bound_dim[loop_index] = vect(10,10,10)
         eventPlayer.bot_dist_min[loop_index] = 0
-        eventPlayer.bot_dist_max[loop_index] = 0
+        eventPlayer.bot_dist_max[loop_index] = 50
         eventPlayer.bot_hero_pool[loop_index] = [Hero.TRACER]
         eventPlayer.bot_health[loop_index] = 100
         eventPlayer.bot_hps[loop_index] = 0
@@ -79,20 +82,21 @@ def default_settings():
         eventPlayer.bot_scale_max[loop_index] = 1
         eventPlayer.bot_scale_target[loop_index] = 0
         eventPlayer.bot_gravity[loop_index] = 100
-        eventPlayer.bot_profile_status[loop_index] = [false, false, false, false, false, false, false, false, false, false, false, false]
+
+        eventPlayer.bot_profile_weights[loop_index] = [1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+        eventPlayer.bot_profile_max_weight = 1
+
         eventPlayer.bot_profile_type[loop_index] = 0
         eventPlayer.bot_profile_min[loop_index] = 0
         eventPlayer.bot_profile_max[loop_index] = 0
         eventPlayer.bot_script_status[loop_index] = false
 
-        eventPlayer.prof_weight[loop_index] = 1
-
         eventPlayer.mvmt_hori_type[loop_index] = 0
         eventPlayer.mvmt_hori_impulse[loop_index] = 0
         eventPlayer.mvmt_hori_interval[loop_index] = 0
 
-        eventPlayer.mvmt_lr_chance[loop_index] = 50
-        eventPlayer.mvmt_fb_chance[loop_index] = 50
+        eventPlayer.mvmt_weights[loop_index] = [1, 2, 3, 4, 5, 6, 7, 8]
+        eventPlayer.mvmt_max_weight[loop_index] = 8
 
         eventPlayer.mvmt_left_min[loop_index] = 0
         eventPlayer.mvmt_left_max[loop_index] = 0
@@ -130,3 +134,5 @@ def default_settings():
         eventPlayer.mvmt_lr_idle_max[loop_index] = 0
         eventPlayer.mvmt_fb_idle_min[loop_index] = 0
         eventPlayer.mvmt_fb_idle_max[loop_index] = 0
+
+

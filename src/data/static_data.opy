@@ -44,7 +44,16 @@ rule "Load Static Data":
                    #Hero.SPACE_RANGER 
                     ]
 
-    ranges = [["N/A", "N/A"], [-1,1], [0,11], [0,len(hero_array)-1], [0,100], [0,179], [0,200], [0,600], [0, 1000], [-1000,1000], [0, 1000000]]
+    ranges =    [   ["N/A", "N/A"], # None
+                    [0,11], # Slot
+                    [0,len(hero_array)-1], # Hero
+                    [0,100], # Percentage
+                    [0,179], # Angle
+                    [0,600], # Time
+                    [0, 1000], # Scalar
+                    [-1000,1000], # Vector
+                    [0, 1000000] # Score
+                ]
     small_steps = ["N/A", 0.01, 1]
     large_steps = ["N/A", 1, 10]
     help_configs = [[0,0,0,0,0,0,0,0], # Default
@@ -196,10 +205,10 @@ rule "load_language_data":
             "Select Bot Slot",
             "Override Bot Slot",
             "Spawn and Boundaries",
-            "Spawn Type",
+            "Spawn",
             "Facing",
-            "Boundary Position",
-            "Boundary Dimentions",
+            "Boundary",
+            "Dimentions",
             "Distance",
             "Bot Parameters",
             "Hero Pool",
@@ -266,20 +275,20 @@ rule "load_language_data":
             "Profiles", 
             "Select Profile Slot",
             "Override Profile from Slot",
-            "Profile Weight",
             "Horizontal Movement",
-            "Horizontal Movement Type", 
-            "Left / Right Probability",
-            "Left / Right Time",
-            "Forward / Backward Time",
+            "Horizontal Type", 
+            "Left",
+            "Right",
+            "Forward",
+            "Backward",
             "Vertical Movement",
             "Vertical Type",
-            "Vertical Probability",
-            "Jump Time",
+            "Jump",
+            "Crouch",
             "Crouch Time",
             "Idle Movement",
-            "Idle Probability",
-            "Idle Time"
+            "Left / Right Idle",
+            "Forward / Backward Idle"
         ],
         [
             "",
@@ -397,6 +406,7 @@ rule "load_language_data":
             ["Static", "Random", "Health", "Elims (Target)", "Looping (Target)"],
             ["Fixed Position", "Random in Boundary", "Random Walkable in Boundary"],
             ["Fixed", "Player"],
+            ["Reverse on Collision", "Stop on Collision", "Teleport to In-Bounds"],
             ["In Order", "Randomized"],
             ["Inputs", "Impulse"],
             ["Timed", "Elims"]
@@ -429,18 +439,15 @@ rule "load_language_data":
             ["Health %: ", "HPS: ", "Wait Until Heal: "], 
             ["min: ", "max: "],
             ["Type: ", "min: ", "max: ", "target: "],
+            ["Profile ", "Weight: "],
             ["Type: ", "min: ", "max: ", "time: "],
             ["X: ", "Y: ", "Z: "],
             ["Type: ", "X: ", "Y: ", "Z: "],
             ["Angle: ", "Length: ", "Height: ", "Width: "],
             ["Type: ", "Impulse Strength: ", "Impulse Interval: "],
-            ["L/R Ratio (0/100) : ", "F/B Ratio (0/100): "],
-            ["Left Min: ", "Left Max: ", "Right Min: ", "Right Max: "],
-            ["Forward Min: ", "Forward Max: ", "Backward Min:", "Backward Max: "],
-            ["Jump Chance %: ", "Jump Interval: ", "Crouch Chance %: ", "Crouch Interval: "],
+            ["Weight : ", "Min Time : ", "Max Time : "],
+            ["Chance %: ", "Interval: ", "Min Time : ", "Max Time : "],
             ["Crouch Min: ", "Crouch Max: ", "Uncrouch Min: ", "Uncrouch Max: "],
-            ["L/R Idle Chance %: ", "L/R Idle Interval: ", "F/B Idle Chance %: ", "F/B Idle Interval: "],
-            ["L/R Min: ", "L/R Max: ", "F/B Min: ", "F/B Max: "],
             ["Type: ", "Seconds: "],
             ["Type: ", "Score: "],
             ["Bodyshot: ", "Headshot: ", "Elim: "],
