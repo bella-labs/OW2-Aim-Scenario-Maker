@@ -32,34 +32,8 @@ def act_bot_select_slot():
 def subact_select_slot_refresh():
     @Name "SUB: subact_select_slot_refresh"
 
-    # Hero Pool
     refresh_index = refresh_start[0]
-    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] 
-    action_var_2 = refresh_index
-    action_var_3 = OPTIONS_TYPE.TOGGLE
-    act_general_toggle_var_2()
-    # Health
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_health[bot_slot] 
-    menu_item_var_2[refresh_index] = databot.bot_hps[bot_slot]
-    menu_item_var_3[refresh_index] = databot.bot_hps_wait[bot_slot]
-    # Speed
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_speed_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_speed_min[bot_slot]
-    menu_item_var_3[refresh_index] = databot.bot_speed_max[bot_slot]
-    menu_item_var_4[refresh_index] = databot.bot_speed_target[bot_slot]
-    # Scale
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_scale_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_scale_min[bot_slot]
-    menu_item_var_3[refresh_index] = databot.bot_scale_max[bot_slot]
-    menu_item_var_4[refresh_index] = databot.bot_scale_target[bot_slot]
-    # Gravity
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_gravity[bot_slot]
     # Spawn
-    refresh_index += 1
     menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.SPAWN][databot.bot_spawn_type[bot_slot]]
     menu_item_var_2[refresh_index] = databot.bot_spawn_vect[bot_slot].x
     menu_item_var_3[refresh_index] = databot.bot_spawn_vect[bot_slot].y
@@ -85,9 +59,38 @@ def subact_select_slot_refresh():
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.bot_dist_min[bot_slot]
     menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
+    # Hero Pool
+    refresh_index += 1
+    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] 
+    action_var_2 = refresh_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_2()
+    # Health
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_health[bot_slot] 
+    menu_item_var_2[refresh_index] = databot.bot_hps[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_hps_wait[bot_slot]
+    # Speed
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_speed_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_speed_min[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_speed_max[bot_slot]
+    menu_item_var_4[refresh_index] = databot.bot_speed_target[bot_slot]
+    # Scale
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.TARGET][databot.bot_scale_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_scale_min[bot_slot]
+    menu_item_var_3[refresh_index] = databot.bot_scale_max[bot_slot]
+    menu_item_var_4[refresh_index] = databot.bot_scale_target[bot_slot]
+    # Gravity
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_gravity[bot_slot]
     # Profile Weights
     refresh_index += 1
-    menu_item_var_2[refresh_index] = databot.bot_profile_weights[bot_slot][profile_slot]
+    action_var = databot.bot_profile_weights[bot_slot]
+    act_general_unsum_weights()
+    profile_weights = action_result
+    menu_item_var_2[refresh_index] = profile_weights[profile_slot]
     # Random Profile
     refresh_index += 1
     menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.PROFILE][databot.bot_profile_type[bot_slot]]
@@ -116,11 +119,11 @@ def act_bot_override_slot():
         # Override target slot
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][6]))
-            menu_item_color_on[menu_index] = Color.RED
+            menu_item_color_on[menu_index] = menu_colors_custom[0]
             waitUntil((eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])) == true, 2)
             if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
                 subact_bot_override_slot()
-                menu_item_color_on[menu_index] = Color.GREEN
+                menu_item_color_on[menu_index] = menu_colors_custom[1]
                 wait(0.25)
         
             menu_item_color_on[menu_index] = menu_color_on_index
@@ -490,8 +493,8 @@ def act_bot_select_profile():
 
         action_var = profile_weights
         act_general_calc_weights()
-        databot.bot_profile_weights = action_var_2
-        databot.bot_profile_max_weight = action_result
+        databot.bot_profile_weights[bot_slot] = action_var_2
+        databot.bot_profile_max_weight[bot_slot] = action_result
 
     action_var = profile_weights[profile_slot]
     act_general_disable()

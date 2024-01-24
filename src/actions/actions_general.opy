@@ -93,7 +93,7 @@ def act_general_toggle_status():
 
     if action_var:
         action_result = 1
-        menu_item_color_on[action_var_2] = menu_colors_custom[2]
+        menu_item_color_on[action_var_2] = menu_colors_custom[1]
     else:
         action_result = 0
         menu_item_color_on[action_var_2] = menu_colors_custom[0]

@@ -164,7 +164,7 @@ rule "load_language_data":
             "Open Hero Select",
             "Test Bot in Slot",
             "Test Scenario",
-            "Save and Export",
+            "Export",
             "Export Instructions",
             "Import Instructions"
         ],
@@ -203,7 +203,7 @@ rule "load_language_data":
             "◀ Main Menu",
             "Bot Slot",
             "Select Bot Slot",
-            "Override Bot Slot",
+            "Copy Current Bot to Slot",
             "Spawn and Boundaries",
             "Spawn",
             "Facing",
@@ -274,7 +274,7 @@ rule "load_language_data":
             "◀ Main Menu",
             "Profiles", 
             "Select Profile Slot",
-            "Override Profile from Slot",
+            "Copy Current Profile to Slot",
             "Horizontal Movement",
             "Horizontal Type", 
             "Left",
@@ -401,7 +401,6 @@ rule "load_language_data":
     strings_options = [
         [
             ["Disabled", "Enabled"], 
-            ["Hidden", "Visible"],
             ["Timed", "Score Limit"],
             ["Static", "Random", "Health", "Elims (Target)", "Looping (Target)"],
             ["Fixed Position", "Random in Boundary", "Random Walkable in Boundary"],

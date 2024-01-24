@@ -4,7 +4,6 @@ def act_mvmt_select_prof():
     act_general_num_var_1()
     profile_slot = menu_item_var_1[menu_index]
     movement_weights = databot.mvmt_weights[profile_slot]
-    profile_weights = databot.bot_profile_weights[profile_slot]
     subact_mvmt_select_refresh()
 
 

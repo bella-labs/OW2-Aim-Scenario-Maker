@@ -4,13 +4,38 @@ rule "Boundary Handler - Correct out of Bounds XZ":
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.boundary_limits[0].x > eventPlayer.getPosition().x or eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x or eventPlayer.boundary_limits[0].z > eventPlayer.getPosition().z or eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z
 
-    if eventPlayer.bot_facing_type == 0:
-        eventPlayer.disabled_bound = (horizontalAngleTowards(eventPlayer, eventPlayer.bot_bound_pos) / 45 + 7)
-        eventPlayer.disabled_bound = round(eventPlayer.disabled_bound - floor(eventPlayer.disabled_bound / 8) * 8) % 8
-    
+
+    eventPlayer.disabled_bound = (horizontalAngleTowards(eventPlayer, eventPlayer.bot_bound_pos) / 90)
+    eventPlayer.disabled_bound = round(eventPlayer.disabled_bound - floor(eventPlayer.disabled_bound / 4) * 4) % 4
+    # Rotate relative to facing angle
+    calc1 = horizontalAngleOfDirection(eventPlayer.getFacingDirection())
+    calc2 = horizontalAngleTowards(eventPlayer, eventPlayer.bot_bound_pos)
+
+    calc3 = eventPlayer.disabled_bound
+
+    switch eventPlayer.disabled_bound:
+        # Backward
+        case 0:
+            eventPlayer.disabled_bound = XZ_DIR.BACKWARD_LEFT
+            break
+        # Right
+        case 1:
+            eventPlayer.disabled_bound = XZ_DIR.BACKWARD_RIGHT
+            break
+        # Forward
+        case 2:
+            eventPlayer.disabled_bound = XZ_DIR.FORWARD_RIGHT
+            break
+        # Left
+        case 3:
+            eventPlayer.disabled_bound = XZ_DIR.FORWARD_LEFT
+            break
+
+
+
 
     if eventPlayer.isAlive():
-        eventPlayer.disabled_movements[eventPlayer.disabled_bound % 8] += 1
+        eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] += 1
         eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] += 1
         eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] += 1
 
@@ -18,8 +43,8 @@ rule "Boundary Handler - Correct out of Bounds XZ":
         wait(eventPlayer.mvmt_collision_wait)
 
         if eventPlayer.isAlive():
-            if eventPlayer.disabled_movements[eventPlayer.disabled_bound % 8] > 0:
-                eventPlayer.disabled_movements[eventPlayer.disabled_bound % 8] -= 1
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] > 0:
+                eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] -= 1
             if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] > 0:
                 eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] -= 1
             if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] > 0:
@@ -216,6 +241,7 @@ rule "Death Handler":
 
     wait()
     if len(eventPlayer.bot_hero_pool) == 1:
+        eventPlayer.setHealth(eventPlayer.bot_health)
         eventPlayer.resurrect()
     else:
         eventPlayer.startForcingHero(random.choice(eventPlayer.bot_hero_pool).exclude(eventPlayer.getCurrentHero()))

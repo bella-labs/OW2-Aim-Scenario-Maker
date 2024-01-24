@@ -50,11 +50,11 @@ rule "text":
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
         hudSubheader(eventPlayer, 
-    " dir: {0}\n rand1: {1}\n rand2: {2}\n wait: {3}\n idx: {4}".format(
-        getPlayersInSlot(0, Team.2).target_mvmt_dir, 
-        getPlayersInSlot(0, Team.2).target_rand,
-        getPlayersInSlot(0, Team.2).target_mvmt_vect,
-        getPlayersInSlot(0, Team.2).target_mvmt_wait,
-        getPlayersInSlot(0, Team.2).disabled_dist
+    " a: {0}\n b: {1}\n c: {2}\n d: {3}\n e: {4}".format(
+        calc1, 
+        calc2,
+        calc3,
+        getPlayersInSlot(0, Team.2).disabled_bound,
+        null
         ), 
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)

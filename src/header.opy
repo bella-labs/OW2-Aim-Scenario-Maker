@@ -440,7 +440,6 @@ enum TAG_TYPE:
 
 enum OPTIONS_TYPE:
     TOGGLE = 0,
-    VISIBILITY,
     GAME_TYPE,
     TARGET,
     SPAWN,
@@ -559,3 +558,7 @@ playervar mvmt_interrupt
 
 playervar disabled_bound
 playervar disabled_dist
+
+globalvar calc1
+globalvar calc2
+globalvar calc3
