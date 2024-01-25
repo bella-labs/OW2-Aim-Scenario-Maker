@@ -37,6 +37,7 @@ def setup_menu_custom():
     profile_slot = 0
     display_help[0] = false
     display_help[1] = false
+    display_boundary = false
 
     bot_gen_slot = 0
     for loop_index in range(0, 12, 1):
@@ -145,6 +146,18 @@ def create_submenu_main():
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     menu_item_color_off[menu_item_size] = menu_colors_custom[3]
     new_menu_item_selection()
+
+    # (Selection) Display Boundaries
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[3]
+    action_var = false
+    action_var_2 = menu_item_size
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_1()
+
+    new_menu_item_toggle()
 
     # (Selection) Test Bot in Slot
     increment_for_menu_item()

@@ -6,6 +6,17 @@ def act_main_open_hero_sel():
     menu_visible = false
 
 
+def act_main_display_boundary():
+    @Name "SUB: act_main_display_boundary"
+
+    display_boundary = not display_boundary
+
+    action_var = display_boundary
+    action_var_2 = menu_index
+    action_var_3 = OPTIONS_TYPE.TOGGLE
+    act_general_toggle_var_1()
+
+
 def act_main_test_bot_in_slot():
     @Name "SUB: act_main_test_bot_in_slot"
 

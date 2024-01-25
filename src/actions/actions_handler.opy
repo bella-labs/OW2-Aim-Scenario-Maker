@@ -46,14 +46,17 @@ def menu_act_submenu_main():
             act_main_open_hero_sel()
             break
         case submenu_curr_start + 4:
-            act_main_test_bot_in_slot()
+            act_main_display_boundary()
             break
         case submenu_curr_start + 5:
+            act_main_test_bot_in_slot()
             break
         case submenu_curr_start + 6:
-            act_main_toggle_import()
             break
         case submenu_curr_start + 7:
+            act_main_toggle_import()
+            break
+        case submenu_curr_start + 8:
             act_main_toggle_import()
             break
         

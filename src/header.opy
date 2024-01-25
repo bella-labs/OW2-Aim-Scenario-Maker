@@ -282,6 +282,7 @@ subroutine act_general_unsum_weights
 ### Custom Actions
 #### Main Menu
 subroutine act_main_open_hero_sel
+subroutine act_main_display_boundary
 subroutine act_main_test_bot_in_slot
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
@@ -565,3 +566,5 @@ globalvar calc3
 
 subroutine calc_disabled_direction
 subroutine disable_movement_direction
+
+globalvar display_boundary

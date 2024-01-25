@@ -162,11 +162,12 @@ rule "load_language_data":
             "Profile   ▶",
             "Test",
             "Open Hero Select",
+            "Display Boundaries",
             "Test Bot in Slot",
             "Test Scenario",
             "Export",
-            "Export Instructions",
-            "Import Instructions"
+            "Display Export Instructions",
+            "Display Import Instructions"
         ],
         [
             "\n\n", 

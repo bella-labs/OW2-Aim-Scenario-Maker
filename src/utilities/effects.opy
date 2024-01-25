@@ -4,7 +4,7 @@ rule "Create Effects on effect index":
     @Event eachPlayer
     @Team 1
     @Slot 0
-    @Condition menu_index in menu_effect_index
+    @Condition menu_index in menu_effect_index or display_boundary
 
     
     update_bound_effect()

@@ -58,3 +58,21 @@ rule "text":
         horizontalAngleTowards(getPlayersInSlot(0, Team.2), eventPlayer.getPosition())
         ), 
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+
+
+rule "Override Databot Data":
+    @Event global
+    @Condition data_loaded[DATA_TYPE.DATA_BOT] == true
+
+    
+    databot.bot_facing_type[0] = 1
+
+    databot.mvmt_left_min[0] = 5
+    databot.mvmt_left_max[0] = 5
+    databot.mvmt_right_min[0] = 5
+    databot.mvmt_right_max[0] = 5
+
+    databot.mvmt_fwd_min[0] = 5
+    databot.mvmt_fwd_max[0] = 5
+    databot.mvmt_back_min[0] = 5
+    databot.mvmt_back_max[0] = 5
