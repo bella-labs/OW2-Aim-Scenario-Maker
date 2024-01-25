@@ -553,12 +553,15 @@ globalvar movement_weights
 
 subroutine teleport_target
 subroutine select_mvmt_dir
-playervar mvmt_collision_wait
 playervar mvmt_interrupt
 
-playervar disabled_bound
-playervar disabled_dist
+playervar disabled_dir
+playervar disabled_index
+playervar xz_disabled
 
 globalvar calc1
 globalvar calc2
 globalvar calc3
+
+subroutine calc_disabled_direction
+subroutine disable_movement_direction

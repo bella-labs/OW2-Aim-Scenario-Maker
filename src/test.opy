@@ -46,7 +46,7 @@ rule "text":
         getPlayersInSlot(0, Team.2).disabled_movements[6],
         getPlayersInSlot(0, Team.2).disabled_movements[7],
         getPlayersInSlot(0, Team.2).disabled_movements[8],
-        getPlayersInSlot(0, Team.2).disabled_movements[9]), 
+        getPlayersInSlot(0, Team.2).disabled_movements[9]),
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
         hudSubheader(eventPlayer, 
@@ -54,7 +54,7 @@ rule "text":
         calc1, 
         calc2,
         calc3,
-        getPlayersInSlot(0, Team.2).disabled_bound,
-        null
+        getPlayersInSlot(0, Team.2).disabled_dir,
+        horizontalAngleTowards(getPlayersInSlot(0, Team.2), eventPlayer.getPosition())
         ), 
         HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)

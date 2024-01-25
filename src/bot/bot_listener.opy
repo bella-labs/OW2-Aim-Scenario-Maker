@@ -16,8 +16,6 @@ rule "Target Bot Initalization":
     eventPlayer.bot_speed_min = -1
     eventPlayer.bot_gravity = -1
 
-    eventPlayer.mvmt_collision_wait = 0.1
-
         
 rule "Target Bot Listener - Spawn":
     @Event eachPlayer

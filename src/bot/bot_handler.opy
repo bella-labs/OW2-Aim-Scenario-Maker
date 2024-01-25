@@ -1,63 +1,42 @@
-rule "Boundary Handler - Correct out of Bounds XZ":
+rule "Boundary Handler - Correct X Min (Backwards)":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive() 
-    @Condition eventPlayer.boundary_limits[0].x > eventPlayer.getPosition().x or eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x or eventPlayer.boundary_limits[0].z > eventPlayer.getPosition().z or eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z
 
+    eventPlayer.disabled_movements = [0,0,0,0,0,0,0,0]
+    if eventPlayer.getPosition().x < eventPlayer.boundary_limits[0].x:
+        eventPlayer.disabled_index = 0
+        calc_disabled_direction()
+        eventPlayer.disabled_dir[0] += XZ_DIR.BACKWARD
+        disable_movement_direction()
 
-    eventPlayer.disabled_bound = (horizontalAngleTowards(eventPlayer, eventPlayer.bot_bound_pos) / 90)
-    eventPlayer.disabled_bound = round(eventPlayer.disabled_bound - floor(eventPlayer.disabled_bound / 4) * 4) % 4
-    # Rotate relative to facing angle
-    calc1 = horizontalAngleOfDirection(eventPlayer.getFacingDirection())
-    calc2 = horizontalAngleTowards(eventPlayer, eventPlayer.bot_bound_pos)
+    elif eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x:
+        eventPlayer.disabled_index = 1
+        calc_disabled_direction()
+        eventPlayer.disabled_dir[1] += XZ_DIR.FORWARD
+        disable_movement_direction()
 
-    calc3 = eventPlayer.disabled_bound
+    if eventPlayer.getPosition().z < eventPlayer.boundary_limits[0].z:
+        eventPlayer.disabled_index = 2
+        calc_disabled_direction()
+        eventPlayer.disabled_dir[2] += XZ_DIR.LEFT
+        disable_movement_direction()
+    elif eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z:
+        eventPlayer.disabled_index = 3
+        calc_disabled_direction()
+        eventPlayer.disabled_dir[3] += XZ_DIR.RIGHT
+        disable_movement_direction()
 
-    switch eventPlayer.disabled_bound:
-        # Backward
-        case 0:
-            eventPlayer.disabled_bound = XZ_DIR.BACKWARD_LEFT
-            break
-        # Right
-        case 1:
-            eventPlayer.disabled_bound = XZ_DIR.BACKWARD_RIGHT
-            break
-        # Forward
-        case 2:
-            eventPlayer.disabled_bound = XZ_DIR.FORWARD_RIGHT
-            break
-        # Left
-        case 3:
-            eventPlayer.disabled_bound = XZ_DIR.FORWARD_LEFT
-            break
+    wait(0.1)
 
-
-
-
-    if eventPlayer.isAlive():
-        eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] += 1
-        eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] += 1
-        eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] += 1
-
-        async(select_mvmt_dir, AsyncBehavior.RESTART)
-        wait(eventPlayer.mvmt_collision_wait)
-
-        if eventPlayer.isAlive():
-            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] > 0:
-                eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] -= 1
-            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] > 0:
-                eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] -= 1
-            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] > 0:
-                eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] -= 1
-            
     if RULE_CONDITION:
-        goto RULE_START 
+        goto RULE_START
 
 
-rule "Boundary Handler - Correct Out of Bounds Y Lower":
+rule "Boundary Handler - Correct Y Min (Down)":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.boundary_limits[0].y > eventPlayer.getPosition().y 
+    @Condition eventPlayer.getPosition().y < eventPlayer.boundary_limits[0].y
 
     eventPlayer.disabled_movements[9] = true
 
@@ -66,7 +45,7 @@ rule "Boundary Handler - Correct Out of Bounds Y Lower":
     eventPlayer.disabled_movements[9] = false
 
     
-rule "Boundary Handler - Correct Out of Bounds Y Upper":
+rule "Boundary Handler - Correct Y Min (Up)":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.getPosition().y > eventPlayer.boundary_limits[1].y
@@ -78,45 +57,42 @@ rule "Boundary Handler - Correct Out of Bounds Y Upper":
     eventPlayer.disabled_movements [8] = false
 
 
-rule "Distance Handler - Correct Distance":
+rule "Distance Handler - Correct Min Distance":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive()
-    @Condition  (
-                    distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) < eventPlayer.bot_dist_min or
-                    distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) > eventPlayer.bot_dist_max
-                )
+    @Condition distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) < eventPlayer.bot_dist_min
 
+    eventPlayer.disabled_index = 4
     if eventPlayer.bot_facing_type == 0:
-        if distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) < eventPlayer.bot_dist_min:
-            eventPlayer.disabled_dist = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 3)
-        else:
-            eventPlayer.disabled_dist = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 7)
-        eventPlayer.disabled_dist = round(eventPlayer.disabled_dist - floor(eventPlayer.disabled_dist / 8) * 8) % 8
+        eventPlayer.disabled_dir[4] = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 3)
+        eventPlayer.disabled_dir[4] = round(eventPlayer.disabled_dir[4] - floor(eventPlayer.disabled_dir[4] / 8) * 8) % 8
     else:
-        if distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) < eventPlayer.bot_dist_min:
-            eventPlayer.disabled_dist = XZ_DIR.FORWARD_RIGHT
-        else:
-            eventPlayer.disabled_dist = XZ_DIR.BACKWARD_LEFT
+        eventPlayer.disabled_dir[4] = XZ_DIR.FORWARD_RIGHT
 
-    if eventPlayer.isAlive():
-        eventPlayer.disabled_movements[eventPlayer.disabled_dist % 8] += 1
-        eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 1) % 8] += 1
-        eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 2) % 8] += 1
-
-        async(select_mvmt_dir, AsyncBehavior.RESTART)
-        wait(eventPlayer.mvmt_collision_wait)
-
-        if eventPlayer.isAlive():
-            if eventPlayer.disabled_movements[eventPlayer.disabled_dist % 8] > 0:
-                eventPlayer.disabled_movements[eventPlayer.disabled_dist % 8] -= 1
-            if eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 1) % 8] > 0:    
-                eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 1) % 8] -= 1
-            if eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 2) % 8] > 0:    
-                eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 2) % 8] -= 1
+    disable_movement_direction()
 
     if RULE_CONDITION:
         goto RULE_START 
+
+
+rule "Distance Handler - Correct Max Distance":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive()
+    @Condition distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) > eventPlayer.bot_dist_max
+
+    eventPlayer.disabled_index = 5
+    if eventPlayer.bot_facing_type == 0:
+        eventPlayer.disabled_dir[5] = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 7)
+        eventPlayer.disabled_dir[5] = round(eventPlayer.disabled_dir[5] - floor(eventPlayer.disabled_dir[5] / 8) * 8) % 8
+    else:
+        eventPlayer.disabled_dir[5] = XZ_DIR.BACKWARD_LEFT
+
+    disable_movement_direction()
+
+    if RULE_CONDITION:
+        goto RULE_START
 
 
 rule "HPS Handler - Reset HoT":
@@ -262,3 +238,21 @@ def teleport_target():
         case 2:
             eventPlayer.teleport(nearestWalkablePosition(eventPlayer.bot_bound_pos + vect(random.uniform(-eventPlayer.bot_bound_dim.x, eventPlayer.bot_bound_dim.x)/2, random.uniform(-eventPlayer.bot_bound_dim.y, eventPlayer.bot_bound_dim.y)/2, random.uniform(-eventPlayer.bot_bound_dim.z, eventPlayer.bot_bound_dim.z)/2)))
             break 
+
+
+def calc_disabled_direction():
+    @Name "SUB: calc_disabled_direction"
+
+    eventPlayer.disabled_dir[eventPlayer.disabled_index] = (horizontalAngleOfDirection(eventPlayer.getFacingDirection()) / 45) + 5
+    eventPlayer.disabled_dir[eventPlayer.disabled_index] = round(eventPlayer.disabled_dir[eventPlayer.disabled_index] - floor(eventPlayer.disabled_dir[eventPlayer.disabled_index] / 8) * 8) % 8
+
+
+def disable_movement_direction():
+    @Name "SUB: disable_movement_direction"
+
+    if eventPlayer.isAlive():
+        eventPlayer.disabled_movements[eventPlayer.disabled_dir[eventPlayer.disabled_index] % 8] += 1
+        eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 1) % 8] += 1
+        eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 2) % 8] += 1
+
+        async(select_mvmt_dir, AsyncBehavior.RESTART)
