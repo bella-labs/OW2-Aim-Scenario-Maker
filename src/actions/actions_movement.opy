@@ -77,23 +77,30 @@ def act_mvmt_override_prof():
     @Name "SUB: act_mvmt_override_prof"
 
     switch menu_action:
-        # Change target slot
         case MENU_ACTIONS.MENU_STEP_LEFT:
         case MENU_ACTIONS.MENU_STEP_RIGHT:
             act_general_num_var_1()
             break
-        # Override all slots? not sure if good / needed
         case MENU_ACTIONS.MENU_JUMP_LEFT:
-        # Override target slot
+            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[9]] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[9]), strings_prompt[lang_type][6]))
+            menu_item_color_on[menu_index] = menu_colors_custom[0]
+            waitUntil((eventPlayer.getThrottle() == ui_inputs[9] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[9])) == true, 2)
+            if (eventPlayer.getThrottle() == ui_inputs[9] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[9])):
+                for loop_index in range(0,12):
+                    menu_item_color_on[menu_index] = menu_colors_custom[1]
+                    action_var = loop_index
+                    subact_mvmt_override_slot()
+                wait(0.25)
+            menu_item_color_on[menu_index] = menu_color_on_index
+            break
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[9]] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[9]), strings_prompt[lang_type][6]))
-            menu_item_color_on[menu_index] = Color.RED
+            menu_item_color_on[menu_index] = menu_colors_custom[0]
             waitUntil((eventPlayer.getThrottle() == ui_inputs[9] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[9])) == true, 2)
             if (eventPlayer.getThrottle() == ui_inputs[9] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[9])):
                 subact_mvmt_override_slot()
-                menu_item_color_on[menu_index] = Color.GREEN
+                menu_item_color_on[menu_index] = menu_colors_custom[1]
                 wait(0.25)
-        
             menu_item_color_on[menu_index] = menu_color_on_index
 
 

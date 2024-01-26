@@ -433,9 +433,9 @@ def create_submenu_bot():
     menu_item_var_3[menu_item_size] = databot.bot_bound_dim[0].y
     menu_item_var_4[menu_item_size] = databot.bot_bound_dim[0].z
     menu_item_range[menu_item_size] = [RANGE_TYPE.RANGE_ANGLE]
-    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1]
-    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10] 
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_VECT] 
+    menu_item_small_step[menu_item_size] = [SMALL_TYPE.SMALL_1, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01, SMALL_TYPE.SMALL_0_01]
+    menu_item_large_step[menu_item_size] = [LARGE_TYPE.LARGE_10, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1, LARGE_TYPE.LARGE_1] 
+    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.SUBITEM_CYCLE] 
     new_menu_item_4var()
     menu_effect_index.append(menu_item_size)
 

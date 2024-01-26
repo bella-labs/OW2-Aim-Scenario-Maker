@@ -68,7 +68,7 @@ rule "text":
     hudSubheader(eventPlayer, 
     " c1: {0}".format(
         calc1),
-        udPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+    HudPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " c2: {0}".format(
