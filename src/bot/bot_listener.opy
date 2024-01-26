@@ -241,16 +241,27 @@ rule "Target Bot Listener - Bot Profile":
     @Team 2
     @Condition  (
                 eventPlayer.bot_profile_weights != databot.bot_profile_weights[eventPlayer.getSlot()] or
+                eventPlayer.bot_profile_max_weight != databot.bot_profile_max_weight[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_type != databot.bot_profile_type[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_min != databot.bot_profile_min[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_max != databot.bot_profile_max[eventPlayer.getSlot()]
                 )
 
+    eventPlayer.profile_index = -1
     eventPlayer.bot_profile_weights = databot.bot_profile_weights[eventPlayer.getSlot()]
+    eventPlayer.bot_profile_max_weight = databot.bot_profile_max_weight[eventPlayer.getSlot()]
     eventPlayer.bot_profile_type = databot.bot_profile_type[eventPlayer.getSlot()]
     eventPlayer.bot_profile_min = databot.bot_profile_min[eventPlayer.getSlot()]
     eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
 
+    if eventPlayer.bot_profile_type == 0:
+        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = 0:
+        while(eventPlayer.profile_index == -1 and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights))
+            if (eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]] > -1)
+                eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
+            eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1:
+    else:
+        eventPlayer.profile_index = 0
     # Cooldown to prevent overflow
     wait(1)
     smallMessage(hostPlayer, "Bot Profile")

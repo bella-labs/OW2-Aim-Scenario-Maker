@@ -77,13 +77,13 @@ def select_mvmt_dir():
 rule "Target Bot LR Idle Movement":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.mvmt_lr_idle_chance < 0
-    @Condition eventPlayer.mvmt_lr_idle_interval < 0
-    @Condition eventPlayer.mvmt_lr_idle_max < 0
+    @Condition eventPlayer.mvmt_lr_idle_chance[eventPlayer.profile_index] < 0
+    @Condition eventPlayer.mvmt_lr_idle_interval[eventPlayer.profile_index] < 0
+    @Condition eventPlayer.mvmt_lr_idle_max[eventPlayer.profile_index] < 0
 
-    wait(eventPlayer.mvmt_lr_idle_interval, Wait.ABORT_WHEN_FALSE)
+    wait(eventPlayer.mvmt_lr_idle_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
     eventPlayer.target_rand[PLAYER_RAND.LR_IDLE] = random.uniform(0,100)
-    if eventPlayer.target_rand[PLAYER_RAND.LR_IDLE] >= eventPlayer.mvmt_lr_idle_chance and eventPlayer.isAlive():
+    if eventPlayer.target_rand[PLAYER_RAND.LR_IDLE] >= eventPlayer.mvmt_lr_idle_chance[eventPlayer.profile_index] and eventPlayer.isAlive():
         eventPlayer.disabled_movements[XZ_DIR.BACKWARD_RIGHT] += 1
         eventPlayer.disabled_movements[XZ_DIR.RIGHT] += 1
         eventPlayer.disabled_movements[XZ_DIR.FORWARD_RIGHT] += 1
@@ -114,13 +114,13 @@ rule "Target Bot LR Idle Movement":
 rule "Target Bot FB Idle Movement":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.mvmt_fb_idle_chance < 0
-    @Condition eventPlayer.mvmt_fb_idle_interval < 0
-    @Condition eventPlayer.mvmt_fb_idle_max < 0
+    @Condition eventPlayer.mvmt_fb_idle_chance[eventPlayer.profile_index] < 0
+    @Condition eventPlayer.mvmt_fb_idle_interval[eventPlayer.profile_index] < 0
+    @Condition eventPlayer.mvmt_fb_idle_max[eventPlayer.profile_index] < 0
 
-    wait(eventPlayer.mvmt_fb_idle_interval, Wait.ABORT_WHEN_FALSE)
+    wait(eventPlayer.mvmt_fb_idle_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
     eventPlayer.target_rand[PLAYER_RAND.FB_IDLE] = random.uniform(0,100)
-    if eventPlayer.target_rand[PLAYER_RAND.FB_IDLE] >= eventPlayer.mvmt_fb_idle_chance and eventPlayer.isAlive():
+    if eventPlayer.target_rand[PLAYER_RAND.FB_IDLE] >= eventPlayer.mvmt_fb_idle_chance[eventPlayer.profile_index] and eventPlayer.isAlive():
         eventPlayer.disabled_movements[XZ_DIR.BACKWARD] += 1
         eventPlayer.disabled_movements[XZ_DIR.BACKWARD_RIGHT] += 1
         eventPlayer.disabled_movements[XZ_DIR.FORWARD_RIGHT] += 1
@@ -128,7 +128,7 @@ rule "Target Bot FB Idle Movement":
         eventPlayer.disabled_movements[XZ_DIR.FORWARD_LEFT] += 1
         eventPlayer.disabled_movements[XZ_DIR.BACKWARD_LEFT] += 1
 
-        wait(random.uniform(eventPlayer.mvmt_fb_idle_min, eventPlayer.mvmt_fb_idle_max))
+        wait(random.uniform(eventPlayer.mvmt_fb_idle_min[eventPlayer.profile_index], eventPlayer.mvmt_fb_idle_max[eventPlayer.profile_index]))
 
         if eventPlayer.isAlive():
             if eventPlayer.disabled_movements[XZ_DIR.BACKWARD] > 0:
