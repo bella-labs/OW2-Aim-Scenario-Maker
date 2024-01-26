@@ -517,11 +517,12 @@ enum PLAYER_INDEXES:
     WEIGHTS_2
 
 enum PLAYER_RAND:
-    PROFILE = 0,
-    LR,
-    FB,
+    XZ = 0,
+    LR_IDLE,
+    FB_IDLE,
     JUMP,
-    CROUCH
+    CROUCH,
+    PROFILE
 
 enum XZ_DIR:
     BACKWARD = 0,
@@ -561,9 +562,7 @@ playervar xz_disabled
 playervar disabled_index
 playervar disabled_dir
 playervar disabled_bound
-
-playervar disabled_type
-playervar disabled_value
+playervar disabled_dist
 
 globalvar calc1
 globalvar calc2

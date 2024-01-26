@@ -1,4 +1,4 @@
-rule "Boundary Handler - Correct X Min (Backwards)":
+rule "Boundary Handler - Correct XZ":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive()
@@ -72,12 +72,11 @@ rule "Distance Handler - Correct Min Distance":
     @Condition eventPlayer.isAlive()
     @Condition distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) < eventPlayer.bot_dist_min
 
-    eventPlayer.disabled_index = 4
     if eventPlayer.bot_facing_type == 0:
-        eventPlayer.disabled_dir[4] = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 3)
-        eventPlayer.disabled_dir[4] = round(eventPlayer.disabled_dir[4] - floor(eventPlayer.disabled_dir[4] / 8) * 8) % 8
+        eventPlayer.disabled_dist = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 3)
+        eventPlayer.disabled_dist = round(eventPlayer.disabled_dist - floor(eventPlayer.disabled_dist / 8) * 8) % 8
     else:
-        eventPlayer.disabled_dir[4] = XZ_DIR.FORWARD_RIGHT
+        eventPlayer.disabled_dist = XZ_DIR.FORWARD_RIGHT
 
     disable_movement_distance()
 
@@ -91,12 +90,11 @@ rule "Distance Handler - Correct Max Distance":
     @Condition eventPlayer.isAlive()
     @Condition distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) > eventPlayer.bot_dist_max
 
-    eventPlayer.disabled_value[1] = 5
     if eventPlayer.bot_facing_type == 0:
-        eventPlayer.disabled_dir[5] = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 7)
-        eventPlayer.disabled_dir[5] = round(eventPlayer.disabled_dir[5] - floor(eventPlayer.disabled_dir[5] / 8) * 8) % 8
+        eventPlayer.disabled_dist = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 7)
+        eventPlayer.disabled_dist = round(eventPlayer.disabled_dist - floor(eventPlayer.disabled_dist / 8) * 8) % 8
     else:
-        eventPlayer.disabled_dir[5] = XZ_DIR.BACKWARD_LEFT
+        eventPlayer.disabled_dist = XZ_DIR.BACKWARD_LEFT
 
     disable_movement_distance()
 
@@ -203,7 +201,7 @@ rule "Profile Handler: Randomized":
     #@Condition eventPlayer.prof_weight_list == eventPlayer.prof_weight_list
     #@Condition eventPlayer.prof_weight_status == eventPlayer.prof_weight_status
 #
-    #eventPlayer.target_rand[PLAYER_RAND.PROFILE] = random.uniform(0, eventPlayer.profile_weights_list[len(eventPlayer.profile_weights-1)])
+    #eventPlayer.target_rand[PLAYER_RAND.XZ][PLAYER_RAND.PROFILE] = random.uniform(0, eventPlayer.profile_weights_list[len(eventPlayer.profile_weights-1)])
    # eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_4] = random.uniform(0, eventPlayer.profile_weights[len(eventPlayer.profile_weights-1)])
     #eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] = 0
    # while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3] < len(eventPlayer.profile_weights) and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_4] > eventPlayer.profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE_3]] ):
@@ -255,7 +253,7 @@ def disable_movement_boundary():
     @Name "SUB: disable_movement_boundary"
 
     if eventPlayer.isAlive():
-        eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 0) % 8] += 1
+        eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] += 1 
         eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] += 1
         eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] += 1
 
@@ -263,8 +261,8 @@ def disable_movement_boundary():
         wait(0.1)
 
         if eventPlayer.isAlive():
-            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 0) % 8] > 0:
-                eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 0) % 8] -= 1
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] > 0:
+                eventPlayer.disabled_movements[(eventPlayer.disabled_bound) % 8] -= 1
             if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] > 0:
                 eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] -= 1
             if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] > 0:
@@ -275,17 +273,17 @@ def disable_movement_distance():
     @Name "SUB: disable_movement_distance"
 
     if eventPlayer.isAlive():
-        eventPlayer.disabled_movements[eventPlayer.disabled_dir[eventPlayer.disabled_index] % 8] += 1
-        eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 1) % 8] += 1
-        eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 2) % 8] += 1
+        eventPlayer.disabled_movements[eventPlayer.disabled_dist % 8] += 1
+        eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 1) % 8] += 1
+        eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 2) % 8] += 1
 
         async(select_mvmt_dir, AsyncBehavior.RESTART)
         wait(0.1)
 
         if eventPlayer.isAlive():
-            if eventPlayer.disabled_movements[eventPlayer.disabled_dir[eventPlayer.disabled_index] % 8] > 0:
-                eventPlayer.disabled_movements[eventPlayer.disabled_dir[eventPlayer.disabled_index] % 8] -= 1
-            if eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 1) % 8] > 0:    
-                eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 1) % 8] -= 1
-            if eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 2) % 8] > 0:  
-                eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 2) % 8] -= 1
+            if eventPlayer.disabled_movements[eventPlayer.disabled_dist % 8] > 0:
+                eventPlayer.disabled_movements[eventPlayer.disabled_dist % 8] -= 1
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 1) % 8] > 0:     
+                eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 1) % 8] -= 1
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 2) % 8] > 0:  
+                eventPlayer.disabled_movements[(eventPlayer.disabled_dist + 2) % 8] -= 1
