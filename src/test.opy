@@ -31,10 +31,6 @@ rule "text":
     @Event eachPlayer
     @Condition eventPlayer == hostPlayer
 
-    # eventPlayer.owner_player = getPlayersInSlot(0, Team.2)
-    #createBeam(eventPlayer, Beam.GRAPPLE, vect(0,3,0), vect(0,3,100), Color.BLUE, EffectReeval.VISIBILITY_POSITION_RADIUS_AND_COLOR)
-
-    hudSubheader(eventPlayer, "{0}".format(getPlayersInSlot(0, Team.2).owner_player), HudPosition.TOP, 9999, Color.RED, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
     hudSubheader(eventPlayer, 
     " b: {0}\n rb: {1}\n r: {2}\n fr: {3}\n f: {4}\n fl {5}\n l {6}\n bl {7}\n u {8}\n d {9}".format(
         getPlayersInSlot(0, Team.2).disabled_movements[0],
@@ -46,8 +42,9 @@ rule "text":
         getPlayersInSlot(0, Team.2).disabled_movements[6],
         getPlayersInSlot(0, Team.2).disabled_movements[7],
         getPlayersInSlot(0, Team.2).disabled_movements[8],
-        getPlayersInSlot(0, Team.2).disabled_movements[9]),
-        HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+        getPlayersInSlot(0, Team.2).disabled_movements[9]
+        ),
+    HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " b: {0}\n rb: {1}\n r: {2}\n fr: {3}\n f: {4}\n fl {5}\n l {6}\n bl {7}".format(
@@ -58,25 +55,27 @@ rule "text":
         getPlayersInSlot(0, Team.2).disabled_dir[4],
         getPlayersInSlot(0, Team.2).disabled_dir[5],
         getPlayersInSlot(0, Team.2).disabled_dir[6],
-        getPlayersInSlot(0, Team.2).disabled_dir[7]),
-        HudPosition.RIGHT, 900, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+        getPlayersInSlot(0, Team.2).disabled_dir[7]
+        ),
+    HudPosition.RIGHT, 900, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " bound: {0}".format(
-        horizontalAngleOfDirection(getPlayersInSlot(0, Team.2).getFacingDirection())),
-        HudPosition.RIGHT, 900, Color.RED, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+        horizontalAngleOfDirection(getPlayersInSlot(0, Team.2).getFacingDirection())
+        ),
+    HudPosition.RIGHT, 900, Color.RED, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " c1: {0}".format(
         calc1),
-        HudPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+        udPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " c2: {0}".format(
         calc2),
-        HudPosition.RIGHT, 900, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+    HudPosition.RIGHT, 900, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
-        
+
 rule "Override Databot Data":
     @Event global
     @Condition data_loaded[DATA_TYPE.DATA_BOT] == true

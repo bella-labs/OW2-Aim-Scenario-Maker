@@ -245,7 +245,8 @@ subroutine increment_for_submenu_item
 ### Menu Setup
 subroutine setup_menu
 ## UI Builder
-subroutine create_hud
+subroutine create_custom_hud
+subroutine create_help_hud
 subroutine setup_menu_custom
 subroutine create_submenu_main
 subroutine create_submenu_scenario

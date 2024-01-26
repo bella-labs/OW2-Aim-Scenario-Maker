@@ -8,7 +8,8 @@ rule "Menu Setup: Creation":
     setup_databot()
     waitUntil(data_loaded[DATA_TYPE.DATA_BOT] == true , 9999)
 
-    create_hud()
+    create_custom_hud()
+    create_help_hud()
     setup_menu()
     setup_menu_custom()
     
@@ -48,7 +49,7 @@ def setup_menu_custom():
     movement_weights = action_result
 
 
-def create_hud():
+def create_custom_hud():
 
     # Small server load on right
     hudSubheader([i for i in localPlayer],
@@ -67,38 +68,7 @@ def create_hud():
     Color.WHITE, 
     HudReeval.VISIBILITY_AND_STRING, 
     SpecVisibility.DEFAULT)
-
-    # Displays the left HUD menu help.
-    menu_help_index = help_configs[HELP_CONFIGS.DEFAULT]
-    menu_help_display = [strings_help[lang_type][0][menu_help_index[0]], strings_help[lang_type][1][menu_help_index[1]], strings_help[lang_type][2][menu_help_index[2]], strings_help[lang_type][3][menu_help_index[3]], strings_help[lang_type][4][menu_help_index[4]], strings_help[lang_type][5][menu_help_index[5]], strings_help[lang_type][6][menu_help_index[6]], strings_help[lang_type][7][menu_help_index[7]]]
-    hudSubheader([i for i in localPlayer], 
-    "{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}".format("{0} {1} {2} {3} {4}\n".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[0]] if user_controls[0] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
-        strings_symbols[0], 
-        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[1]] if user_controls[1] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[1]), menu_help_display[0]) if menu_visible else "",
-        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[2]] if user_controls[2] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[2]), menu_help_display[1]) if menu_visible else "",
-        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[3]] if user_controls[3] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[3]), menu_help_display[2]) if menu_visible else "",
-        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[4]] if user_controls[4] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[4]), menu_help_display[3]) if menu_visible else "",
-        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[5]] if user_controls[5] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[5]), menu_help_display[4]) if menu_visible else "",
-        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[6]] if user_controls[6] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[6]), menu_help_display[5]) if menu_visible else "",
-        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[7]] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[7]), menu_help_display[6]) if menu_visible else "",
-        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), menu_help_display[7]) if menu_visible else "",
-        strings_symbols[0] if menu_visible else "",
-        "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if display_help[0]  else "",
-        "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if display_help[1] else ""),
-        HudPosition.LEFT,
-        -1,
-        Color.WHITE,
-        HudReeval.VISIBILITY_AND_STRING,
-        SpecVisibility.DEFAULT)
-
-    # Stats Display Top
-    hudSubheader([i for i in localPlayer if stat_tracking_status ],
-    "Timer: {0}\nElims: {1}".format(timer, elims), 
-    HudPosition.TOP, 
-    -9999, 
-    Color.WHITE, 
-    HudReeval.VISIBILITY_AND_STRING, 
-    SpecVisibility.DEFAULT)
+    
 
 
 def create_submenu_main():
