@@ -477,7 +477,6 @@ globalvar effect_array
 globalvar ring_data
 subroutine update_bound_effect
 subroutine set_cube
-subroutine update_distance_effect
 globalvar display_help
 globalvar active_bot_status
 
@@ -556,15 +555,20 @@ subroutine teleport_target
 subroutine select_mvmt_dir
 playervar mvmt_interrupt
 
-playervar disabled_dir
-playervar disabled_index
 playervar xz_disabled
+
+playervar disabled_index
+playervar disabled_dir
+playervar disabled_bound
+
+playervar disabled_type
+playervar disabled_value
 
 globalvar calc1
 globalvar calc2
 globalvar calc3
 
-subroutine calc_disabled_direction
-subroutine disable_movement_direction
+subroutine disable_movement_boundary
+subroutine disable_movement_distance
 
 globalvar display_boundary

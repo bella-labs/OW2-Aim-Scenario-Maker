@@ -1,33 +1,42 @@
 rule "Boundary Handler - Correct X Min (Backwards)":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
+    @Condition eventPlayer.getPosition().x < eventPlayer.boundary_limits[0].x or eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x or eventPlayer.getPosition().z < eventPlayer.boundary_limits[0].z or eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z
 
-    eventPlayer.disabled_movements = [0,0,0,0,0,0,0,0]
+    # a = (theta / 45) + 5, +5 ot
+    eventPlayer.disabled_index = horizontalAngleOfDirection(eventPlayer.getFacingDirection()) / 45
+    calc1 = eventPlayer.disabled_index
+    # x = (a - floor(a/8)*8)
+    eventPlayer.disabled_index = round((eventPlayer.disabled_index - (floor(eventPlayer.disabled_index / 8) * 8))) % 8
+    # Calculate D_(0-7)
+    eventPlayer.disabled_dir[XZ_DIR.BACKWARD] =       (eventPlayer.disabled_index + 6) % 8
+    eventPlayer.disabled_dir[XZ_DIR.BACKWARD_RIGHT] = (eventPlayer.disabled_index + 7) % 8
+    eventPlayer.disabled_dir[XZ_DIR.RIGHT] =          (eventPlayer.disabled_index + 0) % 8
+    eventPlayer.disabled_dir[XZ_DIR.FORWARD_RIGHT] =  (eventPlayer.disabled_index + 1) % 8
+    eventPlayer.disabled_dir[XZ_DIR.FORWARD] =        (eventPlayer.disabled_index + 2) % 8
+    eventPlayer.disabled_dir[XZ_DIR.FORWARD_LEFT] =   (eventPlayer.disabled_index + 3) % 8
+    eventPlayer.disabled_dir[XZ_DIR.LEFT] =           (eventPlayer.disabled_index + 4) % 8
+    eventPlayer.disabled_dir[XZ_DIR.BACKWARD_LEFT] =  (eventPlayer.disabled_index + 5) % 8
+
+    # Boundary 1
     if eventPlayer.getPosition().x < eventPlayer.boundary_limits[0].x:
-        eventPlayer.disabled_index = 0
-        calc_disabled_direction()
-        eventPlayer.disabled_dir[0] += XZ_DIR.BACKWARD
-        disable_movement_direction()
-
+        eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 6) % 8)
+    # Boundary 3
     elif eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x:
-        eventPlayer.disabled_index = 1
-        calc_disabled_direction()
-        eventPlayer.disabled_dir[1] += XZ_DIR.FORWARD
-        disable_movement_direction()
-
+        eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 2) % 8)
+    
+    # Boundary 2
     if eventPlayer.getPosition().z < eventPlayer.boundary_limits[0].z:
-        eventPlayer.disabled_index = 2
-        calc_disabled_direction()
-        eventPlayer.disabled_dir[2] += XZ_DIR.LEFT
-        disable_movement_direction()
+        eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 0) % 8)
+    # Boundary 4
     elif eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z:
-        eventPlayer.disabled_index = 3
-        calc_disabled_direction()
-        eventPlayer.disabled_dir[3] += XZ_DIR.RIGHT
-        disable_movement_direction()
+        eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 4) % 8)
 
-    wait(0.1)
+    eventPlayer.disabled_bound = (eventPlayer.disabled_bound + 7) % 8
+    disable_movement_boundary()
+
+    wait(0.25)
 
     if RULE_CONDITION:
         goto RULE_START
@@ -70,7 +79,7 @@ rule "Distance Handler - Correct Min Distance":
     else:
         eventPlayer.disabled_dir[4] = XZ_DIR.FORWARD_RIGHT
 
-    disable_movement_direction()
+    disable_movement_distance()
 
     if RULE_CONDITION:
         goto RULE_START 
@@ -82,14 +91,14 @@ rule "Distance Handler - Correct Max Distance":
     @Condition eventPlayer.isAlive()
     @Condition distance(eventPlayer.getPosition() * vect(1,0,1), eventPlayer.owner_player.getPosition() * vect(1,0,1)) > eventPlayer.bot_dist_max
 
-    eventPlayer.disabled_index = 5
+    eventPlayer.disabled_value[1] = 5
     if eventPlayer.bot_facing_type == 0:
         eventPlayer.disabled_dir[5] = (horizontalAngleTowards(eventPlayer, eventPlayer.owner_player.getPosition()) / 45 + 7)
         eventPlayer.disabled_dir[5] = round(eventPlayer.disabled_dir[5] - floor(eventPlayer.disabled_dir[5] / 8) * 8) % 8
     else:
         eventPlayer.disabled_dir[5] = XZ_DIR.BACKWARD_LEFT
 
-    disable_movement_direction()
+    disable_movement_distance()
 
     if RULE_CONDITION:
         goto RULE_START
@@ -240,15 +249,28 @@ def teleport_target():
             break 
 
 
-def calc_disabled_direction():
-    @Name "SUB: calc_disabled_direction"
+def disable_movement_boundary():
+    @Name "SUB: disable_movement_boundary"
 
-    eventPlayer.disabled_dir[eventPlayer.disabled_index] = (horizontalAngleOfDirection(eventPlayer.getFacingDirection()) / 45) + 5
-    eventPlayer.disabled_dir[eventPlayer.disabled_index] = round(eventPlayer.disabled_dir[eventPlayer.disabled_index] - floor(eventPlayer.disabled_dir[eventPlayer.disabled_index] / 8) * 8) % 8
+    if eventPlayer.isAlive():
+        eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 0) % 8] += 1
+        eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] += 1
+        eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] += 1
+
+        async(select_mvmt_dir, AsyncBehavior.RESTART)
+        wait(0.1)
+
+        if eventPlayer.isAlive():
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 0) % 8] > 0:
+                eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 0) % 8] -= 1
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] > 0:
+                eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 1) % 8] -= 1
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] > 0:
+                eventPlayer.disabled_movements[(eventPlayer.disabled_bound + 2) % 8] -= 1
 
 
-def disable_movement_direction():
-    @Name "SUB: disable_movement_direction"
+def disable_movement_distance():
+    @Name "SUB: disable_movement_distance"
 
     if eventPlayer.isAlive():
         eventPlayer.disabled_movements[eventPlayer.disabled_dir[eventPlayer.disabled_index] % 8] += 1
@@ -256,3 +278,12 @@ def disable_movement_direction():
         eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 2) % 8] += 1
 
         async(select_mvmt_dir, AsyncBehavior.RESTART)
+        wait(0.1)
+
+        if eventPlayer.isAlive():
+            if eventPlayer.disabled_movements[eventPlayer.disabled_dir[eventPlayer.disabled_index] % 8] > 0:
+                eventPlayer.disabled_movements[eventPlayer.disabled_dir[eventPlayer.disabled_index] % 8] -= 1
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 1) % 8] > 0:    
+                eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 1) % 8] -= 1
+            if eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 2) % 8] > 0:  
+                eventPlayer.disabled_movements[(eventPlayer.disabled_dir[eventPlayer.disabled_index] + 2) % 8] -= 1
