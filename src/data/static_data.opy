@@ -60,7 +60,7 @@ rule "Load Static Data":
                     [0,0,1,1,1,1,0,1], # Cycle List
                     [0,0,1,1,3,3,0,1], # Cycle Toggle
                     [0,0,1,1,4,4,0,2], # Cycle Override
-                    [0,0,1,1,1,1,1,1], # Subitem Cycle List
+                    [0,0,1,1,1,1,1,1], # Subitem Cycle r
                     [0,0,2,2,2,2,1,1], # Subitem Cycle List + Toggle
                     [0,0,1,1,1,1,1,2], # Subitem Vector List
                     [0,0,2,2,2,2,1,2]  # Subitem Vector Toggle
@@ -80,7 +80,8 @@ rule "load_language_data":
             "close",
             "open",
             "menu",
-            "to confirm override"
+            "to override the currently selected slot",
+            "to override all slots"
         ],
         [
             "", 
@@ -165,7 +166,7 @@ rule "load_language_data":
             "Display Boundaries",
             "Test Bot in Slot",
             "Test Scenario",
-            "Export",
+            "Export and Share",
             "Display Export Instructions",
             "Display Import Instructions"
         ],
@@ -403,7 +404,7 @@ rule "load_language_data":
         [
             ["Disabled", "Enabled"], 
             ["Timed", "Score Limit"],
-            ["Static", "Random", "Health", "Elims (Target)", "Looping (Target)"],
+            ["Random", "Health", "Elims (Target)", "Looping (Target)"],
             ["Fixed Position", "Random in Boundary", "Random Walkable in Boundary"],
             ["Fixed", "Player"],
             ["Reverse on Collision", "Stop on Collision", "Teleport to In-Bounds"],
@@ -496,8 +497,8 @@ rule "load_language_data":
     ]
     strings_instructions = [
         [
-            "How to export your configuration:\n1. Open the Overwatch menu (esc)\n2. Select \"Open Workshop Inspector\"\n3. Select \"auto\"\n4. Select \"Iris\"\n5. Select the rightmost button from the bottom left that looks like this: [(x)]\n    When you hover over the button it should say\n    \"Copy clipboard current varaibles for current variables target as workshop actions\"\n6. Your settings variables will now be in your clipboard\n    6a. To save your work, paste your settings into a text file on your computer.\n    6b. To share your scenario or resume your work please see \"import instructions\"\n", 
-            "How to import your configuration:\n1. Select the import code button from the settings page of the lobby menu.\n2. Enter the code\n    2a. If you want to share your scenario use the code for the Aim Scenario Player: XXXXX\n    2b. If you are resuming creating a scenario enter code for the Aim Scenario Maker: YYYYY\n3.Select the \"Workshop\" tile with black text.\n4. Scroll to the top of the first page\n5. Click the \">\" icon to the left of the first rule titled \"Paste Player Variables Here\"\n6. In the \"actions\" column to the right, select the orange \"paste\" button.\n7. Start/Restart the Match and your settings should load.\n    7a. If you are using the Aim Scenario Player code you may now create a share code by\n        selecting \"Share Code\" in the workshop settings menu\n    7b. If you are using the Aim Scenario Maker code you may now continue designing your scenario \n", 
+            "How to export your configuration:\n1. Open the Overwatch menu (esc)\n2. Select \"Open Workshop Inspector\"\n3. Select the dropdown menu \"Variable Target\"\n4. Select \"Iris\"\n5. Select the rightmost button from the bottom left that looks like this: [(x)]\n    When you hover over the button it will say\n    \"Copy clipboard current varaibles for current variables target as workshop actions\"\n6. Your settings variables will now be in your clipboard\n    6a. To save your work, paste your settings into a text file on your computer.\n    6b. To share your scenario or resume your work please see \"import instructions\"\n", 
+            "How to import your configuration:\n1. Select the import code button from the settings page of the lobby menu.\n2. Enter the code\n    2a. If you want to share your scenario use the code for the Aim Scenario Player: XXXXX\n    2b. If you are resuming creating a scenario enter code for the Aim Scenario Maker: YYYYY\n3.Select the \"Workshop\" tile with black text.\n4. Scroll to the top of the first page\n5. Click the \">\" symbol to the left of the first rule titled \"Paste Player Variables Here\"\n6. In the \"actions\" column to the right, select the orange \"paste\" button.\n7. Start/Restart the Match and your settings will be loaded.\n    7a. If you are using the Aim Scenario Player code you may now create a share code by\n        selecting \"Share Code\" in the lobby settings menu\n    7b. If you are using the Aim Scenario Maker code you may now continue designing your scenario \n", 
             "To list your share code on bellalabs.dev/ow2-scenario-codes\nfill out the form avaliable at: bellalabs.dev/ow2-share-form\n"
         ],
         [

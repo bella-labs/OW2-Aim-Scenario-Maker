@@ -54,7 +54,7 @@ def menu_act_submenu_main():
         case submenu_curr_start + 6:
             break
         case submenu_curr_start + 7:
-            act_main_toggle_import()
+            act_main_toggle_export()
             break
         case submenu_curr_start + 8:
             act_main_toggle_import()

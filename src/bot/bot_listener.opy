@@ -199,19 +199,16 @@ rule "Target Bot Listener - Scale":
     eventPlayer.bot_scale_target = databot.bot_scale_target[eventPlayer.getSlot()]
 
     switch eventPlayer.bot_scale_type:
-        case 0: # Static
-            eventPlayer.startScalingSize(eventPlayer.bot_scale_min, true)
-            break
-        case 1: # Random
+        case 0: # Random
             eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
             break
-        case 2: # Health
+        case 1: # Health
             eventPlayer.startScalingSize(eventPlayer.bot_scale_min + (eventPlayer.bot_scale_max - eventPlayer.bot_scale_min) * eventPlayer.getNormalizedHealth(), true)
             break
-        case 3: #Elims
+        case 2: #Elims
             eventPlayer.startScalingSize(max(eventPlayer.bot_scale_min, (eventPlayer.bot_scale_max) - (elims * eventPlayer.bot_scale_target)), true)
             break
-        case 4: #Time
+        case 3: #Time
             eventPlayer.startScalingSize(eventPlayer.bot_scale_min + (eventPlayer.bot_scale_max - eventPlayer.bot_scale_min) * (sin(Math.PI*(timer%eventPlayer.bot_scale_target)/eventPlayer.bot_scale_target)), true)
             break
 

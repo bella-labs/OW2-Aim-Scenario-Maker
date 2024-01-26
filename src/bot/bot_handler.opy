@@ -2,12 +2,12 @@ rule "Boundary Handler - Correct X Min (Backwards)":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive()
-    @Condition eventPlayer.getPosition().x < eventPlayer.boundary_limits[0].x or eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x or eventPlayer.getPosition().z < eventPlayer.boundary_limits[0].z or eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z
+    @Condition eventPlayer.getPosition().x - 0.5 < eventPlayer.boundary_limits[0].x or eventPlayer.getPosition().x + 0.5 > eventPlayer.boundary_limits[1].x or eventPlayer.getPosition().z - 0.5 < eventPlayer.boundary_limits[0].z or eventPlayer.getPosition().z + 0.5 > eventPlayer.boundary_limits[1].z
 
-    # a = (theta / 45) + 5, +5 ot
+    # a = (theta / 45)
     eventPlayer.disabled_index = horizontalAngleOfDirection(eventPlayer.getFacingDirection()) / 45
     calc1 = eventPlayer.disabled_index
-    # x = (a - floor(a/8)*8)
+    # x = (a - floor( a / 8) * 8)
     eventPlayer.disabled_index = round((eventPlayer.disabled_index - (floor(eventPlayer.disabled_index / 8) * 8))) % 8
     # Calculate D_(0-7)
     eventPlayer.disabled_dir[XZ_DIR.BACKWARD] =       (eventPlayer.disabled_index + 6) % 8
@@ -20,23 +20,23 @@ rule "Boundary Handler - Correct X Min (Backwards)":
     eventPlayer.disabled_dir[XZ_DIR.BACKWARD_LEFT] =  (eventPlayer.disabled_index + 5) % 8
 
     # Boundary 1
-    if eventPlayer.getPosition().x < eventPlayer.boundary_limits[0].x:
+    if eventPlayer.getPosition().x - 0.1 < eventPlayer.boundary_limits[0].x:
         eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 6) % 8)
     # Boundary 3
-    elif eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x:
+    elif eventPlayer.getPosition().x + 0.1 > eventPlayer.boundary_limits[1].x:
         eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 2) % 8)
     
     # Boundary 2
-    if eventPlayer.getPosition().z < eventPlayer.boundary_limits[0].z:
+    if eventPlayer.getPosition().z - 0.1 < eventPlayer.boundary_limits[0].z:
         eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 0) % 8)
     # Boundary 4
-    elif eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z:
+    elif eventPlayer.getPosition().z + 0.1 > eventPlayer.boundary_limits[1].z:
         eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 4) % 8)
 
     eventPlayer.disabled_bound = (eventPlayer.disabled_bound + 7) % 8
     disable_movement_boundary()
 
-    wait(0.25)
+    wait(0.1)
 
     if RULE_CONDITION:
         goto RULE_START
@@ -165,7 +165,7 @@ rule "Speed Handler - Elims":
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 3
 
-    eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (elims * eventPlayer.bot_scale_target)))
+    eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (elims * eventPlayer.bot_speed_target)))
 
 
 rule "Speed Handler - Loop":
@@ -174,7 +174,7 @@ rule "Speed Handler - Loop":
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 4
 
-    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(timer%eventPlayer.bot_scale_target)/eventPlayer.bot_scale_target)))
+    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(timer%eventPlayer.bot_speed_target)/eventPlayer.bot_speed_target)))
     wait(0.25)
 
     if RULE_CONDITION:
@@ -224,6 +224,8 @@ rule "Death Handler":
         eventPlayer.disabled_movements[eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT]] = 0
         eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] += 1
 
+    if eventPlayer.bot_scale_type == 0:
+        eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
     wait()
     if len(eventPlayer.bot_hero_pool) == 1:
         eventPlayer.setHealth(eventPlayer.bot_health)

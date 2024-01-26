@@ -119,17 +119,17 @@ def act_bot_override_slot():
             act_general_num_var_1()
             break
         case MENU_ACTIONS.MENU_JUMP_LEFT:
-            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][6]))
+            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][7]))
             menu_item_color_on[menu_index] = menu_colors_custom[0]
-            waitUntil((eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])) == true, 2)
+            waitUntil((eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])) == true, 1)
             if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
-                for loop_index in range(0,11):
+                menu_item_color_on[menu_index] = menu_colors_custom[1]
+                for loop_index in range(0,12):
                     action_var = loop_index
                     subact_bot_override_slot()
-                menu_item_color_on[menu_index] = menu_colors_custom[1]
-                wait(0.25)
-        
+                wait(0.1)
             menu_item_color_on[menu_index] = menu_color_on_index
+            break
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][6]))
             menu_item_color_on[menu_index] = menu_colors_custom[0]
@@ -138,9 +138,10 @@ def act_bot_override_slot():
                 action_var = menu_item_var_1[menu_index]
                 subact_bot_override_slot()
                 menu_item_color_on[menu_index] = menu_colors_custom[1]
-                wait(0.25)
-        
+                wait(0.1)
             menu_item_color_on[menu_index] = menu_color_on_index
+            break
+
 
 
 def subact_bot_override_slot():

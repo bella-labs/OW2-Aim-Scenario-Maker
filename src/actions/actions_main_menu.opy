@@ -47,8 +47,8 @@ def act_main_test_bot_in_slot():
     act_general_toggle_var_2()
 
 
-def act_main_toggle_import():
-    @Name "SUB: act_main_toggle_import"
+def act_main_toggle_export():
+    @Name "SUB: act_main_toggle_export"
 
     display_help[0] = not display_help[0]
 
@@ -58,8 +58,8 @@ def act_main_toggle_import():
     act_general_toggle_var_1()
 
     
-def act_main_toggle_export():
-    @Name "SUB: act_main_toggle_export"
+def act_main_toggle_import():
+    @Name "SUB: act_main_toggle_import"
 
     display_help[1] = not display_help[1]
 
