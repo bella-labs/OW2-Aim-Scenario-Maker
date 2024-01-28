@@ -389,7 +389,8 @@ playervar is_in_bounds
 
 playervar disabled_target
 
-playervar disabled_movements
+playervar disabled_hori
+playervar disabled_vert
 playervar owner_player
 playervar profile_list
 playervar profile_index
@@ -408,11 +409,12 @@ subroutine set_disabled_index_dist
 
 
 playervar target_mvmt_dir
-playervar target_vert_impulse
+playervar target_vert_dir
 playervar target_rand
 playervar target_mvmt_vect
 playervar target_mvmt_index
-playervar target_mvmt_wait
+playervar target_hori_wait
+playervar target_vert_wait
 
 
 
@@ -448,6 +450,11 @@ subroutine set_item_data
 
 playervar title
 playervar author
+
+playervar target_impulse_wait
+
+subroutine target_up_impulse
+subroutine target_down_impulse
 
 
 enum SUBMENUS:
@@ -583,10 +590,7 @@ enum OPTIONS_TYPE:
     SCE_MODE
 
 enum PLAYER_INDEXES:
-    DISABLE_MVMT = 0,
-    PROFILE,
-    WEIGHTS_1,
-    WEIGHTS_2
+    PROFILE = 0
 
 enum PLAYER_RAND:
     XZ = 0,
@@ -607,5 +611,5 @@ enum XZ_DIR:
     BACKWARD_LEFT,
 
 enum YDIR:
-    UP = 8,
+    UP = 0,
     DOWN
