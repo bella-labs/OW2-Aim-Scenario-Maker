@@ -1,8 +1,6 @@
 
 # Bot Settings
 
-## Bot Slot
-
 ### Select Bot Slot
 
 **Description**
@@ -16,19 +14,6 @@ Select the bot you would like to modify, and enable/disable them in the scenario
 | Slot                       | Integer              | 0          | 11         |
 | Status                     | Boolean              | false      | true       |
 
-**Menu Inputs**
-
-| Input              | Effect                                                 |
-| ------------------ | ------------------------------------------------------ |
-| Step Left          | -1                                                     |
-| Step Right         | +1                                                     |
-| Jump Left          | Toggle All                                             |
-| Jump Right         | Toggle Selected                                        |
-| Previous Subitem   | N/A                                                    |
-| Next Subitem       | N/A                                                    |
-| Special Action     | N/A                                                    |
-| Cycle Override     | Maximum Cycle Speed                                    |
-
 **Usage** 
 
 1. Step left and right to select the bot you would configure.
@@ -38,7 +23,7 @@ Select the bot you would like to modify, and enable/disable them in the scenario
     
     b. Jump right to enable the bot currently selected.
 
-### Override from Slot
+### Copy Current Bot to Slot
 
 **Description**
 
@@ -50,19 +35,6 @@ Overrides the slot selected with data from this slot. After entering a Jump inpu
 | -------------------------- | -------------------- | ---------- | ---------- |
 | Slot                       | Integer              | 0          | 11         |
 
-**Menu Inputs**
-
-| Input              | Effect                                                 |
-| ------------------ | ------------------------------------------------------ |
-| Step Left          | Previous Slot                                          |
-| Step Right         | Next Slot                                              |
-| Jump Left          | Override all slots with data from the current slot     |
-| Jump Right         | Override the selected with data from the current slot  |
-| Previous Subitem   | N/A                                                    |
-| Next Subitem       | N/A                                                    |
-| Special Action     | Confirm Override                                       |
-| Cycle Override     | Maximum Cycle Speed                                    |
-
 **Usage** 
 
 1. Step left and right to select the bot you would configure.
@@ -72,12 +44,37 @@ Overrides the slot selected with data from this slot. After entering a Jump inpu
     
     b. Jump right to override the selected slots with the currently selected data. 
 
-## Bot Spawn and Boundaries
+## Spawn and Boundaries
+
+### Spawn
+
+### Facing
+
+### Boundary
+
+### Dimensions
+
+### Distance
 
 ## Bot Parameters
 
+### Hero Pool
 
+### Health
 
+### Speed
+
+### Scale
+
+### Gravity
+
+## Movement Profiles
+
+### Profile Status
+
+### Profile Order
+
+### Script
 
 
 
@@ -109,18 +106,6 @@ Description
 | -------------------------- | -------------------- | ---------- | ---------- |
 | Name                       | Integer              | 0          | 11         |
 
-**Menu Inputs**
-
-| Input              | Effect                                                 |
-| ------------------ | ------------------------------------------------------ |
-| Step Left          | -1                                                     |
-| Step Right         | +1                                                     |
-| Jump Left          | Toggle All                                             |
-| Jump Right         | Toggle Selected                                        |
-| Previous Subitem   | N/A                                                    |
-| Next Subitem       | N/A                                                    |
-| Special Action     | N/A                                                    |
-| Cycle Override     | Maximum Cycle Speed                                    |
 
 **Usage** 
 

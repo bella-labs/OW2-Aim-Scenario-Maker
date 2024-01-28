@@ -12,16 +12,16 @@ Opens the Scenario Settings submenu.
 
 1. Enter an input option to open the scenario settings submenu.
 
-### Bots
+### Bot
 **Description**
 
-Opens the Bots Settings submenu.
+Opens the Bot Settings submenu.
 
 **Usage**
 
 1. Enter an input option to open the bot settings submenu.
 
-### Profiles
+### Profile
 **Description**
 
 Opens the Profile Settings submenu.
@@ -32,7 +32,7 @@ Opens the Profile Settings submenu.
 
 ## Test
 
-### Change Hero
+### Open Hero Select
 
 **Description**
 
@@ -42,7 +42,7 @@ Returns the player to the hero select screen.
 
 1. Enter an input to open the hero select screen.
 
-### Show Boundary UI
+### Display Boundaries
 
 **Description**
 
@@ -69,7 +69,7 @@ Toggles spawning and destroying bot(s).
 1a. Enter toggle left to enable/disable all bots with that have their slots enabled in the bot settings.
 1b.  Enter toggle right to enable/disable the bot in the selected slot if it is enabled in the bot settings.
 
-### Start Scenario
+### Test Scenario
 
 **Description**
 
@@ -85,9 +85,9 @@ Toggles starting and stopping the scenario.
 
 1. Toggle to start/stop the scenario.
 
-## Export Instructions
+## Export and Share
 
-### Toggle Export Instructions
+### Display Export Instructions
 
 **Description**
 
@@ -103,7 +103,7 @@ Toggles showing the instructions to save the scenario on the left side of the hu
 
 1. Enter an input display/hide the export instructions.
 
-### Toggle Import Instructions
+### Display Import Instructions
 
 **Description**
 

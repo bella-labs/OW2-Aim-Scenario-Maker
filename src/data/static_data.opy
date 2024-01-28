@@ -349,7 +349,7 @@ rule "load_language_data":
             "Display Import Instructions"
         ],
         [
-            "\n\n", 
+            "*\n*\n", 
             "",
             "",
             "",
@@ -396,10 +396,10 @@ rule "load_language_data":
             "Speed",
             "Scale",
             "Gravity",
-            "Profiles",
-            "Profiles Status",
+            "Movement Profiles",
+            "Profile Status",
             "Profile Order",
-            "Use Custom Script"
+            "Custom Script"
         ],
         [
             "",
@@ -450,9 +450,9 @@ rule "load_language_data":
     ]
     strings_prof_menu = [
         [
-            "Profile Settings", 
+            "Movement Profile Settings", 
             "◀ Main Menu",
-            "Profiles", 
+            "Slot", 
             "Select Profile Slot",
             "Copy Current Profile to Slot",
             "Horizontal Movement",
@@ -524,7 +524,7 @@ rule "load_language_data":
             "Scoring",
             "Scenario Type",
             "Points",
-            "Strafe Score",
+            "Strafe Points",
             "Custom Script"
         ],
         [

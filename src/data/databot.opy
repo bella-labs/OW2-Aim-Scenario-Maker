@@ -41,6 +41,9 @@ def setup_databot():
 def default_settings():
     @Name "SUB: default_settings"
     
+    eventPlayer.title = "Aim Scenario"
+    eventPlayer.author = getPlayersInSlot(0, Team.1)
+
     eventPlayer.import_status = true
     
     eventPlayer.sce_player_spawn = vect(15,0,0)
@@ -58,29 +61,40 @@ def default_settings():
     eventPlayer.sce_custom_status = false
 
     for loop_index in range(0, 12):
+        
         eventPlayer.bot_slot_status[loop_index] = false
+
         eventPlayer.bot_spawn_type[loop_index] = 0
         eventPlayer.bot_spawn_vect[loop_index] = vect(0,0,0)
+
         eventPlayer.bot_facing_type[loop_index] = 0
         eventPlayer.bot_facing_vect[loop_index] = vect(1,0,0)
+
         eventPlayer.bot_bound_type[loop_index] = 0
         eventPlayer.bot_bound_pos[loop_index] = vect(0,10,0)
+
         eventPlayer.bot_bound_angle[loop_index] = 0
         eventPlayer.bot_bound_dim[loop_index] = vect(10,10,10)
+
         eventPlayer.bot_dist_min[loop_index] = 0
         eventPlayer.bot_dist_max[loop_index] = 50
+
         eventPlayer.bot_hero_pool[loop_index] = [Hero.TRACER]
+
         eventPlayer.bot_health[loop_index] = 100
         eventPlayer.bot_hps[loop_index] = 0
         eventPlayer.bot_hps_wait[loop_index] = 0
+        
         eventPlayer.bot_speed_type[loop_index] = 0
         eventPlayer.bot_speed_min[loop_index] = 100
         eventPlayer.bot_speed_max[loop_index] = 100
         eventPlayer.bot_speed_target[loop_index] = 0
+
         eventPlayer.bot_scale_type[loop_index] = 0
         eventPlayer.bot_scale_min[loop_index] = 1
         eventPlayer.bot_scale_max[loop_index] = 1
         eventPlayer.bot_scale_target[loop_index] = 0
+
         eventPlayer.bot_gravity[loop_index] = 100
 
         eventPlayer.bot_profile_weights[loop_index] = [1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
@@ -95,6 +109,7 @@ def default_settings():
     eventPlayer.bot_slot_status[0] = true
     
     for loop_index in range(0, 12):
+
         eventPlayer.mvmt_hori_type[loop_index] = 0
         eventPlayer.mvmt_hori_impulse[loop_index] = 0
         eventPlayer.mvmt_hori_interval[loop_index] = 0
@@ -121,7 +136,6 @@ def default_settings():
         eventPlayer.mvmt_jump_min[loop_index] = 0
         eventPlayer.mvmt_jump_max[loop_index] = 0
 
-        
         eventPlayer.mvmt_crouch_chance[loop_index] = 0
         eventPlayer.mvmt_crouch_interval[loop_index] = 0
         eventPlayer.mvmt_uncrouch_min[loop_index] = 0
