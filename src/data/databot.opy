@@ -5,8 +5,8 @@ rule "Databot Populate Settings":
     @Condition eventPlayer.isDummy() 
     @Condition eventPlayer.hasSpawned() 
 
-    data_loaded[DATA_TYPE.DATA_BOT] = false
-    waitUntil(data_loaded[DATA_TYPE.DATA_CONTROLS] == true, 9999)
+    data_loaded[DATA_TYPE.BOT] = false
+    waitUntil(data_loaded[DATA_TYPE.CONTROLS] == true, 9999)
     
     eventPlayer.import_status = false
     import_settings()
@@ -15,7 +15,7 @@ rule "Databot Populate Settings":
     for loop_index in range(0, 12):
 
 
-    data_loaded[DATA_TYPE.DATA_BOT] = true
+    data_loaded[DATA_TYPE.BOT] = true
         
 
 def setup_databot():
@@ -45,8 +45,8 @@ def default_settings():
     
     eventPlayer.sce_player_spawn = vect(15,0,0)
     eventPlayer.sce_player_facing = vect(-1,0,0)
-    eventPlayer.sce_player_speed = 0
-    eventPlayer.sce_player_gravity = 0
+    eventPlayer.sce_player_speed = 100
+    eventPlayer.sce_player_gravity = 100
     eventPlayer.sce_game_mode = 0
     eventPlayer.sce_game_limit = 60
     eventPlayer.sce_bs_points = 0
@@ -84,13 +84,17 @@ def default_settings():
         eventPlayer.bot_gravity[loop_index] = 100
 
         eventPlayer.bot_profile_weights[loop_index] = [1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-        eventPlayer.bot_profile_max_weight = 1
+        eventPlayer.bot_profile_max_weight[loop_index] = 1
 
         eventPlayer.bot_profile_type[loop_index] = 0
         eventPlayer.bot_profile_min[loop_index] = 0
         eventPlayer.bot_profile_max[loop_index] = 0
+
         eventPlayer.bot_script_status[loop_index] = false
 
+    eventPlayer.bot_slot_status[0] = true
+    
+    for loop_index in range(0, 12):
         eventPlayer.mvmt_hori_type[loop_index] = 0
         eventPlayer.mvmt_hori_impulse[loop_index] = 0
         eventPlayer.mvmt_hori_interval[loop_index] = 0
@@ -114,24 +118,22 @@ def default_settings():
 
         eventPlayer.mvmt_jump_chance[loop_index] = 0
         eventPlayer.mvmt_jump_interval[loop_index] = 0
-        eventPlayer.mvmt_crouch_chance[loop_index] = 0
-        eventPlayer.mvmt_crouch_interval[loop_index] = 0
-
         eventPlayer.mvmt_jump_min[loop_index] = 0
         eventPlayer.mvmt_jump_max[loop_index] = 0
+
         
-        eventPlayer.mvmt_crouch_min[loop_index] = 0
-        eventPlayer.mvmt_crouch_max[loop_index] = 0
+        eventPlayer.mvmt_crouch_chance[loop_index] = 0
+        eventPlayer.mvmt_crouch_interval[loop_index] = 0
         eventPlayer.mvmt_uncrouch_min[loop_index] = 0
         eventPlayer.mvmt_uncrouch_max[loop_index] = 0
 
         eventPlayer.mvmt_lr_idle_chance[loop_index] = 0
         eventPlayer.mvmt_lr_idle_interval[loop_index] = 0
-        eventPlayer.mvmt_fb_idle_chance[loop_index] = 0
-        eventPlayer.mvmt_fb_idle_interval[loop_index] = 0
-
         eventPlayer.mvmt_lr_idle_min[loop_index] = 0
         eventPlayer.mvmt_lr_idle_max[loop_index] = 0
+
+        eventPlayer.mvmt_fb_idle_chance[loop_index] = 0
+        eventPlayer.mvmt_fb_idle_interval[loop_index] = 0
         eventPlayer.mvmt_fb_idle_min[loop_index] = 0
         eventPlayer.mvmt_fb_idle_max[loop_index] = 0
 

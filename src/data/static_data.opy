@@ -1,50 +1,52 @@
 rule "Load Static Data":
     @Event global
 
-    hero_array =   [Hero.TRACER,
-                    Hero.REAPER,
-                    Hero.WIDOWMAKER,
-                    Hero.PHARAH,
-                    Hero.REINHARDT,
-                    Hero.MERCY,
-                    Hero.TORBJORN,
-                    Hero.HANZO,
-                    Hero.WINSTON,
-                    Hero.ZENYATTA,
-                    Hero.BASTION,
-                    Hero.SYMMETRA,
-                    Hero.ZARYA,
-                    Hero.MCCREE,
-                    Hero.SOLDIER,
-                    Hero.LUCIO,
-                    Hero.ROADHOG,
-                    Hero.JUNKRAT,
-                    Hero.DVA,
-                    Hero.MEI,
-                    Hero.GENJI,
-                    Hero.ANA,
-                    Hero.SOMBRA,
-                    Hero.ORISA,
-                    Hero.DOOMFIST,
-                    Hero.MOIRA,
-                    Hero.BRIGITTE,
-                    Hero.HAMMOND,
-                    Hero.ASHE,
-                    Hero.BAPTISTE,
-                    Hero.SIGMA,
-                    Hero.ECHO,
-                    Hero.SOJOURN,
-                    Hero.JUNKER_QUEEN,
-                    Hero.KIRIKO,
-                    Hero.RAMATTRA,
-                    Hero.LIFEWEAVER,
-                    Hero.ILLARI,
-                    Hero.MAUGA
-                   #Hero.VENTURE
-                   #Hero.SPACE_RANGER 
+    hero_array =    [
+                        Hero.TRACER,
+                        Hero.REAPER,
+                        Hero.WIDOWMAKER,
+                        Hero.PHARAH,
+                        Hero.REINHARDT,
+                        Hero.MERCY,
+                        Hero.TORBJORN,
+                        Hero.HANZO,
+                        Hero.WINSTON,
+                        Hero.ZENYATTA,
+                        Hero.BASTION,
+                        Hero.SYMMETRA,
+                        Hero.ZARYA,
+                        Hero.MCCREE,
+                        Hero.SOLDIER,
+                        Hero.LUCIO,
+                        Hero.ROADHOG,
+                        Hero.JUNKRAT,
+                        Hero.DVA,
+                        Hero.MEI,
+                        Hero.GENJI,
+                        Hero.ANA,
+                        Hero.SOMBRA,
+                        Hero.ORISA,
+                        Hero.DOOMFIST,
+                        Hero.MOIRA,
+                        Hero.BRIGITTE,
+                        Hero.HAMMOND,
+                        Hero.ASHE,
+                        Hero.BAPTISTE,
+                        Hero.SIGMA,
+                        Hero.ECHO,
+                        Hero.SOJOURN,
+                        Hero.JUNKER_QUEEN,
+                        Hero.KIRIKO,
+                        Hero.RAMATTRA,
+                        Hero.LIFEWEAVER,
+                        Hero.ILLARI,
+                        Hero.MAUGA
+                        #Hero.VENTURE
+                        #Hero.SPACE_RANGER 
                     ]
 
-    ranges =    [   ["N/A", "N/A"], # None
+    ranges =    [   
+                    ["N/A", "N/A"], # None
                     [0,11], # Slot
                     [0,len(hero_array)-1], # Hero
                     [0,100], # Percentage
@@ -54,23 +56,196 @@ rule "Load Static Data":
                     [-1000,1000], # Vector
                     [0, 1000000] # Score
                 ]
-    small_steps = ["N/A", 0.01, 1]
-    large_steps = ["N/A", 1, 10]
-    help_configs = [[0,0,0,0,0,0,0,0], # Default
-                    [0,0,1,1,1,1,0,1], # Cycle List
-                    [0,0,1,1,3,3,0,1], # Cycle Toggle
-                    [0,0,1,1,4,4,0,2], # Cycle Override
-                    [0,0,1,1,1,1,1,1], # Subitem Cycle List
-                    [0,0,2,2,2,2,1,1], # Subitem Cycle List + Toggle
-                    [0,0,1,1,1,1,1,2], # Subitem Vector List
-                    [0,0,2,2,2,2,1,2]  # Subitem Vector Toggle
+
+    small_steps =   [
+                        "N/A", 
+                        0.01, 
+                        1
+                    ]
+
+    large_steps =   [
+                        "N/A",
+                        1,
+                        10
+                    ]
+
+    help_data = [
+                    [0,0,0,0,0,0,0,0,0,0], # Default
+                    [0,0,1,1,1,1,0,0,1,0], # Cycle List
+                    [0,0,1,1,3,3,0,0,1,0], # Cycle Toggle
+                    [0,0,1,1,4,4,0,0,3,0], # Cycle Override
+                    [0,0,1,1,1,1,1,1,1,0], # Subitem Cycle
+                    [0,0,2,2,2,2,1,1,1,0], # Subitem Cycle List + Toggle
+                    [0,0,1,1,1,1,1,1,2,0], # Subitem Vector List
+                    [0,0,2,2,2,2,1,1,2,0]  # Subitem Vector Toggle
                     ] 
+    
+    item_data = [
+                        [
+                            TAG_TYPE.NONE,
+                            [],
+                            [],
+                            [],
+                            [HELP_TYPE.DEFAULT],
+                            HELP_TYPE.DEFAULT
+                        ],
+                        [
+                            TAG_TYPE.NONE,
+                            [RANGE_TYPE.SLOT],
+                            [SMALL_TYPE.SM_1],
+                            [LARGE_TYPE.LG_1],
+                            HELP_TYPE.CYCLE
+                        ],
+                        [
+                            TAG_TYPE.NONE,
+                            [RANGE_TYPE.SLOT],
+                            [SMALL_TYPE.SM_1],
+                            [LARGE_TYPE.LG_1],
+                            HELP_TYPE.CYCLE_TOGGLE
+                        ],
+                        [
+                            TAG_TYPE.NONE,
+                            [RANGE_TYPE.SLOT],
+                            [SMALL_TYPE.SM_1],
+                            [LARGE_TYPE.LG_1],
+                            HELP_TYPE.CYCLE_OVERRIDE
+                        ],
+                        [
+                            TAG_TYPE.VECT,
+                            [RANGE_TYPE.VECTOR, RANGE_TYPE.VECTOR, RANGE_TYPE.VECTOR],
+                            [SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.LG_1, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_VECT
+                        ],
+                        [
+                            TAG_TYPE.NONE,
+                            [RANGE_TYPE.SCALAR],
+                            [SMALL_TYPE.SM_1],
+                            [LARGE_TYPE.LG_10],
+                            HELP_TYPE.CYCLE
+                        ],
+                        [
+                            TAG_TYPE.SCE_TIMED,
+                            [RANGE_TYPE.NONE, RANGE_TYPE.TIME],
+                            [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.NONE, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_TOGGLE
+                        ],
+                        [
+                            TAG_TYPE.SCE_POINTS,
+                            [RANGE_TYPE.NONE, RANGE_TYPE.POINTS],
+                            [SMALL_TYPE.NONE, SMALL_TYPE.SM_1],
+                            [LARGE_TYPE.NONE, LARGE_TYPE.LG_10],
+                            HELP_TYPE.SUBITEM_TOGGLE
+                        ],
+                        [
+                            TAG_TYPE.POINTS,
+                            [RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR],
+                            [SMALL_TYPE.SM_1, SMALL_TYPE.SM_1, SMALL_TYPE.SM_1],
+                            [LARGE_TYPE.LG_10, LARGE_TYPE.LG_10, LARGE_TYPE.LG_10],
+                            HELP_TYPE.SUBITEM_CYCLE
+                        ],
+                        [
+                            TAG_TYPE.STRAFE,
+                            [RANGE_TYPE.SCALAR, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
+                            [SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.LG_10, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_CYCLE
+                        ],
+                        [
+                            TAG_TYPE.TYPE_VECT,
+                            [RANGE_TYPE.NONE, RANGE_TYPE.VECTOR, RANGE_TYPE.VECTOR, RANGE_TYPE.VECTOR],
+                            [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.NONE, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_VECT_OPT
+                        ],
+                        [
+                            TAG_TYPE.ANGLE_DIM,
+                            [RANGE_TYPE.ANGLE, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR],
+                            [SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.LG_10, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_VECT
+                        ],
+                        [
+                            TAG_TYPE.MIN_MAX,
+                            [RANGE_TYPE.PERCENT, RANGE_TYPE.PERCENT],
+                            [SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_CYCLE
+                        ],
+                        [
+                            TAG_TYPE.NONE,
+                            [RANGE_TYPE.NONE, RANGE_TYPE.NONE, RANGE_TYPE.HERO],
+                            [SMALL_TYPE.NONE, SMALL_TYPE.NONE, SMALL_TYPE.SM_1],
+                            [],
+                            HELP_TYPE.CYCLE_TOGGLE
+                        ],
+                        [
+                            TAG_TYPE.HEALTH,
+                            [RANGE_TYPE.SCALAR, RANGE_TYPE.VECTOR, RANGE_TYPE.TIME],
+                            [SMALL_TYPE.SM_1, SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.LG_10, LARGE_TYPE.LG_10, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_CYCLE
+                        ],
+                        [
+                            TAG_TYPE.TARGET,
+                            [RANGE_TYPE.NONE, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR],
+                            [SMALL_TYPE.NONE, SMALL_TYPE.SM_1, SMALL_TYPE.SM_1, SMALL_TYPE.SM_1],
+                            [LARGE_TYPE.NONE, LARGE_TYPE.LG_10, LARGE_TYPE.LG_10, LARGE_TYPE.LG_10],
+                            HELP_TYPE.SUBITEM_TOGGLE
+                        ],
+                        [
+                            TAG_TYPE.TARGET,
+                            [RANGE_TYPE.NONE, RANGE_TYPE.PERCENT, RANGE_TYPE.PERCENT, RANGE_TYPE.PERCENT],
+                            [SMALL_TYPE.SM_1, SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.LG_10, LARGE_TYPE.LG_10, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_TOGGLE
+                        ],
+                        [
+                            TAG_TYPE.PROFILE_STATUS,
+                            [RANGE_TYPE.SLOT, RANGE_TYPE.PERCENT],
+                            [SMALL_TYPE.SM_1, SMALL_TYPE.SM_1],
+                            [LARGE_TYPE.LG_1, LARGE_TYPE.LG_10],
+                            HELP_TYPE.CYCLE_TOGGLE
+                        ],
+                        [
+                            TAG_TYPE.PROFILE_ORDER,
+                            [RANGE_TYPE.NONE, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
+                            [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.NONE, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_VECT_OPT
+                        ],
+                        [
+                            TAG_TYPE.MVMT_TYPE,
+                            [RANGE_TYPE.NONE, RANGE_TYPE.PERCENT, RANGE_TYPE.TIME],
+                            [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.NONE, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_TOGGLE
+                        ],
+                        [
+                            TAG_TYPE.MVMT_DIR,
+                            [RANGE_TYPE.PERCENT, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
+                            [SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.LG_10, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_CYCLE
+                        ],
+                        [
+                            TAG_TYPE.CHANCE,
+                            [RANGE_TYPE.PERCENT, RANGE_TYPE.TIME, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
+                            [SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
+                            [LARGE_TYPE.LG_10, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
+                            HELP_TYPE.SUBITEM_CYCLE
+                        ]
+                    ]
+
+    menu_wait = [0.10, 0.05, 0.01]
+
                     
 
 rule "load_language_data":
     @Event global
 
-    data_loaded[DATA_TYPE.DATA_STATIC] = false
+    data_loaded[DATA_TYPE.STATIC] = false
 
     strings_prompt = [
         [
@@ -80,7 +255,9 @@ rule "load_language_data":
             "close",
             "open",
             "menu",
-            "to confirm override"
+            "to override the currently selected slot",
+            "to override all slots",
+            "Slot is disabled in bot settings"
         ],
         [
             "", 
@@ -109,8 +286,10 @@ rule "load_language_data":
             ["Select Item", "+", "Next Option / +"],
             ["Select Item", "-", "Previous Option / -", "Toggle All", "Override All"],
             ["Select Item", "+", "Next Option / +", "Toggle Selected", "Override Selected"],
+            ["N/A", "Previous Subitem"],
             ["N/A", "Next Subitem"],
-            ["Select Item", "N/A", "Set Vector to Current", "Confirm Override"]
+            ["Select Item", "N/A", "Set Vector to Current", "Confirm Override"],
+            ["Turbo Cycle"]
         ],
         [
             [""],
@@ -162,11 +341,12 @@ rule "load_language_data":
             "Profile   ▶",
             "Test",
             "Open Hero Select",
+            "Display Boundaries",
             "Test Bot in Slot",
             "Test Scenario",
-            "Save and Export",
-            "Export Instructions",
-            "Import Instructions"
+            "Export and Share",
+            "Display Export Instructions",
+            "Display Import Instructions"
         ],
         [
             "\n\n", 
@@ -203,7 +383,7 @@ rule "load_language_data":
             "◀ Main Menu",
             "Bot Slot",
             "Select Bot Slot",
-            "Override Bot Slot",
+            "Copy Current Bot to Slot",
             "Spawn and Boundaries",
             "Spawn",
             "Facing",
@@ -274,7 +454,7 @@ rule "load_language_data":
             "◀ Main Menu",
             "Profiles", 
             "Select Profile Slot",
-            "Override Profile from Slot",
+            "Copy Current Profile to Slot",
             "Horizontal Movement",
             "Horizontal Type", 
             "Left",
@@ -285,7 +465,6 @@ rule "load_language_data":
             "Vertical Type",
             "Jump",
             "Crouch",
-            "Crouch Time",
             "Idle Movement",
             "Left / Right Idle",
             "Forward / Backward Idle"
@@ -401,9 +580,8 @@ rule "load_language_data":
     strings_options = [
         [
             ["Disabled", "Enabled"], 
-            ["Hidden", "Visible"],
             ["Timed", "Score Limit"],
-            ["Static", "Random", "Health", "Elims (Target)", "Looping (Target)"],
+            ["Random", "Health", "Elims (Target)", "Looping (Target)"],
             ["Fixed Position", "Random in Boundary", "Random Walkable in Boundary"],
             ["Fixed", "Player"],
             ["Reverse on Collision", "Stop on Collision", "Teleport to In-Bounds"],
@@ -436,6 +614,7 @@ rule "load_language_data":
     ]
     strings_tags = [
         [
+            [],
             ["Health %: ", "HPS: ", "Wait Until Heal: "], 
             ["min: ", "max: "],
             ["Type: ", "min: ", "max: ", "target: "],
@@ -447,7 +626,6 @@ rule "load_language_data":
             ["Type: ", "Impulse Strength: ", "Impulse Interval: "],
             ["Weight : ", "Min Time : ", "Max Time : "],
             ["Chance %: ", "Interval: ", "Min Time : ", "Max Time : "],
-            ["Crouch Min: ", "Crouch Max: ", "Uncrouch Min: ", "Uncrouch Max: "],
             ["Type: ", "Seconds: "],
             ["Type: ", "Score: "],
             ["Bodyshot: ", "Headshot: ", "Elim: "],
@@ -496,8 +674,8 @@ rule "load_language_data":
     ]
     strings_instructions = [
         [
-            "How to export your configuration:\n1. Open the Overwatch menu (esc)\n2. Select \"Open Workshop Inspector\"\n3. Select \"auto\"\n4. Select \"Iris\"\n5. Select the rightmost button from the bottom left that looks like this: [(x)]\n    When you hover over the button it should say\n    \"Copy clipboard current varaibles for current variables target as workshop actions\"\n6. Your settings variables will now be in your clipboard\n    6a. To save your work, paste your settings into a text file on your computer.\n    6b. To share your scenario or resume your work please see \"import instructions\"\n", 
-            "How to import your configuration:\n1. Select the import code button from the settings page of the lobby menu.\n2. Enter the code\n    2a. If you want to share your scenario use the code for the Aim Scenario Player: XXXXX\n    2b. If you are resuming creating a scenario enter code for the Aim Scenario Maker: YYYYY\n3.Select the \"Workshop\" tile with black text.\n4. Scroll to the top of the first page\n5. Click the \">\" icon to the left of the first rule titled \"Paste Player Variables Here\"\n6. In the \"actions\" column to the right, select the orange \"paste\" button.\n7. Start/Restart the Match and your settings should load.\n    7a. If you are using the Aim Scenario Player code you may now create a share code by\n        selecting \"Share Code\" in the workshop settings menu\n    7b. If you are using the Aim Scenario Maker code you may now continue designing your scenario \n", 
+            "How to export your configuration:\n1. Open the Overwatch menu (esc)\n2. Select \"Open Workshop Inspector\"\n3. Select the dropdown menu \"Variable Target\"\n4. Select \"Iris\"\n5. select the \"Live\" button so that the red dot turns grey\n6.Move the blue slider backwards then completly forward\n    to ensure the data is correctly updated\n7. Select the rightmost button from the bottom left that looks like this: [(x)]\n    When you hover over the button it will say\n    \"Copy clipboard current varaibles for current variables target as workshop actions\"\n8. Your settings variables will now be in your clipboard\n    8a. To save your work, paste your settings into a text file on your computer.\n    8b. To share your scenario or resume your work please see \"import instructions\"\n", 
+            "How to import your configuration:\n1. Select the import code button from the settings page of the lobby menu.\n2. Enter the code\n    2a. If you want to share your scenario use the code for the Aim Scenario Player: XXXXX\n    2b. If you are resuming creating a scenario enter code for the Aim Scenario Maker: YYYYY\n3.Select the \"Workshop\" tile with black text.\n4. Scroll to the top of the first page\n5. Click the \">\" symbol to the left of the first rule titled \"Paste Player Variables Here\"\n6. In the \"actions\" column to the right, select the orange \"paste\" button.\n7. Start/Restart the Match and your settings will be loaded.\n    7a. If you are using the Aim Scenario Player code you may now create a share code by\n        selecting \"Share Code\" in the lobby settings menu\n    7b. If you are using the Aim Scenario Maker code you may now continue designing your scenario \n", 
             "To list your share code on bellalabs.dev/ow2-scenario-codes\nfill out the form avaliable at: bellalabs.dev/ow2-share-form\n"
         ],
         [
@@ -525,4 +703,4 @@ rule "load_language_data":
     strings_symbols = ["—————————————————————————\n"]
     
 
-    data_loaded[DATA_TYPE.DATA_STATIC] = true
+    data_loaded[DATA_TYPE.STATIC] = true

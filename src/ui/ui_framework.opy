@@ -90,12 +90,27 @@ rule "Menu Input Listener: Jump Right":
     perform_action()
 
 
-rule "Menu Input Listener: Next Subitem": 
+rule "Menu Input Listener: Previous Subitem": 
     @Event eachPlayer
     @Team 1
     @Condition eventPlayer == hostPlayer
     @Condition menu_visible 
     @Condition (user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[7]) or (user_controls[7] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[7]))
+
+    if subitem_index[menu_index] > 0:
+        subitem_index[menu_index] -= 1
+    else:
+        subitem_index[menu_index] = subitem_size[menu_index]
+
+    update_help_data()
+
+
+rule "Menu Input Listener: Next Subitem": 
+    @Event eachPlayer
+    @Team 1
+    @Condition eventPlayer == hostPlayer
+    @Condition menu_visible 
+    @Condition (user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[8]) or (user_controls[8] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[8]))
 
     if subitem_index[menu_index] < subitem_size[menu_index]:
         subitem_index[menu_index] += 1
@@ -110,7 +125,7 @@ rule "Menu Input Listener: Set Vector":
     @Team 1
     @Condition eventPlayer == hostPlayer
     @Condition menu_visible 
-    @Condition (user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[8]) or (user_controls[8] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[8]))
+    @Condition (user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[9]) or (user_controls[9] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[9]))
 
     menu_action = MENU_ACTIONS.MENU_SET_VECTOR
     perform_action()
@@ -158,11 +173,61 @@ def menu_down_check():
         menu_index += 1
 
 
+def create_help_hud():
+    @Name "SUB: create_help_hud"
+    # Displays the left HUD menu help.
+    menu_help_index = help_data[HELP_TYPE.DEFAULT]
+    
+    menu_help_display = [   
+                            strings_help[lang_type][0][menu_help_index[0]], 
+                            strings_help[lang_type][1][menu_help_index[1]], 
+                            strings_help[lang_type][2][menu_help_index[2]], 
+                            strings_help[lang_type][3][menu_help_index[3]], 
+                            strings_help[lang_type][4][menu_help_index[4]], 
+                            strings_help[lang_type][5][menu_help_index[5]], 
+                            strings_help[lang_type][6][menu_help_index[6]], 
+                            strings_help[lang_type][7][menu_help_index[7]], 
+                            strings_help[lang_type][8][menu_help_index[8]],
+                            strings_help[lang_type][9][menu_help_index[9]],
+                        ]
+
+    hudSubheader([i for i in localPlayer], 
+    "{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}".format("{0} {1} {2} {3} {4}\n".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[0]] if user_controls[0] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
+        strings_symbols[0], 
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[1]] if user_controls[1] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[1]), menu_help_display[0]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[2]] if user_controls[2] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[2]), menu_help_display[1]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[3]] if user_controls[3] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[3]), menu_help_display[2]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[4]] if user_controls[4] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[4]), menu_help_display[3]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[5]] if user_controls[5] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[5]), menu_help_display[4]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[6]] if user_controls[6] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[6]), menu_help_display[5]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[7]] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[7]), menu_help_display[6]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), menu_help_display[7]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[9]] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[9]), menu_help_display[8]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[10]] if user_controls[10] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[10]), menu_help_display[9]) if menu_visible else "",
+        strings_symbols[0] if menu_visible else "",
+        "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if display_help[0]  else "",
+        "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if display_help[1] else ""),
+        HudPosition.LEFT,
+        -1,
+        Color.WHITE,
+        HudReeval.VISIBILITY_AND_STRING,
+        SpecVisibility.DEFAULT)
+
+    # Stats Display Top
+    hudSubheader([i for i in localPlayer if scenario_status ],
+    "Timer: {0}\nElims: {1}".format(timer, elims), 
+    HudPosition.TOP, 
+    -9999, 
+    Color.WHITE, 
+    HudReeval.VISIBILITY_AND_STRING, 
+    SpecVisibility.DEFAULT)
+
+
 def update_help_data():
     @Name "SUB: update_help_data"
 
     menu_help_index = menu_item_help[menu_index]
-    for loop_index in range(0, 8, 1):
+    for loop_index in range(0, len(strings_help[lang_type]), 1):
         if (loop_index == 2 or loop_index == 3) and (menu_help_index[loop_index] == 1 or menu_help_index[loop_index] == 2):
             menu_help_display[loop_index] = "{0}{1}".format(strings_help[lang_type][loop_index][menu_help_index[loop_index]], small_steps[menu_item_small_step[menu_index][subitem_index[menu_index]]])
         elif (loop_index == 4 or loop_index == 5) and (menu_help_index[loop_index] == 1 or menu_help_index[loop_index] == 2):
@@ -247,7 +312,7 @@ def increment_for_menu_item():
     menu_item_var_2[menu_item_size] = ""
     menu_item_var_3[menu_item_size] = ""
     menu_item_var_4[menu_item_size] = ""
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.DEFAULT]
+    menu_item_help[menu_item_size] = help_data[HELP_TYPE.DEFAULT]
 
 
 def increment_for_submenu_item():
