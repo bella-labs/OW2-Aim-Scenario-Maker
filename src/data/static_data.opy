@@ -254,7 +254,8 @@ rule "load_language_data":
             "open",
             "menu",
             "to override the currently selected slot",
-            "to override all slots"
+            "to override all slots",
+            "Slot is disabled in bot settings"
         ],
         [
             "", 

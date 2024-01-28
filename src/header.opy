@@ -282,6 +282,7 @@ subroutine act_general_unsum_weights
 subroutine act_main_open_hero_sel
 subroutine act_main_display_boundary
 subroutine act_main_test_bot_in_slot
+subroutine act_main_test_scenario
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
 #### Scenario Submenu
@@ -376,7 +377,7 @@ globalvar active_bot_status
 
 globalvar elims
 globalvar timer
-globalvar stat_tracking_status
+globalvar scenario_status
 
 playervar boundary_limits
 
@@ -395,8 +396,8 @@ playervar profile_index
 playervar loop_indexes
 
 
-subroutine stats_start_stat_tracking
-subroutine stats_stop_stat_tracking
+subroutine sce_start_scenario
+subroutine sce_stop_scenario
 
 
 globalvar angle

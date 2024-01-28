@@ -212,7 +212,7 @@ def create_help_hud():
         SpecVisibility.DEFAULT)
 
     # Stats Display Top
-    hudSubheader([i for i in localPlayer if stat_tracking_status ],
+    hudSubheader([i for i in localPlayer if scenario_status ],
     "Timer: {0}\nElims: {1}".format(timer, elims), 
     HudPosition.TOP, 
     -9999, 

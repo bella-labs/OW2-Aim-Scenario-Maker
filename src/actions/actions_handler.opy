@@ -52,6 +52,7 @@ def menu_act_submenu_main():
             act_main_test_bot_in_slot()
             break
         case submenu_curr_start + 6:
+            act_main_test_scenario()
             break
         case submenu_curr_start + 7:
             act_main_toggle_export()
