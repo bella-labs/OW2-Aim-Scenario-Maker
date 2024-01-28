@@ -584,7 +584,7 @@ rule "load_language_data":
             ["Random", "Health", "Elims (Target)", "Looping (Target)"],
             ["Fixed Position", "Random in Boundary", "Random Walkable in Boundary"],
             ["Fixed", "Player"],
-            ["Reverse on Collision", "Stop on Collision", "Teleport to In-Bounds"],
+            ["Reverse", "Stop", "Teleport"],
             ["In Order", "Randomized"],
             ["Inputs", "Impulse"],
             ["Timed", "Elims"]
