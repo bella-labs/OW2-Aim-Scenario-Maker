@@ -52,6 +52,9 @@ rule "Boundary Handler - Correct Y Min (Up)":
 
     eventPlayer.disabled_vert[YDIR.UP] = 0
 
+    if RULE_CONDITION:
+        goto RULE_START
+
 
 rule "Boundary Handler - Correct Y Min (Down)":
     @Event eachPlayer
@@ -63,6 +66,9 @@ rule "Boundary Handler - Correct Y Min (Down)":
     waitUntil(eventPlayer.getPosition().y >= eventPlayer.boundary_limits[0].y, 9999)
 
     eventPlayer.disabled_vert[YDIR.DOWN] = 0
+
+    if RULE_CONDITION:
+        goto RULE_START
 
 
 rule "Distance Handler - Correct Min Distance":
