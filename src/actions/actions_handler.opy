@@ -121,7 +121,7 @@ def menu_act_submenu_bot():
             act_bot_bound()
             break
         case submenu_curr_start + 6:
-            act_bot_bound_dim()
+            act_bot_bound_dimentions()
             break
         case submenu_curr_start + 7:
             act_bot_distance()
@@ -192,11 +192,8 @@ def menu_act_submenu_profile():
             act_mvmt_crouch()
             break
         case submenu_curr_start + 11:
-            act_mvmt_crouch_time()
-            break
-        case submenu_curr_start + 12:
             act_mvmt_lr_idle()
             break   
-        case submenu_curr_start + 13:
+        case submenu_curr_start + 12:
             act_mvmt_fb_idle()
             break                                                                       

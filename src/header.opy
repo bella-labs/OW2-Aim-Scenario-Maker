@@ -48,7 +48,7 @@ globalvar menu_colors_custom
 globalvar hud_text_id
 globalvar menu_help_index
 globalvar menu_help_display
-globalvar help_configs
+globalvar help_data
 ## Menu Actions
 globalvar submenu_curr_start
 globalvar chg_submenu_target
@@ -192,17 +192,14 @@ playervar mvmt_br_max
 playervar mvmt_vert_type
 playervar mvmt_vert_impulse
 playervar mvmt_vert_interval
-#### Vertical Probability
+#### Jump
 playervar mvmt_jump_chance
 playervar mvmt_jump_interval
-playervar mvmt_crouch_chance
-playervar mvmt_crouch_interval
-#### Jump Time
 playervar mvmt_jump_min
 playervar mvmt_jump_max
-#### Crouch Time
-playervar mvmt_crouch_min
-playervar mvmt_crouch_max
+#### Crouch
+playervar mvmt_crouch_chance
+playervar mvmt_crouch_interval
 playervar mvmt_uncrouch_min
 playervar mvmt_uncrouch_max
 #### Idle Probability 
@@ -289,7 +286,6 @@ subroutine act_main_toggle_import
 subroutine act_main_toggle_export
 #### Scenario Submenu
 subroutine act_sce_mode
-subroutine subact_sce_set_limit_type
 subroutine act_sce_points
 subroutine act_sce_strafe
 subroutine act_sce_player_spawn
@@ -310,7 +306,7 @@ subroutine act_bot_gravity
 subroutine act_bot_spawn
 subroutine act_bot_facing
 subroutine act_bot_bound
-subroutine act_bot_bound_dim
+subroutine act_bot_bound_dimentions
 subroutine act_bot_distance
 subroutine act_bot_select_profile
 subroutine act_bot_profile_order
@@ -330,7 +326,6 @@ subroutine act_mvmt_backward
 subroutine act_mvmt_vert_type
 subroutine act_mvmt_jump
 subroutine act_mvmt_crouch
-subroutine act_mvmt_crouch_time
 subroutine act_mvmt_lr_idle
 subroutine act_mvmt_fb_idle
 ## Bot Generation
@@ -341,115 +336,13 @@ subroutine setup_databot
 subroutine import_settings
 subroutine default_settings
 
-# ENUMS
-
-enum SUBMENUS:
-    SUBMENU_MAIN = 0,
-    SUBMENU_SCENARIO,
-    SUBMENU_BOT,
-    SUBMENU_PROFILE
-
-enum INPUT_OPTIONS:
-    VECT_FORWARD = 0,
-    VECT_BACKWARD,
-    VECT_LEFT,
-    VECT_RIGHT,
-    BUTTON_INTERACT,
-    BUTTON_JUMP,
-    BUTTON_CROUCH,
-    BUTTON_MELEE,
-    BUTTON_PRIMARY,
-    BUTTON_SECONDARY,
-    BUTTON_RELOAD,
-    BUTTON_ABILITY_1,
-    BUTTON_ABILITY_2,
-    BUTTON_ULTIMATE
-
-enum MENU_ACTIONS:
-    MENU_TOGGLE = 0,
-    MENU_UP,
-    MENU_DOWN,
-    MENU_STEP_LEFT,
-    MENU_STEP_RIGHT,
-    MENU_JUMP_LEFT,
-    MENU_JUMP_RIGHT,
-    MENU_NEXT_SUBITEM,
-    MENU_SET_VECTOR
-
-enum RANGE_TYPE:
-    NONE = 0,
-    RANGE_SLOT,
-    RANGE_HERO,
-    RANGE_PERCENTAGE,
-    RANGE_ANGLE,
-    RANGE_TIME,
-    RANGE_SCALAR,
-    RANGE_VECTOR,
-    RANGE_SCORE,
-
-enum SMALL_TYPE:
-    NONE = 0,
-    SMALL_0_01,
-    SMALL_1
-
-enum LARGE_TYPE:
-    NONE = 0,
-    LARGE_1,
-    LARGE_10,
 
 
-enum DATA_TYPE:
-    DATA_STATIC = 0,
-    DATA_BOT,
-    DATA_MENU,
-    DATA_CONTROLS
 
-enum HELP_CONFIGS:
-    DEFAULT = 0,
-    CYCLE,
-    CYCLE_TOGGLE,
-    CYCLE_OVERRIDE,
-    SUBITEM_CYCLE,
-    SUBITEM_TOGGLE,
-    SUBITEM_VECT,
-    SUBITEM_VECT_OPT
-    
-enum GENERAL_TARGET:
-    VECT_X = 0,
-    VECT_Y,
-    VECT_Z,
-    MIN,
-    MAX
 
-enum TAG_TYPE:
-    HEALTH = 0,
-    MIN_MAX,
-    TARGET,
-    PROFILE_STATUS,
-    PROFILE_ORDER,
-    VECT,
-    TYPE_VECT,
-    ANGLE_DIM,
-    MVMT_TYPE,
-    MVMT_DIR,
-    CHANCE,
-    CROUCH_TIME,
-    SCE_TIMED,
-    SCE_SCORE,
-    SCE_POINTS,
-    SCE_STRAFE
-    
 
-enum OPTIONS_TYPE:
-    TOGGLE = 0,
-    GAME_TYPE,
-    TARGET,
-    SPAWN,
-    FACING,
-    BOUNDS,
-    PROFILE,
-    MVMT_TYPE,
-    SCE_MODE
+
+
 
 
 
@@ -510,33 +403,7 @@ globalvar angle
 globalvar scenario_in_progress
 subroutine set_disabled_index_dist
 
-enum PLAYER_INDEXES:
-    DISABLE_MVMT = 0,
-    PROFILE,
-    WEIGHTS_1,
-    WEIGHTS_2
 
-enum PLAYER_RAND:
-    XZ = 0,
-    LR_IDLE,
-    FB_IDLE,
-    JUMP,
-    CROUCH,
-    PROFILE
-
-enum XZ_DIR:
-    BACKWARD = 0,
-    BACKWARD_RIGHT,
-    RIGHT,
-    FORWARD_RIGHT,
-    FORWARD,
-    FORWARD_LEFT,
-    LEFT,
-    BACKWARD_LEFT,
-
-enum Y_DIR:
-    UP = 0,
-    DOWN
 
 
 playervar target_mvmt_dir
@@ -572,3 +439,170 @@ subroutine disable_movement_boundary
 subroutine disable_movement_distance
 
 globalvar display_boundary
+
+globalvar item_data
+
+subroutine set_item_data
+
+
+
+
+enum SUBMENUS:
+    SUBMENU_MAIN = 0,
+    SUBMENU_SCENARIO,
+    SUBMENU_BOT,
+    SUBMENU_PROFILE
+
+enum INPUT_OPTIONS:
+    VECT_FORWARD = 0,
+    VECT_BACKWARD,
+    VECT_LEFT,
+    VECT_RIGHT,
+    BUTTON_INTERACT,
+    BUTTON_JUMP,
+    BUTTON_CROUCH,
+    BUTTON_MELEE,
+    BUTTON_PRIMARY,
+    BUTTON_SECONDARY,
+    BUTTON_RELOAD,
+    BUTTON_ABILITY_1,
+    BUTTON_ABILITY_2,
+    BUTTON_ULTIMATE
+
+enum MENU_ACTIONS:
+    MENU_TOGGLE = 0,
+    MENU_UP,
+    MENU_DOWN,
+    MENU_STEP_LEFT,
+    MENU_STEP_RIGHT,
+    MENU_JUMP_LEFT,
+    MENU_JUMP_RIGHT,
+    MENU_NEXT_SUBITEM,
+    MENU_SET_VECTOR
+
+enum RANGE_TYPE:
+    NONE = 0,
+    SLOT,
+    HERO,
+    PERCENT,
+    ANGLE,
+    TIME,
+    SCALAR,
+    VECTOR,
+    POINTS,
+
+enum HELP_TYPE:
+    DEFAULT = 0,
+    CYCLE,
+    CYCLE_TOGGLE,
+    CYCLE_OVERRIDE,
+    SUBITEM_CYCLE,
+    SUBITEM_TOGGLE,
+    SUBITEM_VECT,
+    SUBITEM_VECT_OPT
+
+enum ITEM_TYPE:
+    NONE = 0,
+    SLOT,
+    TOGGLE_SLOT,
+    OVERRIDE_SLOT,
+    VECTOR,
+    SCALAR,
+    SCORE_TIME,
+    SCORE_POINTS,
+    POINTS,
+    STRAFE,
+    TYPE_VECT,
+    BOUNDARY,
+    DISTANCE,
+    HERO,
+    HEALTH,
+    SPEED,
+    SCALE,
+    PROF_STATUS,
+    PROF_ORDER,
+    MVMT_TYPE,
+    MVMT_DIR,
+    CHANCE
+
+
+enum SMALL_TYPE:
+    NONE = 0,
+    SM_0_01,
+    SM_1
+
+enum LARGE_TYPE:
+    NONE = 0,
+    LG_1,
+    LG_10,
+
+enum DATA_TYPE:
+    STATIC = 0,
+    BOT,
+    MENU,
+    CONTROLS
+    
+enum GENERAL_TARGET:
+    VECT_X = 0,
+    VECT_Y,
+    VECT_Z,
+    MIN,
+    MAX
+
+enum TAG_TYPE:
+    NONE = 0,
+    HEALTH,
+    MIN_MAX,
+    TARGET,
+    PROFILE_STATUS,
+    PROFILE_ORDER,
+    VECT,
+    TYPE_VECT,
+    ANGLE_DIM,
+    MVMT_TYPE,
+    MVMT_DIR,
+    CHANCE,
+    SCE_TIMED,
+    SCE_POINTS,
+    POINTS,
+    STRAFE
+    
+
+enum OPTIONS_TYPE:
+    TOGGLE = 0,
+    GAME_TYPE,
+    TARGET,
+    SPAWN,
+    FACING,
+    BOUNDS,
+    PROFILE,
+    MVMT_TYPE,
+    SCE_MODE
+
+enum PLAYER_INDEXES:
+    DISABLE_MVMT = 0,
+    PROFILE,
+    WEIGHTS_1,
+    WEIGHTS_2
+
+enum PLAYER_RAND:
+    XZ = 0,
+    LR_IDLE,
+    FB_IDLE,
+    JUMP,
+    CROUCH,
+    PROFILE
+
+enum XZ_DIR:
+    BACKWARD = 0,
+    BACKWARD_RIGHT,
+    RIGHT,
+    FORWARD_RIGHT,
+    FORWARD,
+    FORWARD_LEFT,
+    LEFT,
+    BACKWARD_LEFT,
+
+enum Y_DIR:
+    UP = 0,
+    DOWN

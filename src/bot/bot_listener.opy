@@ -255,11 +255,11 @@ rule "Target Bot Listener - Bot Profile":
     eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
 
     if eventPlayer.bot_profile_type == 0:
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = 0:
-        while(eventPlayer.profile_index == -1 and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights))
-            if (eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]] > -1)
+        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = 0
+        while(eventPlayer.profile_index == -1 and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights)):
+            if (eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]] > -1):
                 eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
-            eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1:
+            eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
     else:
         eventPlayer.profile_index = 0
     # Cooldown to prevent overflow
@@ -385,43 +385,24 @@ rule "Target Bot Listener - Movement Vertical Type":
         goto RULE_START
 
 
-rule "Target Bot Listener - Movement Vertical Chance":
+rule "Target Bot Listener - Movement e":
     @Event eachPlayer
     @Team 2
     @Condition  (
                 eventPlayer.mvmt_jump_chance != databot.mvmt_jump_chance or 
                 eventPlayer.mvmt_jump_interval != databot.mvmt_jump_interval or 
-                eventPlayer.mvmt_crouch_chance != databot.mvmt_crouch_chance or
-                eventPlayer.mvmt_crouch_interval != databot.mvmt_crouch_interval
-                )
-
-    eventPlayer.mvmt_jump_chance = databot.mvmt_jump_chance
-    eventPlayer.mvmt_jump_interval = databot.mvmt_jump_interval
-    eventPlayer.mvmt_crouch_chance = databot.mvmt_crouch_chance
-    eventPlayer.mvmt_crouch_interval = databot.mvmt_crouch_interval
-
-    # Cooldown to prevent overflow
-    wait(1)
-    smallMessage(hostPlayer, "Vertical Chance")
-
-    if RULE_CONDITION:
-        goto RULE_START
-
-
-rule "Target Bot Listener - Movement Jump Time":
-    @Event eachPlayer
-    @Team 2
-    @Condition  (
                 eventPlayer.mvmt_jump_min != databot.mvmt_jump_min or 
                 eventPlayer.mvmt_jump_max != databot.mvmt_jump_max
                 )
 
+    eventPlayer.mvmt_jump_chance = databot.mvmt_jump_chance
+    eventPlayer.mvmt_jump_interval = databot.mvmt_jump_interval
     eventPlayer.mvmt_jump_min = databot.mvmt_jump_min
     eventPlayer.mvmt_jump_max = databot.mvmt_jump_max
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Jump Time")
+    smallMessage(hostPlayer, "Jump")
 
     if RULE_CONDITION:
         goto RULE_START
@@ -431,20 +412,20 @@ rule "Target Bot Listener - Movement Crouch Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_crouch_min != databot.mvmt_crouch_min or 
-                eventPlayer.mvmt_crouch_max != databot.mvmt_crouch_max or 
+                eventPlayer.mvmt_crouch_chance != databot.mvmt_crouch_chance or
+                eventPlayer.mvmt_crouch_interval != databot.mvmt_crouch_interval or
                 eventPlayer.mvmt_uncrouch_min != databot.mvmt_uncrouch_min or
                 eventPlayer.mvmt_uncrouch_max != databot.mvmt_uncrouch_max
                 )
 
-    eventPlayer.mvmt_crouch_min = databot.mvmt_crouch_min
-    eventPlayer.mvmt_crouch_max = databot.mvmt_crouch_max
+    eventPlayer.mvmt_crouch_chance = databot.mvmt_crouch_chance
+    eventPlayer.mvmt_crouch_interval = databot.mvmt_crouch_interval
     eventPlayer.mvmt_uncrouch_min = databot.mvmt_uncrouch_min
     eventPlayer.mvmt_uncrouch_max = databot.mvmt_uncrouch_max
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Crouch Time")
+    smallMessage(hostPlayer, "Crouch")
 
     if RULE_CONDITION:
         goto RULE_START

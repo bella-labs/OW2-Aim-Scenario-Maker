@@ -8,25 +8,26 @@ def act_sce_player_spawn():
         menu_item_var_2[menu_index] = action_var_2.y
         menu_item_var_3[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.sce_player_spawn
+        action_var = databot.sce_player_spawn
+        action_var_2 = menu_index
         switch subitem_index[menu_index]:
             case 0:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_1[menu_index] = action_var_2.x
+                databot.sce_player_spawn = action_result
+                menu_item_var_1[menu_index] = action_result.x
                 break
             case 1:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.y
+                databot.sce_player_spawn = action_result
+                menu_item_var_2[menu_index] = action_result.y
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.z
+                databot.sce_player_spawn = action_result
+                menu_item_var_3[menu_index] = action_result.z
                 break
 
 
@@ -35,30 +36,31 @@ def act_sce_player_facing():
 
     if menu_action == MENU_ACTIONS.MENU_SET_VECTOR:
         action_var_2 = eventPlayer.getFacingDirection()
-        databot.sce_player_spawn = action_var_2
+        databot.sce_player_facing = action_var_2
         menu_item_var_1[menu_index] = action_var_2.x
         menu_item_var_2[menu_index] = action_var_2.y
         menu_item_var_3[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.sce_player_spawn
+        action_var = databot.sce_player_facing
+        action_var_2 = menu_index
         switch subitem_index[menu_index]:
             case 0:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_1[menu_index] = action_var_2.x
+                databot.sce_player_facing = action_result
+                menu_item_var_1[menu_index] = action_result.x
                 break
             case 1:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.y
+                databot.sce_player_facing = action_result
+                menu_item_var_2[menu_index] = action_result.y
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.sce_player_spawn = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.z
+                databot.sce_player_facing = action_result
+                menu_item_var_3[menu_index] = action_result.z
                 break
 
 
@@ -87,23 +89,20 @@ def act_sce_mode():
             act_general_change_list_var_1()
             databot.sce_game_mode = action_var
             action_var = menu_index
-            subact_sce_set_limit_type()
+
+            if databot.sce_game_mode == 0:
+                action_var = ITEM_TYPE.SCORE_TIME
+            else:
+                action_var = ITEM_TYPE.SCORE_POINTS
+                databot.sce_game_limit = round(databot.sce_game_limit)
+                menu_item_var_2[menu_index] = databot.sce_game_limit
+            action_var_2 = menu_index
+            set_item_data()
             break
         case 1:
             act_general_num_var_2()
             databot.sce_game_limit = menu_item_var_2[menu_index]
             break
-
-def subact_sce_set_limit_type():
-    @Name "SUB: subact_sce_set_limit_type"
-
-    if databot.sce_game_mode == 0:
-        menu_item_var_tags[action_var] = strings_tags[lang_type][TAG_TYPE.SCE_TIMED]
-        menu_item_range[action_var] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_TIME]
-    else:
-        menu_item_var_tags[action_var] = strings_tags[lang_type][TAG_TYPE.SCE_SCORE]
-        menu_item_range[action_var] = [RANGE_TYPE.NONE, RANGE_TYPE.RANGE_SCORE]
-
 
 
 def act_sce_points():

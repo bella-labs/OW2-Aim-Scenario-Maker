@@ -176,7 +176,7 @@ def menu_down_check():
 def create_help_hud():
     @Name "SUB: create_help_hud"
     # Displays the left HUD menu help.
-    menu_help_index = help_configs[HELP_CONFIGS.DEFAULT]
+    menu_help_index = help_data[HELP_TYPE.DEFAULT]
     
     menu_help_display = [   
                             strings_help[lang_type][0][menu_help_index[0]], 
@@ -310,7 +310,7 @@ def increment_for_menu_item():
     menu_item_var_2[menu_item_size] = ""
     menu_item_var_3[menu_item_size] = ""
     menu_item_var_4[menu_item_size] = ""
-    menu_item_help[menu_item_size] = help_configs[HELP_CONFIGS.DEFAULT]
+    menu_item_help[menu_item_size] = help_data[HELP_TYPE.DEFAULT]
 
 
 def increment_for_submenu_item():

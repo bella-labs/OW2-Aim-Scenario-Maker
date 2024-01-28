@@ -78,7 +78,7 @@ rule "text":
 
 rule "Override Databot Data":
     @Event global
-    @Condition data_loaded[DATA_TYPE.DATA_BOT] == true
+    @Condition data_loaded[DATA_TYPE.BOT] == true
 
     
     #databot.bot_facing_type[0] = 1

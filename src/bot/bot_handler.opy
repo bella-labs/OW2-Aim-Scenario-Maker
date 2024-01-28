@@ -126,20 +126,11 @@ rule "HPS Handler - Reset DoT":
     eventPlayer.startDoT(null, 9999, -1 * eventPlayer.bot_hps)
 
 
-rule "Speed Handler - Static":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.isAlive() 
-    @Condition eventPlayer.bot_speed_type == 0
-
-    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min)
-
-
 rule "Speed Handler - Random":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive() 
-    @Condition eventPlayer.bot_speed_type == 1
+    @Condition eventPlayer.bot_speed_type == 0
 
     eventPlayer.setMoveSpeed(random.uniform(eventPlayer.bot_speed_min, eventPlayer.bot_speed_max))
 
@@ -148,7 +139,7 @@ rule "Speed Handler - Health":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive() 
-    @Condition eventPlayer.bot_speed_type == 2
+    @Condition eventPlayer.bot_speed_type == 1
 
     eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (1 - eventPlayer.getNormalizedHealth()))
     wait(0.25)
@@ -161,7 +152,7 @@ rule "Speed Handler - Elims":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive() 
-    @Condition eventPlayer.bot_speed_type == 3
+    @Condition eventPlayer.bot_speed_type == 2
 
     eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (elims * eventPlayer.bot_speed_target)))
 
@@ -170,7 +161,7 @@ rule "Speed Handler - Loop":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive() 
-    @Condition eventPlayer.bot_speed_type == 4
+    @Condition eventPlayer.bot_speed_type == 3
 
     eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(timer%eventPlayer.bot_speed_target)/eventPlayer.bot_speed_target)))
     wait(0.25)
@@ -189,13 +180,12 @@ rule "Profile Handler: In-Order":
 
     eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = eventPlayer.profile_index
 
-    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights))
-        if (eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]] > -1 and eventPlayer.profile_index < eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE])
+    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights)):
+        if (eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]] > -1 and eventPlayer.profile_index < eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]):
             eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
             eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = len(eventPlayer.bot_profile_weights)
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1:
+        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
     
-
 
 rule "Profile Handler: Randomized":
     @Event eachPlayer
@@ -204,11 +194,11 @@ rule "Profile Handler: Randomized":
     @Condition eventPlayer.profile_index != -1
 
     eventPlayer.target_rand[PLAYER_RAND.PROFILE] = random.uniform(0, eventPlayer.bot_profile_max_weight)
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = 0:
-    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights))
-        if (eventPlayer.target_rand[PLAYER_RAND.PROFILE] <= eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]])
+    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = 0
+    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights)):
+        if (eventPlayer.target_rand[PLAYER_RAND.PROFILE] <= eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]]):
             eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1:
+        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
     wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max))
 
     if RULE_CONDITION:

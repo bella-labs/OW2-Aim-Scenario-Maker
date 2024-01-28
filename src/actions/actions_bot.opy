@@ -201,7 +201,8 @@ def act_bot_spawn():
         menu_item_var_3[menu_index] = action_var_2.y
         menu_item_var_4[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.bot_spawn_vect[bot_slot]
+        action_var = databot.bot_spawn_vect[bot_slot]
+        action_var_2 = menu_index
         switch subitem_index[menu_index]:
             case 0:
                 action_var = databot.bot_spawn_type[bot_slot]
@@ -213,20 +214,20 @@ def act_bot_spawn():
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.x
+                databot.bot_spawn_vect[bot_slot] = action_result
+                menu_item_var_2[menu_index] = action_result.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.y
+                databot.bot_spawn_vect[bot_slot] = action_result
+                menu_item_var_3[menu_index] = action_result.y
                 break
             case 3:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_4[menu_index] = action_var_2.z
+                databot.bot_spawn_vect[bot_slot] = action_result
+                menu_item_var_4[menu_index] = action_result.z
                 break
 
 
@@ -240,7 +241,8 @@ def act_bot_facing():
         menu_item_var_3[menu_index] = action_var_2.y
         menu_item_var_4[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.bot_facing_vect[bot_slot]
+        action_var = databot.bot_facing_vect[bot_slot]
+        action_var_2 = menu_index
         switch subitem_index[menu_index]:
             case 0:
                 action_var = databot.bot_facing_type[bot_slot]
@@ -252,20 +254,20 @@ def act_bot_facing():
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.x
+                databot.bot_facing_vect[bot_slot] = action_result
+                menu_item_var_2[menu_index] = action_result.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.y
+                databot.bot_facing_vect[bot_slot] = action_result
+                menu_item_var_3[menu_index] = action_result.y
                 break
             case 3:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_4[menu_index] = action_var_2.z
+                databot.bot_facing_vect[bot_slot] = action_result
+                menu_item_var_4[menu_index] = action_result.z
                 break
 
 
@@ -279,7 +281,8 @@ def act_bot_bound():
         menu_item_var_3[menu_index] = action_var_2.y
         menu_item_var_4[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.bot_bound_pos[bot_slot]
+        action_var = databot.bot_bound_pos[bot_slot]
+        action_var_2 = menu_index
         switch subitem_index[menu_index]:
             case 0:
                 action_var = databot.bot_bound_type[bot_slot]
@@ -291,28 +294,29 @@ def act_bot_bound():
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
+                databot.bot_bound_pos[bot_slot] = action_result
                 menu_item_var_2[menu_index] = action_var_2.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.y
+                databot.bot_bound_pos[bot_slot] = action_result
+                menu_item_var_3[menu_index] = action_result.y
                 break
             case 3:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
-                menu_item_var_4[menu_index] = action_var_2.z
+                databot.bot_bound_pos[bot_slot] = action_result
+                menu_item_var_4[menu_index] = action_result.z
                 break
     update_bound_effect()
 
     
-def act_bot_bound_dim():
-    @Name "SUB: act_bot_bound_dim"
+def act_bot_bound_dimentions():
+    @Name "SUB: act_bot_bound_dimentions"
 
-    action_var_2 = databot.bot_bound_dim[bot_slot]
+    action_var = databot.bot_bound_dim[bot_slot]
+    action_var_2 = menu_index
     switch subitem_index[menu_index]:
         case 0:
             act_general_num_var_1()
@@ -321,20 +325,20 @@ def act_bot_bound_dim():
         case 1:
             general_target = GENERAL_TARGET.VECT_X
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_2[menu_index] = action_var_2.x
+            databot.bot_bound_dim[bot_slot] = action_result
+            menu_item_var_2[menu_index] = action_result.x
             break
         case 2:
             general_target = GENERAL_TARGET.VECT_Y
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_3[menu_index] = action_var_2.y
+            databot.bot_bound_dim[bot_slot] = action_result
+            menu_item_var_3[menu_index] = action_result.y
             break
         case 3:
             general_target = GENERAL_TARGET.VECT_Z
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_4[menu_index] = action_var_2.z
+            databot.bot_bound_dim[bot_slot] = action_result
+            menu_item_var_4[menu_index] = action_result.z
             break
     update_bound_effect()
 
