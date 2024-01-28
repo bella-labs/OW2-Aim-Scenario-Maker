@@ -70,14 +70,14 @@ rule "Load Static Data":
                     ]
 
     help_data = [
-                    [0,0,0,0,0,0,0,0,0], # Default
-                    [0,0,1,1,1,1,0,0,1], # Cycle List
-                    [0,0,1,1,3,3,0,0,1], # Cycle Toggle
-                    [0,0,1,1,4,4,0,0,3], # Cycle Override
-                    [0,0,1,1,1,1,1,1,1], # Subitem Cycle
-                    [0,0,2,2,2,2,1,1,1], # Subitem Cycle List + Toggle
-                    [0,0,1,1,1,1,1,1,2], # Subitem Vector List
-                    [0,0,2,2,2,2,1,1,2]  # Subitem Vector Toggle
+                    [0,0,0,0,0,0,0,0,0,0], # Default
+                    [0,0,1,1,1,1,0,0,1,0], # Cycle List
+                    [0,0,1,1,3,3,0,0,1,0], # Cycle Toggle
+                    [0,0,1,1,4,4,0,0,3,0], # Cycle Override
+                    [0,0,1,1,1,1,1,1,1,0], # Subitem Cycle
+                    [0,0,2,2,2,2,1,1,1,0], # Subitem Cycle List + Toggle
+                    [0,0,1,1,1,1,1,1,2,0], # Subitem Vector List
+                    [0,0,2,2,2,2,1,1,2,0]  # Subitem Vector Toggle
                     ] 
     
     item_data = [
@@ -238,6 +238,8 @@ rule "Load Static Data":
                         ]
                     ]
 
+    menu_wait = [0.10, 0.05, 0.01]
+
                     
 
 rule "load_language_data":
@@ -286,7 +288,8 @@ rule "load_language_data":
             ["Select Item", "+", "Next Option / +", "Toggle Selected", "Override Selected"],
             ["N/A", "Previous Subitem"],
             ["N/A", "Next Subitem"],
-            ["Select Item", "N/A", "Set Vector to Current", "Confirm Override"]
+            ["Select Item", "N/A", "Set Vector to Current", "Confirm Override"],
+            ["Turbo Cycle"]
         ],
         [
             [""],

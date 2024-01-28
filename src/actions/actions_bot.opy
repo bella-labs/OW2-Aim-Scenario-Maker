@@ -295,7 +295,7 @@ def act_bot_bound():
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
                 databot.bot_bound_pos[bot_slot] = action_result
-                menu_item_var_2[menu_index] = action_var_2.x
+                menu_item_var_2[menu_index] = action_result.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y

@@ -187,7 +187,8 @@ def create_help_hud():
                             strings_help[lang_type][5][menu_help_index[5]], 
                             strings_help[lang_type][6][menu_help_index[6]], 
                             strings_help[lang_type][7][menu_help_index[7]], 
-                            strings_help[lang_type][8][menu_help_index[8]]
+                            strings_help[lang_type][8][menu_help_index[8]],
+                            strings_help[lang_type][9][menu_help_index[9]],
                         ]
 
     hudSubheader([i for i in localPlayer], 
@@ -202,6 +203,7 @@ def create_help_hud():
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[7]] if user_controls[7] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[7]), menu_help_display[6]) if menu_visible else "",
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), menu_help_display[7]) if menu_visible else "",
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[9]] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[9]), menu_help_display[8]) if menu_visible else "",
+        "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[10]] if user_controls[10] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[10]), menu_help_display[9]) if menu_visible else "",
         strings_symbols[0] if menu_visible else "",
         "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if display_help[0]  else "",
         "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if display_help[1] else ""),

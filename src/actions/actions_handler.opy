@@ -18,6 +18,8 @@ def perform_action():
             menu_act_submenu_profile()
             break
 
+    if (user_controls[10] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[10]) or (user_controls[10] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[10])):
+        menu_wait_index = 2
     wait(menu_wait[menu_wait_index])
     if RULE_CONDITION:
         goto RULE_START
