@@ -1,58 +1,21 @@
+# Scenario Settings
 
-## Main Menu
-### Bots
-**Description**: Opens the Bots Settings submenu.
+## Player
 
-### Profiles
-**Description**: Opens the Profile Settings submenu.
+### Spawn Position
 
-### Scenario
-**Description**: Opens the Scenario Settings submenu.
+### Spawn Facing
 
-## Bot Settings
-### Return to Main Menu
-**Description**: Returns to the Main Menu.
+### Speed
 
-### Bot Slot
-**Description**: The current bot to modify data for.
+### Gravity
 
-**Characteristics**
+## Scoring
 
-| Subitem  | Characteristics          | Value             |
-| ---------| ------------------------ | ----------------- |
-| 1        | Type                     | Integer           |
-| 1        | Minimum                  | 0                 |
-| 1        | Maximum                  | 11                |
+### Scenario Type
 
-**Menu Inputs**
+### Points
 
-| Input                    | Effect             |
-| ------------------------ | ------------------ |
-| Small Step Left          | -1                 |
-| Small Step Right         | +1                 |
-| Large Step Left          | -1                 |
-| Large Step Right         | +1                 |
-| Cycle Subitem            | N/A                |
-| Assign Vector            | N/A                |     
+### Strafe Points
 
-### Override from Slot
-**Description**: Overrides the slot currently select slot with the data from the designated slot.
-
-**Characteristics**
-
-| Subitem  | Characteristics          | Value             |
-| ---------| ------------------------ | ----------------- |
-| 1        | Type                     | Integer           |
-| 1        | Minimum                  | 0                 |
-| 1        | Maximum                  | 11                |
-
-**Menu Inputs**
-
-| Input                    | Effect             |
-| ------------------------ | ------------------ |
-| Small Step Left          | -1                 |
-| Small Step Right         | +1                 |
-| Large Step Left          | -1                 |
-| Large Step Right         | +1                 |
-| Cycle Subitem            | N/A                |
-| Assign Vector            | N/A                |     
+### Custom Script

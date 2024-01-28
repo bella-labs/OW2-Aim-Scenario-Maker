@@ -446,7 +446,8 @@ globalvar item_data
 
 subroutine set_item_data
 
-
+playervar title
+playervar author
 
 
 enum SUBMENUS:

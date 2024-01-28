@@ -1,44 +1,33 @@
 # Movement Settings
-## Select Movement Profile
-**Description**: Select which movement profile to edit.
 
-**Characteristics**
+## Slot
 
-Type: Integer
+### Select Profile Slot
 
-Minimum Value: 0
+### Copy Current Profile to Slot
 
-Maximum Value: 11
+## Horizontal Movement
 
-**Menu Inputs**
+### Horizontal Type
 
-| Input                    | Effect             |
-| ------------------------ | ------------------ |
-| Small Step Left          | -1                 |
-| Small Step Right         | +1                 |
-| Large Step Left          | -1                 |
-| Large Step Right         | +1                 |
-| Cycle Subitem            | N/A                |
-| Assign Vector            | N/A                |     
+### Left
 
-## Override from Slot
-**Description**: Override the current movement profile with the one stored in the targeted profile. 
+### Right
 
-**Characteristics**
+### Forward
 
-Type: Integer
+### Backward
 
-Minimum Value: 0
+## Vertical Movement
 
-Maximum Value: 11
+### Vertical Type
 
-**Menu Inputs**
+### Jump
 
-| Input                    | Effect                  |
-| ------------------------ | ------------------      |
-| Small Step Left          | -1                      |
-| Small Step Right         | +1                      |
-| Large Step Left (Hold)   | Clear the Selected Slot |
-| Large Step Right (Hold)  | Override From Slot      |
-| Cycle Subitem            | N/A                     |
-| Assign Vector            | N/A                     |
+### Crouch
+
+## Idle Movement
+
+### Left/Right Idle
+
+### Forward/Backward Idle
