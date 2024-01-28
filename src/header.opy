@@ -48,7 +48,7 @@ globalvar menu_colors_custom
 globalvar hud_text_id
 globalvar menu_help_index
 globalvar menu_help_display
-globalvar help_configs
+globalvar help_data
 ## Menu Actions
 globalvar submenu_curr_start
 globalvar chg_submenu_target
@@ -192,17 +192,14 @@ playervar mvmt_br_max
 playervar mvmt_vert_type
 playervar mvmt_vert_impulse
 playervar mvmt_vert_interval
-#### Vertical Probability
+#### Jump
 playervar mvmt_jump_chance
 playervar mvmt_jump_interval
-playervar mvmt_crouch_chance
-playervar mvmt_crouch_interval
-#### Jump Time
 playervar mvmt_jump_min
 playervar mvmt_jump_max
-#### Crouch Time
-playervar mvmt_crouch_min
-playervar mvmt_crouch_max
+#### Crouch
+playervar mvmt_crouch_chance
+playervar mvmt_crouch_interval
 playervar mvmt_uncrouch_min
 playervar mvmt_uncrouch_max
 #### Idle Probability 
@@ -245,7 +242,8 @@ subroutine increment_for_submenu_item
 ### Menu Setup
 subroutine setup_menu
 ## UI Builder
-subroutine create_hud
+subroutine create_custom_hud
+subroutine create_help_hud
 subroutine setup_menu_custom
 subroutine create_submenu_main
 subroutine create_submenu_scenario
@@ -282,12 +280,13 @@ subroutine act_general_unsum_weights
 ### Custom Actions
 #### Main Menu
 subroutine act_main_open_hero_sel
+subroutine act_main_display_boundary
 subroutine act_main_test_bot_in_slot
+subroutine act_main_test_scenario
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
 #### Scenario Submenu
 subroutine act_sce_mode
-subroutine subact_sce_set_limit_type
 subroutine act_sce_points
 subroutine act_sce_strafe
 subroutine act_sce_player_spawn
@@ -308,7 +307,7 @@ subroutine act_bot_gravity
 subroutine act_bot_spawn
 subroutine act_bot_facing
 subroutine act_bot_bound
-subroutine act_bot_bound_dim
+subroutine act_bot_bound_dimentions
 subroutine act_bot_distance
 subroutine act_bot_select_profile
 subroutine act_bot_profile_order
@@ -328,7 +327,6 @@ subroutine act_mvmt_backward
 subroutine act_mvmt_vert_type
 subroutine act_mvmt_jump
 subroutine act_mvmt_crouch
-subroutine act_mvmt_crouch_time
 subroutine act_mvmt_lr_idle
 subroutine act_mvmt_fb_idle
 ## Bot Generation
@@ -339,7 +337,117 @@ subroutine setup_databot
 subroutine import_settings
 subroutine default_settings
 
-# ENUMS
+
+
+
+
+
+
+
+
+
+
+globalvar bot_slot
+globalvar profile_slot
+globalvar new_hero_array
+
+globalvar action_var
+globalvar action_var_2
+globalvar action_var_3
+globalvar action_result
+globalvar action_temp
+globalvar general_small
+globalvar general_large
+globalvar general_range_min
+globalvar general_range_max
+
+globalvar general_option_size
+globalvar general_target
+globalvar refresh_index
+globalvar refresh_start
+
+globalvar menu_effect_index
+globalvar effect_array
+
+globalvar ring_data
+subroutine update_bound_effect
+subroutine set_cube
+globalvar display_help
+globalvar active_bot_status
+
+globalvar elims
+globalvar timer
+globalvar scenario_status
+
+playervar boundary_limits
+
+playervar cube
+
+playervar calc_var
+
+playervar is_in_bounds
+
+playervar disabled_target
+
+playervar disabled_movements
+playervar owner_player
+playervar profile_list
+playervar profile_index
+playervar loop_indexes
+
+
+subroutine sce_start_scenario
+subroutine sce_stop_scenario
+
+
+globalvar angle
+globalvar scenario_in_progress
+subroutine set_disabled_index_dist
+
+
+
+
+playervar target_mvmt_dir
+playervar target_vert_impulse
+playervar target_rand
+playervar target_mvmt_vect
+playervar target_mvmt_index
+playervar target_mvmt_wait
+
+
+
+subroutine act_general_clear
+subroutine act_general_disable
+
+globalvar profile_weights
+globalvar movement_weights
+
+subroutine teleport_target
+subroutine select_mvmt_dir
+playervar mvmt_interrupt
+
+playervar xz_disabled
+
+playervar disabled_index
+playervar disabled_dir
+playervar disabled_bound
+playervar disabled_dist
+
+globalvar calc1
+globalvar calc2
+globalvar calc3
+
+subroutine disable_movement_boundary
+subroutine disable_movement_distance
+
+globalvar display_boundary
+
+globalvar item_data
+
+subroutine set_item_data
+
+
+
 
 enum SUBMENUS:
     SUBMENU_MAIN = 0,
@@ -376,33 +484,16 @@ enum MENU_ACTIONS:
 
 enum RANGE_TYPE:
     NONE = 0,
-    RANGE_SLOT,
-    RANGE_HERO,
-    RANGE_PERCENTAGE,
-    RANGE_ANGLE,
-    RANGE_TIME,
-    RANGE_SCALAR,
-    RANGE_VECTOR,
-    RANGE_SCORE,
+    SLOT,
+    HERO,
+    PERCENT,
+    ANGLE,
+    TIME,
+    SCALAR,
+    VECTOR,
+    POINTS,
 
-enum SMALL_TYPE:
-    NONE = 0,
-    SMALL_0_01,
-    SMALL_1
-
-enum LARGE_TYPE:
-    NONE = 0,
-    LARGE_1,
-    LARGE_10,
-
-
-enum DATA_TYPE:
-    DATA_STATIC = 0,
-    DATA_BOT,
-    DATA_MENU,
-    DATA_CONTROLS
-
-enum HELP_CONFIGS:
+enum HELP_TYPE:
     DEFAULT = 0,
     CYCLE,
     CYCLE_TOGGLE,
@@ -411,6 +502,47 @@ enum HELP_CONFIGS:
     SUBITEM_TOGGLE,
     SUBITEM_VECT,
     SUBITEM_VECT_OPT
+
+enum ITEM_TYPE:
+    NONE = 0,
+    SLOT,
+    TOGGLE_SLOT,
+    OVERRIDE_SLOT,
+    VECTOR,
+    SCALAR,
+    SCORE_TIME,
+    SCORE_POINTS,
+    POINTS,
+    STRAFE,
+    TYPE_VECT,
+    BOUNDARY,
+    DISTANCE,
+    HERO,
+    HEALTH,
+    SPEED,
+    SCALE,
+    PROF_STATUS,
+    PROF_ORDER,
+    MVMT_TYPE,
+    MVMT_DIR,
+    CHANCE
+
+
+enum SMALL_TYPE:
+    NONE = 0,
+    SM_0_01,
+    SM_1
+
+enum LARGE_TYPE:
+    NONE = 0,
+    LG_1,
+    LG_10,
+
+enum DATA_TYPE:
+    STATIC = 0,
+    BOT,
+    MENU,
+    CONTROLS
     
 enum GENERAL_TARGET:
     VECT_X = 0,
@@ -420,7 +552,8 @@ enum GENERAL_TARGET:
     MAX
 
 enum TAG_TYPE:
-    HEALTH = 0,
+    NONE = 0,
+    HEALTH,
     MIN_MAX,
     TARGET,
     PROFILE_STATUS,
@@ -431,16 +564,14 @@ enum TAG_TYPE:
     MVMT_TYPE,
     MVMT_DIR,
     CHANCE,
-    CROUCH_TIME,
     SCE_TIMED,
-    SCE_SCORE,
     SCE_POINTS,
-    SCE_STRAFE
+    POINTS,
+    STRAFE
     
 
 enum OPTIONS_TYPE:
     TOGGLE = 0,
-    VISIBILITY,
     GAME_TYPE,
     TARGET,
     SPAWN,
@@ -450,66 +581,6 @@ enum OPTIONS_TYPE:
     MVMT_TYPE,
     SCE_MODE
 
-
-
-globalvar bot_slot
-globalvar profile_slot
-globalvar new_hero_array
-
-globalvar action_var
-globalvar action_var_2
-globalvar action_var_3
-globalvar action_result
-globalvar action_temp
-globalvar general_small
-globalvar general_large
-globalvar general_range_min
-globalvar general_range_max
-
-globalvar general_option_size
-globalvar general_target
-globalvar refresh_index
-globalvar refresh_start
-
-globalvar menu_effect_index
-globalvar effect_array
-
-globalvar ring_data
-subroutine update_bound_effect
-subroutine set_cube
-subroutine update_distance_effect
-globalvar display_help
-globalvar active_bot_status
-
-globalvar elims
-globalvar timer
-globalvar stat_tracking_status
-
-playervar boundary_limits
-
-playervar cube
-
-playervar calc_var
-
-playervar is_in_bounds
-
-playervar disabled_target
-
-playervar disabled_movements
-playervar owner_player
-playervar profile_list
-playervar profile_index
-playervar loop_indexes
-
-
-subroutine stats_start_stat_tracking
-subroutine stats_stop_stat_tracking
-
-
-globalvar angle
-globalvar scenario_in_progress
-subroutine set_disabled_index_dist
-
 enum PLAYER_INDEXES:
     DISABLE_MVMT = 0,
     PROFILE,
@@ -517,11 +588,12 @@ enum PLAYER_INDEXES:
     WEIGHTS_2
 
 enum PLAYER_RAND:
-    PROFILE = 0,
-    LR,
-    FB,
+    XZ = 0,
+    LR_IDLE,
+    FB_IDLE,
     JUMP,
-    CROUCH
+    CROUCH,
+    PROFILE
 
 enum XZ_DIR:
     BACKWARD = 0,
@@ -533,29 +605,6 @@ enum XZ_DIR:
     LEFT,
     BACKWARD_LEFT,
 
-enum Y_DIR:
-    UP = 0,
+enum YDIR:
+    UP = 8,
     DOWN
-
-
-playervar target_mvmt_dir
-playervar target_rand
-playervar target_mvmt_vect
-playervar target_mvmt_index
-playervar target_mvmt_wait
-
-
-
-subroutine act_general_clear
-subroutine act_general_disable
-
-globalvar profile_weights
-globalvar movement_weights
-
-subroutine teleport_target
-subroutine select_mvmt_dir
-playervar mvmt_collision_wait
-playervar mvmt_interrupt
-
-playervar disabled_bound
-playervar disabled_dist

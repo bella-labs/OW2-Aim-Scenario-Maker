@@ -93,7 +93,7 @@ def act_general_toggle_status():
 
     if action_var:
         action_result = 1
-        menu_item_color_on[action_var_2] = menu_colors_custom[2]
+        menu_item_color_on[action_var_2] = menu_colors_custom[1]
     else:
         action_result = 0
         menu_item_color_on[action_var_2] = menu_colors_custom[0]
@@ -130,28 +130,30 @@ def act_general_toggle_var_4():
 def act_general_change_vect():
     @Name "SUB: act_general_change_vect"
     
-    general_small = small_steps[SMALL_TYPE.SMALL_0_01]
-    general_large = large_steps[LARGE_TYPE.LARGE_1]
-    general_range_min = ranges[RANGE_TYPE.RANGE_VECTOR][0]
-    general_range_max = ranges[RANGE_TYPE.RANGE_VECTOR][1]
+    action_var_3 = subitem_index[action_var_2]
+    general_small = small_steps[menu_item_small_step[action_var_2][action_var_3]]
+    general_large = large_steps[menu_item_large_step[action_var_2][action_var_3]]
+    general_range_min = ranges[menu_item_range[action_var_2][action_var_3]][0]
+    general_range_max = ranges[menu_item_range[action_var_2][action_var_3]][1]
 
+    action_var_3 = action_var
     switch general_target:
         case GENERAL_TARGET.VECT_X:
-            action_var = action_var_2.x
+            action_var = action_var_3.x
             act_general_chg_num()
-            action_var_2 = vect(action_var, action_var_2.y, action_var_2.z)
+            action_result = vect(action_var, action_var_3.y, action_var_3.z)
             break
         case GENERAL_TARGET.VECT_Y:
-            action_var = action_var_2.y
+            action_var = action_var_3.y
             act_general_chg_num()
-            action_var_2 = vect(action_var_2.x, action_var, action_var_2.z)
+            action_result = vect(action_var_3.x, action_var, action_var_3.z)
             break
         case GENERAL_TARGET.VECT_Z:
-            action_var = action_var_2.z
+            action_var = action_var_3.z
             act_general_chg_num()
-            action_var_2 = vect(action_var_2.x, action_var_2.y, action_var)
+            action_result = vect(action_var_3.x, action_var_3.y, action_var)
             break
-    
+
 
 def act_general_change_list():
     @Name "SUB: act_general_change_list"

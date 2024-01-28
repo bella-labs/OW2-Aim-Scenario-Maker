@@ -28,12 +28,43 @@ def act_bot_select_slot():
     action_var_3 = OPTIONS_TYPE.TOGGLE
     act_general_toggle_var_2()
 
+    if display_boundary:
+        update_bound_effect()
+
 
 def subact_select_slot_refresh():
     @Name "SUB: subact_select_slot_refresh"
 
-    # Hero Pool
     refresh_index = refresh_start[0]
+    # Spawn
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.SPAWN][databot.bot_spawn_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_spawn_vect[bot_slot].x
+    menu_item_var_3[refresh_index] = databot.bot_spawn_vect[bot_slot].y
+    menu_item_var_4[refresh_index] = databot.bot_spawn_vect[bot_slot].z
+    # Facing
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.FACING][databot.bot_facing_type[bot_slot]]
+    menu_item_var_2[refresh_index] = databot.bot_facing_vect[bot_slot].x
+    menu_item_var_3[refresh_index] = databot.bot_facing_vect[bot_slot].y
+    menu_item_var_4[refresh_index] = databot.bot_facing_vect[bot_slot].z
+    # Boundary Position
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_bound_pos[bot_slot].x
+    menu_item_var_2[refresh_index] = databot.bot_bound_pos[bot_slot].y
+    menu_item_var_3[refresh_index] = databot.bot_bound_pos[bot_slot].z
+    # Boundary Dimension
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_bound_angle[bot_slot]
+    menu_item_var_2[refresh_index] = databot.bot_bound_dim[bot_slot].x
+    menu_item_var_3[refresh_index] = databot.bot_bound_dim[bot_slot].y
+    menu_item_var_4[refresh_index] = databot.bot_bound_dim[bot_slot].z
+    update_bound_effect()
+    # Distance
+    refresh_index += 1
+    menu_item_var_1[refresh_index] = databot.bot_dist_min[bot_slot]
+    menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
+    # Hero Pool
+    refresh_index += 1
     action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] 
     action_var_2 = refresh_index
     action_var_3 = OPTIONS_TYPE.TOGGLE
@@ -58,36 +89,12 @@ def subact_select_slot_refresh():
     # Gravity
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.bot_gravity[bot_slot]
-    # Spawn
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.SPAWN][databot.bot_spawn_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_spawn_vect[bot_slot].x
-    menu_item_var_3[refresh_index] = databot.bot_spawn_vect[bot_slot].y
-    menu_item_var_4[refresh_index] = databot.bot_spawn_vect[bot_slot].z
-    # Facing
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.FACING][databot.bot_facing_type[bot_slot]]
-    menu_item_var_2[refresh_index] = databot.bot_facing_vect[bot_slot].x
-    menu_item_var_3[refresh_index] = databot.bot_facing_vect[bot_slot].y
-    menu_item_var_4[refresh_index] = databot.bot_facing_vect[bot_slot].z
-    # Boundary Position
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_bound_pos[bot_slot].x
-    menu_item_var_2[refresh_index] = databot.bot_bound_pos[bot_slot].y
-    menu_item_var_3[refresh_index] = databot.bot_bound_pos[bot_slot].z
-    # Boundary Dimension
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_bound_angle[bot_slot]
-    menu_item_var_2[refresh_index] = databot.bot_bound_dim[bot_slot].x
-    menu_item_var_3[refresh_index] = databot.bot_bound_dim[bot_slot].y
-    menu_item_var_4[refresh_index] = databot.bot_bound_dim[bot_slot].z
-    # Distance
-    refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_dist_min[bot_slot]
-    menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
     # Profile Weights
     refresh_index += 1
-    menu_item_var_2[refresh_index] = databot.bot_profile_weights[bot_slot][profile_slot]
+    action_var = databot.bot_profile_weights[bot_slot]
+    act_general_unsum_weights()
+    profile_weights = action_result
+    menu_item_var_2[refresh_index] = profile_weights[profile_slot]
     # Random Profile
     refresh_index += 1
     menu_item_var_1[refresh_index] = strings_options[lang_type][OPTIONS_TYPE.PROFILE][databot.bot_profile_type[bot_slot]]
@@ -106,29 +113,38 @@ def act_bot_override_slot():
     @Name "SUB: act_bot_override_slot"
 
     switch menu_action:
-        # Change target slot
         case MENU_ACTIONS.MENU_STEP_LEFT:
         case MENU_ACTIONS.MENU_STEP_RIGHT:
             act_general_num_var_1()
             break
-        # Override all slots? not sure if good / needed
         case MENU_ACTIONS.MENU_JUMP_LEFT:
-        # Override target slot
-        case MENU_ACTIONS.MENU_JUMP_RIGHT:
-            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), strings_prompt[lang_type][6]))
-            menu_item_color_on[menu_index] = Color.RED
-            waitUntil((eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])) == true, 2)
-            if (eventPlayer.getThrottle() == ui_inputs[8] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[8])):
-                subact_bot_override_slot()
-                menu_item_color_on[menu_index] = Color.GREEN
+            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[9]] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[9]), strings_prompt[lang_type][7]))
+            menu_item_color_on[menu_index] = menu_colors_custom[0]
+            waitUntil((eventPlayer.getThrottle() == ui_inputs[9] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[9])) == true, 1)
+            if (eventPlayer.getThrottle() == ui_inputs[9] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[9])):
+                menu_item_color_on[menu_index] = menu_colors_custom[1]
+                for loop_index in range(0,12):
+                    action_var = loop_index
+                    subact_bot_override_slot()
                 wait(0.25)
-        
             menu_item_color_on[menu_index] = menu_color_on_index
+            break
+        case MENU_ACTIONS.MENU_JUMP_RIGHT:
+            smallMessage(eventPlayer, "    {0} {1} {2}".format(strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[9]] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[9]), strings_prompt[lang_type][6]))
+            menu_item_color_on[menu_index] = menu_colors_custom[0]
+            waitUntil((eventPlayer.getThrottle() == ui_inputs[9] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[9])) == true, 2)
+            if (eventPlayer.getThrottle() == ui_inputs[9] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else eventPlayer.isHoldingButton(ui_inputs[9])):
+                action_var = menu_item_var_1[menu_index]
+                subact_bot_override_slot()
+                menu_item_color_on[menu_index] = menu_colors_custom[1]
+                wait(0.25)
+            menu_item_color_on[menu_index] = menu_color_on_index
+            break
+
 
 
 def subact_bot_override_slot():
     @Name "SUB: subact_bot_override_slot"
-    action_var = menu_item_var_1[menu_index]
 
     # Slot Status
     databot.bot_slot_status[action_var] = databot.bot_slot_status[bot_slot]
@@ -139,9 +155,9 @@ def subact_bot_override_slot():
     databot.bot_hps[action_var] = databot.bot_hps[bot_slot]
     databot.bot_hps_wait[action_var] = databot.bot_hps_wait[bot_slot]
     # Speed
-    databot.bot_scale_type[action_var] = databot.bot_speed_type[bot_slot]
-    databot.bot_scale_min[action_var] = databot.bot_speed_min[bot_slot]
-    databot.bot_scale_max[action_var] = databot.bot_speed_max[bot_slot]
+    databot.bot_speed_type[action_var] = databot.bot_speed_type[bot_slot]
+    databot.bot_speed_min[action_var] = databot.bot_speed_min[bot_slot]
+    databot.bot_speed_max[action_var] = databot.bot_speed_max[bot_slot]
     databot.bot_speed_target[action_var] = databot.bot_speed_target[bot_slot]
     # Scale
     databot.bot_scale_type[action_var] = databot.bot_scale_type[bot_slot]
@@ -185,7 +201,8 @@ def act_bot_spawn():
         menu_item_var_3[menu_index] = action_var_2.y
         menu_item_var_4[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.bot_spawn_vect[bot_slot]
+        action_var = databot.bot_spawn_vect[bot_slot]
+        action_var_2 = menu_index
         switch subitem_index[menu_index]:
             case 0:
                 action_var = databot.bot_spawn_type[bot_slot]
@@ -197,20 +214,20 @@ def act_bot_spawn():
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.x
+                databot.bot_spawn_vect[bot_slot] = action_result
+                menu_item_var_2[menu_index] = action_result.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.y
+                databot.bot_spawn_vect[bot_slot] = action_result
+                menu_item_var_3[menu_index] = action_result.y
                 break
             case 3:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_spawn_vect[bot_slot] = action_var_2
-                menu_item_var_4[menu_index] = action_var_2.z
+                databot.bot_spawn_vect[bot_slot] = action_result
+                menu_item_var_4[menu_index] = action_result.z
                 break
 
 
@@ -224,7 +241,8 @@ def act_bot_facing():
         menu_item_var_3[menu_index] = action_var_2.y
         menu_item_var_4[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.bot_facing_vect[bot_slot]
+        action_var = databot.bot_facing_vect[bot_slot]
+        action_var_2 = menu_index
         switch subitem_index[menu_index]:
             case 0:
                 action_var = databot.bot_facing_type[bot_slot]
@@ -236,20 +254,20 @@ def act_bot_facing():
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.x
+                databot.bot_facing_vect[bot_slot] = action_result
+                menu_item_var_2[menu_index] = action_result.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.y
+                databot.bot_facing_vect[bot_slot] = action_result
+                menu_item_var_3[menu_index] = action_result.y
                 break
             case 3:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_facing_vect[bot_slot] = action_var_2
-                menu_item_var_4[menu_index] = action_var_2.z
+                databot.bot_facing_vect[bot_slot] = action_result
+                menu_item_var_4[menu_index] = action_result.z
                 break
 
 
@@ -263,7 +281,8 @@ def act_bot_bound():
         menu_item_var_3[menu_index] = action_var_2.y
         menu_item_var_4[menu_index] = action_var_2.z
     else:
-        action_var_2 = databot.bot_bound_pos[bot_slot]
+        action_var = databot.bot_bound_pos[bot_slot]
+        action_var_2 = menu_index
         switch subitem_index[menu_index]:
             case 0:
                 action_var = databot.bot_bound_type[bot_slot]
@@ -275,28 +294,29 @@ def act_bot_bound():
             case 1:
                 general_target = GENERAL_TARGET.VECT_X
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
-                menu_item_var_2[menu_index] = action_var_2.x
+                databot.bot_bound_pos[bot_slot] = action_result
+                menu_item_var_2[menu_index] = action_result.x
                 break
             case 2:
                 general_target = GENERAL_TARGET.VECT_Y
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
-                menu_item_var_3[menu_index] = action_var_2.y
+                databot.bot_bound_pos[bot_slot] = action_result
+                menu_item_var_3[menu_index] = action_result.y
                 break
             case 3:
                 general_target = GENERAL_TARGET.VECT_Z
                 act_general_change_vect()
-                databot.bot_bound_pos[bot_slot] = action_var_2
-                menu_item_var_4[menu_index] = action_var_2.z
+                databot.bot_bound_pos[bot_slot] = action_result
+                menu_item_var_4[menu_index] = action_result.z
                 break
     update_bound_effect()
 
     
-def act_bot_bound_dim():
-    @Name "SUB: act_bot_bound_dim"
+def act_bot_bound_dimentions():
+    @Name "SUB: act_bot_bound_dimentions"
 
-    action_var_2 = databot.bot_bound_dim[bot_slot]
+    action_var = databot.bot_bound_dim[bot_slot]
+    action_var_2 = menu_index
     switch subitem_index[menu_index]:
         case 0:
             act_general_num_var_1()
@@ -305,20 +325,20 @@ def act_bot_bound_dim():
         case 1:
             general_target = GENERAL_TARGET.VECT_X
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_2[menu_index] = action_var_2.x
+            databot.bot_bound_dim[bot_slot] = action_result
+            menu_item_var_2[menu_index] = action_result.x
             break
         case 2:
             general_target = GENERAL_TARGET.VECT_Y
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_3[menu_index] = action_var_2.y
+            databot.bot_bound_dim[bot_slot] = action_result
+            menu_item_var_3[menu_index] = action_result.y
             break
         case 3:
             general_target = GENERAL_TARGET.VECT_Z
             act_general_change_vect()
-            databot.bot_bound_dim[bot_slot] = action_var_2
-            menu_item_var_4[menu_index] = action_var_2.z
+            databot.bot_bound_dim[bot_slot] = action_result
+            menu_item_var_4[menu_index] = action_result.z
             break
     update_bound_effect()
 
@@ -344,8 +364,6 @@ def act_bot_distance():
 
     databot.bot_dist_min[bot_slot] = action_var
     databot.bot_dist_max[bot_slot] = action_var_2
-
-    update_distance_effect()
 
 
 def act_bot_hero_pool():
@@ -490,8 +508,8 @@ def act_bot_select_profile():
 
         action_var = profile_weights
         act_general_calc_weights()
-        databot.bot_profile_weights = action_var_2
-        databot.bot_profile_max_weight = action_result
+        databot.bot_profile_weights[bot_slot] = action_var_2
+        databot.bot_profile_max_weight[bot_slot] = action_result
 
     action_var = profile_weights[profile_slot]
     act_general_disable()

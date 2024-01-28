@@ -6,7 +6,6 @@ rule "Target Bot Initalization":
     eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
     # Set Movement Direction
     eventPlayer.target_mvmt_dir = vect(0,0,0)
-    eventPlayer.startThrottleInDirection(eventPlayer.target_mvmt_dir, 1, Relativity.TO_PLAYER, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
     # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
     eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] = 0
     while(eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] < 10):
@@ -15,8 +14,6 @@ rule "Target Bot Initalization":
     # Set Gravity and Speed to -1 to force listener rule trigger when set to 0
     eventPlayer.bot_speed_min = -1
     eventPlayer.bot_gravity = -1
-
-    eventPlayer.mvmt_collision_wait = 0.1
 
         
 rule "Target Bot Listener - Spawn":
@@ -201,19 +198,16 @@ rule "Target Bot Listener - Scale":
     eventPlayer.bot_scale_target = databot.bot_scale_target[eventPlayer.getSlot()]
 
     switch eventPlayer.bot_scale_type:
-        case 0: # Static
-            eventPlayer.startScalingSize(eventPlayer.bot_scale_min, true)
-            break
-        case 1: # Random
+        case 0: # Random
             eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
             break
-        case 2: # Health
+        case 1: # Health
             eventPlayer.startScalingSize(eventPlayer.bot_scale_min + (eventPlayer.bot_scale_max - eventPlayer.bot_scale_min) * eventPlayer.getNormalizedHealth(), true)
             break
-        case 3: #Elims
+        case 2: #Elims
             eventPlayer.startScalingSize(max(eventPlayer.bot_scale_min, (eventPlayer.bot_scale_max) - (elims * eventPlayer.bot_scale_target)), true)
             break
-        case 4: #Time
+        case 3: #Time
             eventPlayer.startScalingSize(eventPlayer.bot_scale_min + (eventPlayer.bot_scale_max - eventPlayer.bot_scale_min) * (sin(Math.PI*(timer%eventPlayer.bot_scale_target)/eventPlayer.bot_scale_target)), true)
             break
 
@@ -246,16 +240,27 @@ rule "Target Bot Listener - Bot Profile":
     @Team 2
     @Condition  (
                 eventPlayer.bot_profile_weights != databot.bot_profile_weights[eventPlayer.getSlot()] or
+                eventPlayer.bot_profile_max_weight != databot.bot_profile_max_weight[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_type != databot.bot_profile_type[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_min != databot.bot_profile_min[eventPlayer.getSlot()] or
                 eventPlayer.bot_profile_max != databot.bot_profile_max[eventPlayer.getSlot()]
                 )
 
+    eventPlayer.profile_index = -1
     eventPlayer.bot_profile_weights = databot.bot_profile_weights[eventPlayer.getSlot()]
+    eventPlayer.bot_profile_max_weight = databot.bot_profile_max_weight[eventPlayer.getSlot()]
     eventPlayer.bot_profile_type = databot.bot_profile_type[eventPlayer.getSlot()]
     eventPlayer.bot_profile_min = databot.bot_profile_min[eventPlayer.getSlot()]
     eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
 
+    if eventPlayer.bot_profile_type == 0:
+        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = 0
+        while(eventPlayer.profile_index == -1 and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights)):
+            if (eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]] > -1):
+                eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
+            eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
+    else:
+        eventPlayer.profile_index = 0
     # Cooldown to prevent overflow
     wait(1)
     smallMessage(hostPlayer, "Bot Profile")
@@ -379,43 +384,24 @@ rule "Target Bot Listener - Movement Vertical Type":
         goto RULE_START
 
 
-rule "Target Bot Listener - Movement Vertical Chance":
+rule "Target Bot Listener - Movement e":
     @Event eachPlayer
     @Team 2
     @Condition  (
                 eventPlayer.mvmt_jump_chance != databot.mvmt_jump_chance or 
                 eventPlayer.mvmt_jump_interval != databot.mvmt_jump_interval or 
-                eventPlayer.mvmt_crouch_chance != databot.mvmt_crouch_chance or
-                eventPlayer.mvmt_crouch_interval != databot.mvmt_crouch_interval
-                )
-
-    eventPlayer.mvmt_jump_chance = databot.mvmt_jump_chance
-    eventPlayer.mvmt_jump_interval = databot.mvmt_jump_interval
-    eventPlayer.mvmt_crouch_chance = databot.mvmt_crouch_chance
-    eventPlayer.mvmt_crouch_interval = databot.mvmt_crouch_interval
-
-    # Cooldown to prevent overflow
-    wait(1)
-    smallMessage(hostPlayer, "Vertical Chance")
-
-    if RULE_CONDITION:
-        goto RULE_START
-
-
-rule "Target Bot Listener - Movement Jump Time":
-    @Event eachPlayer
-    @Team 2
-    @Condition  (
                 eventPlayer.mvmt_jump_min != databot.mvmt_jump_min or 
                 eventPlayer.mvmt_jump_max != databot.mvmt_jump_max
                 )
 
+    eventPlayer.mvmt_jump_chance = databot.mvmt_jump_chance
+    eventPlayer.mvmt_jump_interval = databot.mvmt_jump_interval
     eventPlayer.mvmt_jump_min = databot.mvmt_jump_min
     eventPlayer.mvmt_jump_max = databot.mvmt_jump_max
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Jump Time")
+    smallMessage(hostPlayer, "Jump")
 
     if RULE_CONDITION:
         goto RULE_START
@@ -425,20 +411,20 @@ rule "Target Bot Listener - Movement Crouch Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_crouch_min != databot.mvmt_crouch_min or 
-                eventPlayer.mvmt_crouch_max != databot.mvmt_crouch_max or 
+                eventPlayer.mvmt_crouch_chance != databot.mvmt_crouch_chance or
+                eventPlayer.mvmt_crouch_interval != databot.mvmt_crouch_interval or
                 eventPlayer.mvmt_uncrouch_min != databot.mvmt_uncrouch_min or
                 eventPlayer.mvmt_uncrouch_max != databot.mvmt_uncrouch_max
                 )
 
-    eventPlayer.mvmt_crouch_min = databot.mvmt_crouch_min
-    eventPlayer.mvmt_crouch_max = databot.mvmt_crouch_max
+    eventPlayer.mvmt_crouch_chance = databot.mvmt_crouch_chance
+    eventPlayer.mvmt_crouch_interval = databot.mvmt_crouch_interval
     eventPlayer.mvmt_uncrouch_min = databot.mvmt_uncrouch_min
     eventPlayer.mvmt_uncrouch_max = databot.mvmt_uncrouch_max
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Crouch Time")
+    smallMessage(hostPlayer, "Crouch")
 
     if RULE_CONDITION:
         goto RULE_START

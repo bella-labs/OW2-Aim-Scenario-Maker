@@ -18,6 +18,8 @@ def perform_action():
             menu_act_submenu_profile()
             break
 
+    if (user_controls[10] <= INPUT_OPTIONS.VECT_RIGHT and eventPlayer.getThrottle() == ui_inputs[10]) or (user_controls[10] > INPUT_OPTIONS.VECT_RIGHT and eventPlayer.isHoldingButton(ui_inputs[10])):
+        menu_wait_index = 2
     wait(menu_wait[menu_wait_index])
     if RULE_CONDITION:
         goto RULE_START
@@ -46,14 +48,18 @@ def menu_act_submenu_main():
             act_main_open_hero_sel()
             break
         case submenu_curr_start + 4:
-            act_main_test_bot_in_slot()
+            act_main_display_boundary()
             break
         case submenu_curr_start + 5:
+            act_main_test_bot_in_slot()
             break
         case submenu_curr_start + 6:
-            act_main_toggle_import()
+            act_main_test_scenario()
             break
         case submenu_curr_start + 7:
+            act_main_toggle_export()
+            break
+        case submenu_curr_start + 8:
             act_main_toggle_import()
             break
         
@@ -118,7 +124,7 @@ def menu_act_submenu_bot():
             act_bot_bound()
             break
         case submenu_curr_start + 6:
-            act_bot_bound_dim()
+            act_bot_bound_dimentions()
             break
         case submenu_curr_start + 7:
             act_bot_distance()
@@ -189,11 +195,8 @@ def menu_act_submenu_profile():
             act_mvmt_crouch()
             break
         case submenu_curr_start + 11:
-            act_mvmt_crouch_time()
-            break
-        case submenu_curr_start + 12:
             act_mvmt_lr_idle()
             break   
-        case submenu_curr_start + 13:
+        case submenu_curr_start + 12:
             act_mvmt_fb_idle()
             break                                                                       
