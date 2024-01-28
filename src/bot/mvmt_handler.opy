@@ -15,7 +15,7 @@ rule "Target Bot Horizontal Impulse Setup":
         eventPlayer.stopThrottleInDirection()
 
 
-rule "Target Bot Horizontal Movement":
+rule "Target Bot Horizontal Input Movement":
     @Event eachPlayer
     @Team 2
 
@@ -139,7 +139,7 @@ rule "Target Bot Horizontal Impulse Handler":
     @Condition eventPlayer.mvmt_hori_impulse[eventPlayer.profile_index] > 0
 
     eventPlayer.applyImpulse(eventPlayer.target_mvmt_dir, eventPlayer.mvmt_hori_impulse[eventPlayer.profile_index], Relativity.TO_PLAYER, Impulse.CANCEL_CONTRARY_MOTION)
-    wait(eventPlayer.mvmt_hori_interval[eventPlayer.profile_index])
+    wait(eventPlayer.mvmt_hori_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
 
     if RULE_CONDITION:
         goto RULE_START
