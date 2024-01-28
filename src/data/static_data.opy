@@ -81,7 +81,7 @@ rule "Load Static Data":
                     ] 
     
     item_data = [
-                        [
+                        [ # None
                             TAG_TYPE.NONE,
                             [],
                             [],
@@ -89,147 +89,147 @@ rule "Load Static Data":
                             [HELP_TYPE.DEFAULT],
                             HELP_TYPE.DEFAULT
                         ],
-                        [
+                        [ # SLOT
                             TAG_TYPE.NONE,
                             [RANGE_TYPE.SLOT],
                             [SMALL_TYPE.SM_1],
                             [LARGE_TYPE.LG_1],
                             HELP_TYPE.CYCLE
                         ],
-                        [
+                        [ # TOGGLE_SLOT
                             TAG_TYPE.NONE,
                             [RANGE_TYPE.SLOT],
                             [SMALL_TYPE.SM_1],
                             [LARGE_TYPE.LG_1],
                             HELP_TYPE.CYCLE_TOGGLE
                         ],
-                        [
+                        [ # OVERRIDE_SLOT
                             TAG_TYPE.NONE,
                             [RANGE_TYPE.SLOT],
                             [SMALL_TYPE.SM_1],
                             [LARGE_TYPE.LG_1],
                             HELP_TYPE.CYCLE_OVERRIDE
                         ],
-                        [
+                        [ # VECTOR
                             TAG_TYPE.VECT,
                             [RANGE_TYPE.VECTOR, RANGE_TYPE.VECTOR, RANGE_TYPE.VECTOR],
                             [SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.LG_1, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_VECT
                         ],
-                        [
+                        [ # SCALAR
                             TAG_TYPE.NONE,
                             [RANGE_TYPE.SCALAR],
                             [SMALL_TYPE.SM_1],
                             [LARGE_TYPE.LG_10],
                             HELP_TYPE.CYCLE
                         ],
-                        [
+                        [ # SCORE_TIME
                             TAG_TYPE.SCE_TIMED,
                             [RANGE_TYPE.NONE, RANGE_TYPE.TIME],
                             [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.NONE, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_TOGGLE
                         ],
-                        [
+                        [ # SCORE_POINTS
                             TAG_TYPE.SCE_POINTS,
                             [RANGE_TYPE.NONE, RANGE_TYPE.POINTS],
                             [SMALL_TYPE.NONE, SMALL_TYPE.SM_1],
                             [LARGE_TYPE.NONE, LARGE_TYPE.LG_10],
                             HELP_TYPE.SUBITEM_TOGGLE
                         ],
-                        [
+                        [ # POINTS
                             TAG_TYPE.POINTS,
                             [RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR],
                             [SMALL_TYPE.SM_1, SMALL_TYPE.SM_1, SMALL_TYPE.SM_1],
                             [LARGE_TYPE.LG_10, LARGE_TYPE.LG_10, LARGE_TYPE.LG_10],
                             HELP_TYPE.SUBITEM_CYCLE
                         ],
-                        [
+                        [ # STRAFE
                             TAG_TYPE.STRAFE,
                             [RANGE_TYPE.SCALAR, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
                             [SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.LG_10, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_CYCLE
                         ],
-                        [
+                        [ # TYPE_VECT
                             TAG_TYPE.TYPE_VECT,
                             [RANGE_TYPE.NONE, RANGE_TYPE.VECTOR, RANGE_TYPE.VECTOR, RANGE_TYPE.VECTOR],
                             [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.NONE, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_VECT_OPT
                         ],
-                        [
+                        [ # BOUNDARY
                             TAG_TYPE.ANGLE_DIM,
                             [RANGE_TYPE.ANGLE, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR],
                             [SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.LG_10, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_VECT
                         ],
-                        [
+                        [ # DISTANCE
                             TAG_TYPE.MIN_MAX,
                             [RANGE_TYPE.PERCENT, RANGE_TYPE.PERCENT],
                             [SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_CYCLE
                         ],
-                        [
+                        [ # HERO
                             TAG_TYPE.NONE,
                             [RANGE_TYPE.NONE, RANGE_TYPE.NONE, RANGE_TYPE.HERO],
                             [SMALL_TYPE.NONE, SMALL_TYPE.NONE, SMALL_TYPE.SM_1],
                             [],
                             HELP_TYPE.CYCLE_TOGGLE
                         ],
-                        [
+                        [ # HEALTH
                             TAG_TYPE.HEALTH,
                             [RANGE_TYPE.SCALAR, RANGE_TYPE.VECTOR, RANGE_TYPE.TIME],
                             [SMALL_TYPE.SM_1, SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.LG_10, LARGE_TYPE.LG_10, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_CYCLE
                         ],
-                        [
+                        [ # SPEED
                             TAG_TYPE.TARGET,
                             [RANGE_TYPE.NONE, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR, RANGE_TYPE.SCALAR],
                             [SMALL_TYPE.NONE, SMALL_TYPE.SM_1, SMALL_TYPE.SM_1, SMALL_TYPE.SM_1],
                             [LARGE_TYPE.NONE, LARGE_TYPE.LG_10, LARGE_TYPE.LG_10, LARGE_TYPE.LG_10],
                             HELP_TYPE.SUBITEM_TOGGLE
                         ],
-                        [
+                        [ # SCALE
                             TAG_TYPE.TARGET,
                             [RANGE_TYPE.NONE, RANGE_TYPE.PERCENT, RANGE_TYPE.PERCENT, RANGE_TYPE.PERCENT],
                             [SMALL_TYPE.SM_1, SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.LG_10, LARGE_TYPE.LG_10, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_TOGGLE
                         ],
-                        [
+                        [ # PROF_STATUS
                             TAG_TYPE.PROFILE_STATUS,
                             [RANGE_TYPE.SLOT, RANGE_TYPE.PERCENT],
                             [SMALL_TYPE.SM_1, SMALL_TYPE.SM_1],
                             [LARGE_TYPE.LG_1, LARGE_TYPE.LG_10],
                             HELP_TYPE.CYCLE_TOGGLE
                         ],
-                        [
+                        [ # PROF_ORDER
                             TAG_TYPE.PROFILE_ORDER,
                             [RANGE_TYPE.NONE, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
                             [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.NONE, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_VECT_OPT
                         ],
-                        [
+                        [ # MVMT_TYPE
                             TAG_TYPE.MVMT_TYPE,
-                            [RANGE_TYPE.NONE, RANGE_TYPE.PERCENT, RANGE_TYPE.TIME],
+                            [RANGE_TYPE.NONE, RANGE_TYPE.SCALAR, RANGE_TYPE.TIME],
                             [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.NONE, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_TOGGLE
                         ],
-                        [
+                        [ # MVMT_DIR
                             TAG_TYPE.MVMT_DIR,
                             [RANGE_TYPE.PERCENT, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
                             [SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
                             [LARGE_TYPE.LG_10, LARGE_TYPE.LG_1, LARGE_TYPE.LG_1],
                             HELP_TYPE.SUBITEM_CYCLE
                         ],
-                        [
+                        [ # CHANCE
                             TAG_TYPE.CHANCE,
                             [RANGE_TYPE.PERCENT, RANGE_TYPE.TIME, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
                             [SMALL_TYPE.SM_1, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
@@ -625,7 +625,7 @@ rule "load_language_data":
             ["Angle: ", "Length: ", "Height: ", "Width: "],
             ["Type: ", "Impulse Strength: ", "Impulse Interval: "],
             ["Weight : ", "Min Time : ", "Max Time : "],
-            ["Chance %: ", "Interval: ", "Min Time : ", "Max Time : "],
+            ["Chance %: ", "Min Time : ", "Max Time : ", "Interval: "],
             ["Type: ", "Seconds: "],
             ["Type: ", "Score: "],
             ["Bodyshot: ", "Headshot: ", "Elim: "],

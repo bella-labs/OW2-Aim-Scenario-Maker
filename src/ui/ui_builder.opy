@@ -801,9 +801,9 @@ def create_submenu_profile():
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_jump_chance[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_jump_interval[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_jump_min[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_jump_max[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_jump_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_jump_max[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_jump_interval[0]
 
     action_var = ITEM_TYPE.CHANCE
     action_var_2 = menu_item_size
@@ -817,9 +817,9 @@ def create_submenu_profile():
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_crouch_chance[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_crouch_interval[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_uncrouch_min[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_uncrouch_max[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_uncrouch_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_uncrouch_max[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_crouch_interval[0]
 
     action_var = ITEM_TYPE.CHANCE
     action_var_2 = menu_item_size
@@ -839,9 +839,9 @@ def create_submenu_profile():
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_chance[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_lr_idle_interval[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_lr_idle_min[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_fb_idle_max[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_lr_idle_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_max[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_lr_idle_interval[0]
 
     action_var = ITEM_TYPE.CHANCE
     action_var_2 = menu_item_size
@@ -855,9 +855,9 @@ def create_submenu_profile():
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_fb_idle_chance[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_fb_idle_interval[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_min[0]
-    menu_item_var_4[menu_item_size] = databot.mvmt_fb_idle_max[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_fb_idle_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_fb_idle_max[0]
+    menu_item_var_4[menu_item_size] = databot.mvmt_fb_idle_interval[0]
 
     action_var = ITEM_TYPE.CHANCE
     action_var_2 = menu_item_size

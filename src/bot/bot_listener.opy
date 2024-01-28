@@ -6,11 +6,9 @@ rule "Target Bot Initalization":
     eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
     # Set Movement Direction
     eventPlayer.target_mvmt_dir = vect(0,0,0)
-    # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
-    eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] = 0
-    while(eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] < 10):
-        eventPlayer.disabled_movements[eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT]] = 0
-        eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] += 1
+    # Set Disabled Movements
+    eventPlayer.disabled_hori = [0,0,0,0,0,0,0,0]
+    eventPlayer.disabled_vert = [0,0]
     # Set Gravity and Speed to -1 to force listener rule trigger when set to 0
     eventPlayer.bot_speed_min = -1
     eventPlayer.bot_gravity = -1

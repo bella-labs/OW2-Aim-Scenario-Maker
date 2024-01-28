@@ -230,6 +230,7 @@ Sets health, hps and hps wait of the bot. A negative hps will cause a damage ove
     a. Use the special action "Set Vector to Current" to populate the facing vector with the players facing direction.
 
     b. Manually enter each X, Y, and Z coordinate of the facing direction. The facing direction will be normalized when when applied to the bot.
+    
 ### Speed
 
 ### Scale
