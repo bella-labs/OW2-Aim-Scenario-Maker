@@ -41,29 +41,28 @@ rule "Boundary Handler - Correct XZ":
     if RULE_CONDITION:
         goto RULE_START
 
+rule "Boundary Handler - Correct Y Min (Up)":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.getPosition().y > eventPlayer.boundary_limits[1].y
+
+    eventPlayer.disabled_movements[YDIR.UP] = true
+
+    waitUntil( eventPlayer.getPosition().y <= eventPlayer.boundary_limits[1].y, 9999)
+
+    eventPlayer.disabled_movements[YDIR.UP] = false
+
 
 rule "Boundary Handler - Correct Y Min (Down)":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.getPosition().y < eventPlayer.boundary_limits[0].y
 
-    eventPlayer.disabled_movements[9] = true
+    eventPlayer.disabled_movements[YDIR.DOWN] = true
 
     waitUntil(eventPlayer.boundary_limits[0].y <= eventPlayer.getPosition().y, 9999)
 
-    eventPlayer.disabled_movements[9] = false
-
-    
-rule "Boundary Handler - Correct Y Min (Up)":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.getPosition().y > eventPlayer.boundary_limits[1].y
-
-    eventPlayer.disabled_movements [8] = true
-
-    waitUntil( eventPlayer.getPosition().y <= eventPlayer.boundary_limits[1].y, 9999)
-
-    eventPlayer.disabled_movements [8] = false
+    eventPlayer.disabled_movements[YDIR.DOWN] = false
 
 
 rule "Distance Handler - Correct Min Distance":
@@ -199,6 +198,7 @@ rule "Profile Handler: Randomized":
         if (eventPlayer.target_rand[PLAYER_RAND.PROFILE] <= eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]]):
             eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
         eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
+
     wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max))
 
     if RULE_CONDITION:

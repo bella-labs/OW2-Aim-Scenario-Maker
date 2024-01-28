@@ -6,7 +6,6 @@ rule "Target Bot Initalization":
     eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
     # Set Movement Direction
     eventPlayer.target_mvmt_dir = vect(0,0,0)
-    eventPlayer.startThrottleInDirection(eventPlayer.target_mvmt_dir, 1, Relativity.TO_PLAYER, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
     # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
     eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] = 0
     while(eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] < 10):

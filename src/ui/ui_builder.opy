@@ -706,8 +706,6 @@ def create_submenu_profile():
 
     new_menu_item_3var()
 
-
-
     # (3 Var) Left Movement
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]

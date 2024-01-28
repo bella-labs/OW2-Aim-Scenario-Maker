@@ -408,6 +408,7 @@ subroutine set_disabled_index_dist
 
 
 playervar target_mvmt_dir
+playervar target_vert_impulse
 playervar target_rand
 playervar target_mvmt_vect
 playervar target_mvmt_index
@@ -604,6 +605,6 @@ enum XZ_DIR:
     LEFT,
     BACKWARD_LEFT,
 
-enum Y_DIR:
-    UP = 0,
+enum YDIR:
+    UP = 8,
     DOWN
