@@ -2,7 +2,7 @@ rule "Target Bot Horizontal Input":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 0
-    @Condition (eventPlayer.mvmt_left_max[eventPlayer.profile_index] != 0 or eventPlayer.mvmt_right_max[eventPlayer.profile_index] != 0 or eventPlayer.mvmt_back_max != 0 or eventPlayer.mvmt_fwd_max != 0)
+    @Condition (eventPlayer.mvmt_left_max[eventPlayer.profile_index] != 0 or eventPlayer.mvmt_right_max[eventPlayer.profile_index] != 0 or eventPlayer.mvmt_fwd_max[eventPlayer.profile_index] != 0 or eventPlayer.mvmt_back_max[eventPlayer.profile_index] != 0)
 
         eventPlayer.startThrottleInDirection(eventPlayer.target_mvmt_dir, 1, Relativity.TO_PLAYER, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
 
@@ -10,7 +10,7 @@ rule "Target Bot Horizontal Input":
 rule "Target Bot Horizontal Impulse":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 1 or (eventPlayer.mvmt_left_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_right_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_back_max == 0 and eventPlayer.mvmt_fwd_max == 0)
+    @Condition eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 1 or (eventPlayer.mvmt_left_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_right_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_fwd_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_back_max[eventPlayer.profile_index] == 0)
 
         eventPlayer.stopThrottleInDirection()
 
@@ -96,7 +96,6 @@ rule "Target Bot Jump Input Movement":
     @Team 2
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 0
     @Condition eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] > 0
-    @Condition eventPlayer.mvmt_jump_interval[eventPlayer.profile_index] > 0
     @Condition not eventPlayer.disabled_movements[YDIR.UP]
 
     wait(eventPlayer.mvmt_jump_interval[eventPlayer.profile_index])
@@ -115,7 +114,6 @@ rule "Target Bot Crouch Input Movement":
     @Team 2
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 0
     @Condition eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] > 0
-    @Condition eventPlayer.mvmt_crouch_interval[eventPlayer.profile_index] > 0
     @Condition not eventPlayer.disabled_movements[YDIR.DOWN]
 
     wait(eventPlayer.mvmt_crouch_interval[eventPlayer.profile_index])
@@ -134,7 +132,6 @@ rule "Target Bot Jump Impulse Movement":
     @Team 2
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 1
     @Condition eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] > 0
-    @Condition eventPlayer.mvmt_jump_interval[eventPlayer.profile_index] > 0
     @Condition eventPlayer.target_vert_impulse == 0
     @Condition not eventPlayer.disabled_movements[YDIR.UP]
 
@@ -154,7 +151,6 @@ rule "Target Bot Crouch Impluse Movement":
     @Team 2
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 1
     @Condition eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] > 0
-    @Condition eventPlayer.mvmt_crouch_interval[eventPlayer.profile_index] > 0
     @Condition eventPlayer.target_vert_impulse == 0
     @Condition not eventPlayer.disabled_movements[YDIR.DOWN]
 
