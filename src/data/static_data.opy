@@ -71,13 +71,13 @@ rule "Load Static Data":
 
     help_data = [
                     [0,0,0,0,0,0,0,0,0,0], # Default
-                    [0,0,1,1,1,1,0,0,1,0], # Cycle List
-                    [0,0,1,1,3,3,0,0,1,0], # Cycle Toggle
-                    [0,0,1,1,4,4,0,0,3,0], # Cycle Override
-                    [0,0,1,1,1,1,1,1,1,0], # Subitem Cycle
-                    [0,0,2,2,2,2,1,1,1,0], # Subitem Cycle List + Toggle
-                    [0,0,1,1,1,1,1,1,2,0], # Subitem Vector List
-                    [0,0,2,2,2,2,1,1,2,0]  # Subitem Vector Toggle
+                    [0,0,1,1,1,1,0,0,1,1], # Cycle List
+                    [0,0,1,1,3,3,0,0,1,1], # Cycle Toggle
+                    [0,0,1,1,4,4,0,0,3,1], # Cycle Override
+                    [0,0,1,1,1,1,1,1,1,1], # Subitem Cycle
+                    [0,0,2,2,2,2,1,1,1,1], # Subitem Cycle List + Toggle
+                    [0,0,1,1,1,1,1,1,2,1], # Subitem Vector List
+                    [0,0,2,2,2,2,1,1,2,1]  # Subitem Vector Toggle
                     ] 
     
     item_data = [
@@ -289,7 +289,7 @@ rule "load_language_data":
             ["N/A", "Previous Subitem"],
             ["N/A", "Next Subitem"],
             ["Select Item", "N/A", "Set Vector to Current", "Confirm Override"],
-            ["Turbo Cycle"]
+            ["N/A", "Turbo Cycle"]
         ],
         [
             [""],
