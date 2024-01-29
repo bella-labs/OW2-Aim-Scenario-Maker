@@ -129,15 +129,25 @@ def act_sce_strafe():
     switch subitem_index[menu_index]:
         case 0:
             act_general_num_var_1()
-            databot.sce_bs_points = menu_item_var_1[menu_index]
+            databot.sce_strafe_pps = menu_item_var_1[menu_index]
             break
         case 1:
-            act_general_num_var_2()
-            databot.sce_hs_points = menu_item_var_2[menu_index]
-            break
         case 2:
-            act_general_num_var_3()
-            databot.sce_elim_points = menu_item_var_3[menu_index]
+            action_var = databot.sce_strafe_min[profile_slot]
+            action_var_2 = databot.sce_strafe_max[profile_slot]
+    
+            if subitem_index[menu_index] == 1:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
+    
+            act_general_change_min_max()
+    
+            menu_item_var_2[menu_index] = action_var
+            menu_item_var_3[menu_index] = action_var_2
+        
+            databot.sce_strafe_min[profile_slot] = action_var
+            databot.sce_strafe_max[profile_slot] = action_var_2
             break
 
 

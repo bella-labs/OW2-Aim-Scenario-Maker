@@ -53,8 +53,8 @@ def default_settings():
     eventPlayer.sce_game_mode = 0
     eventPlayer.sce_game_limit = 60
     eventPlayer.sce_bs_points = 1
-    eventPlayer.sce_hs_points = 2
-    eventPlayer.sce_elim_points = 10
+    eventPlayer.sce_hs_points = 1
+    eventPlayer.sce_elim_points = 0
     eventPlayer.sce_strafe_pps = 0
     eventPlayer.sce_strafe_min = 0
     eventPlayer.sce_strafe_max = 0

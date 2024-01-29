@@ -469,6 +469,9 @@ globalvar sce_player
 
 playervar player_speed
 
+playervar strafe_dir
+playervar strafe_timer
+
 
 enum SUBMENUS:
     SUBMENU_MAIN = 0,
