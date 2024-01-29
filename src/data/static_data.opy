@@ -630,7 +630,7 @@ rule "load_language_data":
             ["Type: ", "Seconds: "],
             ["Type: ", "Score: "],
             ["Bodyshot: ", "Headshot: ", "Elim: "],
-            ["Max Score Per Strafe: ", "Min Time: ", "Max Time: "]
+            ["Points Per Second: ", "Min Time: ", "Max Time: "]
         ],
         [
             ["", "", ""], 
@@ -696,10 +696,9 @@ rule "load_language_data":
             "Server Load (Curr/Avg/Peak)",
             "Position",
             "Facing",
-            "Time",
             "Score",
-            "Last: ",
-            "High: ",
+            "Last",
+            "High",
             "Points",
             "Seconds"
 

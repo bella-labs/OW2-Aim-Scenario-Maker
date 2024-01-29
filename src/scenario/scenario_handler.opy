@@ -130,6 +130,26 @@ rule "Player Elim Handler":
     eventPlayer.player_score += databot.sce_elim_points
 
 
+rule "Player Strafe Score Handler":
+    @Event eachPlayer
+    @Team 1
+    @Condition scenario_status
+    @Condition databot.sce_strafe_pps > 0
+    @Condition eventPlayer.getThrottle() != vect(0,0,0)
+
+    eventPlayer.strafe_dir = eventPlayer.getThrottle()
+    eventPlayer.strafe_timer = 0
+    chase(eventPlayer.strafe_timer, 9999, rate=1, ChaseReeval.DESTINATION_AND_RATE)
+
+    while(eventPlayer.strafe_dir == eventPlayer.getThrottle()):
+        if eventPlayer.strafe_timer >= databot.sce_strafe_min and eventPlayer.strafe_timer < databot.sce_strafe_max:
+            eventPlayer.player_score += databot.sce_strafe_pps/10
+        wait(0.1)
+    stopChasingVariable(eventPlayer.strafe_timer)
+    wait()
+
+    if RULE_CONDITION:
+        goto RULE_START
 rule "set scenario in progress":
     @Event global
     #@Condition timer > 0
