@@ -402,7 +402,6 @@ subroutine sce_stop_scenario
 
 
 globalvar angle
-globalvar scenario_in_progress
 subroutine set_disabled_index_dist
 
 
@@ -472,6 +471,11 @@ globalvar exportbot_status
 globalvar databuilder
 playervar export_data
 globalvar exportbot
+
+globalvar scenario_bot_index
+globalvar scenario_bot
+globalvar test_bot_index
+subroutine show_next_bot
 
 subroutine unload_settings
 

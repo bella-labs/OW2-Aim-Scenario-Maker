@@ -224,12 +224,9 @@ Sets health, hps and hps wait of the bot. A negative hps will cause a damage ove
 
 **Usage** 
 
-1. Select the facing type. If you are not using the fixed facing type there is no need to configure the facing direction.
-2. If you are using the fixed facing position you may set the facing vector in one of two ways:
-
-    a. Use the special action "Set Vector to Current" to populate the facing vector with the players facing direction.
-
-    b. Manually enter each X, Y, and Z coordinate of the facing direction. The facing direction will be normalized when when applied to the bot.
+1. Set the bots health. A health of 0% will make the bot unkillable.
+2. Set the hps. A positive hps will heal the bot, a negative hps will apply damage over time.
+3. Set the hps wait. The hps wait is the time to wait between the bot taking damage from a player and the heal over time / damage over time being applied to the bot.
     
 ### Speed
 
@@ -250,10 +247,10 @@ Sets the bot's movement speed.
 
 | Name                        | Description                                    |
 | --------------------------- | ---------------------------------------------- |
-| Random                       | The speed will randomly be set to a value in-between the minimum and maximum when the bot spawns. |
+| Random                      | The speed will randomly be set to a value in-between the minimum and maximum when the bot spawns. |
 | Health                      | The bot's speed will be set to the minimum while it is at full health, as the bots health approaches 0 the speed will increase to the maximum.  |
-| Elims (Target)                      | The bot will start at the minimum speed, every elimination, the speed will increase by the value set in speed target up to the maximum speed.  |
-| Looping (Target)                      | The bots speed will loop between the minimum and maximum speed in the shape of a sin wave. The speed target sets the period of this wave.  |
+| Elims (Target)              | The bot will start at the minimum speed, every elimination, the speed will increase by the value set in speed target up to the maximum speed.  |
+| Looping (Target)            | The bots speed will loop between the minimum and maximum speed in the shape of a sin wave. The speed target sets the period of this wave.  |
 
 **Usage** 
 
@@ -285,10 +282,10 @@ Sets the bot's scale.
 
 | Name                        | Description                                    |
 | --------------------------- | ---------------------------------------------- |
-| Random                       | The scale will randomly be set to a value in-between the minimum and maximum when the bot spawns. |
+| Random                      | The scale will randomly be set to a value in-between the minimum and maximum when the bot spawns. |
 | Health                      | The bot's scale will be set to the maximum while it is at full health, as the bots health approaches 0 the scale will increase to the minimum.  |
-| Elims (Target)                      | The bot will start at the maximum scale, every elimination, the scale will decrease by the value set in speed target up to the minimum scale.  |
-| Looping (Target)                      | The bots scale will loop between the minimum and maximum scale in the shape of a sin wave. The scale target sets the period of this wave.  |
+| Elims (Target)              | The bot will start at the maximum scale, every elimination, the scale will decrease by the value set in speed target up to the minimum scale.  |
+| Looping (Target)            | The bots scale will loop between the minimum and maximum scale in the shape of a sin wave. The scale target sets the period of this wave.  |
 
 **Usage** 
 
@@ -322,7 +319,7 @@ The gravity of the bot.
 
 **Description**
 
-Description
+Assign the weight of each movement profile on the bot slot. A weight of 0 disables the profile for the current bot slot.
 
 **Characteristics**
 
@@ -333,7 +330,7 @@ Description
 
 **Usage** 
 
-1. Do thing
+1. Set which movem
 
 ### Profile Order
 
