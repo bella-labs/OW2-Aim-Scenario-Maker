@@ -523,7 +523,7 @@ rule "load_language_data":
             "Spawn Facing",
             "Speed",
             "Gravity",
-            "Scoring",
+            "Scenario",
             "Scenario Type",
             "Points",
             "Strafe Points",
@@ -589,7 +589,8 @@ rule "load_language_data":
             ["Reverse", "Stop", "Teleport"],
             ["In Order", "Randomized"],
             ["Inputs", "Impulse"],
-            ["Timed", "Elims"]
+            ["Timed", "Elims"],
+            ["Simultaneous", "In Slot Order"]
         ],
         [
             ["사용 안 함", "사용"],
@@ -628,8 +629,8 @@ rule "load_language_data":
             ["Type: ", "Impulse Strength: ", "Impulse Interval: "],
             ["Weight : ", "Min Time : ", "Max Time : "],
             ["Chance %: ", "Min Time : ", "Max Time : ", "Interval: "],
-            ["Type: ", "Seconds: "],
-            ["Type: ", "Score: "],
+            ["Type: ", "Seconds: ", "Order"],
+            ["Type: ", "Score: ", "Order"],
             ["Bodyshot: ", "Headshot: ", "Elim: "],
             ["Points Per Second: ", "Min Time: ", "Max Time: "]
         ],

@@ -347,13 +347,14 @@ def create_submenu_scenario():
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
-    # (2 Var) Scenario Type
+    # (3 Var) Scenario Type
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_sce_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
     
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCE_MODE][databot.sce_game_mode]
     menu_item_var_2[menu_item_size] = databot.sce_game_limit
+    menu_item_var_3[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCE_ORDER][databot.sce_spawn_order]
     
     if databot.sce_game_mode == 0:
         action_var = ITEM_TYPE.SCORE_TIME
@@ -362,7 +363,7 @@ def create_submenu_scenario():
     action_var_2 = menu_item_size
     set_item_data()
     
-    new_menu_item_2var()
+    new_menu_item_3var()
 
     # (3 Var) Points
     increment_for_menu_item()

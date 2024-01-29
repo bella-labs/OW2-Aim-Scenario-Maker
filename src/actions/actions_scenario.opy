@@ -103,6 +103,15 @@ def act_sce_mode():
             act_general_num_var_2()
             databot.sce_game_limit = menu_item_var_2[menu_index]
             break
+        case 2:
+            action_var = databot.sce_spawn_order
+            action_var_2 = menu_index
+            action_var_3 = OPTIONS_TYPE.SCE_ORDER
+            act_general_change_list()
+            menu_item_var_3[action_var_2] = strings_options[lang_type][action_var_3][action_var]
+            databot.sce_spawn_order = action_var
+            action_var = menu_index
+
 
 
 def act_sce_points():
