@@ -56,7 +56,10 @@ markdown_extensions:
 
 nav:
 - Home: index.md
-- Getting Started: getting_started/get_started_index.md
+- Getting Started: 
+  - getting_started/get_started_index.md
+  - Export: getting_started/export_instructions.md
+  - Import: getting_started/import_instructions.md
 - Menu Reference:
   - Main Menu: menu_ref/menu_ref_main.md
   - Scenario: menu_ref/menu_ref_scenario.md

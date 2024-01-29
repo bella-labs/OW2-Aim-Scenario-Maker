@@ -94,8 +94,6 @@ globalvar hero_array
 ## Data Storage
 ### Bot Settings
 #### Import Status
-playervar import_status
-
 #### Game Mode
 playervar sce_game_mode
 playervar sce_game_limit
@@ -117,9 +115,24 @@ playervar sce_player_speed
 playervar sce_player_gravity
 #### Custom Script
 playervar sce_custom_status
-
+#### Order Type
+playervar bot_order_type
 #### Slot
 playervar bot_slot_status
+#### Spawn
+playervar bot_spawn_type
+playervar bot_spawn_vect
+#### Facing
+playervar bot_facing_type
+playervar bot_facing_vect
+#### Bounds
+playervar bot_bound_type
+playervar bot_bound_pos
+playervar bot_bound_angle
+playervar bot_bound_dim
+#### Distance
+playervar bot_dist_min
+playervar bot_dist_max
 #### Hero Pool
 playervar bot_hero_pool
 #### Health
@@ -138,20 +151,6 @@ playervar bot_scale_max
 playervar bot_scale_target
 #### Gravity
 playervar bot_gravity
-#### Spawn
-playervar bot_spawn_type
-playervar bot_spawn_vect
-#### Facing
-playervar bot_facing_type
-playervar bot_facing_vect
-#### Bounds
-playervar bot_bound_type
-playervar bot_bound_pos
-playervar bot_bound_angle
-playervar bot_bound_dim
-#### Distance
-playervar bot_dist_min
-playervar bot_dist_max
 #### Profile
 playervar bot_profile_weights
 playervar bot_profile_max_weight
@@ -286,6 +285,7 @@ subroutine act_main_test_scenario
 subroutine act_main_reset_score
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
+subroutine act_main_create_export
 #### Scenario Submenu
 subroutine act_sce_mode
 subroutine act_sce_points
@@ -449,9 +449,6 @@ globalvar item_data
 
 subroutine set_item_data
 
-playervar title
-playervar author
-
 playervar target_impulse_wait
 
 subroutine target_up_impulse
@@ -471,6 +468,13 @@ playervar player_speed
 
 playervar strafe_dir
 playervar strafe_timer
+
+globalvar exportbot_status
+globalvar databuilder
+playervar export_data
+globalvar exportbot
+
+subroutine unload_settings
 
 
 enum SUBMENUS:

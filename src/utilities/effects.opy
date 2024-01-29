@@ -10,9 +10,9 @@ rule "Create Effects on effect index":
     update_bound_effect()
 
     # Create Boundary Box Effect, Using unused player variables cuz space ain't cheap
-    eventPlayer.import_status = [[0, 1], [0, 2], [0, 4], [1, 3], [1, 5], [2, 3], [2, 6], [3, 7], [4, 5], [4, 6], [5, 7], [6, 7]]
-    for eventPlayer.sce_game_mode in range(0, len(eventPlayer.import_status)):
-        createBeam(hostPlayer, Beam.BAD, eventPlayer.cube[eventPlayer.import_status[evalOnce(eventPlayer.sce_game_mode)][0]], eventPlayer.cube[eventPlayer.import_status[evalOnce(eventPlayer.sce_game_mode)][1]], Color.ORANGE, EffectReeval.POSITION_AND_RADIUS)
+    eventPlayer.sce_game_limit = [[0, 1], [0, 2], [0, 4], [1, 3], [1, 5], [2, 3], [2, 6], [3, 7], [4, 5], [4, 6], [5, 7], [6, 7]]
+    for eventPlayer.sce_game_mode in range(0, len(eventPlayer.sce_game_limit)):
+        createBeam(hostPlayer, Beam.BAD, eventPlayer.cube[eventPlayer.sce_game_limit[evalOnce(eventPlayer.sce_game_mode)][0]], eventPlayer.cube[eventPlayer.sce_game_limit[evalOnce(eventPlayer.sce_game_mode)][1]], Color.ORANGE, EffectReeval.POSITION_AND_RADIUS)
         effect_array[eventPlayer.sce_game_mode] = getLastCreatedEntity()
 
     # Create Distance Effect
@@ -51,8 +51,8 @@ rule "Destroy Effects on non effect index":
     @Condition not display_boundary
     
     # Use a random variable that the player doesn't touch for loop since there is potential runtime conflict with using loop_index
-    for eventPlayer.import_status in range(0,len(effect_array),1):
-        destroyEffect(effect_array[eventPlayer.import_status])
+    for eventPlayer.sce_game_limit in range(0,len(effect_array),1):
+        destroyEffect(effect_array[eventPlayer.sce_game_limit])
 
 
 

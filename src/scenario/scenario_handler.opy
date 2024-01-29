@@ -21,11 +21,11 @@ def sce_start_scenario():
     disable_player_input()
     setup_player_in_scenario()
 
-    smallMessage(eventPlayer, "3")
+    smallMessage(eventPlayer, "    3")
     wait(1)
-    smallMessage(eventPlayer, "2")
+    smallMessage(eventPlayer, "    2")
     wait(1)
-    smallMessage(eventPlayer, "1")
+    smallMessage(eventPlayer, "    1")
     wait(1)
 
     eventPlayer.player_speed = databot.sce_player_speed

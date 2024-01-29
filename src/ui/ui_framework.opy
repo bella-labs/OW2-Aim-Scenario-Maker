@@ -193,7 +193,7 @@ def create_help_hud():
                         ]
 
     hudSubheader([i for i in localPlayer], 
-    "{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}{14}".format("{0} {1} {2} {3} {4}\n".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[0]] if user_controls[0] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
+    "{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}".format("{0} {1} {2} {3} {4}\n".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[0]] if user_controls[0] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]), 
         strings_symbols[0], 
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[1]] if user_controls[1] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[1]), menu_help_display[0]) if menu_visible else "",
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[2]] if user_controls[2] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[2]), menu_help_display[1]) if menu_visible else "",
@@ -205,9 +205,7 @@ def create_help_hud():
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[8]] if user_controls[8] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[8]), menu_help_display[7]) if menu_visible else "",
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[9]] if user_controls[9] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[9]), menu_help_display[8]) if menu_visible else "",
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[10]] if user_controls[10] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[10]), menu_help_display[9]) if menu_visible else "",
-        strings_symbols[0] if menu_visible else "",
-        "{0}{1}".format(strings_instructions[lang_type][0], strings_symbols[0]) if display_help[0]  else "",
-        "{0}{1}{2}{3}".format(strings_instructions[lang_type][1], strings_symbols[0], strings_instructions[lang_type][2], strings_symbols[0]) if display_help[1] else ""),
+        strings_symbols[0] if menu_visible else ""),
         HudPosition.LEFT,
         -1,
         Color.WHITE,
