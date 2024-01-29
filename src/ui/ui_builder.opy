@@ -60,7 +60,7 @@ def create_custom_hud():
 
     # Small server load on right
     hudSubheader([i for i in localPlayer],
-    "Server Load (Curr/Avg/Peak): {0}/{1}/{2}\n".format(getServerLoad(), getAverageServerLoad(), getPeakServerLoad()), 
+    "{0}: {1}/{2}/{3}\n".format(strings_misc[lang_type][1], getServerLoad(), getAverageServerLoad(), getPeakServerLoad()), 
     HudPosition.RIGHT, 
     -9999, 
     Color.WHITE, 
@@ -69,9 +69,26 @@ def create_custom_hud():
 
     # Large vector data for reference on right
     hudSubtext([i for i in localPlayer],
-    "Position: {0}\nFacing: {1}".format(localPlayer.getPosition(), localPlayer.getFacingDirection()),
+    "{0}: {1}\n{2}: {3}\n".format(strings_misc[lang_type][2], localPlayer.getPosition(), strings_misc[lang_type][3], localPlayer.getFacingDirection()),
     HudPosition.RIGHT, 
-    -1, 
+    0, 
+    Color.WHITE, 
+    HudReeval.VISIBILITY_AND_STRING, 
+    SpecVisibility.DEFAULT)
+
+    # Stats Display Top
+    hudSubtext([i for i in localPlayer if scenario_status ],
+    "{0}: {1}\n{2}: {3}".format(strings_misc[lang_type][4], timer, strings_misc[lang_type][5], localPlayer.player_score), 
+    HudPosition.TOP, 
+    9999, 
+    Color.WHITE, 
+    HudReeval.VISIBILITY_AND_STRING, 
+    SpecVisibility.DEFAULT)
+
+    hudSubtext([i for i in localPlayer],
+    "{0}: {1} {4}\n{2}: {3} {4}".format(strings_misc[lang_type][6], localPlayer.last_score, strings_misc[lang_type][7], localPlayer.high_score, strings_misc[lang_type][8] if databot.sce_game_mode == 0 else strings_misc[lang_type][9]),
+    HudPosition.RIGHT, 
+    1, 
     Color.WHITE, 
     HudReeval.VISIBILITY_AND_STRING, 
     SpecVisibility.DEFAULT)
@@ -155,6 +172,13 @@ def create_submenu_main():
     new_menu_item_toggle_list()
 
     # (Selection) Test Scenario
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[3]
+    new_menu_item_selection()
+
+    # (Selection) Reset Score
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]

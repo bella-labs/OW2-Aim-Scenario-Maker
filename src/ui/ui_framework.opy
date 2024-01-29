@@ -146,6 +146,7 @@ rule "Menu Controls: Toggle Off Setup Player":
     @Condition eventPlayer == hostPlayer
     @Condition menu_visible == false
 
+    eventPlayer.player_speed = 100
     enable_player_input()
 
 
@@ -213,15 +214,6 @@ def create_help_hud():
         HudReeval.VISIBILITY_AND_STRING,
         SpecVisibility.DEFAULT)
 
-    # Stats Display Top
-    hudSubheader([i for i in localPlayer if scenario_status ],
-    "Timer: {0}\nElims: {1}".format(timer, elims), 
-    HudPosition.TOP, 
-    -9999, 
-    Color.WHITE, 
-    HudReeval.VISIBILITY_AND_STRING, 
-    SpecVisibility.DEFAULT)
-
 
 def update_help_data():
     @Name "SUB: update_help_data"
@@ -269,7 +261,7 @@ def enable_player_input():
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.allowButton(Button.ABILITY_2)
     eventPlayer.allowButton(Button.ULTIMATE)
-    eventPlayer.setMoveSpeed(100)
+    eventPlayer.setMoveSpeed(eventPlayer.player_speed)
 
 
 def disable_player_input():
