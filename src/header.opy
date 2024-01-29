@@ -283,6 +283,7 @@ subroutine act_main_open_hero_sel
 subroutine act_main_display_boundary
 subroutine act_main_test_bot_in_slot
 subroutine act_main_test_scenario
+subroutine act_main_reset_score
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
 #### Scenario Submenu
@@ -458,6 +459,15 @@ subroutine target_down_impulse
 
 playervar target_lr_idle
 playervar target_fb_idle
+
+subroutine setup_player_in_scenario
+playervar player_score
+playervar last_score
+playervar high_score
+subroutine reset_player
+globalvar sce_player
+
+playervar player_speed
 
 
 enum SUBMENUS:

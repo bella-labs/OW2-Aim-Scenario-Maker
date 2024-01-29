@@ -69,6 +69,13 @@ def act_main_test_scenario():
         sce_start_scenario()
 
 
+def act_main_reset_score():
+    @Name "SUB: act_main_reset_score"
+
+    eventPlayer.last_score = 0
+    eventPlayer.high_score = 0
+
+
 def act_main_toggle_export():
     @Name "SUB: act_main_toggle_export"
 

@@ -344,6 +344,7 @@ rule "load_language_data":
             "Display Boundaries",
             "Test Bot in Slot",
             "Test Scenario",
+            "Reset Score",
             "Export and Share",
             "Display Export Instructions",
             "Display Import Instructions"
@@ -691,13 +692,25 @@ rule "load_language_data":
     ]
     strings_misc = [
         [
-            "Iris"
+            "Iris",
+            "Server Load (Curr/Avg/Peak)",
+            "Position",
+            "Facing",
+            "Time",
+            "Score",
+            "Last: ",
+            "High: ",
+            "Points",
+            "Seconds"
+
         ], 
         [
-            "데이터 저장소"
+            "데이터 저장소",
+
         ], 
         [
-            "数据存储"
+            "数据存储",
+
         ]
     ]
     strings_symbols = ["—————————————————————————\n"]
