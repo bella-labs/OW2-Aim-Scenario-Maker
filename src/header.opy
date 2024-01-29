@@ -456,6 +456,9 @@ playervar target_impulse_wait
 subroutine target_up_impulse
 subroutine target_down_impulse
 
+playervar target_lr_idle
+playervar target_fb_idle
+
 
 enum SUBMENUS:
     SUBMENU_MAIN = 0,
