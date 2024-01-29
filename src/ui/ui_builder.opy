@@ -114,6 +114,18 @@ def create_custom_hud():
     HudReeval.VISIBILITY_AND_STRING, 
     SpecVisibility.DEFAULT)
 
+    hudSubheader([i for i in localPlayer],
+    "{0}\n{1}".format(
+        strings_instructions[lang_type][0] if display_help[0] else "",
+        strings_instructions[lang_type][1] if display_help[1] else ""
+    ),
+    HudPosition.RIGHT, 
+    100, 
+    Color.BLACK, 
+    HudReeval.VISIBILITY_AND_STRING, 
+    SpecVisibility.DEFAULT)
+    
+
 
 def create_submenu_main():
     @Name "SUB: create_submenu_main"
@@ -235,6 +247,13 @@ def create_submenu_main():
     act_general_toggle_var_1()
 
     new_menu_item_toggle()
+
+    # (Selection) Create Export Package
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
+    new_menu_item_selection()
 
 
 def create_submenu_scenario():

@@ -65,6 +65,9 @@ def menu_act_submenu_main():
         case submenu_curr_start + 9:
             act_main_toggle_import()
             break
+        case submenu_curr_start + 10:
+            act_main_create_export()
+            break
         
 
 def menu_act_submenu_scenario():
