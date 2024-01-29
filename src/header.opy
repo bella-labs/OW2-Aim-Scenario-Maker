@@ -97,6 +97,7 @@ globalvar hero_array
 #### Game Mode
 playervar sce_game_mode
 playervar sce_game_limit
+playervar sce_spawn_order
 #### Points
 playervar sce_bs_points
 playervar sce_hs_points
@@ -115,8 +116,6 @@ playervar sce_player_speed
 playervar sce_player_gravity
 #### Custom Script
 playervar sce_custom_status
-#### Order Type
-playervar bot_order_type
 #### Slot
 playervar bot_slot_status
 #### Spawn
@@ -607,7 +606,8 @@ enum OPTIONS_TYPE:
     BOUNDS,
     PROFILE,
     MVMT_TYPE,
-    SCE_MODE
+    SCE_MODE,
+    SCE_ORDER
 
 enum PLAYER_INDEXES:
     PROFILE = 0
