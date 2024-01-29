@@ -233,18 +233,141 @@ Sets health, hps and hps wait of the bot. A negative hps will cause a damage ove
     
 ### Speed
 
+**Description**
+
+Sets the bot's movement speed.
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Speed Type                 | Choice               | N/A        | N/A        |
+| Minimum Speed              | Integer              | 0%         | 1000%      |
+| Maximum Speed              | Integer              | 0%         | 1000%      |
+| Speed Target               | Real                 | 0          | 1000       |
+
+**Option Descriptions**
+
+| Name                        | Description                                    |
+| --------------------------- | ---------------------------------------------- |
+| Random                       | The speed will randomly be set to a value in-between the minimum and maximum when the bot spawns. |
+| Health                      | The bot's speed will be set to the minimum while it is at full health, as the bots health approaches 0 the speed will increase to the maximum.  |
+| Elims (Target)                      | The bot will start at the minimum speed, every elimination, the speed will increase by the value set in speed target up to the maximum speed.  |
+| Looping (Target)                      | The bots speed will loop between the minimum and maximum speed in the shape of a sin wave. The speed target sets the period of this wave.  |
+
+**Usage** 
+
+1. Set the speed type.
+2. Set the minimum speed for the bot to travel.
+3. Set the maximum speed for the bot to travel.
+4. If using Elims or Looping speed type:
+
+    a. Elims: Set the speed target to the percentage the speed should increase by every elimination.
+    b. Looping: Set the speed target to the period the speed looping should occur under.
+
+
 ### Scale
 
+**Description**
+
+Sets the bot's scale.
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Scale Type                 | Choice               | N/A        | N/A        |
+| Minimum Speed              | Integer              | 0%         | 1000%      |
+| Maximum Speed              | Integer              | 0%         | 1000%      |
+| Speed Target               | Real                 | 0          | 1000       |
+
+**Option Descriptions**
+
+| Name                        | Description                                    |
+| --------------------------- | ---------------------------------------------- |
+| Random                       | The scale will randomly be set to a value in-between the minimum and maximum when the bot spawns. |
+| Health                      | The bot's scale will be set to the maximum while it is at full health, as the bots health approaches 0 the scale will increase to the minimum.  |
+| Elims (Target)                      | The bot will start at the maximum scale, every elimination, the scale will decrease by the value set in speed target up to the minimum scale.  |
+| Looping (Target)                      | The bots scale will loop between the minimum and maximum scale in the shape of a sin wave. The scale target sets the period of this wave.  |
+
+**Usage** 
+
+1. Set the scale type.
+2. Set the minimum scale for the bot to travel.
+3. Set the maximum scale for the bot to travel.
+4. If using Elims or Looping scale type:
+
+    a. Elims: Set the scale target to the percentage the scale should decrease by every elimination.
+    b. Looping: Set the scale target to the period the scale looping should occur under.
+
 ### Gravity
+
+**Description**
+
+The gravity of the bot.
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Gravity                    | Integer              | 0%         | 1000%      |
+
+**Usage** 
+
+1. Set the gravity to the desired about of gravity. To get floating bots set the gravity to 0.
 
 ## Movement Profiles
 
 ### Profile Status
 
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
 ### Profile Order
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
 
 ### Script
 
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
 
 
 
