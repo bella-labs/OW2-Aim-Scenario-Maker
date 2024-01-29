@@ -69,29 +69,10 @@ rule "Target Bot LR Idle Movement":
 
     wait(eventPlayer.mvmt_lr_idle_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
     eventPlayer.target_rand[PLAYER_RAND.LR_IDLE] = random.uniform(0,100)
-    if eventPlayer.target_rand[PLAYER_RAND.LR_IDLE] > eventPlayer.mvmt_lr_idle_chance[eventPlayer.profile_index] and eventPlayer.isAlive():
-        eventPlayer.disabled_hori[XZ_DIR.BACKWARD_RIGHT] += 1
-        eventPlayer.disabled_hori[XZ_DIR.RIGHT] += 1
-        eventPlayer.disabled_hori[XZ_DIR.FORWARD_RIGHT] += 1
-        eventPlayer.disabled_hori[XZ_DIR.FORWARD_LEFT] += 1
-        eventPlayer.disabled_hori[XZ_DIR.LEFT] += 1
-        eventPlayer.disabled_hori[XZ_DIR.BACKWARD_LEFT] += 1
-
-        wait(random.uniform(eventPlayer.mvmt_lr_idle_min, eventPlayer.mvmt_lr_idle_max))
-
-        if eventPlayer.isAlive():
-            if eventPlayer.disabled_hori[XZ_DIR.BACKWARD_RIGHT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.BACKWARD_RIGHT] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.RIGHT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.RIGHT] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.FORWARD_RIGHT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.FORWARD_RIGHT] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.FORWARD_LEFT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.FORWARD_LEFT] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.LEFT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.LEFT] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.BACKWARD_LEFT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.BACKWARD_LEFT] -= 1
+    if eventPlayer.target_rand[PLAYER_RAND.LR_IDLE] < eventPlayer.mvmt_lr_idle_chance[eventPlayer.profile_index] and eventPlayer.isAlive():
+        eventPlayer.target_lr_idle = true
+        wait(random.uniform(eventPlayer.mvmt_lr_idle_min[eventPlayer.profile_index], eventPlayer.mvmt_lr_idle_max[eventPlayer.profile_index]))
+        eventPlayer.target_lr_idle = false
 
     if RULE_CONDITION:
         goto RULE_START
@@ -104,29 +85,10 @@ rule "Target Bot FB Idle Movement":
 
     wait(eventPlayer.mvmt_fb_idle_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
     eventPlayer.target_rand[PLAYER_RAND.FB_IDLE] = random.uniform(0,100)
-    if eventPlayer.target_rand[PLAYER_RAND.FB_IDLE] > eventPlayer.mvmt_fb_idle_chance[eventPlayer.profile_index] and eventPlayer.isAlive():
-        eventPlayer.disabled_hori[XZ_DIR.BACKWARD] += 1
-        eventPlayer.disabled_hori[XZ_DIR.BACKWARD_RIGHT] += 1
-        eventPlayer.disabled_hori[XZ_DIR.FORWARD_RIGHT] += 1
-        eventPlayer.disabled_hori[XZ_DIR.FORWARD] += 1
-        eventPlayer.disabled_hori[XZ_DIR.FORWARD_LEFT] += 1
-        eventPlayer.disabled_hori[XZ_DIR.BACKWARD_LEFT] += 1
-
+    if eventPlayer.target_rand[PLAYER_RAND.FB_IDLE] < eventPlayer.mvmt_fb_idle_chance[eventPlayer.profile_index] and eventPlayer.isAlive():
+        eventPlayer.target_fb_idle = true
         wait(random.uniform(eventPlayer.mvmt_fb_idle_min[eventPlayer.profile_index], eventPlayer.mvmt_fb_idle_max[eventPlayer.profile_index]))
-
-        if eventPlayer.isAlive():
-            if eventPlayer.disabled_hori[XZ_DIR.BACKWARD] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.BACKWARD] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.BACKWARD_RIGHT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.BACKWARD_RIGHT] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.FORWARD_RIGHT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.FORWARD_RIGHT] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.FORWARD] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.FORWARD] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.FORWARD_LEFT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.FORWARD_LEFT] -= 1
-            if eventPlayer.disabled_hori[XZ_DIR.BACKWARD_LEFT] > 0:
-                eventPlayer.disabled_hori[XZ_DIR.BACKWARD_LEFT] -= 1
+        eventPlayer.target_fb_idle = false
 
     if RULE_CONDITION:
         goto RULE_START
@@ -227,10 +189,17 @@ def select_mvmt_dir():
             eventPlayer.target_mvmt_vect = vect(0,0,0)
             break
 
+    if eventPlayer.target_lr_idle:
+        eventPlayer.target_mvmt_vect *= vect(0,1,1)
+    if eventPlayer.target_fb_idle:
+        eventPlayer.target_mvmt_vect *= vect(1,1,0)
     if eventPlayer.disabled_hori[eventPlayer.target_mvmt_index] > 0:
         switch eventPlayer.bot_bound_type:
             case 0:
-                eventPlayer.target_mvmt_vect = eventPlayer.target_mvmt_vect * vect(-1, 1, -1)
+                if eventPlayer.disabled_hori[(eventPlayer.target_mvmt_index + 4) % 8] == 0:
+                    eventPlayer.target_mvmt_vect = eventPlayer.target_mvmt_vect * vect(-1, 1, -1)
+                else:
+                    eventPlayer.target_mvmt_vect = vect(0,0,0)
                 break
             case 1:
                 eventPlayer.target_mvmt_vect = vect(0,0,0)

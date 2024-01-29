@@ -67,12 +67,12 @@ rule "text":
 
     hudSubheader(eventPlayer, 
     " c1: {0}".format(
-        getPlayersInSlot(0, Team.2).target_impulse_wait),
+        display_help[0]),
     HudPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " c2: {0}".format(
-        getPlayersInSlot(0, Team.2).target_vert_dir),
+        display_help[1]),
     HudPosition.RIGHT, 900, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
 

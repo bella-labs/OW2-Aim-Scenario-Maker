@@ -72,6 +72,8 @@ def act_main_test_scenario():
 def act_main_toggle_export():
     @Name "SUB: act_main_toggle_export"
 
+    smallMessage(hostPlayer, "export")
+
     display_help[0] = not display_help[0]
 
     action_var = display_help[0]
@@ -82,6 +84,8 @@ def act_main_toggle_export():
     
 def act_main_toggle_import():
     @Name "SUB: act_main_toggle_import"
+
+    smallMessage(hostPlayer, "import")
 
     display_help[1] = not display_help[1]
 
