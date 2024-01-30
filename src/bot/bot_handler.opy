@@ -180,8 +180,9 @@ rule "Speed Handler - Loop":
 
 
 rule "Profile Handler: In-Order":
-    @Event playerDied
-    @Condition eventPlayer.bot_profile_type == 0
+    @Event eachPlayer
+    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.bot_profile_type == 1
     @Condition eventPlayer.profile_index != -1
 
     if eventPlayer.bot_profile_weights[eventPlayer.profile_index] == eventPlayer.bot_profile_max_weight:
@@ -194,6 +195,11 @@ rule "Profile Handler: In-Order":
             eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
             eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = len(eventPlayer.bot_profile_weights)
         eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
+
+    wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max))
+
+    if RULE_CONDITION:
+        goto RULE_START
     
 
 rule "Profile Handler: Randomized":

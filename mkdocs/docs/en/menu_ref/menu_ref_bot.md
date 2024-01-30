@@ -323,14 +323,19 @@ Assign the weight of each movement profile on the bot slot. A weight of 0 disabl
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum    |
+| -------------------------- | -------------------- | ------------ | ---------- |
+| Profile                    | Integer              | 0            | 11         |
+| Weight                     | Integer              | 0 (Disabled) | 100        |
 
 
 **Usage** 
 
-1. Set which movem
+1. For each movement profile you would like to apply to the bot: 
+
+   a. Cycle to the movement profile you would like to toggle.
+
+   b. Set the weight of the movement profile.
 
 ### Profile Order
 
@@ -340,10 +345,18 @@ Description
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum    | Maximum     |
+| -------------------------- | -------------------- | ---------- | ----------- |
+| Profile Type               | Choice               | N/A        | N/A         |
+| Minimum Time               | Real                 | 0 seconds  | 600 seconds |
+| Maximum Time               | Real                 | 0 seconds  | 600 seconds |
 
+**Option Descriptions**
+
+| Name                        | Description                                    |
+| --------------------------- | ---------------------------------------------- |
+| In Order                    | The bot will switch movement profiles after dying |
+| Randomized                  | The bot will randomly cycle to a new profile 
 
 **Usage** 
 
