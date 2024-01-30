@@ -182,21 +182,23 @@ rule "Speed Handler - Loop":
 rule "Profile Handler: In-Order":
     @Event eachPlayer
     @Condition eventPlayer.isAlive() 
-    @Condition eventPlayer.bot_profile_type == 1
+    @Condition eventPlayer.bot_profile_type == 0
     @Condition eventPlayer.profile_index != -1
 
-    if eventPlayer.bot_profile_weights[eventPlayer.profile_index] == eventPlayer.bot_profile_max_weight:
-        eventPlayer.profile_index = 0
-
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = eventPlayer.profile_index
-
-    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights)):
-        if (eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]] > -1 and eventPlayer.profile_index < eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]):
-            eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
-            eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = len(eventPlayer.bot_profile_weights)
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
-
     wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max))
+
+    if eventPlayer.bot_profile_weights[eventPlayer.profile_index] == eventPlayer.bot_profile_max_weight:
+        eventPlayer.profile_loop_index = 0
+    elif eventPlayer.profile_index + 1 == len(eventPlayer.bot_profile_weights):
+        eventPlayer.profile_loop_index = 0
+    else:
+        eventPlayer.profile_loop_index = eventPlayer.profile_index + 1
+
+    while(eventPlayer.profile_loop_index < len(eventPlayer.bot_profile_weights)):
+        if (eventPlayer.bot_profile_weights[eventPlayer.profile_loop_index] > -1):
+            eventPlayer.profile_index = eventPlayer.profile_loop_index
+            eventPlayer.profile_loop_index = len(eventPlayer.bot_profile_weights)
+        eventPlayer.profile_loop_index += 1
 
     if RULE_CONDITION:
         goto RULE_START
@@ -208,14 +210,14 @@ rule "Profile Handler: Randomized":
     @Condition eventPlayer.bot_profile_type == 1
     @Condition eventPlayer.profile_index != -1
 
-    eventPlayer.target_rand[PLAYER_RAND.PROFILE] = random.uniform(0, eventPlayer.bot_profile_max_weight)
-    eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = 0
-    while(eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights)):
-        if (eventPlayer.target_rand[PLAYER_RAND.PROFILE] <= eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]]):
-            eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
-
     wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max))
+
+    eventPlayer.target_rand[PLAYER_RAND.PROFILE] = random.uniform(0, eventPlayer.bot_profile_max_weight)
+    eventPlayer.profile_loop_index = 0
+    while(eventPlayer.profile_loop_index < len(eventPlayer.bot_profile_weights)):
+        if (eventPlayer.target_rand[PLAYER_RAND.PROFILE] <= eventPlayer.bot_profile_weights[eventPlayer.profile_loop_index]):
+            eventPlayer.profile_index = eventPlayer.profile_loop_index
+        eventPlayer.profile_loop_index += 1
 
     if RULE_CONDITION:
         goto RULE_START
