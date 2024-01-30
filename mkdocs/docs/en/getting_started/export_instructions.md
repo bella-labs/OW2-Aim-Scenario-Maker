@@ -1,23 +1,30 @@
-# Getting Started
+# How to export your configuration:
 
-## Links to References
+1. Scroll Down the In-Game Menu and select "Create Export Package".
 
-## Youtube Tutorials / Stream Links???
+* This will package the data into a new bot which we will copy the data from.
 
-## Example Build
+2. Open the Overwatch menu (esc).
+3. Select "Open Workshop Inspector".
+4. Select the dropdown menu "Variable Target".
+5. Select "Winston".
+6. In the middle panel "Variables", you should see a list of variables and numbers.
 
-##
-Welcome to the documentation page for the Overwatch 2 Aim Scenario Maker!
+If the "Variables" panel is empty do the following:
 
-Visit the Get Started Page to see how to create your own aim scenarios
+    6a. Move the blue slider above "Variable Target" slightly backwards.
 
-See the Aim Trainer Player page to see existing Scenarios
+    6b. Move the blue slider completely forwards.
 
-See the menu reference for an in-depth guide of each menu option
-## Socials
+7. Select the rightmost button from the bottom left that looks like this: [(x)]
 
-## Msg Me to Add your code to the list of codes
+* When you hover over the button it will say: "Copy clipboard current variables for current variables target as workshop actions"
 
-Join my Discord for help and stuff I guess
+8. Your settings variables will now be in your clipboard.
 
-[:fontawesome-brands-discord: Discord](https://discord.gg/YPQ5ETNT45){ .md-button .md-button--primary }
+    8a. To save your work:
+        paste your settings into a text file on your computer.
+    or
+        Follow the import instructions up to step 6, then save your preset.
+
+    8b. To share your scenario or resume your work please see "import instructions" 

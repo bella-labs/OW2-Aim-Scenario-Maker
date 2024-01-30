@@ -234,7 +234,7 @@ rule "Death Handler":
 
     if eventPlayer.bot_scale_type == 0:
         eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
-    wait()
+    wait(random.uniform(databot.sce_respawn_min, databot.sce_respawn_max))
     if len(eventPlayer.bot_hero_pool) == 1:
         eventPlayer.setHealth(eventPlayer.bot_health)
         eventPlayer.resurrect()

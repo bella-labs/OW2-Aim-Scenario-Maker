@@ -95,12 +95,15 @@ def menu_act_submenu_scenario():
             act_sce_mode()
             break
         case submenu_curr_start + 6:
-            act_sce_points()
+            act_sce_bot_spawn()
             break
         case submenu_curr_start + 7:
-            act_sce_strafe()
+            act_sce_points()
             break
         case submenu_curr_start + 8:
+            act_sce_strafe()
+            break
+        case submenu_curr_start + 9:
             act_sce_script_status()
             break
 

@@ -64,7 +64,7 @@ nav:
   - Main Menu: menu_ref/menu_ref_main.md
   - Scenario: menu_ref/menu_ref_scenario.md
   - Bot: menu_ref/menu_ref_bot.md
-  - Profile: menu_ref/menu_ref_movement.md
+  - Movement: menu_ref/menu_ref_movement.md
 
 
 extra_css:

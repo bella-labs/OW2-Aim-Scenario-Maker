@@ -363,6 +363,21 @@ def create_submenu_scenario():
     action_var_2 = menu_item_size
     set_item_data()
     
+    new_menu_item_2var()
+
+    # (3 Var) Bot Respawn
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_sce_menu[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
+    
+    menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCE_ORDER][databot.sce_spawn_order]
+    menu_item_var_2[menu_item_size] = databot.sce_respawn_min
+    menu_item_var_3[menu_item_size] = databot.sce_respawn_max
+    
+    action_var = ITEM_TYPE.ORDER
+    action_var_2 = menu_item_size
+    set_item_data()
+    
     new_menu_item_3var()
 
     # (3 Var) Points
@@ -677,7 +692,7 @@ def create_submenu_bot():
     menu_item_var_2[menu_item_size] = databot.bot_profile_min[0]
     menu_item_var_3[menu_item_size] = databot.bot_profile_max[0]
 
-    action_var = ITEM_TYPE.PROF_ORDER
+    action_var = ITEM_TYPE.ORDER
     action_var_2 = menu_item_size
     set_item_data()
 

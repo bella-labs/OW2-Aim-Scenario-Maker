@@ -97,7 +97,10 @@ globalvar hero_array
 #### Game Mode
 playervar sce_game_mode
 playervar sce_game_limit
+#### Bot Respawn
 playervar sce_spawn_order
+playervar sce_respawn_min
+playervar sce_respawn_max
 #### Points
 playervar sce_bs_points
 playervar sce_hs_points
@@ -286,13 +289,14 @@ subroutine act_main_toggle_import
 subroutine act_main_toggle_export
 subroutine act_main_create_export
 #### Scenario Submenu
-subroutine act_sce_mode
-subroutine act_sce_points
-subroutine act_sce_strafe
 subroutine act_sce_player_spawn
 subroutine act_sce_player_facing
 subroutine act_sce_player_speed
 subroutine act_sce_player_gravity
+subroutine act_sce_mode
+subroutine act_sce_bot_spawn
+subroutine act_sce_points
+subroutine act_sce_strafe
 subroutine act_sce_script_status
 #### Bot Submenu
 subroutine act_bot_select_slot
@@ -553,7 +557,7 @@ enum ITEM_TYPE:
     SPEED,
     SCALE,
     PROF_STATUS,
-    PROF_ORDER,
+    ORDER,
     MVMT_TYPE,
     MVMT_DIR,
     CHANCE

@@ -208,7 +208,7 @@ rule "Load Static Data":
                             [LARGE_TYPE.LG_1, LARGE_TYPE.LG_10],
                             HELP_TYPE.CYCLE_TOGGLE
                         ],
-                        [ # PROF_ORDER
+                        [ # ORDER
                             TAG_TYPE.PROFILE_ORDER,
                             [RANGE_TYPE.NONE, RANGE_TYPE.TIME, RANGE_TYPE.TIME],
                             [SMALL_TYPE.NONE, SMALL_TYPE.SM_0_01, SMALL_TYPE.SM_0_01],
@@ -338,7 +338,7 @@ rule "load_language_data":
             "Configure",
             "Scenario  ▶",
             "Bot       ▶",
-            "Profile   ▶",
+            "Movement  ▶",
             "Test",
             "Open Hero Select",
             "Display Boundaries",
@@ -525,6 +525,7 @@ rule "load_language_data":
             "Gravity",
             "Scenario",
             "Scenario Type",
+            "Bot Respawn",
             "Points",
             "Strafe Points",
             "Custom Script"
@@ -629,8 +630,8 @@ rule "load_language_data":
             ["Type: ", "Impulse Strength: ", "Impulse Interval: "],
             ["Weight : ", "Min Time : ", "Max Time : "],
             ["Chance %: ", "Min Time : ", "Max Time : ", "Interval: "],
-            ["Type: ", "Seconds: ", "Order: "],
-            ["Type: ", "Score: ", "Order: "],
+            ["Type: ", "Seconds: "],
+            ["Type: ", "Score: "],
             ["Bodyshot: ", "Headshot: ", "Elim: "],
             ["Points Per Second: ", "Min Time: ", "Max Time: "]
         ],

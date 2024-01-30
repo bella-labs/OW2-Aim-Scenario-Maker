@@ -103,16 +103,40 @@ def act_sce_mode():
             act_general_num_var_2()
             databot.sce_game_limit = menu_item_var_2[menu_index]
             break
-        case 2:
+
+def act_sce_bot_spawn():
+    @Name "SUB: act_sce_bot_spawn"
+
+    switch subitem_index[menu_index]:
+        case 0:
             action_var = databot.sce_spawn_order
             action_var_2 = menu_index
             action_var_3 = OPTIONS_TYPE.SCE_ORDER
             act_general_change_list()
-            menu_item_var_3[action_var_2] = strings_options[lang_type][action_var_3][action_var]
+            menu_item_var_1[action_var_2] = strings_options[lang_type][action_var_3][action_var]
             databot.sce_spawn_order = action_var
             action_var = menu_index
+            break
+        case 1:
+        case 2:
+            action_var = databot.sce_respawn_min
+            action_var_2 = databot.sce_respawn_max
 
-
+            switch subitem_index[menu_index]:
+                case 1:
+                    general_target = GENERAL_TARGET.MIN
+                    break
+                case 2:
+                    general_target = GENERAL_TARGET.MAX
+                    break
+        
+            act_general_change_min_max()
+        
+            menu_item_var_2[menu_index] = action_var
+            menu_item_var_3[menu_index] = action_var_2
+        
+            databot.sce_respawn_min = action_var
+            databot.sce_respawn_max = action_var_2
 
 def act_sce_points():
     @Name "SUB: act_sce_points"
@@ -142,8 +166,8 @@ def act_sce_strafe():
             break
         case 1:
         case 2:
-            action_var = databot.sce_strafe_min[profile_slot]
-            action_var_2 = databot.sce_strafe_max[profile_slot]
+            action_var = databot.sce_strafe_min
+            action_var_2 = databot.sce_strafe_max
     
             if subitem_index[menu_index] == 1:
                 general_target = GENERAL_TARGET.MIN
@@ -155,8 +179,8 @@ def act_sce_strafe():
             menu_item_var_2[menu_index] = action_var
             menu_item_var_3[menu_index] = action_var_2
         
-            databot.sce_strafe_min[profile_slot] = action_var
-            databot.sce_strafe_max[profile_slot] = action_var_2
+            databot.sce_strafe_min = action_var
+            databot.sce_strafe_max = action_var_2
             break
 
 
