@@ -334,7 +334,7 @@ rule "load_language_data":
     ]
     strings_main_menu = [
         [
-            "For detailed documentation visit\nbellalabs.dev/OW2-Aim-Scenario-Maker\n", 
+            "For detailed documentation visit\nasm.bellalabs.dev\n", 
             "Configure",
             "Scenario  ▶",
             "Bot       ▶",
