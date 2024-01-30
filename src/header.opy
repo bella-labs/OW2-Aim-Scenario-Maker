@@ -89,6 +89,46 @@ globalvar lang_type
 ## Action
 globalvar confirm_timer
 globalvar hero_array
+## Bot Data Menu Management
+globalvar bot_slot
+globalvar profile_slot
+globalvar new_hero_array
+## General Menu Management
+globalvar item_data
+globalvar action_var
+globalvar action_var_2
+globalvar action_var_3
+globalvar action_result
+globalvar action_temp
+globalvar general_small
+globalvar general_large
+globalvar general_range_min
+globalvar general_range_max
+globalvar general_option_size
+globalvar general_target
+globalvar refresh_index
+globalvar refresh_start
+globalvar display_help
+## Effect Management
+globalvar display_boundary
+globalvar menu_effect_index
+globalvar effect_array
+globalvar ring_data
+## Bot Management
+globalvar profile_weights
+globalvar movement_weights
+## Scenario
+globalvar scenario_status
+globalvar active_bot_status
+globalvar elims
+globalvar timer
+globalvar test_bot_index
+globalvar scenario_bot_index
+globalvar scenario_bot
+globalvar sce_player
+## Export
+globalvar databuilder
+
 
 # Player Variables
 ## Data Storage
@@ -213,9 +253,42 @@ playervar mvmt_lr_idle_min
 playervar mvmt_lr_idle_max
 playervar mvmt_fb_idle_min
 playervar mvmt_fb_idle_max
+## Boundary Calculation
+playervar boundary_limits
+playervar cube
+playervar calc_var
+## Target Bot Boundary and Distance
+playervar disabled_hori
+playervar disabled_vert
+playervar disabled_index
+playervar disabled_dir
+playervar disabled_bound
+playervar disabled_dist
+## Target Bot Management
+playervar owner_player
+playervar profile_list
+playervar profile_index
+playervar profile_loop_index
+## Target Bot Movement
+playervar target_mvmt_dir
+playervar target_vert_dir
+playervar target_rand
+playervar target_mvmt_vect
+playervar target_mvmt_index
+playervar target_hori_wait
+playervar target_vert_wait
+playervar target_lr_idle
+playervar target_fb_idle
+## Player Stats
+playervar player_score
+playervar last_score
+playervar high_score
+playervar player_speed
+playervar strafe_dir
+playervar strafe_timer
+## Export
+playervar export_data
 
-
-### Scenario Settings
 
 # Subroutines
 ## UI Framework
@@ -260,6 +333,7 @@ subroutine menu_act_submenu_bot
 subroutine menu_act_submenu_profile
 subroutine menu_act_submenu_movement
 ### Generalized Actions
+subroutine set_item_data
 subroutine menu_act_change_submenu
 subroutine act_general_chg_num
 subroutine act_general_num_temp
@@ -278,6 +352,8 @@ subroutine act_general_change_list_var_1
 subroutine act_general_change_min_max
 subroutine act_general_calc_weights
 subroutine act_general_unsum_weights
+subroutine act_general_clear
+subroutine act_general_disable
 ### Custom Actions
 #### Main Menu
 subroutine act_main_open_hero_sel
@@ -340,148 +416,26 @@ subroutine destroy_target_bot
 subroutine setup_databot
 subroutine import_settings
 subroutine default_settings
-
-
-
-
-
-
-
-
-
-
-
-globalvar bot_slot
-globalvar profile_slot
-globalvar new_hero_array
-
-globalvar action_var
-globalvar action_var_2
-globalvar action_var_3
-globalvar action_result
-globalvar action_temp
-globalvar general_small
-globalvar general_large
-globalvar general_range_min
-globalvar general_range_max
-
-globalvar general_option_size
-globalvar general_target
-globalvar refresh_index
-globalvar refresh_start
-
-globalvar menu_effect_index
-globalvar effect_array
-
-globalvar ring_data
+subroutine unload_settings
+## Boundary
 subroutine update_bound_effect
 subroutine set_cube
-globalvar display_help
-globalvar active_bot_status
-
-globalvar elims
-globalvar timer
-globalvar scenario_status
-
-playervar boundary_limits
-
-playervar cube
-
-playervar calc_var
-
-playervar is_in_bounds
-
-playervar disabled_target
-
-playervar disabled_hori
-playervar disabled_vert
-playervar owner_player
-playervar profile_list
-playervar profile_index
-playervar profile_loop_index
-
-
-subroutine sce_start_scenario
-subroutine sce_stop_scenario
-
-
-globalvar angle
-subroutine set_disabled_index_dist
-
-
-
-
-playervar target_mvmt_dir
-playervar target_vert_dir
-playervar target_rand
-playervar target_mvmt_vect
-playervar target_mvmt_index
-playervar target_hori_wait
-playervar target_vert_wait
-
-
-
-subroutine act_general_clear
-subroutine act_general_disable
-
-globalvar profile_weights
-globalvar movement_weights
-
+## Target Bot Management
 subroutine teleport_target
-subroutine select_mvmt_dir
-playervar mvmt_interrupt
-
-playervar xz_disabled
-
-playervar disabled_index
-playervar disabled_dir
-playervar disabled_bound
-playervar disabled_dist
-
-globalvar calc1
-globalvar calc2
-globalvar calc3
-
+## Target Bot Boundary
 subroutine disable_movement_boundary
 subroutine disable_movement_distance
-
-globalvar display_boundary
-
-globalvar item_data
-
-subroutine set_item_data
-
-playervar target_impulse_wait
-
+## Target Bot Movement
+subroutine select_mvmt_dir
 subroutine target_up_impulse
 subroutine target_down_impulse
-
-playervar target_lr_idle
-playervar target_fb_idle
-
+## Scenario Player Management
 subroutine setup_player_in_scenario
-playervar player_score
-playervar last_score
-playervar high_score
 subroutine reset_player
-globalvar sce_player
-
-playervar player_speed
-
-playervar strafe_dir
-playervar strafe_timer
-
-globalvar exportbot_status
-globalvar databuilder
-playervar export_data
-globalvar exportbot
-
-globalvar scenario_bot_index
-globalvar scenario_bot
-globalvar test_bot_index
+## Scenario Bot Management
 subroutine show_next_bot
-
-subroutine unload_settings
+subroutine sce_start_scenario
+subroutine sce_stop_scenario
 
 
 enum SUBMENUS:

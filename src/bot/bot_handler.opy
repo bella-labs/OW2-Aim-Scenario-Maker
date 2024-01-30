@@ -6,7 +6,6 @@ rule "Boundary Handler - Correct XZ":
 
     # a = (theta / 45)
     eventPlayer.disabled_index = horizontalAngleOfDirection(eventPlayer.getFacingDirection()) / 45
-    calc1 = eventPlayer.disabled_index
     # x = (a - floor( a / 8) * 8)
     eventPlayer.disabled_index = round((eventPlayer.disabled_index - (floor(eventPlayer.disabled_index / 8) * 8))) % 8
     # Calculate D_(0-7)
