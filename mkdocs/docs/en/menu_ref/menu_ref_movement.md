@@ -77,128 +77,170 @@ Impulse:
    
 **Notes**
 * A low magnitude impulse applied over a short interval will result in a smoother movements.
-* Impulse movement is more likely to break the boundary limitations, especially with a longer interval since the bot has less often to counteract exceeding the boundaries.
+* Impulse movement is more likely to break the boundary limits, especially with a longer interval since the bot has less often to counteract exceeding the boundaries.
 
 ### Left
 
 **Description**
 
-Description
+Sets the probability and timing of the bots left direction movement. Diagonal directions are calculated as the average of the two directions unless of the directions are disabled in which case the diagonal is disabled.
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum     |
+| -------------------------- | -------------------- | ------------ | ----------- |
+| Weight                     | Integer              | 0 (Disabled) | 1000        |
+| Minimum Time               | Real                 | 0 seconds    | 600 seconds |
+| Maximum Time               | Real                 | 0 points     | 600 seconds |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the weight. A weight of zero sets the direction as well as the diagonals containing that direction to disabled.
+2. Set the minimum and maximum strafe time.
 
 ### Right
 
 **Description**
 
-Description
+Sets the probability and timing of the bots right direction movement. Diagonal directions are calculated as the average of the two directions unless of the directions are disabled in which case the diagonal is disabled.
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum     |
+| -------------------------- | -------------------- | ------------ | ----------- |
+| Weight                     | Integer              | 0 (Disabled) | 1000        |
+| Minimum Time               | Real                 | 0 seconds    | 600 seconds |
+| Maximum Time               | Real                 | 0 points     | 600 seconds |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the weight. A weight of zero sets the direction as well as the diagonals containing that direction to disabled.
+2. Set the minimum and maximum strafe time.
 
 ### Forward
 
 **Description**
 
-Description
+Sets the probability and timing of the bots forward direction movement. Diagonal directions are calculated as the average of the two directions unless of the directions are disabled in which case the diagonal is disabled.
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum     |
+| -------------------------- | -------------------- | ------------ | ----------- |
+| Weight                     | Integer              | 0 (Disabled) | 1000        |
+| Minimum Time               | Real                 | 0 seconds    | 600 seconds |
+| Maximum Time               | Real                 | 0 points     | 600 seconds |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the weight. A weight of zero sets the direction as well as the diagonals containing that direction to disabled.
+2. Set the minimum and maximum strafe time.
 
 ### Backward
 
 **Description**
 
-Description
+Sets the probability and timing of the bots backward direction movement. Diagonal directions are calculated as the average of the two directions unless of the directions are disabled in which case the diagonal is disabled.
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum     |
+| -------------------------- | -------------------- | ------------ | ----------- |
+| Weight                     | Integer              | 0 (Disabled) | 1000        |
+| Minimum Time               | Real                 | 0 seconds    | 600 seconds |
+| Maximum Time               | Real                 | 0 points     | 600 seconds |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the weight. A weight of zero sets the direction as well as the diagonals containing that direction to disabled.
+2. Set the minimum and maximum strafe time.
 
 ## Vertical Movement
 
-### Vertical Type
-
 **Description**
 
-Description
+Configure the characteristics of the vertical movement. Movement impulse and interval only apply when you are using the impulse movement type.
 
 **Characteristics**
 
 | Name                       | Type                 | Minimum    | Maximum    |
 | -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Vertical Type              | Choice               | N/A        | N/A        |
 
+**Option Descriptions**
+
+| Name                        | Description                                    |
+| --------------------------- | ---------------------------------------------- |
+| Input                       | The bot will input the direction via throttle when a direction is triggered. |
+| Impulse                     | An impulse will be applied to the bot in the magnitude set over the entered interval |
 
 **Usage** 
 
-1. Do thing
+Input:
+
+1. Select the input vertical type.
+
+Impulse:
+
+1. Select the impulse vertical type.
+2. Set the magnitude of the impulse
+3. Set the interval of the impulse. The interval is how often the impulse will be applied to a bot. 
+   
+**Notes**
+* A low magnitude impulse applied over a short interval will result in a smoother movements.
+* Impulse movement is more likely to break the boundary limits, especially with a longer interval since the bot has less often to counteract exceeding the boundaries.
 
 ### Jump
 
 **Description**
 
-Description
+Set the probability and timing of the bot jumping. If the impulse vertical type is used an upwards impulse is applied instead.
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum     |
+| -------------------------- | -------------------- | ------------ | ----------- |
+| Chance                     | Integer              | 0 %          | 100 %       |
+| Minimum Time               | Real                 | 0 seconds    | 600 seconds |
+| Maximum Time               | Real                 | 0 points     | 600 seconds |
+| Interval                   | Real                 | 0 seconds    | 600 seconds |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the chance of the bot jumping / having an upwards impulse applied.
+2. Set the how long the bot will input the jump button / Have the upwards impulse applied. 
+3. Set the interval. The interval is how often the check of the chance of jump / impulse is done.
+
+**Notes**
+
+* Holding jump doesn't cause multiple jumps to occur so having a large min/max time only increase the delay between intervals.
 
 ### Crouch
 
 **Description**
 
-Description
+Set the probability and timing of the bot crouching. If the impulse vertical type is used a downwards impulse is applied instead.
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum     |
+| -------------------------- | -------------------- | ------------ | ----------- |
+| Chance                     | Integer              | 0 %          | 100 %       |
+| Minimum Time               | Real                 | 0 seconds    | 600 seconds |
+| Maximum Time               | Real                 | 0 points     | 600 seconds |
+| Interval                   | Real                 | 0 seconds    | 600 seconds |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the chance of the bot crouching / having an upwards impulse applied.
+2. Set the how long the bot will input the crouch button / Have the downwards impulse applied. 
+3. Set the interval. The interval is how often the check of the chance of crouch / impulse is done.
 
 ## Idle Movement
 
@@ -206,32 +248,42 @@ Description
 
 **Description**
 
-Description
+Set the probability and timing of the the bot not inputting / having an impulse applied in the left and right directions. Also disabled diagonal movements.
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum     |
+| -------------------------- | -------------------- | ------------ | ----------- |
+| Chance                     | Integer              | 0 %          | 100 %       |
+| Minimum Time               | Real                 | 0 seconds    | 600 seconds |
+| Maximum Time               | Real                 | 0 points     | 600 seconds |
+| Interval                   | Real                 | 0 seconds    | 600 seconds |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the chance of the bot having it's left and right inputs disabled.
+2. Set the how long the left and right inputs will be disabled for.
+3. Set the interval. The interval is how often the disable left and right input check will occur.
 
 ### Forward/Backward Idle
 
 **Description**
 
-Description
+Set the probability and timing of the the bot not inputting / having an impulse applied in the forward and backwards directions. Also disabled diagonal directions.
 
 **Characteristics**
 
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Name                       | Type                 | Minimum      | Maximum     |
+| -------------------------- | -------------------- | ------------ | ----------- |
+| Chance                     | Integer              | 0 %          | 100 %       |
+| Minimum Time               | Real                 | 0 seconds    | 600 seconds |
+| Maximum Time               | Real                 | 0 points     | 600 seconds |
+| Interval                   | Real                 | 0 seconds    | 600 seconds |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the chance of the bot having it's forward and backward inputs disabled.
+2. Set the how long the left and right inputs will be disabled for.
+3. Set the interval. The interval is how often the disable forward and backward input check will occur.
