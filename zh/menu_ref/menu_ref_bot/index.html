@@ -1089,6 +1089,8 @@
 <li>Set the angle of the boundary box.</li>
 <li>Set the dimensions of the boundary box.</li>
 </ol>
+<p><strong>Notes</strong>
+* The boundary detection has a 0.5m buffer where it will trigger to help counteract the latency between crossing the boundary, detecting the crossing of the boundary and reacting to the crossed boundary.</p>
 <h3 id="distance">Distance</h3>
 <p><strong>Description</strong></p>
 <p>Configure the minimum and maximum distance the bot can be position relative to its player. Boundary constraints take priority over distance constraints.</p>
@@ -1484,11 +1486,13 @@ b. Looping: Set the scale target to the period the scale looping should occur un
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Select the profile cycle type for this bot to use</li>
+<li>Set the minimum time between profile cycles</li>
+<li>Set the maximum time between profile cycles</li>
 </ol>
 <h3 id="script">Script</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>A toggle for custom script. Does nothing on its own. Requires workshop scripting to implement functionality. You can set the custom script for different bots, if there are only some bots you want to execute the custom script.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -1501,16 +1505,16 @@ b. Looping: Set the scale target to the period the scale looping should occur un
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
-<td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>Custom Script Toggle</td>
+<td>Toggle</td>
+<td>false</td>
+<td>true</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the custom script toggle to true if you want to write a custom script to be applied to this bot. Otherwise leave set to false. </li>
 </ol>
 <h5 id="template">TEMPLATE</h5>
 <p><strong>Description</strong></p>

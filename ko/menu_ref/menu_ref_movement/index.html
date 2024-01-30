@@ -737,7 +737,7 @@
 <h2 id="slot">Slot</h2>
 <h3 id="select-profile-slot">Select Profile Slot</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Select the profile slot to modify. All menu items below this option will be relative to the selected profile slot.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -750,7 +750,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Profile Slot</td>
 <td>Integer</td>
 <td>0</td>
 <td>11</td>
@@ -759,11 +759,11 @@
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Select the profile slot to modify</li>
 </ol>
 <h3 id="copy-current-profile-to-slot">Copy Current Profile to Slot</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Use the profile slot selected in select profile slot to override the selected profile slots(s)</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -776,7 +776,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Profile Slot</td>
 <td>Integer</td>
 <td>0</td>
 <td>11</td>
@@ -785,12 +785,19 @@
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>
+<p>Cycle to the profile slot you would like to override.</p>
+<p>a. If you would like to override all profile slots with the current profile data use the jump right input</p>
+<p>b. If you would like to override the selected profile slot with the current profile data use jump right</p>
+</li>
+<li>
+<p>Enter the special action button to confirm the override.</p>
+</li>
 </ol>
 <h2 id="horizontal-movement">Horizontal Movement</h2>
 <h3 id="horizontal-type">Horizontal Type</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Configure the characteristics of the horizontal movement. Movement impulse and interval only apply when you are using the impulse movement type.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -803,17 +810,46 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
-<td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>Horizontal Type</td>
+<td>Choice</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Option Descriptions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>The bot will input the direction via throttle when a direction is triggered.</td>
+</tr>
+<tr>
+<td>Impulse</td>
+<td>An impulse will be applied to the bot in the magnitude set over the entered interval</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
+<p>Input:</p>
 <ol>
-<li>Do thing</li>
+<li>Select the input horizontal type.</li>
 </ol>
+<p>Impulse:</p>
+<ol>
+<li>Select the impulse horizontal type.</li>
+<li>Set the magnitude of the impulse</li>
+<li>Set the interval of the impulse. The interval is how often the impulse will be applied to a bot. </li>
+</ol>
+<p><strong>Notes</strong>
+* A low magnitude impulse applied over a short interval will result in a smoother movements.
+* Impulse movement is more likely to break the boundary limitations, especially with a longer interval since the bot has less often to counteract exceeding the boundaries.</p>
 <h3 id="left">Left</h3>
 <p><strong>Description</strong></p>
 <p>Description</p>
