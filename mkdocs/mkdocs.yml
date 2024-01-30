@@ -1,5 +1,5 @@
 site_name: Aim Scenario Maker
-site_url: https://bellalabs.dev/OW2-Aim-Scenario-Maker/
+site_url: https://asm.bellalabs.dev/
 repo_url: https://github.com/bella-labs/OW2-Aim-Scenario-Maker
 
 docs_dir: 'docs/'
@@ -13,7 +13,7 @@ theme:
   features:
     - toc.integrate
   palette:
-    scheme: ACM
+    scheme: slate
 
 plugins:
   - search                  
