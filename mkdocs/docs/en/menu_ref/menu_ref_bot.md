@@ -355,8 +355,8 @@ Description
 
 | Name                        | Description                                    |
 | --------------------------- | ---------------------------------------------- |
-| In Order                    | The bot will switch movement profiles after dying |
-| Randomized                  | The bot will randomly cycle to a new profile 
+| In Order                    | The bot will switch to next movement profiles after a randomized wait |
+| Randomized                  | The bot will randomly cycle to a new profile after a randomized wait  |
 
 **Usage** 
 

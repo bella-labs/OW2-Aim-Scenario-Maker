@@ -394,7 +394,7 @@ playervar disabled_vert
 playervar owner_player
 playervar profile_list
 playervar profile_index
-playervar loop_indexes
+playervar profile_loop_index
 
 
 subroutine sce_start_scenario
