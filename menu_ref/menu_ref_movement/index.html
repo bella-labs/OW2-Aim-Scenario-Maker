@@ -20,7 +20,7 @@
     
     
       
-        <title>Profile - Aim Scenario Maker</title>
+        <title>Movement - Aim Scenario Maker</title>
       
     
     
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Profile
+              Movement
             
           </span>
         </div>
@@ -499,7 +499,7 @@
           
   
   <span class="md-ellipsis">
-    Profile
+    Movement
   </span>
   
 
@@ -510,7 +510,7 @@
         
   
   <span class="md-ellipsis">
-    Profile
+    Movement
   </span>
   
 
@@ -633,15 +633,6 @@
   
     <nav class="md-nav" aria-label="Vertical Movement">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vertical-type" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vertical Type
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#jump" class="md-nav__link">
@@ -849,10 +840,10 @@
 </ol>
 <p><strong>Notes</strong>
 * A low magnitude impulse applied over a short interval will result in a smoother movements.
-* Impulse movement is more likely to break the boundary limitations, especially with a longer interval since the bot has less often to counteract exceeding the boundaries.</p>
+* Impulse movement is more likely to break the boundary limits, especially with a longer interval since the bot has less often to counteract exceeding the boundaries.</p>
 <h3 id="left">Left</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Sets the probability and timing of the bots left direction movement. Diagonal directions are calculated as the average of the two directions unless of the directions are disabled in which case the diagonal is disabled.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -865,20 +856,33 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Weight</td>
 <td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>0 (Disabled)</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Minimum Time</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Maximum Time</td>
+<td>Real</td>
+<td>0 points</td>
+<td>600 seconds</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the weight. A weight of zero sets the direction as well as the diagonals containing that direction to disabled.</li>
+<li>Set the minimum and maximum strafe time.</li>
 </ol>
 <h3 id="right">Right</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Sets the probability and timing of the bots right direction movement. Diagonal directions are calculated as the average of the two directions unless of the directions are disabled in which case the diagonal is disabled.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -891,20 +895,33 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Weight</td>
 <td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>0 (Disabled)</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Minimum Time</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Maximum Time</td>
+<td>Real</td>
+<td>0 points</td>
+<td>600 seconds</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the weight. A weight of zero sets the direction as well as the diagonals containing that direction to disabled.</li>
+<li>Set the minimum and maximum strafe time.</li>
 </ol>
 <h3 id="forward">Forward</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Sets the probability and timing of the bots forward direction movement. Diagonal directions are calculated as the average of the two directions unless of the directions are disabled in which case the diagonal is disabled.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -917,20 +934,33 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Weight</td>
 <td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>0 (Disabled)</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Minimum Time</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Maximum Time</td>
+<td>Real</td>
+<td>0 points</td>
+<td>600 seconds</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the weight. A weight of zero sets the direction as well as the diagonals containing that direction to disabled.</li>
+<li>Set the minimum and maximum strafe time.</li>
 </ol>
 <h3 id="backward">Backward</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Sets the probability and timing of the bots backward direction movement. Diagonal directions are calculated as the average of the two directions unless of the directions are disabled in which case the diagonal is disabled.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -943,21 +973,33 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Weight</td>
 <td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>0 (Disabled)</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Minimum Time</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Maximum Time</td>
+<td>Real</td>
+<td>0 points</td>
+<td>600 seconds</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the weight. A weight of zero sets the direction as well as the diagonals containing that direction to disabled.</li>
+<li>Set the minimum and maximum strafe time.</li>
 </ol>
 <h2 id="vertical-movement">Vertical Movement</h2>
-<h3 id="vertical-type">Vertical Type</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Configure the characteristics of the vertical movement. Movement impulse and interval only apply when you are using the impulse movement type.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -970,20 +1012,49 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
-<td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>Vertical Type</td>
+<td>Choice</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Option Descriptions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input</td>
+<td>The bot will input the direction via throttle when a direction is triggered.</td>
+</tr>
+<tr>
+<td>Impulse</td>
+<td>An impulse will be applied to the bot in the magnitude set over the entered interval</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
+<p>Input:</p>
 <ol>
-<li>Do thing</li>
+<li>Select the input vertical type.</li>
 </ol>
+<p>Impulse:</p>
+<ol>
+<li>Select the impulse vertical type.</li>
+<li>Set the magnitude of the impulse</li>
+<li>Set the interval of the impulse. The interval is how often the impulse will be applied to a bot. </li>
+</ol>
+<p><strong>Notes</strong>
+* A low magnitude impulse applied over a short interval will result in a smoother movements.
+* Impulse movement is more likely to break the boundary limits, especially with a longer interval since the bot has less often to counteract exceeding the boundaries.</p>
 <h3 id="jump">Jump</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Set the probability and timing of the bot jumping. If the impulse vertical type is used an upwards impulse is applied instead.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -996,20 +1067,44 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Chance</td>
 <td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
+<tr>
+<td>Minimum Time</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Maximum Time</td>
+<td>Real</td>
+<td>0 points</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the chance of the bot jumping / having an upwards impulse applied.</li>
+<li>Set the how long the bot will input the jump button / Have the upwards impulse applied. </li>
+<li>Set the interval. The interval is how often the check of the chance of jump / impulse is done.</li>
 </ol>
+<p><strong>Notes</strong></p>
+<ul>
+<li>Holding jump doesn't cause multiple jumps to occur so having a large min/max time only increase the delay between intervals.</li>
+</ul>
 <h3 id="crouch">Crouch</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Set the probability and timing of the bot crouching. If the impulse vertical type is used a downwards impulse is applied instead.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -1022,21 +1117,41 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Chance</td>
 <td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
+<tr>
+<td>Minimum Time</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Maximum Time</td>
+<td>Real</td>
+<td>0 points</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the chance of the bot crouching / having an upwards impulse applied.</li>
+<li>Set the how long the bot will input the crouch button / Have the downwards impulse applied. </li>
+<li>Set the interval. The interval is how often the check of the chance of crouch / impulse is done.</li>
 </ol>
 <h2 id="idle-movement">Idle Movement</h2>
 <h3 id="leftright-idle">Left/Right Idle</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Set the probability and timing of the the bot not inputting / having an impulse applied in the left and right directions. Also disabled diagonal movements.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -1049,20 +1164,40 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Chance</td>
 <td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
+<tr>
+<td>Minimum Time</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Maximum Time</td>
+<td>Real</td>
+<td>0 points</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the chance of the bot having it's left and right inputs disabled.</li>
+<li>Set the how long the left and right inputs will be disabled for.</li>
+<li>Set the interval. The interval is how often the disable left and right input check will occur.</li>
 </ol>
 <h3 id="forwardbackward-idle">Forward/Backward Idle</h3>
 <p><strong>Description</strong></p>
-<p>Description</p>
+<p>Set the probability and timing of the the bot not inputting / having an impulse applied in the forward and backwards directions. Also disabled diagonal directions.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -1075,16 +1210,36 @@
 </thead>
 <tbody>
 <tr>
-<td>Name</td>
+<td>Chance</td>
 <td>Integer</td>
-<td>0</td>
-<td>11</td>
+<td>0 %</td>
+<td>100 %</td>
+</tr>
+<tr>
+<td>Minimum Time</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Maximum Time</td>
+<td>Real</td>
+<td>0 points</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>Real</td>
+<td>0 seconds</td>
+<td>600 seconds</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage</strong> </p>
 <ol>
-<li>Do thing</li>
+<li>Set the chance of the bot having it's forward and backward inputs disabled.</li>
+<li>Set the how long the left and right inputs will be disabled for.</li>
+<li>Set the interval. The interval is how often the disable forward and backward input check will occur.</li>
 </ol>
 
 
