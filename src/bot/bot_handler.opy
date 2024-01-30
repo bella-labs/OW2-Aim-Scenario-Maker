@@ -184,6 +184,7 @@ rule "Profile Handler: In-Order":
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_profile_type == 0
     @Condition eventPlayer.profile_index != -1
+    @Condition eventPlayer.bot_profile_max > 0
 
     wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max))
 
@@ -209,6 +210,7 @@ rule "Profile Handler: Randomized":
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_profile_type == 1
     @Condition eventPlayer.profile_index != -1
+    @Condition eventPlayer.bot_profile_max > 0
 
     wait(random.uniform(eventPlayer.bot_profile_min, eventPlayer.bot_profile_max))
 

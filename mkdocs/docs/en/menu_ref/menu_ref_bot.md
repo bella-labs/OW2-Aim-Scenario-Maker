@@ -161,6 +161,8 @@ Configure the angle and size of the boundary box. Boundary constraints take prio
 1. Set the angle of the boundary box.
 2. Set the dimensions of the boundary box.
 
+**Notes**
+* The boundary detection has a 0.5m buffer where it will trigger to help counteract the latency between crossing the boundary, detecting the crossing of the boundary and reacting to the crossed boundary.
 ### Distance
 
 **Description**
@@ -360,24 +362,26 @@ Description
 
 **Usage** 
 
-1. Do thing
+1. Select the profile cycle type for this bot to use
+2. Set the minimum time between profile cycles
+3. Set the maximum time between profile cycles
 
 ### Script
 
 **Description**
 
-Description
+A toggle for custom script. Does nothing on its own. Requires workshop scripting to implement functionality. You can set the custom script for different bots, if there are only some bots you want to execute the custom script.
 
 **Characteristics**
 
 | Name                       | Type                 | Minimum    | Maximum    |
 | -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
+| Custom Script Toggle       | Toggle               | false      | true       |
 
 
 **Usage** 
 
-1. Do thing
+1. Set the custom script toggle to true if you want to write a custom script to be applied to this bot. Otherwise leave set to false. 
 
 
 
