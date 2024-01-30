@@ -57,10 +57,16 @@ def menu_act_submenu_main():
             act_main_test_scenario()
             break
         case submenu_curr_start + 7:
-            act_main_toggle_export()
+            act_main_reset_score()
             break
         case submenu_curr_start + 8:
+            act_main_toggle_export()
+            break
+        case submenu_curr_start + 9:
             act_main_toggle_import()
+            break
+        case submenu_curr_start + 10:
+            act_main_create_export()
             break
         
 

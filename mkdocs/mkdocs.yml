@@ -1,5 +1,5 @@
 site_name: Aim Scenario Maker
-site_url: https://bella-labs/OW2-Aim-Scenario-Maker
+site_url: https://bellalabs.dev/OW2-Aim-Scenario-Maker/
 repo_url: https://github.com/bella-labs/OW2-Aim-Scenario-Maker
 
 docs_dir: 'docs/'
@@ -56,15 +56,15 @@ markdown_extensions:
 
 nav:
 - Home: index.md
-- Getting Started: getting_started/get_started_index.md
+- Getting Started: 
+  - getting_started/get_started_index.md
+  - Export: getting_started/export_instructions.md
+  - Import: getting_started/import_instructions.md
 - Menu Reference:
   - Main Menu: menu_ref/menu_ref_main.md
   - Scenario: menu_ref/menu_ref_scenario.md
   - Bot: menu_ref/menu_ref_bot.md
-  - Profile:
-    - menu_ref/menu_ref_profile.md
-    - Movement:
-      - menu_ref/menu_ref_movement.md
+  - Profile: menu_ref/menu_ref_movement.md
 
 
 extra_css:

@@ -1,44 +1,213 @@
 # Movement Settings
-## Select Movement Profile
-**Description**: Select which movement profile to edit.
+
+## Slot
+
+### Select Profile Slot
+
+**Description**
+
+Description
 
 **Characteristics**
 
-Type: Integer
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
 
-Minimum Value: 0
 
-Maximum Value: 11
+**Usage** 
 
-**Menu Inputs**
+1. Do thing
 
-| Input                    | Effect             |
-| ------------------------ | ------------------ |
-| Small Step Left          | -1                 |
-| Small Step Right         | +1                 |
-| Large Step Left          | -1                 |
-| Large Step Right         | +1                 |
-| Cycle Subitem            | N/A                |
-| Assign Vector            | N/A                |     
+### Copy Current Profile to Slot
 
-## Override from Slot
-**Description**: Override the current movement profile with the one stored in the targeted profile. 
+**Description**
+
+Description
 
 **Characteristics**
 
-Type: Integer
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
 
-Minimum Value: 0
 
-Maximum Value: 11
+**Usage** 
 
-**Menu Inputs**
+1. Do thing
 
-| Input                    | Effect                  |
-| ------------------------ | ------------------      |
-| Small Step Left          | -1                      |
-| Small Step Right         | +1                      |
-| Large Step Left (Hold)   | Clear the Selected Slot |
-| Large Step Right (Hold)  | Override From Slot      |
-| Cycle Subitem            | N/A                     |
-| Assign Vector            | N/A                     |
+## Horizontal Movement
+
+### Horizontal Type
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Left
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Right
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Forward
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Backward
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+## Vertical Movement
+
+### Vertical Type
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Jump
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Crouch
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+## Idle Movement
+
+### Left/Right Idle
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Forward/Backward Idle
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing

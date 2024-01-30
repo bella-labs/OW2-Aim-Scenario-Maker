@@ -1,58 +1,141 @@
+# Scenario Settings
 
-## Main Menu
-### Bots
-**Description**: Opens the Bots Settings submenu.
+## Player
 
-### Profiles
-**Description**: Opens the Profile Settings submenu.
+### Spawn Position
 
-### Scenario
-**Description**: Opens the Scenario Settings submenu.
+**Description**
 
-## Bot Settings
-### Return to Main Menu
-**Description**: Returns to the Main Menu.
-
-### Bot Slot
-**Description**: The current bot to modify data for.
+Description
 
 **Characteristics**
 
-| Subitem  | Characteristics          | Value             |
-| ---------| ------------------------ | ----------------- |
-| 1        | Type                     | Integer           |
-| 1        | Minimum                  | 0                 |
-| 1        | Maximum                  | 11                |
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
 
-**Menu Inputs**
 
-| Input                    | Effect             |
-| ------------------------ | ------------------ |
-| Small Step Left          | -1                 |
-| Small Step Right         | +1                 |
-| Large Step Left          | -1                 |
-| Large Step Right         | +1                 |
-| Cycle Subitem            | N/A                |
-| Assign Vector            | N/A                |     
+**Usage** 
 
-### Override from Slot
-**Description**: Overrides the slot currently select slot with the data from the designated slot.
+1. Do thing
+
+### Spawn Facing
+
+**Description**
+
+Description
 
 **Characteristics**
 
-| Subitem  | Characteristics          | Value             |
-| ---------| ------------------------ | ----------------- |
-| 1        | Type                     | Integer           |
-| 1        | Minimum                  | 0                 |
-| 1        | Maximum                  | 11                |
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
 
-**Menu Inputs**
 
-| Input                    | Effect             |
-| ------------------------ | ------------------ |
-| Small Step Left          | -1                 |
-| Small Step Right         | +1                 |
-| Large Step Left          | -1                 |
-| Large Step Right         | +1                 |
-| Cycle Subitem            | N/A                |
-| Assign Vector            | N/A                |     
+**Usage** 
+
+1. Do thing
+
+### Speed
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Gravity
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+## Scoring
+
+### Scenario Type
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Points
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Strafe Points
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing
+
+### Custom Script
+
+**Description**
+
+Description
+
+**Characteristics**
+
+| Name                       | Type                 | Minimum    | Maximum    |
+| -------------------------- | -------------------- | ---------- | ---------- |
+| Name                       | Integer              | 0          | 11         |
+
+
+**Usage** 
+
+1. Do thing

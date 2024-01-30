@@ -94,11 +94,10 @@ globalvar hero_array
 ## Data Storage
 ### Bot Settings
 #### Import Status
-playervar import_status
-
 #### Game Mode
 playervar sce_game_mode
 playervar sce_game_limit
+playervar sce_spawn_order
 #### Points
 playervar sce_bs_points
 playervar sce_hs_points
@@ -117,9 +116,22 @@ playervar sce_player_speed
 playervar sce_player_gravity
 #### Custom Script
 playervar sce_custom_status
-
 #### Slot
 playervar bot_slot_status
+#### Spawn
+playervar bot_spawn_type
+playervar bot_spawn_vect
+#### Facing
+playervar bot_facing_type
+playervar bot_facing_vect
+#### Bounds
+playervar bot_bound_type
+playervar bot_bound_pos
+playervar bot_bound_angle
+playervar bot_bound_dim
+#### Distance
+playervar bot_dist_min
+playervar bot_dist_max
 #### Hero Pool
 playervar bot_hero_pool
 #### Health
@@ -138,20 +150,6 @@ playervar bot_scale_max
 playervar bot_scale_target
 #### Gravity
 playervar bot_gravity
-#### Spawn
-playervar bot_spawn_type
-playervar bot_spawn_vect
-#### Facing
-playervar bot_facing_type
-playervar bot_facing_vect
-#### Bounds
-playervar bot_bound_type
-playervar bot_bound_pos
-playervar bot_bound_angle
-playervar bot_bound_dim
-#### Distance
-playervar bot_dist_min
-playervar bot_dist_max
 #### Profile
 playervar bot_profile_weights
 playervar bot_profile_max_weight
@@ -283,8 +281,10 @@ subroutine act_main_open_hero_sel
 subroutine act_main_display_boundary
 subroutine act_main_test_bot_in_slot
 subroutine act_main_test_scenario
+subroutine act_main_reset_score
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
+subroutine act_main_create_export
 #### Scenario Submenu
 subroutine act_sce_mode
 subroutine act_sce_points
@@ -389,11 +389,12 @@ playervar is_in_bounds
 
 playervar disabled_target
 
-playervar disabled_movements
+playervar disabled_hori
+playervar disabled_vert
 playervar owner_player
 playervar profile_list
 playervar profile_index
-playervar loop_indexes
+playervar profile_loop_index
 
 
 subroutine sce_start_scenario
@@ -401,18 +402,18 @@ subroutine sce_stop_scenario
 
 
 globalvar angle
-globalvar scenario_in_progress
 subroutine set_disabled_index_dist
 
 
 
 
 playervar target_mvmt_dir
-playervar target_vert_impulse
+playervar target_vert_dir
 playervar target_rand
 playervar target_mvmt_vect
 playervar target_mvmt_index
-playervar target_mvmt_wait
+playervar target_hori_wait
+playervar target_vert_wait
 
 
 
@@ -446,7 +447,37 @@ globalvar item_data
 
 subroutine set_item_data
 
+playervar target_impulse_wait
 
+subroutine target_up_impulse
+subroutine target_down_impulse
+
+playervar target_lr_idle
+playervar target_fb_idle
+
+subroutine setup_player_in_scenario
+playervar player_score
+playervar last_score
+playervar high_score
+subroutine reset_player
+globalvar sce_player
+
+playervar player_speed
+
+playervar strafe_dir
+playervar strafe_timer
+
+globalvar exportbot_status
+globalvar databuilder
+playervar export_data
+globalvar exportbot
+
+globalvar scenario_bot_index
+globalvar scenario_bot
+globalvar test_bot_index
+subroutine show_next_bot
+
+subroutine unload_settings
 
 
 enum SUBMENUS:
@@ -579,13 +610,11 @@ enum OPTIONS_TYPE:
     BOUNDS,
     PROFILE,
     MVMT_TYPE,
-    SCE_MODE
+    SCE_MODE,
+    SCE_ORDER
 
 enum PLAYER_INDEXES:
-    DISABLE_MVMT = 0,
-    PROFILE,
-    WEIGHTS_1,
-    WEIGHTS_2
+    PROFILE = 0
 
 enum PLAYER_RAND:
     XZ = 0,
@@ -606,5 +635,5 @@ enum XZ_DIR:
     BACKWARD_LEFT,
 
 enum YDIR:
-    UP = 8,
+    UP = 0,
     DOWN

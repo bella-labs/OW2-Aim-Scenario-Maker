@@ -6,11 +6,9 @@ rule "Target Bot Initalization":
     eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
     # Set Movement Direction
     eventPlayer.target_mvmt_dir = vect(0,0,0)
-    # Set Disabled Movements; Indexes Map: 0 = F, 1 = FR, 2 = R, 3 = BR, 4 = B, 5 = BL, 6 = L, 7 = FL
-    eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] = 0
-    while(eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] < 10):
-        eventPlayer.disabled_movements[eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT]] = 0
-        eventPlayer.loop_indexes[PLAYER_INDEXES.DISABLE_MVMT] += 1
+    # Set Disabled Movements
+    eventPlayer.disabled_hori = [0,0,0,0,0,0,0,0]
+    eventPlayer.disabled_vert = [0,0]
     # Set Gravity and Speed to -1 to force listener rule trigger when set to 0
     eventPlayer.bot_speed_min = -1
     eventPlayer.bot_gravity = -1
@@ -27,8 +25,7 @@ rule "Target Bot Listener - Spawn":
     eventPlayer.bot_spawn_type = databot.bot_spawn_type[eventPlayer.getSlot()]
     eventPlayer.bot_spawn_vect = databot.bot_spawn_vect[eventPlayer.getSlot()]
     wait(1)
-    smallMessage(hostPlayer, "Spawn")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -49,8 +46,7 @@ rule "Target Bot Listener - Facing Type":
     else:
         eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.owner_player.getEyePosition()), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     wait(1)
-    smallMessage(hostPlayer, "Facing")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -71,8 +67,7 @@ rule "Target Bot Listener - Boundary":
     eventPlayer.bot_bound_angle = databot.bot_bound_angle[eventPlayer.getSlot()]
     set_cube()
     wait(1)
-    smallMessage(hostPlayer, "Boundary")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -88,8 +83,7 @@ rule "Target Bot Listener - Distance":
     eventPlayer.bot_dist_min = databot.bot_dist_min[eventPlayer.getSlot()]
     eventPlayer.bot_dist_max = databot.bot_dist_max[eventPlayer.getSlot()]
     wait(1)
-    smallMessage(hostPlayer, "Distance")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -102,7 +96,7 @@ rule "Target Bot Listener - Hero Pool":
     eventPlayer.bot_hero_pool = databot.bot_hero_pool[eventPlayer.getSlot()]
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Hero Pool")
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -121,7 +115,7 @@ rule "Target Bot Listener - Health":
         eventPlayer.setMaxHealth(eventPlayer.bot_health)
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Health")
+        
     if RULE_CONDITION:
         goto RULE_START
 
@@ -140,8 +134,7 @@ rule "Target Bot Listener - HPS":
         eventPlayer.startDoT(null, 9999, -1 * eventPlayer.bot_hps)
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "HPS")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -154,8 +147,7 @@ rule "Target Bot Listener - HPS Wait":
     eventPlayer.bot_hps_wait = databot.bot_hps_wait[eventPlayer.getSlot()]
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "HPS Wait")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -176,8 +168,7 @@ rule "Target Bot Listener - Speed":
     eventPlayer.bot_speed_target = databot.bot_speed_target[eventPlayer.getSlot()]
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Speed")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -213,8 +204,7 @@ rule "Target Bot Listener - Scale":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Scale")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -229,8 +219,7 @@ rule "Target Bot Listener - Gravity":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Gravity")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -253,17 +242,9 @@ rule "Target Bot Listener - Bot Profile":
     eventPlayer.bot_profile_min = databot.bot_profile_min[eventPlayer.getSlot()]
     eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
 
-    if eventPlayer.bot_profile_type == 0:
-        eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] = 0
-        while(eventPlayer.profile_index == -1 and eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] < len(eventPlayer.bot_profile_weights)):
-            if (eventPlayer.bot_profile_weights[eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]] > -1):
-                eventPlayer.profile_index = eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE]
-            eventPlayer.loop_indexes[PLAYER_INDEXES.PROFILE] += 1
-    else:
-        eventPlayer.profile_index = 0
+    eventPlayer.profile_index = 0
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Bot Profile")
 
     if RULE_CONDITION:
         goto RULE_START
@@ -277,8 +258,7 @@ rule "Target Bot Listener - Bot Script Status":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Script")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -298,8 +278,7 @@ rule "Target Bot Listener - Movement Horizontal Type":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Horizontal Type")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -316,8 +295,7 @@ rule "Target Bot Listener - Movement Weights":
     eventPlayer.mvmt_max_weight = databot.mvmt_max_weight
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Weight")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -357,8 +335,7 @@ rule "Target Bot Listener - Movement Time":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Mvmt Time")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -378,8 +355,7 @@ rule "Target Bot Listener - Movement Vertical Type":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Vertical Type")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -401,8 +377,7 @@ rule "Target Bot Listener - Movement e":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Jump")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -424,8 +399,7 @@ rule "Target Bot Listener - Movement Crouch Time":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Crouch")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -447,8 +421,7 @@ rule "Target Bot Listener - Movement Idle Chance":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Idle Chance")
-
+    
     if RULE_CONDITION:
         goto RULE_START
 
@@ -470,7 +443,6 @@ rule "Target Bot Listener - Movement Idle Time":
 
     # Cooldown to prevent overflow
     wait(1)
-    smallMessage(hostPlayer, "Idle Time")
-
+    
     if RULE_CONDITION:
         goto RULE_START

@@ -6,8 +6,10 @@ settings "settings.json"
 
 # Includes
 #!include "header.opy"
-#!include "data/init.opy"
+#!include "initialization/custom.opy"
+#!include "initialization/init.opy"
 #!include "data/static_data.opy"
+#!include "data/databot.opy"
 #!include "ui/ui_framework.opy"
 #!include "ui/ui_builder.opy"
 #!include "actions/actions_handler.opy"
@@ -19,7 +21,6 @@ settings "settings.json"
 #!include "utilities/util.opy"
 #!include "utilities/effects.opy"
 #!include "bot/bot_generation.opy"
-#!include "data/databot.opy"
 #!include "bot/bot_listener.opy"
 #!include "bot/bot_handler.opy"
 #!include "bot/mvmt_handler.opy"
@@ -33,16 +34,16 @@ rule "text":
 
     hudSubheader(eventPlayer, 
     " b: {0}\n rb: {1}\n r: {2}\n fr: {3}\n f: {4}\n fl {5}\n l {6}\n bl {7}\n u {8}\n d {9}".format(
-        getPlayersInSlot(0, Team.2).disabled_movements[0],
-        getPlayersInSlot(0, Team.2).disabled_movements[1],
-        getPlayersInSlot(0, Team.2).disabled_movements[2],
-        getPlayersInSlot(0, Team.2).disabled_movements[3],
-        getPlayersInSlot(0, Team.2).disabled_movements[4],
-        getPlayersInSlot(0, Team.2).disabled_movements[5],
-        getPlayersInSlot(0, Team.2).disabled_movements[6],
-        getPlayersInSlot(0, Team.2).disabled_movements[7],
-        getPlayersInSlot(0, Team.2).disabled_movements[8],
-        getPlayersInSlot(0, Team.2).disabled_movements[9]
+        getPlayersInSlot(0, Team.2).disabled_hori[0],
+        getPlayersInSlot(0, Team.2).disabled_hori[1],
+        getPlayersInSlot(0, Team.2).disabled_hori[2],
+        getPlayersInSlot(0, Team.2).disabled_hori[3],
+        getPlayersInSlot(0, Team.2).disabled_hori[4],
+        getPlayersInSlot(0, Team.2).disabled_hori[5],
+        getPlayersInSlot(0, Team.2).disabled_hori[6],
+        getPlayersInSlot(0, Team.2).disabled_hori[7],
+        getPlayersInSlot(0, Team.2).disabled_vert[0],
+        getPlayersInSlot(0, Team.2).disabled_vert[1]
         ),
     HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
@@ -67,12 +68,12 @@ rule "text":
 
     hudSubheader(eventPlayer, 
     " c1: {0}".format(
-        calc1),
+        display_help[0]),
     HudPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " c2: {0}".format(
-        calc2),
+        null),
     HudPosition.RIGHT, 900, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
 
@@ -94,3 +95,14 @@ rule "Override Databot Data":
     #databot.mvmt_fwd_max[0] = 5
     #databot.mvmt_back_min[0] = 5
     #databot.mvmt_back_max[0] = 5
+
+rule "Override Databot Data":
+    @Event eachPlayer
+    @Slot 0
+    @Team 1
+    @Disabled
+
+    eventPlayer.applyImpulse(Vector.UP, 50, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION)
+    wait(1)
+
+    goto RULE_START
