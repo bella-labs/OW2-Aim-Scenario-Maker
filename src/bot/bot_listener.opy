@@ -105,17 +105,16 @@ rule "Target Bot Listener - Hero Pool":
 rule "Target Bot Listener - Health":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.bot_health != databot.bot_health[eventPlayer.getSlot()]
+    @Condition (eventPlayer.bot_health != databot.bot_health[eventPlayer.getSlot()])
 
     eventPlayer.bot_health = databot.bot_health[eventPlayer.getSlot()]
     eventPlayer.clearStatusEffect(Status.UNKILLABLE)
     if eventPlayer.bot_health == 0:
         eventPlayer.setMaxHealth(100)
-        eventPlayer.setStatusEffect(null, Status.UNKILLABLE, 9999)
+        eventPlayer.setStatusEffect(eventPlayer, Status.UNKILLABLE, 9999)
     else:
         eventPlayer.setMaxHealth(eventPlayer.bot_health)
     # Cooldown to prevent overflow
-    wait(1)
         
     if RULE_CONDITION:
         goto RULE_START

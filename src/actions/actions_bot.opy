@@ -467,7 +467,7 @@ def act_bot_scale():
         action_var_3 = OPTIONS_TYPE.TARGET
         act_general_change_list_var_1()
         databot.bot_scale_type[bot_slot] = action_var
-    elif subitem_index[menu_index] == 3:
+    elif subitem_index[menu_index] == 2:
         act_general_num_var_4()
         databot.bot_scale_target[bot_slot] = menu_item_var_4[menu_index]
     else:

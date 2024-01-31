@@ -18,6 +18,9 @@ def create_target_bot():
 
     getPlayersInSlot(bot_gen_slot, bot_gen_team).startForcingName("{0} {1}".format(strings_misc[lang_type][10], bot_gen_slot))
 
+    if databot.bot_health[eventPlayer.getSlot()] == 0 and databot.bot_health[eventPlayer.getSlot()] == getPlayersInSlot(bot_gen_slot, bot_gen_team).bot_health:
+        getPlayersInSlot(bot_gen_slot, bot_gen_team).setStatusEffect(eventPlayer, Status.INVINCIBLE, 9999)
+
 
 def destroy_target_bot():
     @Name "SUB: destroy_target_bot"

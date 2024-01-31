@@ -339,12 +339,21 @@ rule "Death Handler":
         eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
     wait(random.uniform(databot.sce_respawn_min, databot.sce_respawn_max))
     if len(eventPlayer.bot_hero_pool) == 1:
-        eventPlayer.setHealth(eventPlayer.bot_health)
+        #eventPlayer.setHealth(eventPlayer.bot_health)
         eventPlayer.resurrect()
+        eventPlayer.setHealth(eventPlayer.getMaxHealth())
     else:
         eventPlayer.startForcingHero(random.choice(eventPlayer.bot_hero_pool).exclude(eventPlayer.getCurrentHero()))
 
     teleport_target()
+
+
+rule "Adjust health for infinite":
+    @Event playerTookDamage
+    @Team 2
+    @Condition eventPlayer.bot_health == 0
+
+    eventPlayer.setHealth(eventPlayer.getMaxHealth())
 
 
 def teleport_target():
