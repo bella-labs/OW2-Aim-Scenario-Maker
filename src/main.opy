@@ -26,3 +26,4 @@ settings "settings.json"
 #!include "bot/mvmt_handler.opy"
 #!include "scenario/player.opy"
 #!include "scenario/scenario_handler.opy"
+

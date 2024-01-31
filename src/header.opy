@@ -264,6 +264,10 @@ playervar disabled_index
 playervar disabled_dir
 playervar disabled_bound
 playervar disabled_dist
+playervar disabled_hori_index
+playervar disabled_rev_index
+playervar disabled_rev_choices
+playervar disabled_rev_rand
 ## Target Bot Management
 playervar owner_player
 playervar profile_list
@@ -425,6 +429,7 @@ subroutine teleport_target
 ## Target Bot Boundary
 subroutine disable_movement_boundary
 subroutine disable_movement_distance
+subroutine boundary_collision_handler
 ## Target Bot Movement
 subroutine select_mvmt_dir
 subroutine target_up_impulse
@@ -437,6 +442,9 @@ subroutine show_next_bot
 subroutine sce_start_scenario
 subroutine sce_stop_scenario
 
+
+playervar last_locked_bound
+subroutine boundary_detection
 
 enum SUBMENUS:
     SUBMENU_MAIN = 0,

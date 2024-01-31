@@ -702,7 +702,9 @@ rule "load_language_data":
             "Last",
             "High",
             "Points",
-            "Seconds"
+            "Seconds",
+            "Export Data loaded",
+            "Bot #"
 
         ], 
         [

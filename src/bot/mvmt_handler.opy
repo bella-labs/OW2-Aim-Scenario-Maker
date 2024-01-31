@@ -193,22 +193,58 @@ def select_mvmt_dir():
         eventPlayer.target_mvmt_vect *= vect(0,1,1)
     if eventPlayer.target_fb_idle:
         eventPlayer.target_mvmt_vect *= vect(1,1,0)
+
     if eventPlayer.disabled_hori[eventPlayer.target_mvmt_index] > 0:
-        switch eventPlayer.bot_bound_type:
-            case 0:
-                if eventPlayer.disabled_hori[(eventPlayer.target_mvmt_index + 4) % 8] == 0:
-                    eventPlayer.target_mvmt_vect = eventPlayer.target_mvmt_vect * vect(-1, 1, -1)
-                else:
-                    eventPlayer.target_mvmt_vect = vect(0,0,0)
-                break
-            case 1:
-                eventPlayer.target_mvmt_vect = vect(0,0,0)
-                break
-            case 2:
-                teleport_target()
-                break
+        boundary_collision_handler()
 
     eventPlayer.target_mvmt_dir = eventPlayer.target_mvmt_vect
+
+
+def boundary_collision_handler():
+    @Name "SUB: boundary_collision_handler"
+
+
+    switch eventPlayer.bot_bound_type:
+        case 0:
+            eventPlayer.target_mvmt_vect = vect(0,0,0)
+            for eventPlayer.disabled_hori_index in range(0, 8):
+                if eventPlayer.disabled_hori[eventPlayer.disabled_hori_index] == 0 and eventPlayer.mvmt_weights[eventPlayer.profile_index][eventPlayer.disabled_hori_index] > 0:
+                    switch eventPlayer.disabled_hori_index:
+                        case XZ_DIR.BACKWARD:
+                            eventPlayer.target_mvmt_vect = Vector.BACKWARD
+                            break
+                        case XZ_DIR.BACKWARD_RIGHT:
+                            eventPlayer.target_mvmt_vect = Vector.BACKWARD + Vector.RIGHT
+                            break
+                        case XZ_DIR.RIGHT:
+                            eventPlayer.target_mvmt_vect = Vector.RIGHT
+                            break
+                        case XZ_DIR.FORWARD_RIGHT:
+                            eventPlayer.target_mvmt_vect = Vector.FORWARD + Vector.RIGHT
+                            break
+                        case XZ_DIR.FORWARD:
+                            eventPlayer.target_mvmt_vect = Vector.FORWARD
+                            break
+                        case XZ_DIR.FORWARD_LEFT:
+                            eventPlayer.target_mvmt_vect = Vector.FORWARD + Vector.LEFT
+                            break
+                        case XZ_DIR.FORWARD:
+                            eventPlayer.target_mvmt_vect = Vector.FORWARD
+                            break
+                        case XZ_DIR.BACKWARD_LEFT:
+                            eventPlayer.target_mvmt_vect = Vector.BACKWARD + Vector.LEFT
+                            break
+                    eventPlayer.disabled_hori_index = 8
+                
+            break
+        case 1:
+            eventPlayer.target_mvmt_vect = vect(0,0,0)
+            break
+        case 2:
+            teleport_target()
+            break
+
+
 
 
 def target_up_impulse():

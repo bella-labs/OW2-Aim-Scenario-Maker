@@ -1,8 +1,94 @@
-rule "Boundary Handler - Correct XZ":
+
+
+rule "Boundary Handler - Correct -X":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.isAlive()
-    @Condition eventPlayer.getPosition().x - 0.5 < eventPlayer.boundary_limits[0].x or eventPlayer.getPosition().x + 0.5 > eventPlayer.boundary_limits[1].x or eventPlayer.getPosition().z - 0.5 < eventPlayer.boundary_limits[0].z or eventPlayer.getPosition().z + 0.5 > eventPlayer.boundary_limits[1].z
+    @Condition eventPlayer.getPosition().x - 0.5 < eventPlayer.boundary_limits[0].x
+
+    if eventPlayer.last_locked_bound != -1:
+        if eventPlayer.isAlive():
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound) % 8] -= 1
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 1) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 1) % 8] -= 1
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 2) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 2) % 8] -= 1
+    async(boundary_detection, AsyncBehavior.RESTART)
+    waitUntil(eventPlayer.getPosition().x - 0.5 >= eventPlayer.boundary_limits[0].x, 9999)
+    wait(0.5)
+
+    if RULE_CONDITION:
+        goto RULE_START
+
+
+rule "Boundary Handler - Correct +X":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive()
+    @Condition eventPlayer.getPosition().x + 0.5 > eventPlayer.boundary_limits[1].x
+
+    if eventPlayer.last_locked_bound != -1:
+        if eventPlayer.isAlive():
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound) % 8] -= 1
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 1) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 1) % 8] -= 1
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 2) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 2) % 8] -= 1
+    async(boundary_detection, AsyncBehavior.RESTART)
+    waitUntil(eventPlayer.getPosition().x + 0.5 <= eventPlayer.boundary_limits[1].x, 9999)
+    wait(0.5)
+
+    if RULE_CONDITION:
+        goto RULE_START
+
+
+rule "Boundary Handler - Correct -Z":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive()
+    @Condition eventPlayer.getPosition().z - 0.5 < eventPlayer.boundary_limits[0].z
+
+    if eventPlayer.last_locked_bound != -1:
+        if eventPlayer.isAlive():
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound) % 8] -= 1
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 1) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 1) % 8] -= 1
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 2) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 2) % 8] -= 1
+    async(boundary_detection, AsyncBehavior.RESTART)
+    waitUntil(eventPlayer.getPosition().z - 0.5 >= eventPlayer.boundary_limits[0].z, 9999)
+    wait(0.5)
+
+    if RULE_CONDITION:
+        goto RULE_START
+
+
+rule "Boundary Handler - Correct +Z":
+    @Event eachPlayer
+    @Team 2
+    @Condition eventPlayer.isAlive()
+    @Condition eventPlayer.getPosition().z + 0.5 > eventPlayer.boundary_limits[1].z
+
+    if eventPlayer.last_locked_bound != -1:
+        if eventPlayer.isAlive():
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound) % 8] -= 1
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 1) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 1) % 8] -= 1
+            if eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 2) % 8] > 0:
+                eventPlayer.disabled_hori[(eventPlayer.last_locked_bound + 2) % 8] -= 1
+    async(boundary_detection, AsyncBehavior.RESTART)
+    waitUntil(eventPlayer.getPosition().z + 0.5 <= eventPlayer.boundary_limits[1].z, 9999)
+    wait(0.5)
+
+    if RULE_CONDITION:
+        goto RULE_START
+
+def boundary_detection():
+    @Name "SUB: boundary_detection"
 
     # a = (theta / 45)
     eventPlayer.disabled_index = horizontalAngleOfDirection(eventPlayer.getFacingDirection()) / 45
@@ -18,27 +104,44 @@ rule "Boundary Handler - Correct XZ":
     eventPlayer.disabled_dir[XZ_DIR.LEFT] =           (eventPlayer.disabled_index + 4) % 8
     eventPlayer.disabled_dir[XZ_DIR.BACKWARD_LEFT] =  (eventPlayer.disabled_index + 5) % 8
 
-    # Boundary 1
-    if eventPlayer.getPosition().x - 0.5 < eventPlayer.boundary_limits[0].x:
-        eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 6) % 8)
-    # Boundary 3
-    elif eventPlayer.getPosition().x + 0.5 > eventPlayer.boundary_limits[1].x:
-        eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 2) % 8)
-    
-    # Boundary 2
-    if eventPlayer.getPosition().z - 0.5 < eventPlayer.boundary_limits[0].z:
-        eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 0) % 8)
-    # Boundary 4
-    elif eventPlayer.getPosition().z + 0.5 > eventPlayer.boundary_limits[1].z:
-        eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 4) % 8)
+    switch true:
+        # Boundary 1 and Boundary 2
+        case eventPlayer.getPosition().x - 0.5 < eventPlayer.boundary_limits[0].x and eventPlayer.getPosition().z - 0.5 < eventPlayer.boundary_limits[0].z:
+            eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 7) % 8)
+            break
+        # Boundary 1 and Boundary 4
+        case eventPlayer.getPosition().x - 0.5 < eventPlayer.boundary_limits[0].x and eventPlayer.getPosition().z + 0.5 > eventPlayer.boundary_limits[1].z:
+            eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 5) % 8)
+            break
+        # Boundary 3 and Boundary 2
+        case eventPlayer.getPosition().x + 0.5 > eventPlayer.boundary_limits[1].x and eventPlayer.getPosition().z - 0.5 < eventPlayer.boundary_limits[0].z:
+            eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 1) % 8)
+            break
+        # Boundary 3 and Boundary 4
+        case eventPlayer.getPosition().x + 0.5 > eventPlayer.boundary_limits[1].x and eventPlayer.getPosition().z + 0.5 > eventPlayer.boundary_limits[1].z:
+            eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 3) % 8)
+            break
+        # Boundary 1
+        case eventPlayer.getPosition().x - 0.5 < eventPlayer.boundary_limits[0].x:
+            eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 6) % 8)
+            break
+        # Boundary 3
+        case eventPlayer.getPosition().x + 0.5 > eventPlayer.boundary_limits[1].x:
+            eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 2) % 8)
+            break
+        # Boundary 2
+        case eventPlayer.getPosition().z - 0.5 < eventPlayer.boundary_limits[0].z:
+            eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 0) % 8)
+            break
+        # Boundary 4
+        case eventPlayer.getPosition().z + 0.5 > eventPlayer.boundary_limits[1].z:
+            eventPlayer.disabled_bound = 8 - ((eventPlayer.disabled_index + 4) % 8)
+            break
 
     eventPlayer.disabled_bound = (eventPlayer.disabled_bound + 7) % 8
+
     disable_movement_boundary()
 
-    wait(0.1)
-
-    if RULE_CONDITION:
-        goto RULE_START
 
 rule "Boundary Handler - Correct Y Min (Up)":
     @Event eachPlayer
@@ -230,6 +333,7 @@ rule "Death Handler":
 
     eventPlayer.disabled_hori = [0,0,0,0,0,0,0,0]
     eventPlayer.disabled_vert = [0,0]
+    eventPlayer.last_locked_bound = -1
 
     if eventPlayer.bot_scale_type == 0:
         eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
@@ -266,8 +370,9 @@ def disable_movement_boundary():
         eventPlayer.disabled_hori[(eventPlayer.disabled_bound + 1) % 8] += 1
         eventPlayer.disabled_hori[(eventPlayer.disabled_bound + 2) % 8] += 1
 
+        eventPlayer.last_locked_bound = eventPlayer.disabled_bound
         async(select_mvmt_dir, AsyncBehavior.RESTART)
-        waitUntil(eventPlayer.isDead() or (eventPlayer.getPosition().x >= eventPlayer.boundary_limits[0].x and eventPlayer.getPosition().x <= eventPlayer.boundary_limits[1].x and eventPlayer.getPosition().z >= eventPlayer.boundary_limits[0].z and eventPlayer.getPosition().z <= eventPlayer.boundary_limits[1].z), 1)
+        waitUntil(eventPlayer.isDead() or (eventPlayer.getPosition().x - 0.5 >= eventPlayer.boundary_limits[0].x and eventPlayer.getPosition().x + 0.5 <= eventPlayer.boundary_limits[1].x and eventPlayer.getPosition().z - 0.5 >= eventPlayer.boundary_limits[0].z and eventPlayer.getPosition().z + 0.5 <= eventPlayer.boundary_limits[1].z), 9999)
         #wait(0.1)
 
         if eventPlayer.isAlive():
@@ -277,6 +382,7 @@ def disable_movement_boundary():
                 eventPlayer.disabled_hori[(eventPlayer.disabled_bound + 1) % 8] -= 1
             if eventPlayer.disabled_hori[(eventPlayer.disabled_bound + 2) % 8] > 0:
                 eventPlayer.disabled_hori[(eventPlayer.disabled_bound + 2) % 8] -= 1
+            eventPlayer.last_locked_bound = -1
 
 
 def disable_movement_distance():

@@ -184,4 +184,4 @@ def act_main_create_export():
     getPlayersInSlot(2,Team.1).export_data[0] = databuilder
     wait(1)
     destroyDummy(Team.1, 2)
-    smallMessage(hostPlayer, "    Export Data Loaded")
+    smallMessage(hostPlayer, "    {0}".format(strings_misc[lang_type][9]))

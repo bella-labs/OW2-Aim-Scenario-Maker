@@ -16,6 +16,8 @@ def create_target_bot():
     bot_gen_facing = normalize(databot.bot_facing_vect[bot_gen_slot])
     createDummy(bot_gen_hero, bot_gen_team, bot_gen_slot, bot_gen_position, bot_gen_facing)
 
+    getPlayersInSlot(bot_gen_slot, bot_gen_team).startForcingName("{0} {1}".format(strings_misc[lang_type][10], bot_gen_slot))
+
 
 def destroy_target_bot():
     @Name "SUB: destroy_target_bot"
