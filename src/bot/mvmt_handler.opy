@@ -33,8 +33,8 @@ rule "Target Bot Jump Input Movement":
     @Condition eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] > 0
     @Condition eventPlayer.disabled_vert[YDIR.UP] == 0
 
-    eventPlayer.target_rand[PLAYER_RAND.JUMP] = random.uniform(0, eventPlayer.mvmt_jump_chance[eventPlayer.profile_index])
-    if eventPlayer.target_rand[PLAYER_RAND.JUMP] <= eventPlayer.target_rand[PLAYER_RAND.JUMP]:
+    eventPlayer.target_rand[PLAYER_RAND.JUMP] = random.uniform(0, 100)
+    if eventPlayer.target_rand[PLAYER_RAND.JUMP] <= eventPlayer.mvmt_jump_chance[eventPlayer.profile_index]:
         eventPlayer.startForcingButton(Button.JUMP)
         waitUntil(eventPlayer.isDead(), random.uniform(eventPlayer.mvmt_uncrouch_min[eventPlayer.profile_index], eventPlayer.mvmt_uncrouch_max[eventPlayer.profile_index]))
         eventPlayer.stopForcingButton(Button.JUMP)
@@ -112,9 +112,9 @@ rule "Target Bot Vertical Impulse Handler":
     @Team 2
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 1
     
-    eventPlayer.target_rand[PLAYER_RAND.JUMP] = random.uniform(0, eventPlayer.mvmt_jump_chance[eventPlayer.profile_index])
-    eventPlayer.target_rand[PLAYER_RAND.CROUCH] = random.uniform(0, eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index])
-    if eventPlayer.target_rand[PLAYER_RAND.JUMP] < eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] and eventPlayer.disabled_vert[YDIR.UP] == 0 and eventPlayer.target_rand[PLAYER_RAND.CROUCH] < eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] and eventPlayer.disabled_vert[YDIR.DOWN] == 0:
+    eventPlayer.target_rand[PLAYER_RAND.JUMP] = random.uniform(0, 100)
+    eventPlayer.target_rand[PLAYER_RAND.CROUCH] = random.uniform(0, 100)
+    if eventPlayer.target_rand[PLAYER_RAND.JUMP] <= eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] and eventPlayer.disabled_vert[YDIR.UP] == 0 and eventPlayer.target_rand[PLAYER_RAND.CROUCH] <= eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] and eventPlayer.disabled_vert[YDIR.DOWN] == 0:
         if random.randint(0,1) == 0:
             eventPlayer.target_vert_dir = 1
             async(target_up_impulse, AsyncBehavior.NOOP)
@@ -123,11 +123,11 @@ rule "Target Bot Vertical Impulse Handler":
             eventPlayer.target_vert_dir = -1
             async(target_down_impulse, AsyncBehavior.NOOP)
             waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.DOWN] != 0, random.uniform(eventPlayer.mvmt_uncrouch_min[eventPlayer.profile_index], eventPlayer.mvmt_uncrouch_max[eventPlayer.profile_index]))
-    elif eventPlayer.target_rand[PLAYER_RAND.JUMP] < eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] and eventPlayer.disabled_vert[YDIR.UP] == 0:
+    elif eventPlayer.target_rand[PLAYER_RAND.JUMP] <= eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] and eventPlayer.disabled_vert[YDIR.UP] == 0:
         eventPlayer.target_vert_dir = 1
         async(target_up_impulse, AsyncBehavior.NOOP)
         waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.UP] != 0, random.uniform(eventPlayer.mvmt_jump_min[eventPlayer.profile_index], eventPlayer.mvmt_jump_max[eventPlayer.profile_index]))
-    elif eventPlayer.target_rand[PLAYER_RAND.CROUCH] < eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] and not eventPlayer.disabled_vert[YDIR.DOWN] == 0:
+    elif eventPlayer.target_rand[PLAYER_RAND.CROUCH] <= eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] and not eventPlayer.disabled_vert[YDIR.DOWN] == 0:
         eventPlayer.target_vert_dir = -1
         async(target_down_impulse, AsyncBehavior.NOOP)
         waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.DOWN] != 0, random.uniform(eventPlayer.mvmt_uncrouch_min[eventPlayer.profile_index], eventPlayer.mvmt_uncrouch_max[eventPlayer.profile_index]))
