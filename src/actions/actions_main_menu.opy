@@ -98,8 +98,8 @@ def act_main_toggle_import():
     act_general_toggle_var_1()
 
     
-def act_main_create_export():
-    @Name "SUB: act_main_create_export"
+def act_main_export_data():
+    @Name "SUB: act_main_export_data"
 
     createDummy(Hero.WINSTON, Team.1, 2, vect(0,9999,0), vect(0,0,0))
 

@@ -222,6 +222,13 @@ def create_submenu_main():
     menu_label[menu_label_size] = strings_main_menu[lang_type][menu_max_pos]
     new_menu_label_header()
 
+    # (Selection) Create Export Package
+    increment_for_menu_item()
+    menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
+    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
+    new_menu_item_selection()
+
     # (Toggle) Export Instruction
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
@@ -247,13 +254,6 @@ def create_submenu_main():
     act_general_toggle_var_1()
 
     new_menu_item_toggle()
-
-    # (Selection) Create Export Package
-    increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-    menu_item_color_off[menu_item_size] = menu_colors_custom[4]
-    new_menu_item_selection()
 
 
 def create_submenu_scenario():

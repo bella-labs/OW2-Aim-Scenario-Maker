@@ -368,7 +368,7 @@ subroutine act_main_test_scenario
 subroutine act_main_reset_score
 subroutine act_main_toggle_import
 subroutine act_main_toggle_export
-subroutine act_main_create_export
+subroutine act_main_export_data
 #### Scenario Submenu
 subroutine act_sce_player_spawn
 subroutine act_sce_player_facing

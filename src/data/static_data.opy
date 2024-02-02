@@ -358,9 +358,10 @@ rule "load_language_data":
             "Test Scenario",
             "Reset Score",
             "Export and Share",
+            "Create Export Package",
             "Display Export Instructions",
-            "Display Import Instructions",
-            "Create Export Package"
+            "Display Import Instructions"
+
         ],
         [
             "*\n*\n", 
@@ -599,7 +600,7 @@ rule "load_language_data":
             ["Random", "Health", "Elims (Target)", "Looping (Target)"],
             ["Fixed Position", "Random in Boundary", "Random Walkable in Boundary"],
             ["Fixed", "Player"],
-            ["Reverse", "Stop", "Teleport"],
+            ["Change Direction", "Stop Moving", "Teleport to Spawn Target"],
             ["In Order", "Randomized"],
             ["Inputs", "Impulse"],
             ["Timed", "Elims"],
