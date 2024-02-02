@@ -9,7 +9,7 @@ rule "Target Bot Initalization":
     # Set Disabled Movements
     eventPlayer.disabled_hori = [0,0,0,0,0,0,0,0]
     eventPlayer.disabled_vert = [0,0]
-    eventPlayer.last_locked_bound = -1
+    eventPlayer.disabled_boundary = [-1, -1, -1, -1]
     # Set Gravity and Speed to -1 to force listener rule trigger when set to 0
     eventPlayer.bot_speed_min = -1
     eventPlayer.bot_gravity = -1

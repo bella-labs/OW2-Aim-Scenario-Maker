@@ -10,7 +10,7 @@ rule "Target Bot Horizontal Input Setup":
 rule "Target Bot Horizontal Impulse Setup":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 1 or (eventPlayer.mvmt_left_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_right_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_fwd_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_back_max[eventPlayer.profile_index] == 0)
+    @Condition eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 1 #or (eventPlayer.mvmt_left_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_right_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_fwd_max[eventPlayer.profile_index] == 0 and eventPlayer.mvmt_back_max[eventPlayer.profile_index] == 0)
 
         eventPlayer.stopThrottleInDirection()
 
@@ -147,55 +147,48 @@ def select_mvmt_dir():
         case eventPlayer.target_rand[PLAYER_RAND.XZ] <= eventPlayer.mvmt_weights[eventPlayer.profile_index][XZ_DIR.BACKWARD]:
             eventPlayer.target_hori_wait = random.uniform(eventPlayer.mvmt_back_min[eventPlayer.profile_index], eventPlayer.mvmt_back_max[eventPlayer.profile_index])
             eventPlayer.target_mvmt_index = XZ_DIR.BACKWARD
-            eventPlayer.target_mvmt_vect = Vector.BACKWARD
             break
         case eventPlayer.target_rand[PLAYER_RAND.XZ] <= eventPlayer.mvmt_weights[eventPlayer.profile_index][XZ_DIR.BACKWARD_RIGHT]:
             eventPlayer.target_hori_wait = random.uniform(eventPlayer.mvmt_br_min[eventPlayer.profile_index], eventPlayer.mvmt_br_max[eventPlayer.profile_index])
             eventPlayer.target_mvmt_index = XZ_DIR.BACKWARD_RIGHT
-            eventPlayer.target_mvmt_vect = Vector.BACKWARD + Vector.RIGHT
             break
         case eventPlayer.target_rand[PLAYER_RAND.XZ] <= eventPlayer.mvmt_weights[eventPlayer.profile_index][XZ_DIR.RIGHT]:
             eventPlayer.target_hori_wait = random.uniform(eventPlayer.mvmt_right_min[eventPlayer.profile_index], eventPlayer.mvmt_right_max[eventPlayer.profile_index])
             eventPlayer.target_mvmt_index = XZ_DIR.RIGHT
-            eventPlayer.target_mvmt_vect = Vector.RIGHT
             break
         case eventPlayer.target_rand[PLAYER_RAND.XZ] <= eventPlayer.mvmt_weights[eventPlayer.profile_index][XZ_DIR.FORWARD_RIGHT]:
             eventPlayer.target_hori_wait = random.uniform(eventPlayer.mvmt_fr_min[eventPlayer.profile_index], eventPlayer.mvmt_fr_max[eventPlayer.profile_index])
             eventPlayer.target_mvmt_index = XZ_DIR.FORWARD_RIGHT
-            eventPlayer.target_mvmt_vect = Vector.FORWARD + Vector.RIGHT
             break
         case eventPlayer.target_rand[PLAYER_RAND.XZ] <= eventPlayer.mvmt_weights[eventPlayer.profile_index][XZ_DIR.FORWARD]:
             eventPlayer.target_hori_wait = random.uniform(eventPlayer.mvmt_fwd_min[eventPlayer.profile_index], eventPlayer.mvmt_fwd_max[eventPlayer.profile_index])
             eventPlayer.target_mvmt_index = XZ_DIR.FORWARD
-            eventPlayer.target_mvmt_vect = Vector.FORWARD
             break
         case eventPlayer.target_rand[PLAYER_RAND.XZ] <= eventPlayer.mvmt_weights[eventPlayer.profile_index][XZ_DIR.FORWARD_LEFT]:
             eventPlayer.target_hori_wait = random.uniform(eventPlayer.mvmt_fl_min[eventPlayer.profile_index], eventPlayer.mvmt_fl_max[eventPlayer.profile_index])
             eventPlayer.target_mvmt_index = XZ_DIR.FORWARD_LEFT
-            eventPlayer.target_mvmt_vect = Vector.FORWARD + Vector.LEFT
             break
         case eventPlayer.target_rand[PLAYER_RAND.XZ] <= eventPlayer.mvmt_weights[eventPlayer.profile_index][XZ_DIR.LEFT]:
             eventPlayer.target_hori_wait = random.uniform(eventPlayer.mvmt_left_min[eventPlayer.profile_index], eventPlayer.mvmt_left_max[eventPlayer.profile_index])
             eventPlayer.target_mvmt_index = XZ_DIR.LEFT
-            eventPlayer.target_mvmt_vect = Vector.LEFT
             break
         case eventPlayer.target_rand[PLAYER_RAND.XZ] <= eventPlayer.mvmt_weights[eventPlayer.profile_index][XZ_DIR.BACKWARD_LEFT]:
             eventPlayer.target_hori_wait = random.uniform(eventPlayer.mvmt_bl_min[eventPlayer.profile_index], eventPlayer.mvmt_bl_max[eventPlayer.profile_index])
             eventPlayer.target_mvmt_index = XZ_DIR.BACKWARD_LEFT
-            eventPlayer.target_mvmt_vect = Vector.BACKWARD + Vector.LEFT
             break
         default:
             eventPlayer.target_hori_wait = 0.01
-            eventPlayer.target_mvmt_vect = vect(0,0,0)
             break
+
+    if eventPlayer.disabled_hori[eventPlayer.target_mvmt_index] > 0:
+        boundary_collision_handler()
+    else:
+        eventPlayer.target_mvmt_vect = movement_options[eventPlayer.target_mvmt_index]
 
     if eventPlayer.target_lr_idle:
         eventPlayer.target_mvmt_vect *= vect(0,1,1)
     if eventPlayer.target_fb_idle:
         eventPlayer.target_mvmt_vect *= vect(1,1,0)
-
-    if eventPlayer.disabled_hori[eventPlayer.target_mvmt_index] > 0:
-        boundary_collision_handler()
 
     eventPlayer.target_mvmt_dir = eventPlayer.target_mvmt_vect
 
@@ -206,41 +199,24 @@ def boundary_collision_handler():
 
     switch eventPlayer.bot_bound_type:
         case 0:
-            eventPlayer.target_mvmt_vect = vect(0,0,0)
-            for eventPlayer.disabled_hori_index in range(0, 8):
-                if eventPlayer.disabled_hori[eventPlayer.disabled_hori_index] == 0 and eventPlayer.mvmt_weights[eventPlayer.profile_index][eventPlayer.disabled_hori_index] > 0:
-                    switch eventPlayer.disabled_hori_index:
-                        case XZ_DIR.BACKWARD:
-                            eventPlayer.target_mvmt_vect = Vector.BACKWARD
-                            break
-                        case XZ_DIR.BACKWARD_RIGHT:
-                            eventPlayer.target_mvmt_vect = Vector.BACKWARD + Vector.RIGHT
-                            break
-                        case XZ_DIR.RIGHT:
-                            eventPlayer.target_mvmt_vect = Vector.RIGHT
-                            break
-                        case XZ_DIR.FORWARD_RIGHT:
-                            eventPlayer.target_mvmt_vect = Vector.FORWARD + Vector.RIGHT
-                            break
-                        case XZ_DIR.FORWARD:
-                            eventPlayer.target_mvmt_vect = Vector.FORWARD
-                            break
-                        case XZ_DIR.FORWARD_LEFT:
-                            eventPlayer.target_mvmt_vect = Vector.FORWARD + Vector.LEFT
-                            break
-                        case XZ_DIR.FORWARD:
-                            eventPlayer.target_mvmt_vect = Vector.FORWARD
-                            break
-                        case XZ_DIR.BACKWARD_LEFT:
-                            eventPlayer.target_mvmt_vect = Vector.BACKWARD + Vector.LEFT
-                            break
-                    eventPlayer.disabled_hori_index = 8
-                
+            eventPlayer.disabled_rev_index = -1
+            eventPlayer.disabled_rev_choices = null
+
+            for eventPlayer.disabled_index in range(0, 8):
+                if eventPlayer.disabled_hori[eventPlayer.disabled_index] == 0 and eventPlayer.mvmt_weights[eventPlayer.profile_index][eventPlayer.disabled_index] > 0:
+                    eventPlayer.disabled_rev_index += 1
+                    eventPlayer.disabled_rev_choices[eventPlayer.disabled_rev_index] = eventPlayer.disabled_index
+  
+            if eventPlayer.disabled_rev_index == -1:
+                eventPlayer.target_mvmt_vect = movement_options[XZ_DIR.NONE]
+            else:
+                eventPlayer.target_mvmt_vect = movement_options[random.choice(eventPlayer.disabled_rev_choices)]
             break
         case 1:
-            eventPlayer.target_mvmt_vect = vect(0,0,0)
+            eventPlayer.target_mvmt_vect = movement_options[XZ_DIR.NONE]
             break
         case 2:
+            eventPlayer.target_mvmt_vect = movement_options[eventPlayer.target_mvmt_index]
             teleport_target()
             break
 

@@ -114,8 +114,10 @@ globalvar menu_effect_index
 globalvar effect_array
 globalvar ring_data
 ## Bot Management
+globalvar movement_options
 globalvar profile_weights
 globalvar movement_weights
+globalvar boundary_buffer
 ## Scenario
 globalvar scenario_status
 globalvar active_bot_status
@@ -259,14 +261,14 @@ playervar calc_var
 ## Target Bot Boundary and Distance
 playervar disabled_hori
 playervar disabled_vert
-playervar disabled_index
-playervar disabled_dir
-playervar disabled_bound
+playervar disabled_calc
+playervar disabled_target
+playervar disabled_boundary
+playervar boundary_index
 playervar disabled_dist
-playervar disabled_hori_index
+playervar disabled_index
 playervar disabled_rev_index
 playervar disabled_rev_choices
-playervar disabled_rev_rand
 ## Target Bot Management
 playervar owner_player
 playervar profile_list
@@ -426,7 +428,9 @@ subroutine set_cube
 ## Target Bot Management
 subroutine teleport_target
 ## Target Bot Boundary
-subroutine disable_movement_boundary
+subroutine check_boundary
+subroutine disable_boundary
+subroutine enable_boundary
 subroutine disable_movement_distance
 subroutine boundary_collision_handler
 ## Target Bot Movement
@@ -440,10 +444,6 @@ subroutine reset_player
 subroutine show_next_bot
 subroutine sce_start_scenario
 subroutine sce_stop_scenario
-
-
-playervar last_locked_bound
-subroutine boundary_detection
 
 enum SUBMENUS:
     SUBMENU_MAIN = 0,
@@ -598,6 +598,7 @@ enum XZ_DIR:
     FORWARD_LEFT,
     LEFT,
     BACKWARD_LEFT,
+    NONE
 
 enum YDIR:
     UP = 0,

@@ -48,19 +48,6 @@ rule "text":
     HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
-    " b: {0}\n rb: {1}\n r: {2}\n fr: {3}\n f: {4}\n fl {5}\n l {6}\n bl {7}".format(
-        getPlayersInSlot(0, Team.2).disabled_dir[0],
-        getPlayersInSlot(0, Team.2).disabled_dir[1],
-        getPlayersInSlot(0, Team.2).disabled_dir[2],
-        getPlayersInSlot(0, Team.2).disabled_dir[3],
-        getPlayersInSlot(0, Team.2).disabled_dir[4],
-        getPlayersInSlot(0, Team.2).disabled_dir[5],
-        getPlayersInSlot(0, Team.2).disabled_dir[6],
-        getPlayersInSlot(0, Team.2).disabled_dir[7]
-        ),
-    HudPosition.RIGHT, 900, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-
-    hudSubheader(eventPlayer, 
     " bound: {0}".format(
         horizontalAngleOfDirection(getPlayersInSlot(0, Team.2).getFacingDirection())
         ),
@@ -68,13 +55,22 @@ rule "text":
 
     hudSubheader(eventPlayer, 
     " c1: {0}".format(
-        display_help[0]),
+        getPlayersInSlot(0, Team.2).disabled_rev_index),
     HudPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " c2: {0}".format(
-        null),
+        getPlayersInSlot(0, Team.2).disabled_calc),
     HudPosition.RIGHT, 900, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+
+    hudSubheader(eventPlayer, 
+    "DB0: {0}\nDB1: {1}\nDB2: {2}\nDB3: {3}\n".format(
+        getPlayersInSlot(0, Team.2).disabled_boundary[0],
+        getPlayersInSlot(0, Team.2).disabled_boundary[1],
+        getPlayersInSlot(0, Team.2).disabled_boundary[2],
+        getPlayersInSlot(0, Team.2).disabled_boundary[3]
+        ),
+    HudPosition.RIGHT, 900, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
 
 rule "Override Databot Data":

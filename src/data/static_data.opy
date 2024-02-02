@@ -239,6 +239,18 @@ rule "Load Static Data":
                     ]
 
     menu_wait = [0.10, 0.05, 0.01]
+    boundary_buffer = 0.5
+    movement_options =  [
+                            vect( 0,  0, -1), # BACKWARD
+                            vect(-1,  0, -1), # BACKWARD_RIGHT
+                            vect(-1,  0,  0), # RIGHT
+                            vect(-1,  0,  1), # FORWARD_RIGHT
+                            vect( 0,  0,  1), # FORWARD
+                            vect( 1,  0,  1), # FORWARD_LEFT
+                            vect( 1,  0,  0), # LEFT
+                            vect( 1,  0, -1), # BACKWARD_LEFT
+                            vect( 0,  0,  0)  # NONE
+                        ]
 
                     
 
