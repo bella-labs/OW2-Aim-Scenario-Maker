@@ -49,11 +49,13 @@ globalvar hud_text_id
 globalvar menu_help_index
 globalvar menu_help_display
 globalvar help_data
+globalvar item_data
 ## Menu Actions
 globalvar submenu_curr_start
 globalvar chg_submenu_target
 globalvar chg_submenu_item_target
 ## UI
+globalvar lang_type
 globalvar user_controls
 globalvar ui_delay
 globalvar ui_inputs
@@ -84,8 +86,6 @@ globalvar small_steps
 globalvar large_steps
 ## Databot
 globalvar databot
-## Lanaguage
-globalvar lang_type
 ## Action
 globalvar confirm_timer
 globalvar hero_array
@@ -94,7 +94,6 @@ globalvar bot_slot
 globalvar profile_slot
 globalvar new_hero_array
 ## General Menu Management
-globalvar item_data
 globalvar action_var
 globalvar action_var_2
 globalvar action_var_3
@@ -302,6 +301,7 @@ subroutine disable_player_input
 subroutine menu_up_check
 subroutine menu_down_check
 subroutine update_help_data
+subroutine set_item_data
 ### Menu Labels
 subroutine increment_for_menu_label
 subroutine new_menu_label_header
@@ -337,7 +337,6 @@ subroutine menu_act_submenu_bot
 subroutine menu_act_submenu_profile
 subroutine menu_act_submenu_movement
 ### Generalized Actions
-subroutine set_item_data
 subroutine menu_act_change_submenu
 subroutine act_general_chg_num
 subroutine act_general_num_temp
