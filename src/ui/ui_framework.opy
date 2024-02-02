@@ -239,8 +239,7 @@ def setup_menu():
     submenu_size = 0
 
     # Menu Colors
-    menu_color_label_header = Color.WHITE
-    menu_color_label_subtext = Color.ORANGE
+    menu_color_label = Color.WHITE
 
     menu_color_off_index = Color.WHITE
     menu_color_on_index = Color.SKY_BLUE
@@ -283,7 +282,7 @@ def increment_for_menu_label():
 
     menu_max_pos += 1
     menu_label_size += 1
-    menu_label_color[menu_label_size] = menu_color_label_header
+    menu_label_color[menu_label_size] = menu_color_label
 
     
 def increment_for_menu_item():

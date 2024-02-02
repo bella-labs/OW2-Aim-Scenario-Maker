@@ -42,7 +42,7 @@ globalvar menu_item_color_off
 globalvar menu_item_color_on
 ## Static Menu Colors
 globalvar menu_color_label_subtext
-globalvar menu_color_label_header
+globalvar menu_color_label
 globalvar menu_color_off_index
 globalvar menu_color_on_index
 globalvar menu_colors_custom
