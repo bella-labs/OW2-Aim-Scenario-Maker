@@ -185,7 +185,7 @@ rule "Speed Handler - Elims":
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 2
 
-    eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (elims * eventPlayer.bot_speed_target)))
+    eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (eventPlayer.owner_player.elims * eventPlayer.bot_speed_target)))
 
 
 rule "Speed Handler - Loop":
@@ -194,7 +194,7 @@ rule "Speed Handler - Loop":
     @Condition eventPlayer.isAlive() 
     @Condition eventPlayer.bot_speed_type == 3
 
-    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(timer%eventPlayer.bot_speed_target)/eventPlayer.bot_speed_target)))
+    eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(scenario_timer%eventPlayer.bot_speed_target)/eventPlayer.bot_speed_target)))
     wait(0.25)
 
     if RULE_CONDITION:

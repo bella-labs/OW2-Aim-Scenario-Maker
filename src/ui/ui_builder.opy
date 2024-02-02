@@ -61,7 +61,7 @@ def create_custom_hud():
     # Timer Progress Bar
     progressBarHud([i for i in localPlayer if scenario_status and databot.sce_strafe_pps > 0], 
     (localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * 100, 
-    "{0} / {1} {2}".format(max(0,(localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * databot.sce_strafe_pps * databot.sce_strafe_max), databot.sce_strafe_pps * databot.sce_strafe_max, strings_misc[lang_type][7]), 
+    "{0} / {1} {2}".format(min(databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min), max(0,(localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min))), databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min), strings_misc[lang_type][7]), 
     HudPosition.LEFT, 
     -3, 
     rgb((100 - (localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * 100)/100*255,
@@ -74,7 +74,7 @@ def create_custom_hud():
 
     # Scores
     hudSubheader([i for i in localPlayer],
-    "\n\n{0}: {1} {6}\n    {2}: {3} {6}\n    {4}: {5} {6}".format(strings_misc[lang_type][4], localPlayer.player_score if databot.sce_game_mode == 0 else timer, strings_misc[lang_type][5], localPlayer.last_score, strings_misc[lang_type][6], localPlayer.high_score, strings_misc[lang_type][7] if databot.sce_game_mode == 0 else strings_misc[lang_type][8]),
+    "\n\n{0}: {1} {6}\n    {2}: {3} {6}\n    {4}: {5} {6}".format(strings_misc[lang_type][4], localPlayer.player_score if databot.sce_game_mode == 0 else scenario_timer, strings_misc[lang_type][5], localPlayer.last_score, strings_misc[lang_type][6], localPlayer.high_score, strings_misc[lang_type][7] if databot.sce_game_mode == 0 else strings_misc[lang_type][8]),
     HudPosition.LEFT, 
     1, 
     Color.WHITE, 
@@ -83,13 +83,13 @@ def create_custom_hud():
 
     # Game Mode Progress bar
     progressBarHud([i for i in localPlayer if scenario_status], 
-    timer / databot.sce_game_limit * 100 if databot.sce_game_mode == 0 else localPlayer.player_score / databot.sce_game_limit * 100, 
-    "{0} / {1} {2}".format(timer if databot.sce_game_mode == 0 else localPlayer.player_score, databot.sce_game_limit, strings_misc[lang_type][8] if databot.sce_game_mode == 0 else strings_misc[lang_type][7]), 
+    scenario_timer / databot.sce_game_limit * 100 if databot.sce_game_mode == 0 else localPlayer.player_score / databot.sce_game_limit * 100, 
+    "{0} / {1} {2}".format(scenario_timer if databot.sce_game_mode == 0 else localPlayer.player_score, databot.sce_game_limit, strings_misc[lang_type][8] if databot.sce_game_mode == 0 else strings_misc[lang_type][7]), 
     HudPosition.TOP, 
     -99, 
     rgb(
-        (100 - timer / databot.sce_game_limit * 100)/100*255 if databot.sce_game_mode == 0 else (100 - localPlayer.player_score / databot.sce_game_limit * 100)/100*255, 
-        (timer / databot.sce_game_limit)*255 if databot.sce_game_mode == 0 else (localPlayer.player_score / databot.sce_game_limit)*255, 
+        (100 - scenario_timer / databot.sce_game_limit * 100)/100*255 if databot.sce_game_mode == 0 else (100 - localPlayer.player_score / databot.sce_game_limit * 100)/100*255, 
+        (scenario_timer / databot.sce_game_limit)*255 if databot.sce_game_mode == 0 else (localPlayer.player_score / databot.sce_game_limit)*255, 
         0
     ), 
     Color.WHITE, 

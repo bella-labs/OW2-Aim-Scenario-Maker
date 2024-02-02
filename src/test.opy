@@ -27,78 +27,50 @@ settings "settings.json"
 #!include "scenario/player.opy"
 #!include "scenario/scenario_handler.opy"
 
+globalvar testbot
 
-rule "text":
+rule "Test Data":
     @Event eachPlayer
     @Condition eventPlayer == hostPlayer
 
+    testbot = getPlayersInSlot(0, Team.2)
+
     hudSubheader(eventPlayer, 
     " b: {0}\n rb: {1}\n r: {2}\n fr: {3}\n f: {4}\n fl {5}\n l {6}\n bl {7}\n u {8}\n d {9}".format(
-        getPlayersInSlot(0, Team.2).disabled_hori[0],
-        getPlayersInSlot(0, Team.2).disabled_hori[1],
-        getPlayersInSlot(0, Team.2).disabled_hori[2],
-        getPlayersInSlot(0, Team.2).disabled_hori[3],
-        getPlayersInSlot(0, Team.2).disabled_hori[4],
-        getPlayersInSlot(0, Team.2).disabled_hori[5],
-        getPlayersInSlot(0, Team.2).disabled_hori[6],
-        getPlayersInSlot(0, Team.2).disabled_hori[7],
-        getPlayersInSlot(0, Team.2).disabled_vert[0],
-        getPlayersInSlot(0, Team.2).disabled_vert[1]
+        testbot.disabled_hori[0],
+        testbot.disabled_hori[1],
+        testbot.disabled_hori[2],
+        testbot.disabled_hori[3],
+        testbot.disabled_hori[4],
+        testbot.disabled_hori[5],
+        testbot.disabled_hori[6],
+        testbot.disabled_hori[7],
+        testbot.disabled_vert[0],
+        testbot.disabled_vert[1]
         ),
     HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " bound: {0}".format(
-        horizontalAngleOfDirection(getPlayersInSlot(0, Team.2).getFacingDirection())
+        horizontalAngleOfDirection(testbot.getFacingDirection())
         ),
     HudPosition.RIGHT, 900, Color.RED, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " c1: {0}".format(
-        getPlayersInSlot(0, Team.2).disabled_rev_index),
+        testbot.disabled_rev_index),
     HudPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     " c2: {0}".format(
-        getPlayersInSlot(0, Team.2).disabled_calc),
+        testbot.disabled_calc),
     HudPosition.RIGHT, 900, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer, 
     "DB0: {0}\nDB1: {1}\nDB2: {2}\nDB3: {3}\n".format(
-        getPlayersInSlot(0, Team.2).disabled_boundary[0],
-        getPlayersInSlot(0, Team.2).disabled_boundary[1],
-        getPlayersInSlot(0, Team.2).disabled_boundary[2],
-        getPlayersInSlot(0, Team.2).disabled_boundary[3]
+        testbot.disabled_boundary[0],
+        testbot.disabled_boundary[1],
+        testbot.disabled_boundary[2],
+        testbot.disabled_boundary[3]
         ),
     HudPosition.RIGHT, 900, Color.BLUE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-
-
-rule "Override Databot Data":
-    @Event global
-    @Condition data_loaded[DATA_TYPE.BOT] == true
-
-    
-    #databot.bot_facing_type[0] = 1
-    #databot.mvmt_weights[0] = [1,-1,-1,-1,-1,-1,-1,-1]
-    #databot.mvmt_max_weight = 1
-
-    #databot.mvmt_left_min[0] = 5
-    #databot.mvmt_left_max[0] = 5
-    #databot.mvmt_right_min[0] = 5
-    #databot.mvmt_right_max[0] = 5
-
-    #databot.mvmt_fwd_min[0] = 5
-    #databot.mvmt_fwd_max[0] = 5
-    #databot.mvmt_back_min[0] = 5
-    #databot.mvmt_back_max[0] = 5
-
-rule "Override Databot Data":
-    @Event eachPlayer
-    @Slot 0
-    @Team 1
-    @Disabled
-
-    eventPlayer.applyImpulse(Vector.UP, 50, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION)
-    wait(1)
-
-    goto RULE_START

@@ -2,6 +2,8 @@
 ## Control Flow
 globalvar loop_index
 globalvar data_loaded
+## Databot
+globalvar databot
 ## Menu Characteristics
 globalvar menu_visible
 globalvar menu_action
@@ -84,8 +86,6 @@ globalvar strings_symbols
 globalvar ranges
 globalvar small_steps
 globalvar large_steps
-## Databot
-globalvar databot
 ## Action
 globalvar confirm_timer
 globalvar hero_array
@@ -120,9 +120,8 @@ globalvar movement_weights
 globalvar boundary_buffer
 ## Scenario
 globalvar scenario_status
+globalvar scenario_timer
 globalvar active_bot_status
-globalvar elims
-globalvar timer
 globalvar test_bot_index
 globalvar scenario_bot_index
 globalvar scenario_bot
@@ -288,6 +287,9 @@ playervar target_fb_idle
 playervar player_score
 playervar last_score
 playervar high_score
+playervar elims
+playervar bs_count
+playervar hs_count
 playervar player_speed
 playervar strafe_dir
 playervar strafe_timer
