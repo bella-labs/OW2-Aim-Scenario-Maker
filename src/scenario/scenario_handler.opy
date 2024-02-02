@@ -24,7 +24,6 @@ rule "Player Bodyshot Handler":
     @Condition scenario_status
     @Condition not eventWasCriticalHit 
 
-    eventPlayer.bs_count += 1
     eventPlayer.player_score += databot.sce_bs_points
 
 
@@ -34,7 +33,6 @@ rule "Player Headshot Handler":
     @Condition scenario_status
     @Condition eventWasCriticalHit 
 
-    eventPlayer.hs_count += 1
     eventPlayer.player_score += databot.sce_hs_points
 
 
@@ -88,8 +86,6 @@ def sce_start_scenario():
     sce_player = eventPlayer
     sce_player.player_score = 0
 
-    sce_player.bs_count = 0
-    sce_player.hs_count = 0
     sce_player.elims = 0
 
     for bot_gen_slot in range(0, 12):

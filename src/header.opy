@@ -129,7 +129,6 @@ globalvar sce_player
 ## Export
 globalvar databuilder
 
-
 # Player Variables
 ## Data Storage
 ### Bot Settings
@@ -288,14 +287,11 @@ playervar player_score
 playervar last_score
 playervar high_score
 playervar elims
-playervar bs_count
-playervar hs_count
 playervar player_speed
 playervar strafe_dir
 playervar strafe_timer
 ## Export
 playervar export_data
-
 
 # Subroutines
 ## UI Framework
