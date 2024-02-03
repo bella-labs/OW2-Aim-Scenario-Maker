@@ -126,8 +126,11 @@ globalvar test_bot_index
 globalvar scenario_bot_index
 globalvar scenario_bot
 globalvar sce_player
-## Export
+## Save Data
+globalvar import_index
+globalvar export_index
 globalvar databuilder
+
 
 # Player Variables
 ## Data Storage

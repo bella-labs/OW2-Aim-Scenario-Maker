@@ -181,7 +181,7 @@ def act_main_export_data():
     databuilder[75] = databot.mvmt_fb_idle_min
     databuilder[76] = databot.mvmt_fb_idle_max
 
-    getPlayersInSlot(2,Team.1).export_data[0] = databuilder
+    getPlayersInSlot(2,Team.1).export_data[export_index] = databuilder
     wait(1)
     destroyDummy(Team.1, 2)
     smallMessage(hostPlayer, "    {0}".format(strings_misc[lang_type][9]))

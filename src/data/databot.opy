@@ -153,7 +153,7 @@ def default_settings():
 def unload_settings():
     @Name "SUB: unload_settings"
 
-    databuilder = databot.export_data[0]
+    databuilder = databot.export_data[import_index]
 
     databot.sce_player_spawn =       databuilder[0]
     databot.sce_player_facing =      databuilder[1]
