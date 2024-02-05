@@ -165,10 +165,12 @@ def sce_stop_scenario():
 
     if databot.sce_game_mode == 0:
         sce_player.last_score = sce_player.player_score
+        if sce_player.last_score > sce_player.high_score:
+            sce_player.high_score = sce_player.last_score
     else:
         sce_player.last_score = scenario_timer
-    if sce_player.last_score > sce_player.high_score:
-        sce_player.high_score = sce_player.last_score
+        if sce_player.last_score < sce_player.high_score:
+            sce_player.high_score = sce_player.last_score
 
     scenario_status = false
 

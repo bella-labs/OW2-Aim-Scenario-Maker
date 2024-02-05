@@ -463,7 +463,7 @@ rule "load_language_data":
             ""
         ]
     ]
-    strings_prof_menu = [
+    strings_mvmt_menu = [
         [
             "Movement Profile Settings", 
             "◀ Main Menu",

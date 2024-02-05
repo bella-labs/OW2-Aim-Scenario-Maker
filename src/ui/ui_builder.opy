@@ -718,25 +718,25 @@ def create_submenu_profile():
 
     # (Header) Movement Settings
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_label[menu_label_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     new_menu_label_header()
 
     # (Selection) Main Menu
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     menu_item_color_off[menu_item_size] = menu_colors_custom[2]
     new_menu_item_selection()
 
     # (Subtext) Movement Profiles
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_label[menu_label_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
     # (Cycle) Select Movement Profile Slot
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
 
     menu_item_var_1[menu_item_size] = 0
@@ -749,7 +749,7 @@ def create_submenu_profile():
 
     # (Cycle) Override Movement Profile From Slot
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
 
 
@@ -763,7 +763,7 @@ def create_submenu_profile():
 
     # (Subtext) Horizontal Movement
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_label[menu_label_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
@@ -772,7 +772,7 @@ def create_submenu_profile():
     
     refresh_start[1] = menu_item_size
 
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_hori_type[0]]
@@ -787,7 +787,7 @@ def create_submenu_profile():
 
     # (3 Var) Left Movement
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     action_var = movement_weights[XZ_DIR.LEFT]
@@ -804,7 +804,7 @@ def create_submenu_profile():
 
     ## (3 Var) Right Movement
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     action_var = movement_weights[XZ_DIR.RIGHT]
@@ -821,7 +821,7 @@ def create_submenu_profile():
 
     # (3 Var) Forward Movement
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     action_var = movement_weights[XZ_DIR.FORWARD]
@@ -838,7 +838,7 @@ def create_submenu_profile():
 
     # (3 Var) Backward Movement
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     action_var = movement_weights[XZ_DIR.BACKWARD]
@@ -855,13 +855,13 @@ def create_submenu_profile():
 
     # (Subtext) Vertical Movement
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_label[menu_label_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
     # (3 Var) Vertical Type
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_vert_type[0]]
@@ -876,7 +876,7 @@ def create_submenu_profile():
 
     # (2 Var) Jump
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_jump_chance[0]
@@ -892,7 +892,7 @@ def create_submenu_profile():
 
     # (4 Var) Crouch
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_crouch_chance[0]
@@ -908,13 +908,13 @@ def create_submenu_profile():
 
     # (Subtext) Idle Movement
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_label[menu_label_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
     # (4 Var) Left / Right Idle
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_lr_idle_chance[0]
@@ -930,7 +930,7 @@ def create_submenu_profile():
 
     # (2 Var) Forward / Backward Idle
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_prof_menu[lang_type][menu_max_pos]
+    menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_fb_idle_chance[0]

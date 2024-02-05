@@ -76,7 +76,7 @@ globalvar strings_on_titles
 globalvar strings_labels
 globalvar strings_main_menu
 globalvar strings_bot_menu
-globalvar strings_prof_menu
+globalvar strings_mvmt_menu
 globalvar strings_sce_menu
 globalvar strings_options
 globalvar strings_instructions
