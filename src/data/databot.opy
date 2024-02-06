@@ -14,9 +14,8 @@ rule "Databot Populate Settings":
         default_settings()
     else:
         unload_settings()
-        databot.export_data[0] = null
-    for loop_index in range(0, 12):
-
+        waitUntil(exportbot.hasSpawned(), 9999)
+        exportbot.export_data = databot.export_data
 
     data_loaded[DATA_TYPE.BOT] = true
 
@@ -24,17 +23,18 @@ rule "Databot Populate Settings":
 def setup_databot():
     @Name "SUB: setup_databot"
 
-    bot_gen_hero = Hero.ECHO
-    bot_gen_team = Team.1
-    bot_gen_slot = 1
-    bot_gen_position = vect(0,9999,0)
-    bot_gen_facing = vect(0,0,0)
-    createDummy(bot_gen_hero, bot_gen_team, bot_gen_slot, bot_gen_position, bot_gen_facing)
+    createDummy(Hero.ECHO, Team.1, 1, vect(0,9999,0), vect(0,0,0))
 
-    databot = getPlayersInSlot(bot_gen_slot,bot_gen_team)
+    databot = getPlayersInSlot(1, Team.1)
     databot.startForcingName(strings_misc[lang_type][0])
     databot.setGravity(0)
     databot.setStatusEffect(null, Status.PHASED_OUT, 9999)
+
+    createDummy(Hero.ECHO, Team.1, 2, vect(0,9999,0), vect(0,0,0))
+    exportbot = getPlayersInSlot(2, Team.1)
+    exportbot.startForcingName(strings_misc[lang_type][11])
+    exportbot.setGravity(0)
+    exportbot.setStatusEffect(null, Status.PHASED_OUT, 9999)
 
 
 def default_settings():

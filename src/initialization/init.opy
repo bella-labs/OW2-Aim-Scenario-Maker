@@ -3,7 +3,6 @@ rule "Initialize: Workshop Settings":
     data_loaded[DATA_TYPE.CONTROLS] = false
 
     import_index = createWorkshopSetting(float[0:11], "1. Save Data   |   x   |   x   | ","Import Index   |   x   |   x   |", 0, 0)
-    export_index = createWorkshopSetting(float[0:11], "1. Save Data   |   x   |   x   | ","Export Index   |   x   |   x   |", 0, 0)
 
     lang_type = createWorkshopSetting(enum["English", "한국어", "中文"], "2. Language   |   언어   |   语言", "Language   |   언어   |   语言", 0, 0)
 

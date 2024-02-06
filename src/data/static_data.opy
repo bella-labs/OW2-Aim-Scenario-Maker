@@ -358,7 +358,7 @@ rule "load_language_data":
             "Test Scenario",
             "Reset Score",
             "Export and Share",
-            "Create Export Package",
+            "Export to Index",
             "Display Export Instructions",
             "Display Import Instructions"
 
@@ -717,7 +717,8 @@ rule "load_language_data":
             "Points",
             "Seconds",
             "Export Data loaded",
-            "Bot #"
+            "Bot #",
+            "Export Bot"
 
         ],
         [

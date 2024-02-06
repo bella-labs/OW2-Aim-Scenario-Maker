@@ -6,7 +6,7 @@
     "lobby": {
         "allowPlayersInQueue": true,
         "mapRotation": "paused",
-        "team1Slots": 4,
+        "team1Slots": 1,
         "team2Slots": 0,
         "returnToLobby": "never"
     },

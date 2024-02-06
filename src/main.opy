@@ -25,5 +25,4 @@ settings "settings.json"
 #!include "bot/bot_listener.opy"
 #!include "bot/bot_handler.opy"
 #!include "bot/mvmt_handler.opy"
-
 #!include "scenario/scenario_handler.opy"

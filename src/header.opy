@@ -2,8 +2,9 @@
 ## Control Flow
 globalvar loop_index
 globalvar data_loaded
-## Databot
+## Data Storage Bots
 globalvar databot
+globalvar exportbot
 ## Menu Characteristics
 globalvar menu_visible
 globalvar menu_action
@@ -329,7 +330,7 @@ subroutine setup_menu_custom
 subroutine create_submenu_main
 subroutine create_submenu_scenario
 subroutine create_submenu_bot
-subroutine create_submenu_profile
+subroutine create_submenu_movement
 
 ## Menu Actions
 ### Control Flow

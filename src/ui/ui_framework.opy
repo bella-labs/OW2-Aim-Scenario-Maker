@@ -391,19 +391,6 @@ def new_menu_item_cycle():
     SpecVisibility.DEFAULT)
 
 
-def new_menu_item_percentage():
-    @Name "SUB: new_menu_item_percentage"
-
-    hudSubheader(localPlayer if menu_visible and submenu_index == evalOnce(submenu_size) and menu_item_hidden[evalOnce(menu_item_size)] != true else [],
-    "{0}".format(menu_item_title_off[evalOnce(menu_item_size)]) if menu_index != evalOnce(menu_item_size)
-    else "■ {0} ←  {1}%  → ".format(menu_item_title_on[evalOnce(menu_item_size)], menu_item_var_1[evalOnce(menu_item_size)]),
-    HudPosition.TOP,
-    evalOnce(menu_max_pos),
-    menu_item_color_off[evalOnce(menu_item_size)] if menu_index != evalOnce(menu_item_size) else menu_item_color_on[evalOnce(menu_item_size)],
-    HudReeval.VISIBILITY_STRING_AND_COLOR,
-    SpecVisibility.DEFAULT)
-
-
 def new_menu_item_toggle_list():
     @Name "SUB: new_menu_item_toggle_list"
 

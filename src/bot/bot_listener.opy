@@ -1,20 +1,3 @@
-rule "Target Bot Initalization":
-    @Event eachPlayer
-    @Team 2
-
-    # Set Owner Player
-    eventPlayer.owner_player = getPlayersInSlot(0, Team.1)
-    # Set Movement Direction
-    eventPlayer.target_mvmt_dir = vect(0,0,0)
-    # Set Disabled Movements
-    eventPlayer.disabled_hori = [0,0,0,0,0,0,0,0]
-    eventPlayer.disabled_vert = [0,0]
-    eventPlayer.disabled_boundary = [-1, -1, -1, -1]
-    # Set Gravity and Speed to -1 to force listener rule trigger when set to 0
-    eventPlayer.bot_speed_min = -1
-    eventPlayer.bot_gravity = -1
-
-
 rule "Target Bot Listener - Spawn":
     @Event eachPlayer
     @Team 2

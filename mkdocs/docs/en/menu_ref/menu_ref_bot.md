@@ -14,13 +14,13 @@ Select the bot you would like to modify, and enable/disable them in the scenario
 | Slot                       | Integer              | 0          | 11         |
 | Status                     | Boolean              | false      | true       |
 
-**Usage** 
+**Usage**
 
 1. Step left and right to select the bot you would configure.
 2. Enable / disable the bot slot(s).
 
-    a. Jump left to enable all bots. 
-    
+    a. Jump left to enable all bots.
+
     b. Jump right to enable the bot currently selected.
 
 ### Copy Current Bot to Slot
@@ -35,14 +35,14 @@ Overrides the slot selected with data from this slot. After entering a Jump inpu
 | -------------------------- | -------------------- | ---------- | ---------- |
 | Slot                       | Integer              | 0          | 11         |
 
-**Usage** 
+**Usage**
 
 1. Step left and right to select the bot you would configure.
 2. Override the slot
 
-    a. Jump left to override all slots with the currently selected data. 
-    
-    b. Jump right to override the selected slots with the currently selected data. 
+    a. Jump left to override all slots with the currently selected data.
+
+    b. Jump right to override the selected slots with the currently selected data.
 
 ## Spawn and Boundaries
 
@@ -69,7 +69,7 @@ Sets the spawn type and spawn position for the bot in the current slot.
 | Random in Boundary          | The bot will spawn in a random position within the boundary box  |
 | Random Walkable in Boundary | The bot will spawn on the ground in a random position within the boundary box |
 
-**Usage** 
+**Usage**
 
 1. Select the spawn type. If you are not using the fixed position spawn type there is no need to configure the spawn position.
 2. If you are using the fixed position type you may set the position in one of two ways:
@@ -100,7 +100,7 @@ Sets the facing type and facing direction of the bot. The facing direction is no
 | Fixed                       | The bot will at the direction set in the facing vector    |
 | Player                      | The bot will always look at the player it is assigned to  |
 
-**Usage** 
+**Usage**
 
 1. Select the facing type. If you are not using the fixed facing type there is no need to configure the facing direction.
 2. If you are using the fixed facing position you may set the facing vector in one of two ways:
@@ -132,7 +132,7 @@ Configure the boundary type and boundary position that the bot will not be allow
 | Stop                       | The bot will stop moving when a collision occurs |
 | Teleport                   | The bot will teleport to a random location inside the boundary when a collision occurs |
 
-**Usage** 
+**Usage**
 
 1. Select the collision type.
 2. Set the position of the boundary box.
@@ -156,7 +156,7 @@ Configure the angle and size of the boundary box. Boundary constraints take prio
 | Height                     | Real                 | 0          | 1000       |
 | Width                      | Real                 | 0          | 1000       |
 
-**Usage** 
+**Usage**
 
 1. Set the angle of the boundary box.
 2. Set the dimensions of the boundary box.
@@ -176,7 +176,7 @@ Configure the minimum and maximum distance the bot can be position relative to i
 | Minimum Distance           | Real                 | 0          | 100        |
 | Maximum Distance           | Real                 | 0          | 100        |
 
-**Usage** 
+**Usage**
 
 1. Set the minimum and maximum distance the bot can be positioned relative to player. If the minimum is greater than the maximum the maximum will be set to the minimum and vice versa.
 
@@ -194,7 +194,7 @@ Toggle which heroes are included in the bots hero pool. The hero pool is organiz
 | -------------------------- | -------------------- | ---------- | ---------- |
 | Hero                       | Hero (Integer)       | Tracer (0) | Mauga (39) |
 
-**Usage** 
+**Usage**
 
 1. Cycle to the hero you want to enable / disable.
 2. Enable / disable the hero.
@@ -224,12 +224,12 @@ Sets health, hps and hps wait of the bot. A negative hps will cause a damage ove
 | Fixed                       | The bot will at the direction set in the facing vector    |
 | Player                      | The bot will always look at the player it is assigned to  |
 
-**Usage** 
+**Usage**
 
 1. Set the bots health. A health of 0% will make the bot unkillable.
 2. Set the hps. A positive hps will heal the bot, a negative hps will apply damage over time.
 3. Set the hps wait. The hps wait is the time to wait between the bot taking damage from a player and the heal over time / damage over time being applied to the bot.
-    
+
 ### Speed
 
 **Description**
@@ -254,7 +254,7 @@ Sets the bot's movement speed.
 | Elims (Target)              | The bot will start at the minimum speed, every elimination, the speed will increase by the value set in speed target up to the maximum speed.  |
 | Looping (Target)            | The bots speed will loop between the minimum and maximum speed in the shape of a sin wave. The speed target sets the period of this wave.  |
 
-**Usage** 
+**Usage**
 
 1. Set the speed type.
 2. Set the minimum speed for the bot to travel.
@@ -289,7 +289,7 @@ Sets the bot's scale.
 | Elims (Target)              | The bot will start at the maximum scale, every elimination, the scale will decrease by the value set in speed target up to the minimum scale.  |
 | Looping (Target)            | The bots scale will loop between the minimum and maximum scale in the shape of a sin wave. The scale target sets the period of this wave.  |
 
-**Usage** 
+**Usage**
 
 1. Set the scale type.
 2. Set the minimum scale for the bot to travel.
@@ -311,7 +311,7 @@ The gravity of the bot.
 | -------------------------- | -------------------- | ---------- | ---------- |
 | Gravity                    | Integer              | 0%         | 1000%      |
 
-**Usage** 
+**Usage**
 
 1. Set the gravity to the desired about of gravity. To get floating bots set the gravity to 0.
 
@@ -331,9 +331,9 @@ Assign the weight of each movement profile on the bot slot. A weight of 0 disabl
 | Weight                     | Integer              | 0 (Disabled) | 100        |
 
 
-**Usage** 
+**Usage**
 
-1. For each movement profile you would like to apply to the bot: 
+1. For each movement profile you would like to apply to the bot:
 
    a. Cycle to the movement profile you would like to toggle.
 
@@ -360,7 +360,7 @@ Description
 | In Order                    | The bot will switch to next movement profiles after a randomized wait |
 | Randomized                  | The bot will randomly cycle to a new profile after a randomized wait  |
 
-**Usage** 
+**Usage**
 
 1. Select the profile cycle type for this bot to use
 2. Set the minimum time between profile cycles
@@ -379,40 +379,6 @@ A toggle for custom script. Does nothing on its own. Requires workshop scripting
 | Custom Script Toggle       | Toggle               | false      | true       |
 
 
-**Usage** 
+**Usage**
 
-1. Set the custom script toggle to true if you want to write a custom script to be applied to this bot. Otherwise leave set to false. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##### TEMPLATE
-
-**Description**
-
-Description
-
-**Characteristics**
-
-| Name                       | Type                 | Minimum    | Maximum    |
-| -------------------------- | -------------------- | ---------- | ---------- |
-| Name                       | Integer              | 0          | 11         |
-
-
-**Usage** 
-
-1. Do thing
+1. Set the custom script toggle to true if you want to write a custom script to be applied to this bot. Otherwise leave set to false.

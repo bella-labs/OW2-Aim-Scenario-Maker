@@ -16,7 +16,7 @@ rule "Menu Setup: Creation":
     create_submenu_main()
     create_submenu_scenario()
     create_submenu_bot()
-    create_submenu_profile()
+    create_submenu_movement()
 
     data_loaded[DATA_TYPE.MENU] = true
     menu_visible = false
@@ -227,7 +227,11 @@ def create_submenu_main():
     menu_item_title_off[menu_item_size] = strings_main_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     menu_item_color_off[menu_item_size] = menu_colors_custom[4]
-    new_menu_item_selection()
+    menu_item_var_1[menu_item_size] = 0
+    action_var = ITEM_TYPE.SLOT
+    action_var_2 = menu_item_size
+    set_item_data()
+    new_menu_item_cycle()
 
     # (Toggle) Export Instruction
     increment_for_menu_item()
@@ -711,8 +715,8 @@ def create_submenu_bot():
     new_menu_item_toggle()
 
 
-def create_submenu_profile():
-    @Name "SUB: create_submenu_profile"
+def create_submenu_movement():
+    @Name "SUB: create_submenu_movement"
 
     increment_for_submenu_item()
 
@@ -738,9 +742,7 @@ def create_submenu_profile():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
-
     menu_item_var_1[menu_item_size] = 0
-
     action_var = ITEM_TYPE.SLOT
     action_var_2 = menu_item_size
     set_item_data()
@@ -952,4 +954,4 @@ def set_item_data():
     menu_item_range[action_var_2] = item_data[action_var][1]
     menu_item_small_step[action_var_2] = item_data[action_var][2]
     menu_item_large_step[action_var_2] = item_data[action_var][3]
-    menu_item_help[action_var_2] = help_data[item_data[action_var][4]
+    menu_item_help[action_var_2] = help_data[item_data[action_var][4]]
