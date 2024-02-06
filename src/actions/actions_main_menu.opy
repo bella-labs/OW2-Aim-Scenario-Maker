@@ -86,7 +86,7 @@ def act_main_toggle_export():
     action_var_3 = OPTIONS_TYPE.TOGGLE
     act_general_toggle_var_1()
 
-    
+
 def act_main_toggle_import():
     @Name "SUB: act_main_toggle_import"
 
@@ -97,7 +97,7 @@ def act_main_toggle_import():
     action_var_3 = OPTIONS_TYPE.TOGGLE
     act_general_toggle_var_1()
 
-    
+
 def act_main_export_data():
     @Name "SUB: act_main_export_data"
 

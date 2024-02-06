@@ -2,9 +2,9 @@ rule "Target Bot Disable Throttle":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 1 or 
+                eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 1 or
                 eventPlayer.mvmt_max_weight[eventPlayer.profile_index] == 0
-                )   
+                )
 
         eventPlayer.stopThrottleInDirection()
 
@@ -53,7 +53,7 @@ rule "Target Bot Crouch Input Movement":
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 0
     @Condition eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] > 0
     @Condition eventPlayer.disabled_vert[YDIR.UP] == 0
-    
+
     eventPlayer.target_rand[PLAYER_RAND.CROUCH] = random.uniform(0, eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index])
     if eventPlayer.target_rand[PLAYER_RAND.CROUCH] <= random.uniform(0, eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index]):
         eventPlayer.startForcingButton(Button.CROUCH)
@@ -82,7 +82,7 @@ rule "Target Bot Vertical Impulse Handler":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 1
-    
+
     eventPlayer.target_rand[PLAYER_RAND.JUMP] = random.uniform(0, 100)
     eventPlayer.target_rand[PLAYER_RAND.CROUCH] = random.uniform(0, 100)
     if eventPlayer.target_rand[PLAYER_RAND.JUMP] <= eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] and eventPlayer.disabled_vert[YDIR.UP] == 0 and eventPlayer.target_rand[PLAYER_RAND.CROUCH] <= eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] and eventPlayer.disabled_vert[YDIR.DOWN] == 0:
@@ -102,13 +102,13 @@ rule "Target Bot Vertical Impulse Handler":
         eventPlayer.target_vert_dir = -1
         async(target_down_impulse, AsyncBehavior.NOOP)
         waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.DOWN] != 0, random.uniform(eventPlayer.mvmt_uncrouch_min[eventPlayer.profile_index], eventPlayer.mvmt_uncrouch_max[eventPlayer.profile_index]))
-    
+
     eventPlayer.target_vert_dir = 0
-    wait(eventPlayer.mvmt_vert_interval[eventPlayer.profile_index])  
-    
+    wait(eventPlayer.mvmt_vert_interval[eventPlayer.profile_index])
+
     if RULE_CONDITION:
         goto RULE_START
-    
+
 
 rule "Target Bot LR Idle Movement":
     @Event eachPlayer
@@ -210,7 +210,7 @@ def boundary_collision_handler():
                 if eventPlayer.disabled_hori[eventPlayer.disabled_index] == 0 and eventPlayer.mvmt_weights[eventPlayer.profile_index][eventPlayer.disabled_index] > 0:
                     eventPlayer.disabled_rev_index += 1
                     eventPlayer.disabled_rev_choices[eventPlayer.disabled_rev_index] = eventPlayer.disabled_index
-  
+
             if eventPlayer.disabled_rev_index == -1:
                 eventPlayer.target_mvmt_vect = movement_options[XZ_DIR.NONE]
             else:

@@ -19,7 +19,7 @@ globalvar menu_max_pos
 globalvar menu_item_size
 globalvar menu_label_size
 globalvar subitem_size
-globalvar submenu_size 
+globalvar submenu_size
 ## Menu Visiblity
 globalvar menu_label_hidden
 globalvar menu_item_hidden
@@ -245,7 +245,7 @@ playervar mvmt_crouch_chance
 playervar mvmt_crouch_interval
 playervar mvmt_uncrouch_min
 playervar mvmt_uncrouch_max
-#### Idle Probability 
+#### Idle Probability
 playervar mvmt_lr_idle_chance
 playervar mvmt_lr_idle_interval
 playervar mvmt_fb_idle_chance
@@ -540,7 +540,7 @@ enum DATA_TYPE:
     BOT,
     MENU,
     CONTROLS
-    
+
 enum GENERAL_TARGET:
     VECT_X = 0,
     VECT_Y,
@@ -565,7 +565,7 @@ enum TAG_TYPE:
     SCE_POINTS,
     POINTS,
     STRAFE
-    
+
 
 enum OPTIONS_TYPE:
     TOGGLE = 0,

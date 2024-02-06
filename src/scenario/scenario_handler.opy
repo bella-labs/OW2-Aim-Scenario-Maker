@@ -22,7 +22,7 @@ rule "Player Bodyshot Handler":
     @Event playerDealtDamage
     @Team 1
     @Condition scenario_status
-    @Condition not eventWasCriticalHit 
+    @Condition not eventWasCriticalHit
 
     eventPlayer.player_score += databot.sce_bs_points
 
@@ -31,7 +31,7 @@ rule "Player Headshot Handler":
     @Event playerDealtDamage
     @Team 1
     @Condition scenario_status
-    @Condition eventWasCriticalHit 
+    @Condition eventWasCriticalHit
 
     eventPlayer.player_score += databot.sce_hs_points
 
@@ -39,7 +39,7 @@ rule "Player Headshot Handler":
 rule "Player Elim Handler":
     @Event playerDealtFinalBlow
     @Team 1
-    @Condition scenario_status 
+    @Condition scenario_status
 
     eventPlayer.elims += 1
     eventPlayer.player_score += databot.sce_elim_points
@@ -130,13 +130,13 @@ def sce_start_scenario():
     else:
         scenario_timer = 0
         chase(scenario_timer, 9999, rate=1, ChaseReeval.DESTINATION_AND_RATE)
-    
+
     scenario_status = true
 
 
 def setup_player_in_scenario():
     @Name "SUB: setup_player_in_scenario"
-    
+
     sce_player.teleport(databot.sce_player_spawn)
     sce_player.setFacing(databot.sce_player_facing, Relativity.TO_WORLD)
     sce_player.setGravity(databot.sce_player_gravity)
@@ -158,7 +158,7 @@ def sce_stop_scenario():
     for bot_gen_slot in range(0, 12):
         destroy_target_bot()
         active_bot_status[bot_gen_slot] = false
-    
+
     bot_gen_slot = menu_item_var_1[menu_index-1]
 
     stopChasingVariable(scenario_timer)

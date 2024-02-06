@@ -23,7 +23,7 @@ def perform_action():
     wait(menu_wait[menu_wait_index])
     if RULE_CONDITION:
         goto RULE_START
-        
+
 
 def menu_act_submenu_main():
     @Name "SUB: menu_act_submenu_main"
@@ -68,7 +68,7 @@ def menu_act_submenu_main():
         case submenu_curr_start + 10:
             act_main_toggle_import()
             break
-        
+
 
 def menu_act_submenu_scenario():
     @Name "SUB: menu_act_submenu_scenario"
@@ -205,7 +205,7 @@ def menu_act_submenu_profile():
             break
         case submenu_curr_start + 11:
             act_mvmt_lr_idle()
-            break   
+            break
         case submenu_curr_start + 12:
             act_mvmt_fb_idle()
-            break                                                                       
+            break

@@ -42,10 +42,10 @@ rule "Load Static Data":
                         Hero.ILLARI,
                         Hero.MAUGA
                         #Hero.VENTURE
-                        #Hero.SPACE_RANGER 
+                        #Hero.SPACE_RANGER
                     ]
 
-    ranges =    [   
+    ranges =    [
                     ["N/A", "N/A"], # None
                     [0,11], # Slot
                     [0,len(hero_array)-1], # Hero
@@ -58,8 +58,8 @@ rule "Load Static Data":
                 ]
 
     small_steps =   [
-                        "N/A", 
-                        0.01, 
+                        "N/A",
+                        0.01,
                         1
                     ]
 
@@ -78,8 +78,8 @@ rule "Load Static Data":
                     [0,0,2,2,2,2,1,1,1,1], # Subitem Cycle List + Toggle
                     [0,0,1,1,1,1,1,1,2,1], # Subitem Vector List
                     [0,0,2,2,2,2,1,1,2,1]  # Subitem Vector Toggle
-                    ] 
-    
+                    ]
+
     item_data = [
                         [ # None
                             TAG_TYPE.NONE,
@@ -252,7 +252,7 @@ rule "Load Static Data":
                             vect( 0,  0,  0)  # NONE
                         ]
 
-                    
+
 
 rule "load_language_data":
     @Event global
@@ -261,7 +261,7 @@ rule "load_language_data":
 
     strings_prompt = [
         [
-            "Hold", 
+            "Hold",
             "Press",
             "to",
             "close",
@@ -272,7 +272,7 @@ rule "load_language_data":
             "Slot is disabled in bot settings"
         ],
         [
-            "", 
+            "",
             "",
             "",
             "",
@@ -281,7 +281,7 @@ rule "load_language_data":
             ""
         ],
         [
-            "", 
+            "",
             "",
             "",
             "",
@@ -326,11 +326,11 @@ rule "load_language_data":
     ]
     strings_inputs = [
         [
-            "Forward", 
+            "Forward",
             "Backward",
             "Left",
             "Right"
-        ], 
+        ],
         [
             "",
             "",
@@ -346,7 +346,7 @@ rule "load_language_data":
     ]
     strings_main_menu = [
         [
-            "For detailed documentation visit\nasm.bellalabs.dev\n", 
+            "For detailed documentation visit\nasm.bellalabs.dev\n",
             "Configure",
             "Scenario  ▶",
             "Bot       ▶",
@@ -364,7 +364,7 @@ rule "load_language_data":
 
         ],
         [
-            "*\n*\n", 
+            "*\n*\n",
             "",
             "",
             "",
@@ -378,7 +378,7 @@ rule "load_language_data":
             ""
         ],
         [
-            "\n\n", 
+            "\n\n",
             "",
             "",
             "",
@@ -465,13 +465,13 @@ rule "load_language_data":
     ]
     strings_mvmt_menu = [
         [
-            "Movement Profile Settings", 
+            "Movement Profile Settings",
             "◀ Main Menu",
-            "Slot", 
+            "Slot",
             "Select Profile Slot",
             "Copy Current Profile to Slot",
             "Horizontal Movement",
-            "Horizontal Type", 
+            "Horizontal Type",
             "Left",
             "Right",
             "Forward",
@@ -595,7 +595,7 @@ rule "load_language_data":
     ]
     strings_options = [
         [
-            ["Disabled", "Enabled"], 
+            ["Disabled", "Enabled"],
             ["Timed", "Score Limit"],
             ["Random", "Health", "Elims (Target)", "Looping (Target)"],
             ["Fixed Position", "Random in Boundary", "Random Walkable in Boundary"],
@@ -616,7 +616,7 @@ rule "load_language_data":
             ["", ""],
             ["", ""],
             ["", ""]
-        ], 
+        ],
         [
             ["禁用", "已启用"],
             ["", ""],
@@ -632,7 +632,7 @@ rule "load_language_data":
     strings_tags = [
         [
             [],
-            ["Health %: ", "HPS: ", "Wait Until Heal: "], 
+            ["Health %: ", "HPS: ", "Wait Until Heal: "],
             ["min: ", "max: "],
             ["Type: ", "min: ", "max: ", "target: "],
             ["Profile: ", "Weight: "],
@@ -649,7 +649,7 @@ rule "load_language_data":
             ["Points Per Second: ", "Min Time: ", "Max Time: "]
         ],
         [
-            ["", "", ""], 
+            ["", "", ""],
             ["", ""],
             ["", "", "", ""],
             ["", "", ""],
@@ -667,9 +667,9 @@ rule "load_language_data":
             ["", ""],
             ["", "", ""],
             ["", "", ""]
-        ], 
+        ],
         [
-            ["", "", ""], 
+            ["", "", ""],
             ["", ""],
             ["", "", "", ""],
             ["", "", ""],
@@ -699,7 +699,7 @@ rule "load_language_data":
             "",
             ""
         ],
-        [   
+        [
             "",
             "",
             ""
@@ -719,17 +719,17 @@ rule "load_language_data":
             "Export Data loaded",
             "Bot #"
 
-        ], 
+        ],
         [
             "데이터 저장소",
 
-        ], 
+        ],
         [
             "数据存储",
 
         ]
     ]
     strings_symbols = ["—————————————————————————\n"]
-    
+
 
     data_loaded[DATA_TYPE.STATIC] = true

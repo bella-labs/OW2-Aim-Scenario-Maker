@@ -1,8 +1,8 @@
 rule "Menu Setup: Creation":
     @Event global
-    @Condition data_loaded[DATA_TYPE.STATIC] 
+    @Condition data_loaded[DATA_TYPE.STATIC]
 
-    
+
     data_loaded[DATA_TYPE.MENU] = false
 
     setup_databot()
@@ -12,7 +12,7 @@ rule "Menu Setup: Creation":
     create_help_hud()
     setup_menu()
     setup_menu_custom()
-    
+
     create_submenu_main()
     create_submenu_scenario()
     create_submenu_bot()
@@ -25,13 +25,13 @@ rule "Menu Setup: Creation":
 def setup_menu_custom():
     @Name "SUB: setup_menu_custom"
 
-    menu_color_on_index = rgb(100,200,240) 
+    menu_color_on_index = rgb(100,200,240)
     menu_color_label_subtext = rgb(255,150,80)
 
     menu_colors_custom[0] = rgb(255,100,120)
     menu_colors_custom[1] = rgb(100,200,120)
-    menu_colors_custom[2] = rgb(240,120,100) 
-    menu_colors_custom[3] = rgb(230,190,60) 
+    menu_colors_custom[2] = rgb(240,120,100)
+    menu_colors_custom[3] = rgb(230,190,60)
     menu_colors_custom[4] = rgb(110,150,250)
 
     bot_slot = 0
@@ -59,59 +59,59 @@ def setup_menu_custom():
 def create_custom_hud():
 
     # Strafe Progress Bar
-    progressBarHud([i for i in localPlayer if scenario_status and databot.sce_strafe_pps > 0], 
-    (localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * 100, 
-    "{0} / {1} {2}".format(min(databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min), max(0,(localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min))), databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min), strings_misc[lang_type][7]), 
-    HudPosition.LEFT, 
-    -3, 
+    progressBarHud([i for i in localPlayer if scenario_status and databot.sce_strafe_pps > 0],
+    (localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * 100,
+    "{0} / {1} {2}".format(min(databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min), max(0,(localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min))), databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min), strings_misc[lang_type][7]),
+    HudPosition.LEFT,
+    -3,
     rgb((100 - (localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * 100)/100*255,
         ((localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min))*255,
         0
     ),
     Color.WHITE,
-    ProgressHudReeval.VISIBILITY_VALUES_AND_COLOR, 
+    ProgressHudReeval.VISIBILITY_VALUES_AND_COLOR,
     SpecVisibility.DEFAULT)
 
     # Scores
     hudSubheader([i for i in localPlayer],
     "\n\n{0}: {1} {6}\n    {2}: {3} {6}\n    {4}: {5} {6}".format(strings_misc[lang_type][4], localPlayer.player_score if databot.sce_game_mode == 0 else scenario_timer, strings_misc[lang_type][5], localPlayer.last_score, strings_misc[lang_type][6], localPlayer.high_score, strings_misc[lang_type][7] if databot.sce_game_mode == 0 else strings_misc[lang_type][8]),
-    HudPosition.LEFT, 
-    1, 
-    Color.WHITE, 
-    HudReeval.VISIBILITY_AND_STRING, 
+    HudPosition.LEFT,
+    1,
+    Color.WHITE,
+    HudReeval.VISIBILITY_AND_STRING,
     SpecVisibility.DEFAULT)
 
     # Game Mode Progress bar
-    progressBarHud([i for i in localPlayer if scenario_status], 
-    scenario_timer / databot.sce_game_limit * 100 if databot.sce_game_mode == 0 else localPlayer.player_score / databot.sce_game_limit * 100, 
-    "{0} / {1} {2}".format(scenario_timer if databot.sce_game_mode == 0 else localPlayer.player_score, databot.sce_game_limit, strings_misc[lang_type][8] if databot.sce_game_mode == 0 else strings_misc[lang_type][7]), 
-    HudPosition.TOP, 
-    -99, 
+    progressBarHud([i for i in localPlayer if scenario_status],
+    scenario_timer / databot.sce_game_limit * 100 if databot.sce_game_mode == 0 else localPlayer.player_score / databot.sce_game_limit * 100,
+    "{0} / {1} {2}".format(scenario_timer if databot.sce_game_mode == 0 else localPlayer.player_score, databot.sce_game_limit, strings_misc[lang_type][8] if databot.sce_game_mode == 0 else strings_misc[lang_type][7]),
+    HudPosition.TOP,
+    -99,
     rgb(
-        (100 - scenario_timer / databot.sce_game_limit * 100)/100*255 if databot.sce_game_mode == 0 else (100 - localPlayer.player_score / databot.sce_game_limit * 100)/100*255, 
-        (scenario_timer / databot.sce_game_limit)*255 if databot.sce_game_mode == 0 else (localPlayer.player_score / databot.sce_game_limit)*255, 
+        (100 - scenario_timer / databot.sce_game_limit * 100)/100*255 if databot.sce_game_mode == 0 else (100 - localPlayer.player_score / databot.sce_game_limit * 100)/100*255,
+        (scenario_timer / databot.sce_game_limit)*255 if databot.sce_game_mode == 0 else (localPlayer.player_score / databot.sce_game_limit)*255,
         0
-    ), 
-    Color.WHITE, 
-    ProgressHudReeval.VISIBILITY_VALUES_AND_COLOR, 
+    ),
+    Color.WHITE,
+    ProgressHudReeval.VISIBILITY_VALUES_AND_COLOR,
     SpecVisibility.DEFAULT)
 
     # Small server load on right
     hudSubheader([i for i in localPlayer],
-    "{0}: {1}/{2}/{3}\n".format(strings_misc[lang_type][1], getServerLoad(), getAverageServerLoad(), getPeakServerLoad()), 
-    HudPosition.RIGHT, 
-    -100, 
-    Color.WHITE, 
-    HudReeval.VISIBILITY_AND_STRING, 
+    "{0}: {1}/{2}/{3}\n".format(strings_misc[lang_type][1], getServerLoad(), getAverageServerLoad(), getPeakServerLoad()),
+    HudPosition.RIGHT,
+    -100,
+    Color.WHITE,
+    HudReeval.VISIBILITY_AND_STRING,
     SpecVisibility.DEFAULT)
 
     # Large vector data for reference on right
     hudSubtext([i for i in localPlayer if not scenario_status],
     "{0}: {1}\n{2}: {3}\n".format(strings_misc[lang_type][2], localPlayer.getPosition(), strings_misc[lang_type][3], localPlayer.getFacingDirection()),
-    HudPosition.RIGHT, 
-    -99, 
-    Color.WHITE, 
-    HudReeval.VISIBILITY_AND_STRING, 
+    HudPosition.RIGHT,
+    -99,
+    Color.WHITE,
+    HudReeval.VISIBILITY_AND_STRING,
     SpecVisibility.DEFAULT)
 
     hudSubheader([i for i in localPlayer],
@@ -119,12 +119,12 @@ def create_custom_hud():
         strings_instructions[lang_type][0] if display_help[0] else "",
         strings_instructions[lang_type][1] if display_help[1] else ""
     ),
-    HudPosition.RIGHT, 
-    100, 
-    Color.BLACK, 
-    HudReeval.VISIBILITY_AND_STRING, 
+    HudPosition.RIGHT,
+    100,
+    Color.BLACK,
+    HudReeval.VISIBILITY_AND_STRING,
     SpecVisibility.DEFAULT)
-    
+
 
 
 def create_submenu_main():
@@ -287,7 +287,7 @@ def create_submenu_scenario():
 
     menu_item_var_1[menu_item_size] = databot.sce_player_spawn[0].x
     menu_item_var_2[menu_item_size] = databot.sce_player_spawn[0].y
-    menu_item_var_3[menu_item_size] = databot.sce_player_spawn[0].z 
+    menu_item_var_3[menu_item_size] = databot.sce_player_spawn[0].z
 
     action_var = ITEM_TYPE.VECTOR
     action_var_2 = menu_item_size
@@ -306,7 +306,7 @@ def create_submenu_scenario():
     menu_item_var_1[menu_item_size] = databot.sce_player_facing[0].x
     menu_item_var_2[menu_item_size] = databot.sce_player_facing[0].y
     menu_item_var_3[menu_item_size] = databot.sce_player_facing[0].z
-    
+
     action_var = ITEM_TYPE.VECTOR
     action_var_2 = menu_item_size
     set_item_data()
@@ -351,33 +351,33 @@ def create_submenu_scenario():
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_sce_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    
+
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCE_MODE][databot.sce_game_mode]
     menu_item_var_2[menu_item_size] = databot.sce_game_limit
     menu_item_var_3[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCE_ORDER][databot.sce_spawn_order]
-    
+
     if databot.sce_game_mode == 0:
         action_var = ITEM_TYPE.SCORE_TIME
     else:
         action_var = ITEM_TYPE.SCORE_POINTS
     action_var_2 = menu_item_size
     set_item_data()
-    
+
     new_menu_item_2var()
 
     # (3 Var) Bot Respawn
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_sce_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    
+
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.SCE_ORDER][databot.sce_spawn_order]
     menu_item_var_2[menu_item_size] = databot.sce_respawn_min
     menu_item_var_3[menu_item_size] = databot.sce_respawn_max
-    
+
     action_var = ITEM_TYPE.ORDER
     action_var_2 = menu_item_size
     set_item_data()
-    
+
     new_menu_item_3var()
 
     # (3 Var) Points
@@ -430,27 +430,27 @@ def create_submenu_bot():
 
     # (Header) Slot
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_bot_menu[lang_type][menu_max_pos] 
+    menu_label[menu_label_size] = strings_bot_menu[lang_type][menu_max_pos]
     new_menu_label_header()
 
     # (Selection) Main Menu
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos] 
+    menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
     menu_item_color_off[menu_item_size] = menu_colors_custom[2]
     new_menu_item_selection()
 
     # (Subtext) Slot
     increment_for_menu_label()
-    menu_label[menu_label_size] = strings_bot_menu[lang_type][menu_max_pos] 
+    menu_label[menu_label_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_label_color[menu_label_size] = menu_color_label_subtext
     new_menu_label_subtext()
 
     # (Toggle List) Select Bot Slot
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos] 
+    menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
-    
+
     menu_item_var_1[menu_item_size] = 0
 
     action_var = databot.bot_slot_status[0]
@@ -495,7 +495,7 @@ def create_submenu_bot():
     menu_item_var_1[menu_item_size] = strings_options[lang_type][4][databot.bot_spawn_type[0]]
     menu_item_var_2[menu_item_size] = databot.bot_spawn_vect[0].x
     menu_item_var_3[menu_item_size] = databot.bot_spawn_vect[0].y
-    menu_item_var_4[menu_item_size] = databot.bot_spawn_vect[0].z 
+    menu_item_var_4[menu_item_size] = databot.bot_spawn_vect[0].z
 
     action_var = ITEM_TYPE.TYPE_VECT
     action_var_2 = menu_item_size
@@ -521,7 +521,7 @@ def create_submenu_bot():
     set_item_data()
 
     new_menu_item_4var()
-    
+
     menu_effect_index.append(menu_item_size)
 
     # (3 Var) Boundary
@@ -537,7 +537,7 @@ def create_submenu_bot():
     action_var = ITEM_TYPE.TYPE_VECT
     action_var_2 = menu_item_size
     set_item_data()
-    
+
     new_menu_item_4var()
 
     menu_effect_index.append(menu_item_size)
@@ -573,7 +573,7 @@ def create_submenu_bot():
     set_item_data()
 
     new_menu_item_2var()
-    
+
     menu_effect_index.append(menu_item_size)
 
     # (Subtext) Bot Parameters
@@ -588,7 +588,7 @@ def create_submenu_bot():
     menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = heroIcon(Hero.TRACER)
     menu_item_var_1[menu_item_size] = Hero.TRACER
-    
+
     action_var = Hero.TRACER in databot.bot_hero_pool[bot_slot]
     action_var_2 = menu_item_size
     action_var_3 = OPTIONS_TYPE.TOGGLE
@@ -669,7 +669,7 @@ def create_submenu_bot():
 
     # (2 Var) Profile
     increment_for_menu_item()
-    menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos] 
+    menu_item_title_off[menu_item_size] = strings_bot_menu[lang_type][menu_max_pos]
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = 0
@@ -758,7 +758,7 @@ def create_submenu_profile():
     action_var = ITEM_TYPE.OVERRIDE_SLOT
     action_var_2 = menu_item_size
     set_item_data()
-    
+
     new_menu_item_cycle()
 
     # (Subtext) Horizontal Movement
@@ -769,7 +769,7 @@ def create_submenu_profile():
 
     # (3 Var) Horizontal Type
     increment_for_menu_item()
-    
+
     refresh_start[1] = menu_item_size
 
     menu_item_title_off[menu_item_size] = strings_mvmt_menu[lang_type][menu_max_pos]
@@ -952,4 +952,4 @@ def set_item_data():
     menu_item_range[action_var_2] = item_data[action_var][1]
     menu_item_small_step[action_var_2] = item_data[action_var][2]
     menu_item_large_step[action_var_2] = item_data[action_var][3]
-    menu_item_help[action_var_2] = help_data[item_data[action_var][4]]
+    menu_item_help[action_var_2] = help_data[item_data[action_var][4]

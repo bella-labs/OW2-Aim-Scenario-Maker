@@ -2,12 +2,12 @@ rule "Databot Populate Settings":
     @Event eachPlayer
     @Team 1
     @Slot 1
-    @Condition eventPlayer.isDummy() 
-    @Condition eventPlayer.hasSpawned() 
+    @Condition eventPlayer.isDummy()
+    @Condition eventPlayer.hasSpawned()
 
     data_loaded[DATA_TYPE.BOT] = false
     waitUntil(data_loaded[DATA_TYPE.CONTROLS] == true, 9999)
-    
+
     databot.export_data[0] = null
     import_settings()
     if databot.export_data[0] == null:
@@ -19,7 +19,7 @@ rule "Databot Populate Settings":
 
 
     data_loaded[DATA_TYPE.BOT] = true
-        
+
 
 def setup_databot():
     @Name "SUB: setup_databot"
@@ -39,7 +39,7 @@ def setup_databot():
 
 def default_settings():
     @Name "SUB: default_settings"
-    
+
     databot.sce_player_spawn = vect(15,0,0)
     databot.sce_player_facing = vect(-1,0,0)
     databot.sce_player_speed = 100
@@ -59,7 +59,7 @@ def default_settings():
 
 
     for loop_index in range(0, 12):
-        
+
         databot.bot_slot_status[loop_index] = false
 
         databot.bot_spawn_type[loop_index] = 0
@@ -82,7 +82,7 @@ def default_settings():
         databot.bot_health[loop_index] = 100
         databot.bot_hps[loop_index] = 0
         databot.bot_hps_wait[loop_index] = 0
-        
+
         databot.bot_speed_type[loop_index] = 0
         databot.bot_speed_min[loop_index] = 100
         databot.bot_speed_max[loop_index] = 100
@@ -105,7 +105,7 @@ def default_settings():
         databot.bot_script_status[loop_index] = false
 
     databot.bot_slot_status[0] = true
-    
+
     for loop_index in range(0, 12):
 
         databot.mvmt_hori_type[loop_index] = 0

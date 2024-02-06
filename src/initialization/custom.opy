@@ -17,5 +17,3 @@ rule "Custom Player Movement Example":
 rule "Custom Bot Script Example":
     @Event eachPlayer
     @Team 2
-
-    

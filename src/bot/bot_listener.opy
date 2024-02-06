@@ -14,19 +14,19 @@ rule "Target Bot Initalization":
     eventPlayer.bot_speed_min = -1
     eventPlayer.bot_gravity = -1
 
-        
+
 rule "Target Bot Listener - Spawn":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.bot_spawn_type != databot.bot_spawn_type[eventPlayer.getSlot()] or 
+                eventPlayer.bot_spawn_type != databot.bot_spawn_type[eventPlayer.getSlot()] or
                 eventPlayer.bot_spawn_vect != databot.bot_spawn_vect[eventPlayer.getSlot()]
                 )
 
     eventPlayer.bot_spawn_type = databot.bot_spawn_type[eventPlayer.getSlot()]
     eventPlayer.bot_spawn_vect = databot.bot_spawn_vect[eventPlayer.getSlot()]
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -35,7 +35,7 @@ rule "Target Bot Listener - Facing Type":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.bot_facing_type != databot.bot_facing_type[eventPlayer.getSlot()] or 
+                eventPlayer.bot_facing_type != databot.bot_facing_type[eventPlayer.getSlot()] or
                 eventPlayer.bot_facing_vect != databot.bot_facing_vect[eventPlayer.getSlot()]
                 )
 
@@ -47,11 +47,11 @@ rule "Target Bot Listener - Facing Type":
     else:
         eventPlayer.startFacing(directionTowards(eventPlayer.getEyePosition(), eventPlayer.owner_player.getEyePosition()), 9999, Relativity.TO_WORLD, FacingReeval.DIRECTION_AND_TURN_RATE)
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
-    
+
 rule "Target Bot Listener - Boundary":
     @Event eachPlayer
     @Team 2
@@ -68,7 +68,7 @@ rule "Target Bot Listener - Boundary":
     eventPlayer.bot_bound_angle = databot.bot_bound_angle[eventPlayer.getSlot()]
     set_cube()
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -84,7 +84,7 @@ rule "Target Bot Listener - Distance":
     eventPlayer.bot_dist_min = databot.bot_dist_min[eventPlayer.getSlot()]
     eventPlayer.bot_dist_max = databot.bot_dist_max[eventPlayer.getSlot()]
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -115,7 +115,7 @@ rule "Target Bot Listener - Health":
     else:
         eventPlayer.setMaxHealth(eventPlayer.bot_health)
     # Cooldown to prevent overflow
-        
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -134,7 +134,7 @@ rule "Target Bot Listener - HPS":
         eventPlayer.startDoT(null, 9999, -1 * eventPlayer.bot_hps)
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -147,7 +147,7 @@ rule "Target Bot Listener - HPS Wait":
     eventPlayer.bot_hps_wait = databot.bot_hps_wait[eventPlayer.getSlot()]
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -168,7 +168,7 @@ rule "Target Bot Listener - Speed":
     eventPlayer.bot_speed_target = databot.bot_speed_target[eventPlayer.getSlot()]
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -204,7 +204,7 @@ rule "Target Bot Listener - Scale":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -219,7 +219,7 @@ rule "Target Bot Listener - Gravity":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -258,7 +258,7 @@ rule "Target Bot Listener - Bot Script Status":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -267,8 +267,8 @@ rule "Target Bot Listener - Movement Horizontal Type":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_hori_type != databot.mvmt_hori_type or 
-                eventPlayer.mvmt_hori_impulse != databot.mvmt_hori_impulse or 
+                eventPlayer.mvmt_hori_type != databot.mvmt_hori_type or
+                eventPlayer.mvmt_hori_impulse != databot.mvmt_hori_impulse or
                 eventPlayer.mvmt_hori_interval != databot.mvmt_hori_interval
                 )
 
@@ -278,7 +278,7 @@ rule "Target Bot Listener - Movement Horizontal Type":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -287,7 +287,7 @@ rule "Target Bot Listener - Movement Weights":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_weights != databot.mvmt_weights or 
+                eventPlayer.mvmt_weights != databot.mvmt_weights or
                 eventPlayer.mvmt_max_weight != databot.mvmt_max_weight
                 )
 
@@ -295,7 +295,7 @@ rule "Target Bot Listener - Movement Weights":
     eventPlayer.mvmt_max_weight = databot.mvmt_max_weight
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -304,12 +304,12 @@ rule "Target Bot Listener - Movement Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_left_min != databot.mvmt_left_min or 
-                eventPlayer.mvmt_left_max != databot.mvmt_left_max or 
+                eventPlayer.mvmt_left_min != databot.mvmt_left_min or
+                eventPlayer.mvmt_left_max != databot.mvmt_left_max or
                 eventPlayer.mvmt_right_min != databot.mvmt_right_min or
                 eventPlayer.mvmt_right_max != databot.mvmt_right_max or
-                eventPlayer.mvmt_fwd_min != databot.mvmt_fwd_min or 
-                eventPlayer.mvmt_fwd_max != databot.mvmt_fwd_max or 
+                eventPlayer.mvmt_fwd_min != databot.mvmt_fwd_min or
+                eventPlayer.mvmt_fwd_max != databot.mvmt_fwd_max or
                 eventPlayer.mvmt_back_min != databot.mvmt_back_min or
                 eventPlayer.mvmt_back_max != databot.mvmt_back_max
                 )
@@ -334,7 +334,7 @@ rule "Target Bot Listener - Movement Time":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -343,8 +343,8 @@ rule "Target Bot Listener - Movement Vertical Type":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_vert_type != databot.mvmt_vert_type or 
-                eventPlayer.mvmt_vert_impulse != databot.mvmt_vert_impulse or 
+                eventPlayer.mvmt_vert_type != databot.mvmt_vert_type or
+                eventPlayer.mvmt_vert_impulse != databot.mvmt_vert_impulse or
                 eventPlayer.mvmt_vert_interval != databot.mvmt_vert_interval
                 )
 
@@ -354,7 +354,7 @@ rule "Target Bot Listener - Movement Vertical Type":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -363,9 +363,9 @@ rule "Target Bot Listener - Movement e":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_jump_chance != databot.mvmt_jump_chance or 
-                eventPlayer.mvmt_jump_interval != databot.mvmt_jump_interval or 
-                eventPlayer.mvmt_jump_min != databot.mvmt_jump_min or 
+                eventPlayer.mvmt_jump_chance != databot.mvmt_jump_chance or
+                eventPlayer.mvmt_jump_interval != databot.mvmt_jump_interval or
+                eventPlayer.mvmt_jump_min != databot.mvmt_jump_min or
                 eventPlayer.mvmt_jump_max != databot.mvmt_jump_max
                 )
 
@@ -376,7 +376,7 @@ rule "Target Bot Listener - Movement e":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -398,7 +398,7 @@ rule "Target Bot Listener - Movement Crouch Time":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -407,8 +407,8 @@ rule "Target Bot Listener - Movement Idle Chance":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_lr_idle_chance != databot.mvmt_lr_idle_chance or 
-                eventPlayer.mvmt_lr_idle_interval != databot.mvmt_lr_idle_interval or 
+                eventPlayer.mvmt_lr_idle_chance != databot.mvmt_lr_idle_chance or
+                eventPlayer.mvmt_lr_idle_interval != databot.mvmt_lr_idle_interval or
                 eventPlayer.mvmt_fb_idle_chance != databot.mvmt_fb_idle_chance or
                 eventPlayer.mvmt_fb_idle_interval != databot.mvmt_fb_idle_interval
                 )
@@ -420,7 +420,7 @@ rule "Target Bot Listener - Movement Idle Chance":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START
 
@@ -429,8 +429,8 @@ rule "Target Bot Listener - Movement Idle Time":
     @Event eachPlayer
     @Team 2
     @Condition  (
-                eventPlayer.mvmt_lr_idle_min != databot.mvmt_lr_idle_min or 
-                eventPlayer.mvmt_lr_idle_max != databot.mvmt_lr_idle_max or 
+                eventPlayer.mvmt_lr_idle_min != databot.mvmt_lr_idle_min or
+                eventPlayer.mvmt_lr_idle_max != databot.mvmt_lr_idle_max or
                 eventPlayer.mvmt_fb_idle_min != databot.mvmt_fb_idle_min or
                 eventPlayer.mvmt_fb_idle_max != databot.mvmt_fb_idle_max
                 )
@@ -442,6 +442,6 @@ rule "Target Bot Listener - Movement Idle Time":
 
     # Cooldown to prevent overflow
     wait(1)
-    
+
     if RULE_CONDITION:
         goto RULE_START

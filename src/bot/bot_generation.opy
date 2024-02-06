@@ -1,6 +1,6 @@
 def create_target_bot():
     @Name "SUB: create_target_bot"
-    
+
     bot_gen_hero = random.choice(databot.bot_hero_pool[bot_gen_slot])
     bot_gen_team = Team.2
     switch databot.bot_spawn_type[bot_gen_slot]:
@@ -16,7 +16,7 @@ def create_target_bot():
     bot_gen_facing = normalize(databot.bot_facing_vect[bot_gen_slot])
     createDummy(bot_gen_hero, bot_gen_team, bot_gen_slot, bot_gen_position, bot_gen_facing)
 
-    getPlayersInSlot(bot_gen_slot, bot_gen_team).startForcingName("{0} {1}".format(strings_misc[lang_type][10], bot_gen_slot))
+    getPlayersInSlot(bot_gen_slot, bot_gen_team).startForcingName("{0}{1}".format(strings_misc[lang_type][10], bot_gen_slot))
 
     if databot.bot_health[bot_gen_slot] == 0:
         getPlayersInSlot(bot_gen_slot, bot_gen_team).setStatusEffect(eventPlayer, Status.UNKILLABLE, 9999)
@@ -25,5 +25,4 @@ def create_target_bot():
 def destroy_target_bot():
     @Name "SUB: destroy_target_bot"
 
-    bot_gen_team = Team.2
-    destroyDummy(bot_gen_team, bot_gen_slot)
+    destroyDummy(Team.2, bot_gen_slot)

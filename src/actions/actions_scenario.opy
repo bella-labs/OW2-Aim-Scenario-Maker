@@ -129,12 +129,12 @@ def act_sce_bot_spawn():
                 case 2:
                     general_target = GENERAL_TARGET.MAX
                     break
-        
+
             act_general_change_min_max()
-        
+
             menu_item_var_2[menu_index] = action_var
             menu_item_var_3[menu_index] = action_var_2
-        
+
             databot.sce_respawn_min = action_var
             databot.sce_respawn_max = action_var_2
 
@@ -168,17 +168,17 @@ def act_sce_strafe():
         case 2:
             action_var = databot.sce_strafe_min
             action_var_2 = databot.sce_strafe_max
-    
+
             if subitem_index[menu_index] == 1:
                 general_target = GENERAL_TARGET.MIN
             else:
                 general_target = GENERAL_TARGET.MAX
-    
+
             act_general_change_min_max()
-    
+
             menu_item_var_2[menu_index] = action_var
             menu_item_var_3[menu_index] = action_var_2
-        
+
             databot.sce_strafe_min = action_var
             databot.sce_strafe_max = action_var_2
             break

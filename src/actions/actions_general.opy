@@ -3,7 +3,7 @@ def menu_act_change_submenu():
 
         submenu_index = chg_submenu_target
         menu_index = submenu_start_indexes[submenu_index] + chg_submenu_item_target
-        
+
 def act_general_chg_num():
     @Name "SUB: act_general_chg_num"
 
@@ -20,7 +20,7 @@ def act_general_chg_num():
         case MENU_ACTIONS.MENU_JUMP_RIGHT:
             action_var += general_large
             break
-        
+
     if action_var < general_range_min:
         action_var = general_range_max
     elif action_var > general_range_max:
@@ -38,8 +38,8 @@ def act_general_num_temp():
     general_range_max = ranges[menu_item_range[menu_index][action_var_2]][1]
     act_general_chg_num()
     action_temp = action_var
-    
-    
+
+
 def act_general_num_var_1():
     @Name "SUB: act_general_num_var_1"
 
@@ -87,9 +87,9 @@ def act_general_num_var_4():
     act_general_chg_num()
     menu_item_var_4[menu_index] = action_var
 
-        
+
 def act_general_toggle_status():
-    @Name "SUB: act_general_toggle_status" 
+    @Name "SUB: act_general_toggle_status"
 
     if action_var:
         action_result = 1
@@ -97,31 +97,31 @@ def act_general_toggle_status():
     else:
         action_result = 0
         menu_item_color_on[action_var_2] = menu_colors_custom[0]
-    
+
 
 def act_general_toggle_var_1():
-    @Name "SUB: act_general_toggle_var_1" 
+    @Name "SUB: act_general_toggle_var_1"
 
     act_general_toggle_status()
     menu_item_var_1[action_var_2] = strings_options[lang_type][action_var_3][action_result]
 
 
 def act_general_toggle_var_2():
-    @Name "SUB: act_general_toggle_var_2" 
+    @Name "SUB: act_general_toggle_var_2"
 
     act_general_toggle_status()
     menu_item_var_2[action_var_2] = strings_options[lang_type][action_var_3][action_result]
 
 
 def act_general_toggle_var_3():
-    @Name "SUB: act_general_toggle_var_3" 
+    @Name "SUB: act_general_toggle_var_3"
 
     act_general_toggle_status()
     menu_item_var_3[action_var_2] = strings_options[lang_type][action_var_3][action_result]
 
 
 def act_general_toggle_var_4():
-    @Name "SUB: act_general_toggle_var_4" 
+    @Name "SUB: act_general_toggle_var_4"
 
     act_general_toggle_status()
     menu_item_var_4[action_var_2] = strings_options[lang_type][action_var_3][action_result]
@@ -129,7 +129,7 @@ def act_general_toggle_var_4():
 
 def act_general_change_vect():
     @Name "SUB: act_general_change_vect"
-    
+
     action_var_3 = subitem_index[action_var_2]
     general_small = small_steps[menu_item_small_step[action_var_2][action_var_3]]
     general_large = large_steps[menu_item_large_step[action_var_2][action_var_3]]
@@ -183,7 +183,7 @@ def act_general_change_list_var_1():
 
 def act_general_change_min_max():
     @Name "SUB: act_general_change_min_max"
-    
+
     general_small = small_steps[menu_item_small_step[menu_index][1]]
     general_large = large_steps[menu_item_large_step[menu_index][1]]
     general_range_min = ranges[menu_item_range[menu_index][1]][0]
@@ -205,7 +205,7 @@ def act_general_change_min_max():
                 action_var = action_var_3
             break
 
-# Usage: action_var => unsummed weights, action_var => calculated summed weights, action_result = max weight
+# Usage: action_var => unsummed weights, action_var_2 => calculated summed weights, action_result = max weight
 def act_general_calc_weights():
     @Name "SUB: act_general_calc_weights"
 
@@ -227,7 +227,7 @@ def act_general_unsum_weights():
         action_result[loop_index] = max(0, action_var[loop_index] - action_var_2)
         if action_var[loop_index] > 0:
             action_var_2 = action_var[loop_index]
-    
+
 
 def act_general_clear():
     @Name "SUB: act_general_clear"

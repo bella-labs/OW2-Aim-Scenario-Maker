@@ -35,7 +35,7 @@ rule "Test Data":
 
     testbot = getPlayersInSlot(0, Team.2)
 
-    hudSubheader(eventPlayer, 
+    hudSubheader(eventPlayer,
     " b: {0}\n rb: {1}\n r: {2}\n fr: {3}\n f: {4}\n fl {5}\n l {6}\n bl {7}\n u {8}\n d {9}".format(
         testbot.disabled_hori[0],
         testbot.disabled_hori[1],
@@ -50,23 +50,23 @@ rule "Test Data":
         ),
     HudPosition.RIGHT, 900, Color.BLACK, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
-    hudSubheader(eventPlayer, 
+    hudSubheader(eventPlayer,
     " bound: {0}".format(
         horizontalAngleOfDirection(testbot.getFacingDirection())
         ),
     HudPosition.RIGHT, 900, Color.RED, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
-    hudSubheader(eventPlayer, 
+    hudSubheader(eventPlayer,
     " c1: {0}".format(
         testbot.disabled_rev_index),
     HudPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
-    hudSubheader(eventPlayer, 
+    hudSubheader(eventPlayer,
     " c2: {0}".format(
         testbot.disabled_calc),
     HudPosition.RIGHT, 900, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
-    hudSubheader(eventPlayer, 
+    hudSubheader(eventPlayer,
     "DB0: {0}\nDB1: {1}\nDB2: {2}\nDB3: {3}\n".format(
         testbot.disabled_boundary[0],
         testbot.disabled_boundary[1],

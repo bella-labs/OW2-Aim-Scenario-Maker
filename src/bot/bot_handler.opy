@@ -3,13 +3,13 @@ rule "Boundary Handler - Correct XZ":
     @Team 2
     @Condition eventPlayer.isAlive()
     @Condition  (
-                eventPlayer.getPosition().x < eventPlayer.boundary_limits[0].x + boundary_buffer or 
-                eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x - boundary_buffer or 
-                eventPlayer.getPosition().z < eventPlayer.boundary_limits[0].z + boundary_buffer or 
-                eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z - boundary_buffer or 
-                eventPlayer.disabled_boundary[0] != -1 or 
-                eventPlayer.disabled_boundary[1] != -1 or 
-                eventPlayer.disabled_boundary[2] != -1 or 
+                eventPlayer.getPosition().x < eventPlayer.boundary_limits[0].x + boundary_buffer or
+                eventPlayer.getPosition().x > eventPlayer.boundary_limits[1].x - boundary_buffer or
+                eventPlayer.getPosition().z < eventPlayer.boundary_limits[0].z + boundary_buffer or
+                eventPlayer.getPosition().z > eventPlayer.boundary_limits[1].z - boundary_buffer or
+                eventPlayer.disabled_boundary[0] != -1 or
+                eventPlayer.disabled_boundary[1] != -1 or
+                eventPlayer.disabled_boundary[2] != -1 or
                 eventPlayer.disabled_boundary[3] != -1
                 )
 
@@ -60,9 +60,9 @@ def check_boundary():
         disable_boundary()
     elif eventPlayer.disabled_boundary[eventPlayer.boundary_index] != eventPlayer.disabled_calc:
         enable_boundary()
-        disable_boundary()  
+        disable_boundary()
 
-    
+
 rule "Boundary Handler - Correct Y Min (Up)":
     @Event eachPlayer
     @Team 2
@@ -112,7 +112,7 @@ rule "Distance Handler - Correct Min Distance":
     disable_movement_distance()
 
     if RULE_CONDITION:
-        goto RULE_START 
+        goto RULE_START
 
 
 rule "Distance Handler - Correct Max Distance":
@@ -136,7 +136,7 @@ rule "Distance Handler - Correct Max Distance":
 rule "HPS Handler - Reset HoT":
     @Event playerTookDamage
     @Team 2
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_hps > 0
     @Condition eventPlayer.bot_hps_wait > 0
 
@@ -148,7 +148,7 @@ rule "HPS Handler - Reset HoT":
 rule "HPS Handler - Reset DoT":
     @Event playerTookDamage
     @Team 2
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_hps < 0
     @Condition eventPlayer.bot_hps_wait > 0
 
@@ -160,7 +160,7 @@ rule "HPS Handler - Reset DoT":
 rule "Speed Handler - Random":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_speed_type == 0
 
     eventPlayer.setMoveSpeed(random.uniform(eventPlayer.bot_speed_min, eventPlayer.bot_speed_max))
@@ -169,7 +169,7 @@ rule "Speed Handler - Random":
 rule "Speed Handler - Health":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_speed_type == 1
 
     eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (1 - eventPlayer.getNormalizedHealth()))
@@ -182,7 +182,7 @@ rule "Speed Handler - Health":
 rule "Speed Handler - Elims":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_speed_type == 2
 
     eventPlayer.setMoveSpeed(max(eventPlayer.bot_speed_max, (eventPlayer.bot_speed_min) + (eventPlayer.owner_player.elims * eventPlayer.bot_speed_target)))
@@ -191,7 +191,7 @@ rule "Speed Handler - Elims":
 rule "Speed Handler - Loop":
     @Event eachPlayer
     @Team 2
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_speed_type == 3
 
     eventPlayer.setMoveSpeed(eventPlayer.bot_speed_min + (eventPlayer.bot_speed_max - eventPlayer.bot_speed_min) * (sin(Math.PI*(scenario_timer%eventPlayer.bot_speed_target)/eventPlayer.bot_speed_target)))
@@ -203,7 +203,7 @@ rule "Speed Handler - Loop":
 
 rule "Profile Handler: In-Order":
     @Event eachPlayer
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_profile_type == 0
     @Condition eventPlayer.profile_index != -1
     @Condition eventPlayer.bot_profile_max > 0
@@ -225,11 +225,11 @@ rule "Profile Handler: In-Order":
 
     if RULE_CONDITION:
         goto RULE_START
-    
+
 
 rule "Profile Handler: Randomized":
     @Event eachPlayer
-    @Condition eventPlayer.isAlive() 
+    @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_profile_type == 1
     @Condition eventPlayer.profile_index != -1
     @Condition eventPlayer.bot_profile_max > 0
@@ -288,7 +288,7 @@ def teleport_target():
             break
         case 2:
             eventPlayer.teleport(nearestWalkablePosition(eventPlayer.bot_bound_pos + vect(random.uniform(-eventPlayer.bot_bound_dim.x, eventPlayer.bot_bound_dim.x)/2, random.uniform(-eventPlayer.bot_bound_dim.y, eventPlayer.bot_bound_dim.y)/2, random.uniform(-eventPlayer.bot_bound_dim.z, eventPlayer.bot_bound_dim.z)/2)))
-            break 
+            break
 
 
 def disable_boundary():
@@ -298,7 +298,7 @@ def disable_boundary():
         eventPlayer.disabled_boundary[eventPlayer.boundary_index] = eventPlayer.disabled_calc
         eventPlayer.disabled_target = (eventPlayer.disabled_calc + 2 * eventPlayer.boundary_index) % 8
 
-        eventPlayer.disabled_hori[(eventPlayer.disabled_target) % 8] += 1 
+        eventPlayer.disabled_hori[(eventPlayer.disabled_target) % 8] += 1
         eventPlayer.disabled_hori[(eventPlayer.disabled_target + 1) % 8] += 1
         eventPlayer.disabled_hori[(eventPlayer.disabled_target + 2) % 8] += 1
 
@@ -335,7 +335,7 @@ def disable_movement_distance():
         if eventPlayer.isAlive():
             if eventPlayer.disabled_hori[eventPlayer.disabled_dist % 8] > 0:
                 eventPlayer.disabled_hori[eventPlayer.disabled_dist % 8] -= 1
-            if eventPlayer.disabled_hori[(eventPlayer.disabled_dist + 1) % 8] > 0:     
+            if eventPlayer.disabled_hori[(eventPlayer.disabled_dist + 1) % 8] > 0:
                 eventPlayer.disabled_hori[(eventPlayer.disabled_dist + 1) % 8] -= 1
-            if eventPlayer.disabled_hori[(eventPlayer.disabled_dist + 2) % 8] > 0:  
+            if eventPlayer.disabled_hori[(eventPlayer.disabled_dist + 2) % 8] > 0:
                 eventPlayer.disabled_hori[(eventPlayer.disabled_dist + 2) % 8] -= 1

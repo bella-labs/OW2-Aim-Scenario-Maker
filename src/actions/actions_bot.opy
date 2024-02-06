@@ -65,13 +65,13 @@ def subact_select_slot_refresh():
     menu_item_var_2[refresh_index] = databot.bot_dist_max[bot_slot]
     # Hero Pool
     refresh_index += 1
-    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot] 
+    action_var = hero_array[menu_item_var_3[refresh_index]] in databot.bot_hero_pool[bot_slot]
     action_var_2 = refresh_index
     action_var_3 = OPTIONS_TYPE.TOGGLE
     act_general_toggle_var_2()
     # Health
     refresh_index += 1
-    menu_item_var_1[refresh_index] = databot.bot_health[bot_slot] 
+    menu_item_var_1[refresh_index] = databot.bot_health[bot_slot]
     menu_item_var_2[refresh_index] = databot.bot_hps[bot_slot]
     menu_item_var_3[refresh_index] = databot.bot_hps_wait[bot_slot]
     # Speed
@@ -107,7 +107,7 @@ def subact_select_slot_refresh():
     else:
         menu_item_var_1[refresh_index] = databot.bot_script_status[bot_slot]
     menu_item_var_2[refresh_index] = databot.bot_script_status[bot_slot]
-    
+
 
 def act_bot_override_slot():
     @Name "SUB: act_bot_override_slot"
@@ -311,7 +311,7 @@ def act_bot_bound():
                 break
     update_bound_effect()
 
-    
+
 def act_bot_bound_dimentions():
     @Name "SUB: act_bot_bound_dimentions"
 
@@ -392,7 +392,7 @@ def act_bot_hero_pool():
             else:
                 if len(new_hero_array) > 0:
                     new_hero_array.append(hero_array[menu_item_var_3[menu_index]])
-                else: 
+                else:
                     new_hero_array[0] = hero_array[menu_item_var_3[menu_index]]
             databot.bot_hero_pool[bot_slot] = new_hero_array
             break
@@ -405,7 +405,7 @@ def act_bot_hero_pool():
     action_var_2 = menu_index
     action_var_3 = OPTIONS_TYPE.TOGGLE
     act_general_toggle_var_2()
-	
+
 
 def act_bot_health():
     @Name "SUB: act_bot_health"
@@ -501,7 +501,7 @@ def act_bot_select_profile():
     else:
         action_var = menu_item_var_2[menu_index]
         act_general_clear()
-        
+
         action_var_2 = 1
         act_general_num_temp()
         profile_weights[profile_slot] = action_temp
@@ -518,7 +518,7 @@ def act_bot_select_profile():
 
 def act_bot_profile_order():
     @Name "SUB: act_bot_profile_order"
-    
+
     if subitem_index[menu_index] == 0:
         action_var = databot.bot_profile_type[bot_slot]
         action_var_2 = menu_index
@@ -541,10 +541,9 @@ def act_bot_profile_order():
 
 def act_bot_script_status():
     @Name "SUB: act_bot_script_status"
-    
+
     databot.bot_script_status[bot_slot] = not databot.bot_script_status[bot_slot]
     action_var = databot.bot_script_status[bot_slot]
     action_var_2 = menu_index
     action_var_3 = OPTIONS_TYPE.TOGGLE
     act_general_toggle_var_1()
-    
