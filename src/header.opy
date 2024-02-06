@@ -579,9 +579,6 @@ enum OPTIONS_TYPE:
     SCE_MODE,
     SCE_ORDER
 
-enum PLAYER_INDEXES:
-    PROFILE = 0
-
 enum PLAYER_RAND:
     XZ = 0,
     LR_IDLE,

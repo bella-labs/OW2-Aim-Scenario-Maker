@@ -58,7 +58,7 @@ def setup_menu_custom():
 
 def create_custom_hud():
 
-    # Timer Progress Bar
+    # Strafe Progress Bar
     progressBarHud([i for i in localPlayer if scenario_status and databot.sce_strafe_pps > 0], 
     (localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * 100, 
     "{0} / {1} {2}".format(min(databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min), max(0,(localPlayer.strafe_timer - databot.sce_strafe_min) / (databot.sce_strafe_max - databot.sce_strafe_min) * databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min))), databot.sce_strafe_pps * (databot.sce_strafe_max - databot.sce_strafe_min), strings_misc[lang_type][7]), 
