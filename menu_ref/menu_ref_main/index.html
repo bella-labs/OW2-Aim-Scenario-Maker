@@ -499,9 +499,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#profile" class="md-nav__link">
+  <a href="#movement" class="md-nav__link">
     <span class="md-ellipsis">
-      Profile
+      Movement
     </span>
   </a>
   
@@ -572,6 +572,15 @@
   
     <nav class="md-nav" aria-label="Export and Share">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#export-to-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Export to Index
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#display-export-instructions" class="md-nav__link">
@@ -695,26 +704,30 @@
 
 <h1 id="main-menu">Main Menu</h1>
 <h2 id="configure">Configure</h2>
+<p>The three options under the configure label will open submenus that are used to design your scenario.</p>
 <h3 id="scenario">Scenario</h3>
 <p><strong>Description</strong></p>
-<p>Opens the Scenario Settings submenu.</p>
+<p>This submenu contains settings that allow you to adjust the player's initial spawn, the scenario scoring, the end condition of the scenario as well as other settings.</p>
 <p><strong>Usage</strong></p>
 <ol>
-<li>Enter an input option to open the scenario settings submenu.</li>
+<li>Enter any input option to open the scenario settings submenu.</li>
+<li>To return from this submenu select the "Main Menu" menu item in the scenario settings submenu.</li>
 </ol>
 <h3 id="bot">Bot</h3>
 <p><strong>Description</strong></p>
-<p>Opens the Bot Settings submenu.</p>
+<p>This submenu contains settings that allow you to adjust modifiers to 12 separate bots, and how the bot uses the movement profiles set in the movement submenu. Modifiers include the spawn point and boundaries of the bot, the hero pool of the bot, the speed, scale, and gravity applied to the bot.</p>
 <p><strong>Usage</strong></p>
 <ol>
 <li>Enter an input option to open the bot settings submenu.</li>
+<li>To return from this submenu select the "Main Menu" menu item in the bot settings submenu.</li>
 </ol>
-<h3 id="profile">Profile</h3>
+<h3 id="movement">Movement</h3>
 <p><strong>Description</strong></p>
-<p>Opens the Profile Settings submenu.</p>
+<p>This submenu allows you to customized up to 12 separate movement profiles. Movement parameters include timing and weights of horizontal movement, chance of crouches and jumps, horizontal idling chance, and special option to replace both horizontal and vertical movement with movement done through impulses which allow for movement not possible using just player inputs.</p>
 <p><strong>Usage</strong></p>
 <ol>
 <li>Enter an input option to open the movement profile settings submenu.</li>
+<li>To return from this submenu select the "Main Menu" menu item in the movement settings submenu.</li>
 </ol>
 <h2 id="test">Test</h2>
 <h3 id="open-hero-select">Open Hero Select</h3>
@@ -726,14 +739,15 @@
 </ol>
 <h3 id="display-boundaries">Display Boundaries</h3>
 <p><strong>Description</strong></p>
-<p>Keeps the spawn and boundary effects visible even when the menu is closed.</p>
+<p>Keeps the spawn and boundary effects visible even when the menu is closed. I mainly used this for debugging boundary logic, but having the "walls" be visible is nice.</p>
 <p><strong>Usage</strong></p>
 <ol>
-<li>Toggle to enable/disable the spawn and boundary effects.</li>
+<li>Toggle on to always display the boundary effect regardless of where the menu cursor is placed.</li>
+<li>Toggle off to turn of the persistent effects. The effects will still be visible when the menu cursor is placed on fields that modify the spawn and boundaries.</li>
 </ol>
 <h3 id="test-bot-in-slot">Test Bot in Slot</h3>
 <p><strong>Description</strong></p>
-<p>Toggles spawning and destroying bot(s).</p>
+<p>Allows you to manually toggle on and off each bot at each individual bot slot. Useful to testing your movement profile and bot configurations. Only bots which have their bot slot set to enabled in the bot settings menu can be toggled using this option.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -754,11 +768,15 @@
 </tbody>
 </table>
 <p><strong>Usage</strong></p>
-<p>1a. Enter toggle left to enable/disable all bots with that have their slots enabled in the bot settings.
-1b.  Enter toggle right to enable/disable the bot in the selected slot if it is enabled in the bot settings.</p>
+<ol>
+<li>Cycle to the bot you would like to test.</li>
+</ol>
+<p>2.</p>
+<p>a. Enter toggle left to enable/disable all bots that have their slots enabled in the bot settings.</p>
+<p>b. Enter toggle right to enable/disable the bot in the selected slot if it is enabled in the bot settings.</p>
 <h3 id="test-scenario">Test Scenario</h3>
 <p><strong>Description</strong></p>
-<p>Toggles starting and stopping the scenario.</p>
+<p>Starts and stops the scenario.</p>
 <p><strong>Characteristics</strong></p>
 <table>
 <thead>
@@ -783,6 +801,10 @@
 <li>Toggle to start/stop the scenario.</li>
 </ol>
 <h2 id="export-and-share">Export and Share</h2>
+<h3 id="export-to-index">Export to Index</h3>
+<p><strong>Description</strong></p>
+<p>Export to index is how data from your scenario is exported for use in the aim scenario player. First you can select the index you would like to export your scenario data to.</p>
+<p><strong>Usage</strong></p>
 <h3 id="display-export-instructions">Display Export Instructions</h3>
 <p><strong>Description</strong></p>
 <p>Toggles showing the instructions to save the scenario on the left side of the hud.</p>

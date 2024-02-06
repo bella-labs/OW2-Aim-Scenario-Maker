@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://asm.bellalabs.dev/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/"/>
@@ -10,7 +10,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/getting_started/export_instructions/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/export_instructions/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/getting_started/export_instructions/"/>
@@ -18,7 +18,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/getting_started/get_started_index/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/get_started_index/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/getting_started/get_started_index/"/>
@@ -26,7 +26,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/getting_started/import_instructions/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/import_instructions/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/getting_started/import_instructions/"/>
@@ -34,7 +34,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/menu_ref/menu_ref_bot/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_bot/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_bot/"/>
@@ -42,7 +42,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/menu_ref/menu_ref_index/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_index/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_index/"/>
@@ -50,7 +50,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/menu_ref/menu_ref_main/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_main/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_main/"/>
@@ -58,7 +58,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/menu_ref/menu_ref_movement/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_movement/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_movement/"/>
@@ -66,7 +66,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/menu_ref/menu_ref_scenario/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_scenario/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_scenario/"/>
@@ -74,7 +74,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/"/>
@@ -82,7 +82,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/getting_started/export_instructions/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/getting_started/export_instructions/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/export_instructions/"/>
@@ -90,7 +90,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/getting_started/get_started_index/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/getting_started/get_started_index/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/get_started_index/"/>
@@ -98,7 +98,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/getting_started/import_instructions/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/getting_started/import_instructions/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/import_instructions/"/>
@@ -106,7 +106,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/menu_ref/menu_ref_bot/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_bot/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_bot/"/>
@@ -114,7 +114,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/menu_ref/menu_ref_index/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_index/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_index/"/>
@@ -122,7 +122,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/menu_ref/menu_ref_main/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_main/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_main/"/>
@@ -130,7 +130,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/menu_ref/menu_ref_movement/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_movement/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_movement/"/>
@@ -138,7 +138,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/menu_ref/menu_ref_scenario/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_ref/menu_ref_scenario/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_scenario/"/>
@@ -146,14 +146,14 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/ko/menu_reference/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_reference/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/menu_reference/"/>
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/"/>
@@ -161,7 +161,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/getting_started/export_instructions/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/getting_started/export_instructions/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/export_instructions/"/>
@@ -169,7 +169,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/getting_started/get_started_index/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/getting_started/get_started_index/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/get_started_index/"/>
@@ -177,7 +177,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/getting_started/import_instructions/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/getting_started/import_instructions/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/getting_started/import_instructions/"/>
@@ -185,7 +185,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/menu_ref/menu_ref_bot/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/menu_ref/menu_ref_bot/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_bot/"/>
@@ -193,7 +193,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/menu_ref/menu_ref_index/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/menu_ref/menu_ref_index/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_index/"/>
@@ -201,7 +201,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/menu_ref/menu_ref_main/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/menu_ref/menu_ref_main/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_main/"/>
@@ -209,7 +209,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/menu_ref/menu_ref_movement/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/menu_ref/menu_ref_movement/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_movement/"/>
@@ -217,7 +217,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/menu_ref/menu_ref_scenario/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/menu_ref/menu_ref_scenario/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://asm.bellalabs.dev/menu_ref/menu_ref_scenario/"/>
@@ -225,7 +225,7 @@
     </url>
     <url>
         <loc>https://asm.bellalabs.dev/zh/menu_reference/</loc>
-        <lastmod>2024-01-30</lastmod>
+        <lastmod>2024-02-06</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="https://asm.bellalabs.dev/zh/menu_reference/"/>
         <xhtml:link rel="alternate" hreflang="ko" href="https://asm.bellalabs.dev/ko/menu_reference/"/>
