@@ -1,3 +1,5 @@
 mkdocs/generated
 test/
 .DS_Store
+[text]
+   eof=lf
