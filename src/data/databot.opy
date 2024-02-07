@@ -136,8 +136,8 @@ def default_settings():
 
         databot.mvmt_crouch_chance[loop_index] = 0
         databot.mvmt_crouch_interval[loop_index] = 0
-        databot.mvmt_uncrouch_min[loop_index] = 0
-        databot.mvmt_uncrouch_max[loop_index] = 0
+        databot.mvmt_crouch_min[loop_index] = 0
+        databot.mvmt_crouch_max[loop_index] = 0
 
         databot.mvmt_lr_idle_chance[loop_index] = 0
         databot.mvmt_lr_idle_interval[loop_index] = 0
@@ -222,8 +222,8 @@ def unload_settings():
     databot.mvmt_jump_max =          databuilder[64]
     databot.mvmt_crouch_chance =     databuilder[65]
     databot.mvmt_crouch_interval =   databuilder[66]
-    databot.mvmt_uncrouch_min =      databuilder[67]
-    databot.mvmt_uncrouch_max =      databuilder[68]
+    databot.mvmt_crouch_min =      databuilder[67]
+    databot.mvmt_crouch_max =      databuilder[68]
     databot.mvmt_lr_idle_chance =    databuilder[69]
     databot.mvmt_lr_idle_interval =  databuilder[70]
     databot.mvmt_lr_idle_min =       databuilder[71]

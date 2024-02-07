@@ -28,11 +28,11 @@ def setup_menu_custom():
     menu_color_on_index = rgb(100,200,240)
     menu_color_label_subtext = rgb(255,150,80)
 
-    menu_colors_custom[0] = rgb(255,100,120)
-    menu_colors_custom[1] = rgb(100,200,120)
-    menu_colors_custom[2] = rgb(240,120,100)
-    menu_colors_custom[3] = rgb(230,190,60)
-    menu_colors_custom[4] = rgb(110,150,250)
+    menu_colors_custom[0] = rgb(255,100,120) # False Color
+    menu_colors_custom[1] = rgb(100,200,120) # True Color
+    menu_colors_custom[2] = rgb(240,120,100) # Submenu Color
+    menu_colors_custom[3] = rgb(230,190,60) # Test Color
+    menu_colors_custom[4] = rgb(110,150,250) # Export Color
 
     bot_slot = 0
     profile_slot = 0
@@ -898,8 +898,8 @@ def create_submenu_movement():
     menu_item_title_on[menu_item_size] = strings_on_titles[lang_type][0]
 
     menu_item_var_1[menu_item_size] = databot.mvmt_crouch_chance[0]
-    menu_item_var_2[menu_item_size] = databot.mvmt_uncrouch_min[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_uncrouch_max[0]
+    menu_item_var_2[menu_item_size] = databot.mvmt_crouch_min[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_crouch_max[0]
     menu_item_var_4[menu_item_size] = databot.mvmt_crouch_interval[0]
 
     action_var = ITEM_TYPE.CHANCE

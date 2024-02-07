@@ -9,14 +9,14 @@ theme:
   name: material
   custom_dir: 'overrides/'
   logo: assets/images/logo.png
-  favicon: assets/images/favicon.ico    
+  favicon: assets/images/favicon.ico
   features:
     - toc.integrate
   palette:
     scheme: slate
 
 plugins:
-  - search                  
+  - search
   - i18n:
       docs_structure: folder
       languages:
@@ -29,14 +29,14 @@ plugins:
           build: true
           nav_translations:
               Home: homeinko
-              #Getting Started: 
-              Menu Reference: menureferenceinko 
+              #Getting Started:
+              Menu Reference: menureferenceinko
         - locale: zh
           name: 中文
           build: true
           nav_translations:
               Home: homeinzh
-              #Getting Started: 
+              #Getting Started:
               Menu Reference: homeinzh
 
 extra:
@@ -56,15 +56,17 @@ markdown_extensions:
 
 nav:
 - Home: index.md
-- Getting Started: 
-  - getting_started/get_started_index.md
-  - Export: getting_started/export_instructions.md
-  - Import: getting_started/import_instructions.md
-- Menu Reference:
-  - Main Menu: menu_ref/menu_ref_main.md
-  - Scenario: menu_ref/menu_ref_scenario.md
-  - Bot: menu_ref/menu_ref_bot.md
-  - Movement: menu_ref/menu_ref_movement.md
+- Getting Started:
+  - getting_started/get_started.md
+  - The Basics: getting_started/basics.md
+  - Exporting Scenarios: getting_started/export.md
+  - Import Scenarios: getting_started/import.md
+- Reference:
+  - Menu Reference Guide: reference/reference.md
+  - Main Menu: reference/main_menu.md
+  - Scenario: reference/scenario.md
+  - Bot: reference/bot.md
+  - Movement: reference/movement.md
 
 
 extra_css:

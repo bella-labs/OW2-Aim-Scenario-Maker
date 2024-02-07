@@ -178,8 +178,8 @@ def act_main_export_data():
             databuilder[64] = databot.mvmt_jump_max
             databuilder[65] = databot.mvmt_crouch_chance
             databuilder[66] = databot.mvmt_crouch_interval
-            databuilder[67] = databot.mvmt_uncrouch_min
-            databuilder[68] = databot.mvmt_uncrouch_max
+            databuilder[67] = databot.mvmt_crouch_min
+            databuilder[68] = databot.mvmt_crouch_max
             databuilder[69] = databot.mvmt_lr_idle_chance
             databuilder[70] = databot.mvmt_lr_idle_interval
             databuilder[71] = databot.mvmt_lr_idle_min

@@ -52,8 +52,8 @@ def subact_mvmt_select_refresh():
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.mvmt_crouch_chance[profile_slot]
     menu_item_var_2[refresh_index] = databot.mvmt_crouch_interval[profile_slot]
-    menu_item_var_3[refresh_index] = databot.mvmt_uncrouch_min[profile_slot]
-    menu_item_var_4[refresh_index] = databot.mvmt_uncrouch_max[profile_slot]
+    menu_item_var_3[refresh_index] = databot.mvmt_crouch_min[profile_slot]
+    menu_item_var_4[refresh_index] = databot.mvmt_crouch_max[profile_slot]
     # LR Idle
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.mvmt_lr_idle_chance[profile_slot]
@@ -133,8 +133,8 @@ def subact_mvmt_override_slot():
     # Crouch
     databot.mvmt_crouch_chance[action_var] = databot.mvmt_crouch_chance[profile_slot]
     databot.mvmt_crouch_interval[action_var] = databot.mvmt_crouch_interval[profile_slot]
-    databot.mvmt_uncrouch_min[action_var] = databot.mvmt_uncrouch_min[profile_slot]
-    databot.mvmt_uncrouch_max[action_var] = databot.mvmt_uncrouch_max[profile_slot]
+    databot.mvmt_crouch_min[action_var] = databot.mvmt_crouch_min[profile_slot]
+    databot.mvmt_crouch_max[action_var] = databot.mvmt_crouch_max[profile_slot]
     # LR Idle
     databot.mvmt_lr_idle_chance[action_var] = databot.mvmt_lr_idle_chance[profile_slot]
     databot.mvmt_lr_idle_interval[action_var] = databot.mvmt_lr_idle_interval[profile_slot]
@@ -432,8 +432,8 @@ def act_mvmt_crouch():
             break
         case 1:
         case 2:
-            action_var = databot.mvmt_uncrouch_min[profile_slot]
-            action_var_2 = databot.mvmt_uncrouch_max[profile_slot]
+            action_var = databot.mvmt_crouch_min[profile_slot]
+            action_var_2 = databot.mvmt_crouch_max[profile_slot]
 
             if subitem_index[menu_index] == 1:
                 general_target = GENERAL_TARGET.MIN
@@ -445,8 +445,8 @@ def act_mvmt_crouch():
             menu_item_var_2[menu_index] = action_var
             menu_item_var_3[menu_index] = action_var_2
 
-            databot.mvmt_uncrouch_min[profile_slot] = action_var
-            databot.mvmt_uncrouch_max[profile_slot] = action_var_2
+            databot.mvmt_crouch_min[profile_slot] = action_var
+            databot.mvmt_crouch_max[profile_slot] = action_var_2
             break
         case 3:
             act_general_num_var_4()

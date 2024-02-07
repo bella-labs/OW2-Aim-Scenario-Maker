@@ -370,14 +370,14 @@ rule "Target Bot Listener - Movement Crouch Time":
     @Condition  (
                 eventPlayer.mvmt_crouch_chance != databot.mvmt_crouch_chance or
                 eventPlayer.mvmt_crouch_interval != databot.mvmt_crouch_interval or
-                eventPlayer.mvmt_uncrouch_min != databot.mvmt_uncrouch_min or
-                eventPlayer.mvmt_uncrouch_max != databot.mvmt_uncrouch_max
+                eventPlayer.mvmt_crouch_min != databot.mvmt_crouch_min or
+                eventPlayer.mvmt_crouch_max != databot.mvmt_crouch_max
                 )
 
     eventPlayer.mvmt_crouch_chance = databot.mvmt_crouch_chance
     eventPlayer.mvmt_crouch_interval = databot.mvmt_crouch_interval
-    eventPlayer.mvmt_uncrouch_min = databot.mvmt_uncrouch_min
-    eventPlayer.mvmt_uncrouch_max = databot.mvmt_uncrouch_max
+    eventPlayer.mvmt_crouch_min = databot.mvmt_crouch_min
+    eventPlayer.mvmt_crouch_max = databot.mvmt_crouch_max
 
     # Cooldown to prevent overflow
     wait(1)

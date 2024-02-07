@@ -244,8 +244,8 @@ playervar mvmt_jump_max
 #### Crouch
 playervar mvmt_crouch_chance
 playervar mvmt_crouch_interval
-playervar mvmt_uncrouch_min
-playervar mvmt_uncrouch_max
+playervar mvmt_crouch_min
+playervar mvmt_crouch_max
 #### Idle Probability
 playervar mvmt_lr_idle_chance
 playervar mvmt_lr_idle_interval
@@ -279,6 +279,7 @@ playervar profile_loop_index
 ## Target Bot Movement
 playervar target_mvmt_dir
 playervar target_vert_dir
+playervar target_vert_offset
 playervar target_rand
 playervar target_mvmt_vect
 playervar target_mvmt_index

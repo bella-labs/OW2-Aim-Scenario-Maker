@@ -67,7 +67,7 @@ Keeps the spawn and boundary effects visible even when the menu is closed. I mai
 
 Allows you to manually toggle on and off each bot at each individual bot slot. Useful to testing your movement profile and bot configurations. Only bots which have their bot slot set to enabled in the bot settings menu can be toggled using this option.
 
-**Characteristics**
+**Subitems**
 
 | Name                       | Type                 | Minimum    | Maximum    |
 | -------------------------- | -------------------- | ---------- | ---------- |
@@ -89,7 +89,7 @@ b. Enter toggle right to enable/disable the bot in the selected slot if it is en
 
 Starts and stops the scenario.
 
-**Characteristics**
+**Subitems**
 
 | Name                       | Type                 | Minimum    | Maximum    |
 | -------------------------- | -------------------- | ---------- | ---------- |
@@ -115,7 +115,7 @@ Export to index is how data from your scenario is exported for use in the aim sc
 
 Toggles showing the instructions to save the scenario on the left side of the hud.
 
-**Characteristics**
+**Subitems**
 
 | Name                       | Type                 | Minimum    | Maximum    |
 | -------------------------- | -------------------- | ---------- | ---------- |
@@ -131,7 +131,7 @@ Toggles showing the instructions to save the scenario on the left side of the hu
 
 Toggles showing the instructions to import the scenario on the left side of the hud.
 
-**Characteristics**
+**Subitems**
 
 | Name                       | Type                 | Minimum    | Maximum    |
 | -------------------------- | -------------------- | ---------- | ---------- |

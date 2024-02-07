@@ -8,6 +8,7 @@ settings "settings.json"
 #!include "header.opy"
 #!include "initialization/custom.opy"
 #!include "initialization/init.opy"
+#!include "initialization/player.opy"
 #!include "data/static_data.opy"
 #!include "data/databot.opy"
 #!include "ui/ui_framework.opy"
@@ -24,10 +25,17 @@ settings "settings.json"
 #!include "bot/bot_listener.opy"
 #!include "bot/bot_handler.opy"
 #!include "bot/mvmt_handler.opy"
-#!include "scenario/player.opy"
 #!include "scenario/scenario_handler.opy"
 
 globalvar testbot
+
+rule "Update Testbot":
+    @Event eachPlayer
+    @Team 2
+    @Slot 0
+    @Condition eventPlayer.hasSpawned()
+
+    testbot = getPlayersInSlot(0, Team.2)
 
 rule "Test Data":
     @Event eachPlayer
@@ -58,12 +66,12 @@ rule "Test Data":
 
     hudSubheader(eventPlayer,
     " c1: {0}".format(
-        testbot.disabled_rev_index),
+        testbot.boundary_limits[0].y),
     HudPosition.RIGHT, 900, Color.ORANGE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer,
     " c2: {0}".format(
-        testbot.disabled_calc),
+        testbot.target_vert_dir),
     HudPosition.RIGHT, 900, Color.GREEN, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
 
     hudSubheader(eventPlayer,

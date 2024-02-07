@@ -45,9 +45,7 @@ rule "Boundary Handler - Correct XZ":
         eventPlayer.boundary_index = 3
         enable_boundary()
 
-
     wait(0.1)
-    #smallMessage(hostPlayer, "helloooo")
 
     if RULE_CONDITION:
         goto RULE_START
@@ -63,17 +61,14 @@ def check_boundary():
         disable_boundary()
 
 
-rule "Boundary Handler - Correct Y Min (Up)":
+rule "Boundary Handler - Correct Y Max (Up)":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.getPosition().y > eventPlayer.boundary_limits[1].y
 
     eventPlayer.disabled_vert[YDIR.UP] = 1
-
-    waitUntil(eventPlayer.getPosition().y <= eventPlayer.boundary_limits[1].y, 9999)
-
+    waitUntil(eventPlayer.getPosition().y < eventPlayer.boundary_limits[1].y, 9999)
     eventPlayer.disabled_vert[YDIR.UP] = 0
-
     wait(0.1)
 
     if RULE_CONDITION:
@@ -86,11 +81,8 @@ rule "Boundary Handler - Correct Y Min (Down)":
     @Condition eventPlayer.getPosition().y < eventPlayer.boundary_limits[0].y
 
     eventPlayer.disabled_vert[YDIR.DOWN] = 1
-
-    waitUntil(eventPlayer.getPosition().y >= eventPlayer.boundary_limits[0].y, 9999)
-
+    waitUntil(eventPlayer.getPosition().y > eventPlayer.boundary_limits[0].y, 9999)
     eventPlayer.disabled_vert[YDIR.DOWN] = 0
-
     wait(0.1)
 
     if RULE_CONDITION:
@@ -254,6 +246,8 @@ rule "Death Handler":
     eventPlayer.disabled_hori = [0,0,0,0,0,0,0,0]
     eventPlayer.disabled_vert = [0,0]
     eventPlayer.disabled_boundary = [-1, -1, -1, -1]
+    eventPlayer.target_vert_dir = 0
+    eventPlayer.target_vert_offset = [false, false]
 
     if eventPlayer.bot_scale_type == 0:
         eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)
