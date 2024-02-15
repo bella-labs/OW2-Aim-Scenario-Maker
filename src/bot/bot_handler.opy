@@ -67,9 +67,10 @@ rule "Boundary Handler - Correct Y Max (Up)":
     @Condition eventPlayer.getPosition().y > eventPlayer.boundary_limits[1].y
 
     eventPlayer.disabled_vert[YDIR.UP] = 1
+    wait(0.1)
     waitUntil(eventPlayer.getPosition().y < eventPlayer.boundary_limits[1].y, 9999)
     eventPlayer.disabled_vert[YDIR.UP] = 0
-    wait(0.1)
+
 
     if RULE_CONDITION:
         goto RULE_START
@@ -81,9 +82,10 @@ rule "Boundary Handler - Correct Y Min (Down)":
     @Condition eventPlayer.getPosition().y < eventPlayer.boundary_limits[0].y
 
     eventPlayer.disabled_vert[YDIR.DOWN] = 1
+    wait(0.1)
     waitUntil(eventPlayer.getPosition().y > eventPlayer.boundary_limits[0].y, 9999)
     eventPlayer.disabled_vert[YDIR.DOWN] = 0
-    wait(0.1)
+
 
     if RULE_CONDITION:
         goto RULE_START

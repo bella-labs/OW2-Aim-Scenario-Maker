@@ -31,7 +31,7 @@ def setup_menu_custom():
     menu_colors_custom[0] = rgb(255,100,120) # False Color
     menu_colors_custom[1] = rgb(100,200,120) # True Color
     menu_colors_custom[2] = rgb(240,120,100) # Submenu Color
-    menu_colors_custom[3] = rgb(230,190,60) # Test Color
+    menu_colors_custom[3] = rgb(230,190,060) # Test Color
     menu_colors_custom[4] = rgb(110,150,250) # Export Color
 
     bot_slot = 0

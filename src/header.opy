@@ -602,4 +602,5 @@ enum XZ_DIR:
 
 enum YDIR:
     UP = 0,
-    DOWN
+    DOWN,
+    OVERRIDE
