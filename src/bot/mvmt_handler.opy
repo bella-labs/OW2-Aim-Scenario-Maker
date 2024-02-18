@@ -124,29 +124,11 @@ rule "Target Bot Vertical Impulse Handler":
     if RULE_CONDITION:
         goto RULE_START
 
-
-rule "Target Bot Vertical Impulse Offset":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 1
-    @Condition eventPlayer.target_vert_offset[YDIR.UP] == false
-    @Condition eventPlayer.target_vert_offset[YDIR.DOWN] == false
-    @Condition eventPlayer.isAlive()
-
-    eventPlayer.target_vert_offset[YDIR.UP] = true
-    wait(eventPlayer.mvmt_crouch_max[eventPlayer.profile_index])
-    eventPlayer.target_vert_offset[YDIR.DOWN] = true
-
-    if RULE_CONDITION:
-        goto RULE_START
-
-
 rule "Target Bot Vertical Up Impulse Trigger":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 1
     @Condition eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] > 0
-    @Condition eventPlayer.target_vert_offset[YDIR.UP] == true
     @Condition eventPlayer.isAlive()
 
     if eventPlayer.disabled_vert[YDIR.UP] != 0:
@@ -170,11 +152,10 @@ rule "Target Bot Vertical Down Impulse Trigger":
     @Team 2
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 1
     @Condition eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] > 0
-    @Condition eventPlayer.target_vert_offset[YDIR.DOWN] == true
     @Condition eventPlayer.isAlive()
 
 
-    if eventPlayer.disabled_vert[YDIR.UP] != 0:
+    if eventPlayer.disabled_vert[YDIR.DOWN] != 0:
         eventPlayer.target_vert_dir += 1
         waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.UP] == 0, random.uniform(eventPlayer.mvmt_crouch_min[eventPlayer.profile_index], eventPlayer.mvmt_crouch_max[eventPlayer.profile_index]))
         eventPlayer.target_vert_dir -= 1
@@ -182,34 +163,12 @@ rule "Target Bot Vertical Down Impulse Trigger":
         eventPlayer.target_rand[PLAYER_RAND.CROUCH] = random.uniform(0, 100)
         if eventPlayer.target_rand[PLAYER_RAND.CROUCH] <= eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index]:
             eventPlayer.target_vert_dir -= 1
-            waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.UP] != 0, random.uniform(eventPlayer.mvmt_crouch_min[eventPlayer.profile_index], eventPlayer.mvmt_crouch_max[eventPlayer.profile_index]))
+            waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.DOWN] != 0, random.uniform(eventPlayer.mvmt_crouch_min[eventPlayer.profile_index], eventPlayer.mvmt_crouch_max[eventPlayer.profile_index]))
             eventPlayer.target_vert_dir += 1
     wait(eventPlayer.mvmt_crouch_interval[eventPlayer.profile_index])
 
     if RULE_CONDITION:
         goto RULE_START
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def select_mvmt_dir():

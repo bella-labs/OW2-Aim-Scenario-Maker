@@ -148,6 +148,7 @@ def reset_player():
 
     if not menu_visible:
         sce_player.setMoveSpeed(100)
+    sce_player.stopScalingSize()
     sce_player.setGravity(100)
 
 

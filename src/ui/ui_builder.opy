@@ -335,11 +335,11 @@ def create_submenu_scenario():
     # (Cycle) Player Scale
     increment_for_menu_item()
     menu_item_title_off[menu_item_size] = strings_sce_menu[lang_type][menu_max_pos]
-    menu_item_title_on[menu_item_size] = "{0} %".format(menu_item_title_off[menu_item_size])
+    menu_item_title_on[menu_item_size] = menu_item_title_off[menu_item_size]
 
     menu_item_var_1[menu_item_size] = databot.sce_player_scale
 
-    action_var = ITEM_TYPE.SCALAR
+    action_var = ITEM_TYPE.VECTOR
     action_var_2 = menu_item_size
     set_item_data()
 

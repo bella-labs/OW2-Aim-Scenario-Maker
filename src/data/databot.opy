@@ -43,7 +43,7 @@ def default_settings():
     databot.sce_player_spawn = vect(15,0,0)
     databot.sce_player_facing = vect(-1,0,0)
     databot.sce_player_speed = 100
-    databot.sce_player_scale = 100
+    databot.sce_player_scale = 1
     databot.sce_player_gravity = 100
     databot.sce_game_mode = 0
     databot.sce_game_limit = 60

@@ -133,6 +133,7 @@ rule "HPS Handler - Reset HoT":
     @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_hps > 0
     @Condition eventPlayer.bot_hps_wait > 0
+    @Condition eventDamage != 0.001
 
     eventPlayer.stopAllHoT()
     wait(eventPlayer.bot_hps_wait, Wait.RESTART_WHEN_TRUE)
@@ -145,6 +146,7 @@ rule "HPS Handler - Reset DoT":
     @Condition eventPlayer.isAlive()
     @Condition eventPlayer.bot_hps < 0
     @Condition eventPlayer.bot_hps_wait > 0
+    @Condition eventDamage != 0.001
 
     eventPlayer.stopAllDoT()
     wait(eventPlayer.bot_hps_wait, Wait.RESTART_WHEN_TRUE)
@@ -249,7 +251,6 @@ rule "Death Handler":
     eventPlayer.disabled_vert = [0,0]
     eventPlayer.disabled_boundary = [-1, -1, -1, -1]
     eventPlayer.target_vert_dir = 0
-    eventPlayer.target_vert_offset = [false, false]
 
     if eventPlayer.bot_scale_type == 0:
         eventPlayer.startScalingSize(random.uniform(eventPlayer.bot_scale_min, eventPlayer.bot_scale_max), true)

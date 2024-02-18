@@ -281,7 +281,6 @@ playervar profile_loop_index
 ## Target Bot Movement
 playervar target_mvmt_dir
 playervar target_vert_dir
-playervar target_vert_offset
 playervar target_rand
 playervar target_mvmt_vect
 playervar target_mvmt_index
@@ -606,4 +605,3 @@ enum XZ_DIR:
 enum YDIR:
     UP = 0,
     DOWN,
-    OVERRIDE
