@@ -5,6 +5,6 @@ rule "Update Testbot":
     @Event eachPlayer
     @Team 1
     @Slot 0
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT)
 
-    createDummy(Hero.TRACER, Team.2, 0, eventPlayer.getPosition(), eventPlayer.getFacingDirection())
+    hudHeader(eventPlayer, "Speed {0}".format(eventPlayer.getSpeed()), HudPosition.TOP, 0, Color.WHITE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
+    hudHeader(eventPlayer, "Velocity {0}".format(eventPlayer.getVelocity()), HudPosition.TOP, 0, Color.WHITE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)

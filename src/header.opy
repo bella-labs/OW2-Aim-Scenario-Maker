@@ -158,6 +158,8 @@ playervar sce_player_spawn
 playervar sce_player_facing
 #### Speed
 playervar sce_player_speed
+#### Scale
+playervar sce_player_scale
 #### Gravity
 playervar sce_player_gravity
 #### Custom Script
@@ -376,6 +378,7 @@ subroutine act_main_export_data
 subroutine act_sce_player_spawn
 subroutine act_sce_player_facing
 subroutine act_sce_player_speed
+subroutine act_sce_player_scale
 subroutine act_sce_player_gravity
 subroutine act_sce_mode
 subroutine act_sce_bot_spawn

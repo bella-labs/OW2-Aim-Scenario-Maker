@@ -121,6 +121,7 @@ def sce_start_scenario():
     wait(1)
 
     eventPlayer.player_speed = databot.sce_player_speed
+    eventPlayer.startScalingSize(databot.sce_player_scale, true)
     enable_player_input()
     bigMessage(eventPlayer, "Start")
 

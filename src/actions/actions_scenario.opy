@@ -71,6 +71,13 @@ def act_sce_player_speed():
     databot.sce_player_speed = menu_item_var_1[menu_index]
 
 
+def act_sce_player_scale():
+    @Name "SUB: act_sce_player_scale"
+
+    act_general_num_var_1()
+    databot.sce_player_scale = menu_item_var_1[menu_index]
+
+
 def act_sce_player_gravity():
     @Name "SUB: act_sce_player_gravity"
 

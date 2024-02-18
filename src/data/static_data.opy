@@ -535,6 +535,7 @@ rule "load_language_data":
             "Spawn Position",
             "Spawn Facing",
             "Speed",
+            "Scale",
             "Gravity",
             "Scenario",
             "Scenario Type",
