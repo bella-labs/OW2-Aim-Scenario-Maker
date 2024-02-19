@@ -461,29 +461,33 @@ def act_bot_speed():
 def act_bot_scale():
     @Name "SUB: act_bot_scale"
 
-    if subitem_index[menu_index] == 0:
-        action_var = databot.bot_scale_type[bot_slot]
-        action_var_2 = menu_index
-        action_var_3 = OPTIONS_TYPE.TARGET
-        act_general_change_list_var_1()
-        databot.bot_scale_type[bot_slot] = action_var
-    elif subitem_index[menu_index] == 2:
-        act_general_num_var_4()
-        databot.bot_scale_target[bot_slot] = menu_item_var_4[menu_index]
-    else:
-        action_var = databot.bot_scale_min[bot_slot]
-        action_var_2 = databot.bot_scale_max[bot_slot]
+    switch subitem_index[menu_index]:
+        case 0:
+            action_var = databot.bot_scale_type[bot_slot]
+            action_var_2 = menu_index
+            action_var_3 = OPTIONS_TYPE.TARGET
+            act_general_change_list_var_1()
+            databot.bot_scale_type[bot_slot] = action_var
+            break
+        case 1:
+        case 2:
+            action_var = databot.bot_scale_min[bot_slot]
+            action_var_2 = databot.bot_scale_max[bot_slot]
 
-        if subitem_index[menu_index] == 1:
-            general_target = GENERAL_TARGET.MIN
-        else:
-            general_target = GENERAL_TARGET.MAX
+            if subitem_index[menu_index] == 1:
+                general_target = GENERAL_TARGET.MIN
+            else:
+                general_target = GENERAL_TARGET.MAX
 
-        act_general_change_min_max()
-        menu_item_var_2[menu_index] = action_var
-        menu_item_var_3[menu_index] = action_var_2
-        databot.bot_scale_min[bot_slot] = action_var
-        databot.bot_scale_max[bot_slot] = action_var_2
+            act_general_change_min_max()
+            menu_item_var_2[menu_index] = action_var
+            menu_item_var_3[menu_index] = action_var_2
+            databot.bot_scale_min[bot_slot] = action_var
+            databot.bot_scale_max[bot_slot] = action_var_2
+            break
+        case 3:
+            act_general_num_var_4()
+            databot.bot_scale_target[bot_slot] = menu_item_var_4[menu_index]
 
 
 def act_bot_gravity():
