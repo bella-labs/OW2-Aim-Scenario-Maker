@@ -13,7 +13,7 @@
     "gamemodes": {
         "skirmish": {
             "enabledMaps": [
-                "workshopChamber"
+                "workshopExpanseNight"
             ]
         },
         "general": {
@@ -21,6 +21,22 @@
             "heroLimit": "off",
             "tankPassiveHealthBonus": "alwaysEnabled"
         }
+    },
+    "heroes": {
+        "team1": {
+            "echo": {
+                "enableInfiniteAmmo": true
+            },
+            "enabledHeroes": [
+                "echo"
+            ]
+        },
+        "team2": {
+            "echo": {
+                "ability1Cooldown%": 0
+            }
+        }
     }
 }
+
 

@@ -1,12 +1,8 @@
 settings "settings.json"
-
-#Extensions
-#!extension spawnMoreDummyBots
-##!optimizeForSize
+#settings "echo_settings.json"
 
 # Includes
 #!include "header.opy"
-#!include "initialization/custom.opy"
 #!include "initialization/init.opy"
 #!include "initialization/player.opy"
 #!include "data/static_data.opy"
@@ -26,3 +22,7 @@ settings "settings.json"
 #!include "bot/bot_handler.opy"
 #!include "bot/mvmt_handler.opy"
 #!include "scenario/scenario_handler.opy"
+##!include "custom_scripts/echo.opy"
+##!include "custom_scripts/genji.opy"
+##!include "custom_scripts/blink_melee.opy"
+#!include "custom_scripts/nevermiss.opy"

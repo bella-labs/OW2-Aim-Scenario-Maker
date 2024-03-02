@@ -138,9 +138,11 @@ def sce_start_scenario():
 def setup_player_in_scenario():
     @Name "SUB: setup_player_in_scenario"
 
+    sce_player.setGravity(databot.sce_player_gravity)
+    wait()
     sce_player.teleport(databot.sce_player_spawn)
     sce_player.setFacing(databot.sce_player_facing, Relativity.TO_WORLD)
-    sce_player.setGravity(databot.sce_player_gravity)
+
 
 
 def reset_player():

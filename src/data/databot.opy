@@ -116,39 +116,39 @@ def default_settings():
         databot.mvmt_weights[loop_index] = [1, 2, 3, 4, 5, 6, 7, 8]
         databot.mvmt_max_weight[loop_index] = 8
 
-        databot.mvmt_left_min[loop_index] = 0
-        databot.mvmt_left_max[loop_index] = 0
-        databot.mvmt_right_min[loop_index] = 0
-        databot.mvmt_right_max[loop_index] = 0
+        databot.mvmt_left_min[loop_index] = 1
+        databot.mvmt_left_max[loop_index] = 1
+        databot.mvmt_right_min[loop_index] = 1
+        databot.mvmt_right_max[loop_index] = 1
 
-        databot.mvmt_fwd_min[loop_index] = 0
-        databot.mvmt_fwd_max[loop_index] = 0
-        databot.mvmt_back_min[loop_index] = 0
-        databot.mvmt_back_max[loop_index] = 0
+        databot.mvmt_fwd_min[loop_index] = 1
+        databot.mvmt_fwd_max[loop_index] = 1
+        databot.mvmt_back_min[loop_index] = 1
+        databot.mvmt_back_max[loop_index] = 1
 
         databot.mvmt_vert_type[loop_index] = 0
-        databot.mvmt_vert_impulse[loop_index] = 0
-        databot.mvmt_vert_interval[loop_index] = 0
+        databot.mvmt_vert_impulse[loop_index] = 10
+        databot.mvmt_vert_interval[loop_index] = 1
 
         databot.mvmt_jump_chance[loop_index] = 0
-        databot.mvmt_jump_interval[loop_index] = 0
-        databot.mvmt_jump_min[loop_index] = 0
-        databot.mvmt_jump_max[loop_index] = 0
+        databot.mvmt_jump_interval[loop_index] = 1
+        databot.mvmt_jump_min[loop_index] = 1
+        databot.mvmt_jump_max[loop_index] = 1
 
         databot.mvmt_crouch_chance[loop_index] = 0
-        databot.mvmt_crouch_interval[loop_index] = 0
-        databot.mvmt_crouch_min[loop_index] = 0
-        databot.mvmt_crouch_max[loop_index] = 0
+        databot.mvmt_crouch_interval[loop_index] = 1
+        databot.mvmt_crouch_min[loop_index] = 1
+        databot.mvmt_crouch_max[loop_index] = 1
 
         databot.mvmt_lr_idle_chance[loop_index] = 0
-        databot.mvmt_lr_idle_interval[loop_index] = 0
-        databot.mvmt_lr_idle_min[loop_index] = 0
-        databot.mvmt_lr_idle_max[loop_index] = 0
+        databot.mvmt_lr_idle_interval[loop_index] = 1
+        databot.mvmt_lr_idle_min[loop_index] = 1
+        databot.mvmt_lr_idle_max[loop_index] = 1
 
         databot.mvmt_fb_idle_chance[loop_index] = 0
-        databot.mvmt_fb_idle_interval[loop_index] = 0
-        databot.mvmt_fb_idle_min[loop_index] = 0
-        databot.mvmt_fb_idle_max[loop_index] = 0
+        databot.mvmt_fb_idle_interval[loop_index] = 1
+        databot.mvmt_fb_idle_min[loop_index] = 1
+        databot.mvmt_fb_idle_max[loop_index] = 1
 
 
 def unload_settings():

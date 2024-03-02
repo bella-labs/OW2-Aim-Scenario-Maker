@@ -1,10 +1,29 @@
 settings "settings.json"
 
+#Extensions
+#!extension spawnMoreDummyBots
+##!optimizeForSize
 
-rule "Update Testbot":
-    @Event eachPlayer
-    @Team 1
-    @Slot 0
+# Includes
+#!include "header.opy"
+#!include "initialization/custom.opy"
+#!include "initialization/init.opy"
+#!include "initialization/player.opy"
+#!include "data/static_data.opy"
+#!include "data/databot.opy"
+#!include "ui/ui_framework.opy"
+#!include "ui/ui_builder.opy"
+#!include "actions/actions_handler.opy"
+#!include "actions/actions_general.opy"
+#!include "actions/actions_main_menu.opy"
+#!include "actions/actions_scenario.opy"
+#!include "actions/actions_bot.opy"
+#!include "actions/actions_movement.opy"
+#!include "utilities/util.opy"
+#!include "utilities/effects.opy"
+#!include "bot/bot_generation.opy"
+#!include "bot/bot_listener.opy"
+#!include "bot/bot_handler.opy"
+#!include "bot/mvmt_handler.opy"
+#!include "scenario/scenario_handler.opy"
 
-    hudHeader(eventPlayer, "Speed {0}".format(eventPlayer.getSpeed()), HudPosition.TOP, 0, Color.WHITE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)
-    hudHeader(eventPlayer, "Velocity {0}".format(eventPlayer.getVelocity()), HudPosition.TOP, 0, Color.WHITE, HudReeval.VISIBILITY_SORT_ORDER_STRING_AND_COLOR, SpecVisibility.ALWAYS)

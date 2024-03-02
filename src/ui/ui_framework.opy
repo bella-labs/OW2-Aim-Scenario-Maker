@@ -252,6 +252,7 @@ def enable_player_input():
     eventPlayer.allowButton(Button.JUMP)
     eventPlayer.allowButton(Button.CROUCH)
     eventPlayer.allowButton(Button.MELEE)
+    #if not hitscan_mode:
     eventPlayer.allowButton(Button.PRIMARY_FIRE)
     eventPlayer.allowButton(Button.SECONDARY_FIRE)
     eventPlayer.allowButton(Button.RELOAD)

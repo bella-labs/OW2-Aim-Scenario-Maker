@@ -1,4 +1,6 @@
 # Global Variables
+## Game State
+globalvar match_timer
 ## Control Flow
 globalvar loop_index
 globalvar data_loaded
@@ -450,6 +452,8 @@ subroutine show_next_bot
 subroutine sce_start_scenario
 subroutine sce_stop_scenario
 
+subroutine collision_check
+
 enum SUBMENUS:
     SUBMENU_MAIN = 0,
     SUBMENU_SCENARIO,
@@ -604,4 +608,4 @@ enum XZ_DIR:
 
 enum YDIR:
     UP = 0,
-    DOWN,
+    DOWN

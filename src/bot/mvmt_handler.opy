@@ -5,6 +5,7 @@ rule "Target Bot Disable Throttle":
                 eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 1 or
                 eventPlayer.mvmt_max_weight[eventPlayer.profile_index] == 0
                 )
+    @Condition eventPlayer.isAlive()
 
         eventPlayer.stopThrottleInDirection()
 
@@ -14,6 +15,7 @@ rule "Target Bot Horizontal Input Handler":
     @Team 2
     @Condition eventPlayer.mvmt_hori_type[eventPlayer.profile_index] == 0
     @Condition eventPlayer.mvmt_max_weight[eventPlayer.profile_index] > 0
+    @Condition eventPlayer.isAlive()
 
         eventPlayer.startThrottleInDirection(eventPlayer.target_mvmt_dir, 1, Relativity.TO_PLAYER, Throttle.REPLACE_EXISTING, ThrottleReeval.DIRECTION_AND_MAGNITUDE)
 
@@ -21,9 +23,10 @@ rule "Target Bot Horizontal Input Handler":
 rule "Target Bot Horizontal Movement Handler":
     @Event eachPlayer
     @Team 2
+    @Condition eventPlayer.isAlive()
 
     async(select_mvmt_dir, AsyncBehavior.RESTART)
-    wait(eventPlayer.target_hori_wait)
+    wait(eventPlayer.target_hori_wait, Wait.ABORT_WHEN_FALSE)
 
     if RULE_CONDITION:
         goto RULE_START
@@ -35,13 +38,14 @@ rule "Target Bot Jump Input Movement":
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 0
     @Condition eventPlayer.mvmt_jump_chance[eventPlayer.profile_index] > 0
     @Condition eventPlayer.disabled_vert[YDIR.UP] == 0
+    @Condition eventPlayer.isAlive()
 
     eventPlayer.target_rand[PLAYER_RAND.JUMP] = random.uniform(0, 100)
     if eventPlayer.target_rand[PLAYER_RAND.JUMP] <= eventPlayer.mvmt_jump_chance[eventPlayer.profile_index]:
         eventPlayer.startForcingButton(Button.JUMP)
         waitUntil(eventPlayer.isDead(), random.uniform(eventPlayer.mvmt_crouch_min[eventPlayer.profile_index], eventPlayer.mvmt_crouch_max[eventPlayer.profile_index]))
         eventPlayer.stopForcingButton(Button.JUMP)
-    wait(eventPlayer.mvmt_jump_interval[eventPlayer.profile_index])
+    wait(eventPlayer.mvmt_jump_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
 
     if RULE_CONDITION:
         goto RULE_START
@@ -53,13 +57,14 @@ rule "Target Bot Crouch Input Movement":
     @Condition eventPlayer.mvmt_vert_type[eventPlayer.profile_index] == 0
     @Condition eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index] > 0
     @Condition eventPlayer.disabled_vert[YDIR.UP] == 0
+    @Condition eventPlayer.isAlive()
 
     eventPlayer.target_rand[PLAYER_RAND.CROUCH] = random.uniform(0, eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index])
     if eventPlayer.target_rand[PLAYER_RAND.CROUCH] <= random.uniform(0, eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index]):
         eventPlayer.startForcingButton(Button.CROUCH)
         waitUntil(eventPlayer.isDead(), random.uniform(eventPlayer.mvmt_crouch_min[eventPlayer.profile_index], eventPlayer.mvmt_crouch_max[eventPlayer.profile_index]))
         eventPlayer.stopForcingButton(Button.CROUCH)
-    wait(eventPlayer.mvmt_crouch_interval[eventPlayer.profile_index])
+    wait(eventPlayer.mvmt_crouch_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
 
     if RULE_CONDITION:
         goto RULE_START
@@ -69,12 +74,13 @@ rule "Target Bot LR Idle Movement":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.mvmt_lr_idle_chance[eventPlayer.profile_index] > 0
+    @Condition eventPlayer.isAlive()
 
     wait(eventPlayer.mvmt_lr_idle_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
     eventPlayer.target_rand[PLAYER_RAND.LR_IDLE] = random.uniform(0,100)
     if eventPlayer.target_rand[PLAYER_RAND.LR_IDLE] < eventPlayer.mvmt_lr_idle_chance[eventPlayer.profile_index] and eventPlayer.isAlive():
         eventPlayer.target_lr_idle = true
-        wait(random.uniform(eventPlayer.mvmt_lr_idle_min[eventPlayer.profile_index], eventPlayer.mvmt_lr_idle_max[eventPlayer.profile_index]))
+        wait(random.uniform(eventPlayer.mvmt_lr_idle_min[eventPlayer.profile_index], eventPlayer.mvmt_lr_idle_max[eventPlayer.profile_index]), Wait.ABORT_WHEN_FALSE)
         eventPlayer.target_lr_idle = false
 
     if RULE_CONDITION:
@@ -85,12 +91,13 @@ rule "Target Bot FB Idle Movement":
     @Event eachPlayer
     @Team 2
     @Condition eventPlayer.mvmt_fb_idle_chance[eventPlayer.profile_index] > 0
+    @Condition eventPlayer.isAlive()
 
     wait(eventPlayer.mvmt_fb_idle_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
     eventPlayer.target_rand[PLAYER_RAND.FB_IDLE] = random.uniform(0,100)
     if eventPlayer.target_rand[PLAYER_RAND.FB_IDLE] < eventPlayer.mvmt_fb_idle_chance[eventPlayer.profile_index] and eventPlayer.isAlive():
         eventPlayer.target_fb_idle = true
-        wait(random.uniform(eventPlayer.mvmt_fb_idle_min[eventPlayer.profile_index], eventPlayer.mvmt_fb_idle_max[eventPlayer.profile_index]))
+        wait(random.uniform(eventPlayer.mvmt_fb_idle_min[eventPlayer.profile_index], eventPlayer.mvmt_fb_idle_max[eventPlayer.profile_index]), Wait.ABORT_WHEN_FALSE)
         eventPlayer.target_fb_idle = false
 
     if RULE_CONDITION:
@@ -134,14 +141,16 @@ rule "Target Bot Vertical Up Impulse Trigger":
     if eventPlayer.disabled_vert[YDIR.UP] != 0:
         eventPlayer.target_vert_dir -= 1
         waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.UP] == 0, random.uniform(eventPlayer.mvmt_jump_min[eventPlayer.profile_index], eventPlayer.mvmt_jump_max[eventPlayer.profile_index]))
-        eventPlayer.target_vert_dir += 1
+        if eventPlayer.isAlive():
+            eventPlayer.target_vert_dir += 1
     else:
         eventPlayer.target_rand[PLAYER_RAND.JUMP] = random.uniform(0, 100)
             if eventPlayer.target_rand[PLAYER_RAND.JUMP] <= eventPlayer.mvmt_jump_chance[eventPlayer.profile_index]:
             eventPlayer.target_vert_dir += 1
             waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.UP] != 0, random.uniform(eventPlayer.mvmt_jump_min[eventPlayer.profile_index], eventPlayer.mvmt_jump_max[eventPlayer.profile_index]))
-            eventPlayer.target_vert_dir -= 1
-    wait(eventPlayer.mvmt_jump_interval[eventPlayer.profile_index])
+            if eventPlayer.isAlive():
+                eventPlayer.target_vert_dir -= 1
+    wait(eventPlayer.mvmt_jump_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
 
     if RULE_CONDITION:
         goto RULE_START
@@ -158,14 +167,16 @@ rule "Target Bot Vertical Down Impulse Trigger":
     if eventPlayer.disabled_vert[YDIR.DOWN] != 0:
         eventPlayer.target_vert_dir += 1
         waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.UP] == 0, random.uniform(eventPlayer.mvmt_crouch_min[eventPlayer.profile_index], eventPlayer.mvmt_crouch_max[eventPlayer.profile_index]))
-        eventPlayer.target_vert_dir -= 1
+        if eventPlayer.isAlive():
+            eventPlayer.target_vert_dir -= 1
     else:
         eventPlayer.target_rand[PLAYER_RAND.CROUCH] = random.uniform(0, 100)
         if eventPlayer.target_rand[PLAYER_RAND.CROUCH] <= eventPlayer.mvmt_crouch_chance[eventPlayer.profile_index]:
             eventPlayer.target_vert_dir -= 1
             waitUntil(eventPlayer.isDead() or eventPlayer.disabled_vert[YDIR.DOWN] != 0, random.uniform(eventPlayer.mvmt_crouch_min[eventPlayer.profile_index], eventPlayer.mvmt_crouch_max[eventPlayer.profile_index]))
-            eventPlayer.target_vert_dir += 1
-    wait(eventPlayer.mvmt_crouch_interval[eventPlayer.profile_index])
+            if eventPlayer.isAlive():
+                eventPlayer.target_vert_dir += 1
+    wait(eventPlayer.mvmt_crouch_interval[eventPlayer.profile_index], Wait.ABORT_WHEN_FALSE)
 
     if RULE_CONDITION:
         goto RULE_START
