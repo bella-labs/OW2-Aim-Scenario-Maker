@@ -1,6 +1,8 @@
 # Global Variables
 ## Game State
 globalvar match_timer
+globalvar countdown_timer
+globalvar countdown_max
 ## Control Flow
 globalvar loop_index
 globalvar data_loaded
@@ -126,7 +128,8 @@ globalvar scenario_status
 globalvar scenario_timer
 globalvar active_bot_status
 globalvar test_bot_index
-globalvar scenario_bot_index
+globalvar scenario_bots_index
+globalvar scenario_bots
 globalvar scenario_bot
 globalvar sce_player
 ## Save Data
@@ -448,6 +451,7 @@ subroutine target_down_impulse
 subroutine setup_player_in_scenario
 subroutine reset_player
 ## Scenario Bot Management
+subroutine hide_current_bot
 subroutine show_next_bot
 subroutine sce_start_scenario
 subroutine sce_stop_scenario

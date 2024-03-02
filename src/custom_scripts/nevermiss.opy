@@ -38,6 +38,35 @@ rule "Ball ball form":
     @Team 2
     @Hero hammond
     @Condition eventPlayer.isAlive()
+    @Condition not eventPlayer.isUsingAbility1()
 
-    wait(1)
     eventPlayer.forceButtonPress(Button.ABILITY_1)
+    wait()
+
+    if RULE_CONDITION:
+        goto RULE_START
+
+
+rule "Player Infinite Ammo":
+    @Event eachPlayer
+    @Team 1
+    @Condition not eventPlayer.isDummy()
+    @Condition eventPlayer.isAlive()
+    @Condition eventPlayer.hasSpawned()
+    @Condition eventPlayer.getMaxAmmo(0) != 100000
+
+    eventPlayer.setAmmo(0, 100000)
+    eventPlayer.setMaxAmmo(0, 100000)
+    eventPlayer.setAmmo(1, 100000)
+    eventPlayer.setMaxAmmo(1, 100000)
+
+
+rule "Player Infinite Ammo - Ammo Refresh":
+    @Event eachPlayer
+    @Team 1
+    @Condition eventPlayer.getAmmo(0) <= 1
+
+    eventPlayer.setAmmo(0, 100000)
+    eventPlayer.setMaxAmmo(0, 100000)
+    eventPlayer.setAmmo(1, 100000)
+    eventPlayer.setMaxAmmo(1, 100000)

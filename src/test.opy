@@ -1,12 +1,10 @@
 settings "settings.json"
+#settings "echo_settings.json"
 
-#Extensions
-#!extension spawnMoreDummyBots
-##!optimizeForSize
+globalvar last_impulse
 
 # Includes
 #!include "header.opy"
-#!include "initialization/custom.opy"
 #!include "initialization/init.opy"
 #!include "initialization/player.opy"
 #!include "data/static_data.opy"
@@ -26,4 +24,14 @@ settings "settings.json"
 #!include "bot/bot_handler.opy"
 #!include "bot/mvmt_handler.opy"
 #!include "scenario/scenario_handler.opy"
+##!include "custom_scripts/echo.opy"
+##!include "custom_scripts/genji.opy"
+##!include "custom_scripts/blink_melee.opy"
+#!include "custom_scripts/nevermiss.opy"
 
+
+rule "mvmt arrow":
+    @Event global
+    @Condition getPlayersInSlot(0, Team.2)
+
+    createBeam(getPlayersInSlot(0, Team.1), Beam.GRAPPLE, getPlayersInSlot(0, Team.2).getEyePosition(), getPlayersInSlot(0, Team.2).getEyePosition() + getPlayersInSlot(0, Team.2).target_mvmt_dir * 10, Color.BLACK, EffectReeval.VISIBILITY_POSITION_RADIUS_AND_COLOR)

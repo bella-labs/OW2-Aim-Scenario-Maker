@@ -75,7 +75,9 @@ rule "Show Next Scenario Bot":
     @Event playerDied
     @Condition databot.sce_spawn_order == 1
 
+    hide_current_bot()
     show_next_bot()
+
 
 
 def sce_start_scenario():
@@ -85,40 +87,40 @@ def sce_start_scenario():
     wait(0.1)
     sce_player = eventPlayer
     sce_player.player_score = 0
-
     sce_player.elims = 0
 
     for bot_gen_slot in range(0, 12):
         destroy_target_bot()
         active_bot_status[bot_gen_slot] = false
 
-    scenario_bot = null
-    scenario_bot_index = 0
+    scenario_bots = null
     for bot_gen_slot in range(0, 12):
         if databot.bot_slot_status[bot_gen_slot]:
             create_target_bot()
             active_bot_status[bot_gen_slot] = true
-            if databot.sce_spawn_order == 1:
-                scenario_bot[scenario_bot_index] = getPlayersInSlot(bot_gen_slot, Team.2)
-
-                scenario_bot[scenario_bot_index].setInvisibility(Invis.ALL)
-                scenario_bot[scenario_bot_index].setStatusEffect(null, Status.PHASED_OUT, 9999)
-                scenario_bot_index += 1
-
-    scenario_bot_index = len(scenario_bot)
-
-    if databot.sce_spawn_order == 1:
-        show_next_bot()
+            scenario_bots[bot_gen_slot] = getPlayersInSlot(bot_gen_slot, Team.2)
+            scenario_bots_index = bot_gen_slot
+            hide_current_bot()
 
     disable_player_input()
     setup_player_in_scenario()
 
-    smallMessage(eventPlayer, "  3")
-    wait(1)
-    smallMessage(eventPlayer, "  2")
-    wait(1)
-    smallMessage(eventPlayer, "  1")
-    wait(1)
+    countdown_timer = countdown_max
+    while countdown_timer > 0:
+        smallMessage(sce_player, "  Starting in... {0}".format(countdown_timer))
+        wait(0.5)
+        countdown_timer -= 1
+        wait(0.5)
+
+
+    scenario_bots_index = 0
+
+    if databot.sce_spawn_order == 1:
+        show_next_bot()
+    else:
+        while scenario_bots_index < len(scenario_bots):
+            show_next_bot()
+
 
     eventPlayer.player_speed = databot.sce_player_speed
     eventPlayer.startScalingSize(databot.sce_player_scale, true)
@@ -139,7 +141,7 @@ def setup_player_in_scenario():
     @Name "SUB: setup_player_in_scenario"
 
     sce_player.setGravity(databot.sce_player_gravity)
-    wait()
+    wait(0.1)
     sce_player.teleport(databot.sce_player_spawn)
     sce_player.setFacing(databot.sce_player_facing, Relativity.TO_WORLD)
 
@@ -179,13 +181,35 @@ def sce_stop_scenario():
     scenario_status = false
 
 
+def hide_current_bot():
+    @Name "SUB: hide_current_bot"
+
+    scenario_bots[scenario_bots_index].setInvisibility(Invis.ALL)
+    scenario_bots[scenario_bots_index].setStatusEffect(null, Status.PHASED_OUT, 9999)
+
+
+
 def show_next_bot():
     @Name "SUB: show_next_bot"
 
-    scenario_bot[scenario_bot_index].setInvisibility(Invis.ALL)
-    scenario_bot[scenario_bot_index].setStatusEffect(null, Status.PHASED_OUT, 9999)
-    scenario_bot_index += 1
-    if scenario_bot_index >= len(scenario_bot):
-        scenario_bot_index = 0
-    scenario_bot[scenario_bot_index].setInvisibility(Invis.NONE)
-    scenario_bot[scenario_bot_index].clearStatusEffect(Status.PHASED_OUT)
+    if scenario_bots_index >= len(scenario_bots):
+        scenario_bots_index = 0
+
+    scenario_bot = scenario_bots[scenario_bots_index]
+    switch scenario_bot.bot_spawn_type:
+        case 0:
+            scenario_bot.teleport(scenario_bot.bot_spawn_vect)
+            break
+        case 1:
+            scenario_bot.teleport(scenario_bot.bot_bound_pos + vect(random.uniform(-1 * scenario_bot.bot_bound_dim.x, scenario_bot.bot_bound_dim.x)/2, random.uniform(-scenario_bot.bot_bound_dim.y, scenario_bot.bot_bound_dim.y)/2, random.uniform(-scenario_bot.bot_bound_dim.z, scenario_bot.bot_bound_dim.z)/2))
+            break
+        case 2:
+            scenario_bot.teleport(nearestWalkablePosition(scenario_bot.bot_bound_pos + vect(random.uniform(-scenario_bot.bot_bound_dim.x, scenario_bot.bot_bound_dim.x)/2, random.uniform(-scenario_bot.bot_bound_dim.y, scenario_bot.bot_bound_dim.y)/2, random.uniform(-scenario_bot.bot_bound_dim.z, scenario_bot.bot_bound_dim.z)/2)))
+            break
+
+    scenario_bots[scenario_bots_index].setInvisibility(Invis.NONE)
+    scenario_bots[scenario_bots_index].clearStatusEffect(Status.PHASED_OUT)
+    scenario_bots_index += 1
+
+
+

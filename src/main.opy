@@ -1,6 +1,9 @@
 settings "settings.json"
 #settings "echo_settings.json"
 
+# Extensions
+#!extension spawnMoreDummyBots
+
 # Includes
 #!include "header.opy"
 #!include "initialization/init.opy"
@@ -26,3 +29,4 @@ settings "settings.json"
 ##!include "custom_scripts/genji.opy"
 ##!include "custom_scripts/blink_melee.opy"
 #!include "custom_scripts/nevermiss.opy"
+
