@@ -218,6 +218,7 @@ rule "Target Bot Listener - Bot Profile":
                 eventPlayer.bot_profile_max != databot.bot_profile_max[eventPlayer.getSlot()]
                 )
 
+    smallMessage(hostPlayer, "yoyo")
     eventPlayer.profile_index = -1
     eventPlayer.bot_profile_weights = databot.bot_profile_weights[eventPlayer.getSlot()]
     eventPlayer.bot_profile_max_weight = databot.bot_profile_max_weight[eventPlayer.getSlot()]
@@ -226,6 +227,12 @@ rule "Target Bot Listener - Bot Profile":
     eventPlayer.bot_profile_max = databot.bot_profile_max[eventPlayer.getSlot()]
 
     eventPlayer.profile_index = 0
+    smallMessage(hostPlayer, "yo")
+    if eventPlayer.bot_profile_max == 0:
+        smallMessage(hostPlayer, "sui")
+        while(eventPlayer.bot_profile_weights[eventPlayer.profile_index] == -1 and eventPlayer.profile_index < 12):
+            eventPlayer.profile_index += 1
+            smallMessage(hostPlayer, "hi")
     # Cooldown to prevent overflow
     wait(1)
 

@@ -193,8 +193,10 @@ def create_help_hud():
                         ]
 
     hudSubheader([i for i in localPlayer],
-    "{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}".format("{0} {1} {2} {3} {4}\n".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[0]] if user_controls[0] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]),
+    "{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}{12}{13}".format(
+        "{0} {1} {2} {3} {4}\n".format(strings_prompt[lang_type][0] if ui_delay > 0 else strings_prompt[lang_type][1], strings_inputs[lang_type][user_controls[0]] if user_controls[0] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[0]), strings_prompt[lang_type][2], strings_prompt[lang_type][3] if menu_visible else strings_prompt[lang_type][4], strings_prompt[lang_type][5]),
         strings_symbols[0],
+        "" if menu_visible else "{0} {1} {2}\n".format(strings_prompt[lang_type][0], buttonString(Button.RELOAD), strings_prompt[lang_type][9]),
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[1]] if user_controls[1] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[1]), menu_help_display[0]) if menu_visible else "",
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[2]] if user_controls[2] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[2]), menu_help_display[1]) if menu_visible else "",
         "{0} : {1}\n".format(strings_inputs[lang_type][user_controls[3]] if user_controls[3] <= INPUT_OPTIONS.VECT_RIGHT else buttonString(ui_inputs[3]), menu_help_display[2]) if menu_visible else "",

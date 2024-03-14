@@ -25,6 +25,7 @@
     "heroes": {
         "team1": {
             "echo": {
+                "enableAbility2": false,
                 "enableInfiniteAmmo": true
             },
             "enabledHeroes": [
@@ -38,5 +39,3 @@
         }
     }
 }
-
-

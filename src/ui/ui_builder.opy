@@ -792,7 +792,7 @@ def create_submenu_movement():
 
     menu_item_var_1[menu_item_size] = strings_options[lang_type][OPTIONS_TYPE.MVMT_TYPE][databot.mvmt_hori_type[0]]
     menu_item_var_2[menu_item_size] = databot.mvmt_hori_impulse[0]
-    menu_item_var_3[menu_item_size] = databot.mvmt_hori_impulse[0]
+    menu_item_var_3[menu_item_size] = databot.mvmt_hori_interval[0]
 
     action_var = ITEM_TYPE.MVMT_TYPE
     action_var_2 = menu_item_size

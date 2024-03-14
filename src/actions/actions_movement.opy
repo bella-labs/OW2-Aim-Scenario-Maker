@@ -51,15 +51,15 @@ def subact_mvmt_select_refresh():
     # Crouch
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.mvmt_crouch_chance[profile_slot]
-    menu_item_var_2[refresh_index] = databot.mvmt_crouch_interval[profile_slot]
-    menu_item_var_3[refresh_index] = databot.mvmt_crouch_min[profile_slot]
-    menu_item_var_4[refresh_index] = databot.mvmt_crouch_max[profile_slot]
+    menu_item_var_2[refresh_index] = databot.mvmt_crouch_min[profile_slot]
+    menu_item_var_3[refresh_index] = databot.mvmt_crouch_max[profile_slot]
+    menu_item_var_4[refresh_index] = databot.mvmt_crouch_interval[profile_slot]
     # LR Idle
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.mvmt_lr_idle_chance[profile_slot]
-    menu_item_var_2[refresh_index] = databot.mvmt_lr_idle_interval[profile_slot]
-    menu_item_var_3[refresh_index] = databot.mvmt_lr_idle_min[profile_slot]
-    menu_item_var_4[refresh_index] = databot.mvmt_lr_idle_max[profile_slot]
+    menu_item_var_2[refresh_index] = databot.mvmt_lr_idle_min[profile_slot]
+    menu_item_var_3[refresh_index] = databot.mvmt_lr_idle_max[profile_slot]
+    menu_item_var_4[refresh_index] = databot.mvmt_lr_idle_interval[profile_slot]
     # FB Idle
     refresh_index += 1
     menu_item_var_1[refresh_index] = databot.mvmt_fb_idle_chance[profile_slot]

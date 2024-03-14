@@ -269,7 +269,8 @@ rule "load_language_data":
             "menu",
             "to override the currently selected slot",
             "to override all slots",
-            "Slot is disabled in bot settings"
+            "Slot is disabled in bot settings",
+            "to Start Scenario"
         ],
         [
             "",

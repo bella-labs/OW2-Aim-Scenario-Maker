@@ -14,7 +14,8 @@ rule "Player Spawned: Setup Host":
     # Allow player to use inputs
     enable_player_input()
     # Make player unkillable by default.
-    eventPlayer.setStatusEffect(eventPlayer, Status.INVINCIBLE, 9999)
+    eventPlayer.setStatusEffect(eventPlayer, Status.UNKILLABLE, 9999)
+    eventPlayer.startHoT(eventPlayer, 9999, 9999)
 
 
 rule "Player Passive: Disable Healing Passive":

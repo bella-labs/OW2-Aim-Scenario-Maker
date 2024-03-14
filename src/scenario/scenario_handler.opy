@@ -106,6 +106,7 @@ def sce_start_scenario():
     setup_player_in_scenario()
 
     countdown_timer = countdown_max
+    wait(0.1)
     while countdown_timer > 0:
         smallMessage(sce_player, "  Starting in... {0}".format(countdown_timer))
         wait(0.5)
@@ -121,10 +122,11 @@ def sce_start_scenario():
         while scenario_bots_index < len(scenario_bots):
             show_next_bot()
 
-
     eventPlayer.player_speed = databot.sce_player_speed
     eventPlayer.startScalingSize(databot.sce_player_scale, true)
     enable_player_input()
+
+    wait(0.1)
     bigMessage(eventPlayer, "Start")
 
     if databot.sce_game_mode == 0:
@@ -140,10 +142,11 @@ def sce_start_scenario():
 def setup_player_in_scenario():
     @Name "SUB: setup_player_in_scenario"
 
+    kill(sce_player, sce_player)
     sce_player.setGravity(databot.sce_player_gravity)
-    wait(0.1)
     sce_player.teleport(databot.sce_player_spawn)
     sce_player.setFacing(databot.sce_player_facing, Relativity.TO_WORLD)
+    sce_player.resurrect()
 
 
 
